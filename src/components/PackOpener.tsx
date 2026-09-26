@@ -3,6 +3,7 @@ import type { CardData } from '../types/card';
 import { TcgCard } from './TcgCard';
 import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { playPackTearSound, playLegendaryRevealSound, playSparkleSound, playCardFlipSound } from '../utils/soundEffects';
+import { resolveImageUrl } from '../utils/imageHelper';
 import confetti from 'canvas-confetti';
 import { Sparkles, Package, RotateCcw, X, Scissors, ChevronRight } from 'lucide-react';
 
@@ -167,7 +168,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                 >
                   <div className="w-full h-full rounded-[16px] overflow-hidden border-2 border-amber-400 shadow-[0_0_35px_rgba(234,179,8,0.6)] bg-slate-950 relative">
                     <img
-                      src="/cards/Card_Trasera.png"
+                      src={resolveImageUrl('/cards/Card_Trasera.png')}
                       alt="Reverso de Carta"
                       className="w-full h-full object-cover"
                     />
