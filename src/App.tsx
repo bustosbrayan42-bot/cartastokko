@@ -16,7 +16,6 @@ import {
   RotateCcw,
   Package,
   Eye,
-  Cloud,
   RefreshCw
 } from 'lucide-react';
 import { fetchCardsFromSupabase } from './utils/supabaseClient';
