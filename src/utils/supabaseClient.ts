@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import type { CardData } from '../types/card';
 
-export const SUPABASE_URL = 'https://hucjgcodrhjocghcwdrf.supabase.co';
-export const SUPABASE_ANON_KEY = 'sb_publishable_xQYr4SpATP_vMB3Dt3yqSg_cUiefVhA';
+export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://hucjgcodrhjocghcwdrf.supabase.co';
+export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_xQYr4SpATP_vMB3Dt3yqSg_cUiefVhA';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
