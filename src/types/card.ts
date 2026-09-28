@@ -12,6 +12,15 @@ export type CardElement =
   | 'rutina'
   | 'leyenda';
 
+export interface CardAttack {
+  id: string;
+  name: string;
+  cost: CardElement[];
+  damage: string;
+  description: string;
+  tag?: string;
+}
+
 export interface CardData {
   id: string;
   title: string;
@@ -33,6 +42,7 @@ export interface CardData {
   abilityCost?: string[];
   abilityDamage?: string;
   abilityDesc?: string;
+  attacks?: CardAttack[];
   retreatCost?: number;
   weakness?: CardElement;
   resistance?: CardElement;
