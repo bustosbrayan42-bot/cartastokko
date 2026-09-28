@@ -1,18 +1,17 @@
 import React from 'react';
 import {
-  Sparkles,
+  Home,
   Layers,
   Package,
-  Plus,
   Volume2,
   VolumeX,
   Sliders
 } from 'lucide-react';
 
 interface NavbarProps {
-  activeTab: 'binder' | 'showcase' | 'pack';
-  onTabChange: (tab: 'binder' | 'showcase' | 'pack') => void;
-  onOpenCreateModal: () => void;
+  activeTab: 'home' | 'binder' | 'showcase' | 'pack';
+  onTabChange: (tab: 'home' | 'binder' | 'showcase' | 'pack') => void;
+  onOpenCreateModal?: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
   cardCount: number;
@@ -21,72 +20,81 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   onTabChange,
-  onOpenCreateModal,
   soundEnabled,
   onToggleSound,
   cardCount,
 }) => {
   return (
-    <header className="sticky top-0 z-40 w-full bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/80 shadow-lg">
+    <header className="sticky top-0 z-40 w-full bg-[#290A30]/90 backdrop-blur-xl border-b border-[#610F4E]/80 shadow-lg">
       <div className="max-w-[1650px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Logo & Title */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-purple-600 to-cyan-400 flex items-center justify-center shadow-[0_0_15px_rgba(234,179,8,0.4)]">
-            <Sparkles className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(245,11,140,0.35)] border border-[#F50B8C]/40 flex items-center justify-center bg-[#31213D] shrink-0">
+            <img
+              src="/cards/Icono.png"
+              alt="Tokkii Logo"
+              className="w-full h-full object-cover"
+            />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h1 className="font-black text-lg text-white tracking-wider leading-none">
-                TOKKII <span className="text-amber-400">TCG</span>
-              </h1>
-              <span className="text-[10px] bg-amber-500/20 text-amber-300 font-mono px-1.5 py-0.5 rounded border border-amber-500/40">
-                VISOR
-              </span>
-            </div>
-            <p className="text-[10px] text-slate-400 font-medium">
-              Visor de Cartas Coleccionables por Rareza
+            <h1 className="font-black text-lg text-[#F9F1F9] tracking-wider leading-tight">
+              EvilTokkii <span className="text-[#F50B8C]">TCG</span>
+            </h1>
+            <p className="text-[11px] text-[#B894B3] font-medium leading-none">
+              Cartas coleccionables por rareza
             </p>
           </div>
         </div>
 
         {/* View Modes Tabs */}
-        <nav className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-2xl border border-slate-800">
+        <nav className="flex items-center gap-1 bg-[#31213D]/90 p-1 rounded-2xl border border-[#610F4E]">
           <button
-            onClick={() => onTabChange('binder')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-              activeTab === 'binder'
-                ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700'
-                : 'text-slate-400 hover:text-slate-200'
+            onClick={() => onTabChange('home')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
+              activeTab === 'home'
+                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
+                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
             }`}
           >
-            <Layers className="w-4 h-4" />
-            <span className="hidden sm:inline">Carpeta / Deck</span>
-            <span className="text-[10px] px-1.5 rounded-full bg-slate-800 text-slate-300 font-mono">
+            <Home className={`w-4 h-4 ${activeTab === 'home' ? 'text-[#F50B8C]' : ''}`} />
+            <span className="hidden sm:inline">Home</span>
+          </button>
+          <button
+            onClick={() => onTabChange('binder')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
+              activeTab === 'binder'
+                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
+                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
+            }`}
+          >
+            <Layers className={`w-4 h-4 ${activeTab === 'binder' ? 'text-[#F50B8C]' : ''}`} />
+            <span className="hidden sm:inline">Álbum TCG</span>
+            <span className="text-[10px] px-1.5 rounded-full bg-[#31213D] text-[#B894B3] font-mono border border-[#610F4E]/60">
               {cardCount}
             </span>
           </button>
 
           <button
             onClick={() => onTabChange('showcase')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
               activeTab === 'showcase'
-                ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
+                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
             }`}
           >
-            <Sliders className="w-4 h-4" />
+            <Sliders className={`w-4 h-4 ${activeTab === 'showcase' ? 'text-[#F50B8C]' : ''}`} />
             <span className="hidden sm:inline">Showcase Rarezas</span>
           </button>
 
           <button
             onClick={() => onTabChange('pack')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
               activeTab === 'pack'
-                ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
+                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
             }`}
           >
-            <Package className="w-4 h-4" />
+            <Package className={`w-4 h-4 ${activeTab === 'pack' ? 'text-[#F50B8C]' : ''}`} />
             <span className="hidden sm:inline">Abrir Sobre</span>
           </button>
         </nav>
@@ -97,22 +105,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onToggleSound}
             title={soundEnabled ? 'Silenciar sonidos' : 'Activar sonidos'}
-            className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 flex items-center justify-center transition-colors"
+            className="w-9 h-9 rounded-xl bg-[#31213D] border border-[#610F4E] text-[#B894B3] hover:text-[#F9F1F9] hover:border-[#F50B8C]/50 flex items-center justify-center transition-colors cursor-pointer"
           >
             {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-amber-400" />
+              <Volume2 className="w-4 h-4 text-[#F50B8C]" />
             ) : (
-              <VolumeX className="w-4 h-4 text-slate-500" />
+              <VolumeX className="w-4 h-4 text-[#B894B3]/50" />
             )}
-          </button>
-
-          {/* Add / Edit Card Button */}
-          <button
-            onClick={onOpenCreateModal}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-black shadow-lg shadow-amber-500/20 transition-all active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Nueva Carta</span>
           </button>
         </div>
       </div>

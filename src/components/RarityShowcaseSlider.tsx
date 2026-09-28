@@ -169,30 +169,63 @@ export const RarityShowcaseSlider: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-slate-900/60 border border-slate-800/80 rounded-3xl p-6 md:p-8 backdrop-blur-md shadow-2xl relative overflow-hidden">
+    <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-6 py-2 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 relative">
       {/* Ambient background glow matching rarity color */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-15 filter blur-3xl pointer-events-none transition-colors duration-500"
+        className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 filter blur-[120px] pointer-events-none transition-colors duration-700"
         style={{ backgroundColor: currentConfig.color }}
       />
 
-      <div className="flex flex-col items-center text-center space-y-6 relative z-10">
+      {/* LEFT COLUMN: Card Stage with Navigation Arrows */}
+      <div className="flex-shrink-0 flex items-center justify-center gap-4 sm:gap-8 relative z-10">
+        <button
+          onClick={handlePrev}
+          className="w-12 h-12 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
+          title="Anterior rareza"
+        >
+          <ChevronLeft className="w-7 h-7" />
+        </button>
+
+        <div className="flex flex-col items-center justify-center">
+          {currentCard && (
+            <div className="py-2">
+              <TcgCard
+                card={currentCard}
+                scale={1.22}
+                interactive={true}
+                showBackFlipBtn={true}
+              />
+            </div>
+          )}
+        </div>
+
+        <button
+          onClick={handleNext}
+          className="w-12 h-12 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
+          title="Siguiente rareza"
+        >
+          <ChevronRight className="w-7 h-7" />
+        </button>
+      </div>
+
+      {/* RIGHT COLUMN: Texts, Rarity Selectors & Tech Specs */}
+      <div className="flex-1 flex flex-col justify-center space-y-5 max-w-2xl text-left relative z-10 w-full">
         {/* Header Title */}
-        <div className="space-y-1 max-w-xl">
-          <div className="flex items-center justify-center gap-1.5 text-xs font-mono uppercase tracking-widest text-amber-400">
-            <Sparkles className="w-4 h-4" />
-            Laboratorio de Acabados Holográficos TCG
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400">
+            <Sparkles className="w-4 h-4 shrink-0 text-amber-400 animate-pulse" />
+            <span>Laboratorio de Acabados Holográficos TCG</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-black text-white">
+          <h2 className="text-3xl lg:text-4xl font-black text-white tracking-wide">
             Evolución de Rareza & Efectos Láser
           </h2>
-          <p className="text-xs md:text-sm text-slate-400">
+          <p className="text-sm lg:text-base text-slate-300 leading-relaxed">
             Interactúa con la carta moviendo el ratón para apreciar los reflejos prismáticos, destellos estelares y el marco según su nivel de rareza.
           </p>
         </div>
 
         {/* Rarity Tabs Selector */}
-        <div className="flex flex-wrap justify-center gap-2 p-1.5 bg-slate-950/80 rounded-2xl border border-slate-800 max-w-full">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1.5 bg-slate-950/60 backdrop-blur-md rounded-2xl border border-slate-800/80 w-full shadow-lg">
           {rarities.map((r) => {
             const cfg = RARITY_CONFIGS[r];
             const isActive = selectedRarity === r;
@@ -200,15 +233,17 @@ export const RarityShowcaseSlider: React.FC = () => {
               <button
                 key={r}
                 onClick={() => setSelectedRarity(r)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                className={`px-2 py-2.5 rounded-xl text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 cursor-pointer text-center ${
                   isActive
-                    ? 'bg-slate-800 text-white border border-amber-400/80 shadow-[0_0_15px_rgba(234,179,8,0.3)] scale-105'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                    ? 'bg-slate-800/90 text-white border border-amber-400 shadow-[0_0_15px_rgba(234,179,8,0.35)] scale-[1.04]'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
                 }`}
               >
-                <span style={{ color: cfg.color }}>{cfg.shortName}</span>
-                <span>{cfg.name}</span>
-                <span className="text-[10px] text-amber-300">
+                <div className="flex items-center gap-1">
+                  <span className="font-mono text-xs font-extrabold" style={{ color: cfg.color }}>{cfg.shortName}</span>
+                  <span className="truncate text-xs">{cfg.name}</span>
+                </div>
+                <span className="text-[10px] text-amber-300 tracking-tighter">
                   {'★'.repeat(cfg.stars)}
                 </span>
               </button>
@@ -216,58 +251,51 @@ export const RarityShowcaseSlider: React.FC = () => {
           })}
         </div>
 
-        {/* Center Card Stage (Clean, Proportional, No Overlap) */}
-        <div className="flex items-center justify-center gap-4 md:gap-8 w-full py-4">
-          <button
-            onClick={handlePrev}
-            className="w-12 h-12 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition-all active:scale-95 shadow-lg shrink-0 cursor-pointer"
-            title="Anterior rareza"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          <div className="flex flex-col items-center">
-            {currentCard && (
-              <div className="py-2">
-                <TcgCard
-                  card={currentCard}
-                  scale={1.1}
-                  interactive={true}
-                  showBackFlipBtn={true}
-                />
-              </div>
-            )}
-          </div>
-
-          <button
-            onClick={handleNext}
-            className="w-12 h-12 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition-all active:scale-95 shadow-lg shrink-0 cursor-pointer"
-            title="Siguiente rareza"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
-
         {/* Rarity Spec Box */}
-        <div className="w-full max-w-2xl bg-slate-950/60 rounded-2xl p-4 border border-slate-800 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
-          <div className="space-y-0.5">
-            <div className="flex items-center gap-2">
+        <div className="w-full bg-slate-950/60 backdrop-blur-md rounded-2xl p-5 border border-slate-800/80 shadow-2xl space-y-3.5">
+          <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-4 h-4 rounded-full shadow-md shrink-0"
+                style={{ backgroundColor: currentConfig.color, boxShadow: `0 0 12px ${currentConfig.color}` }}
+              />
               <span
-                className="font-black text-sm uppercase"
+                className="font-black text-lg uppercase tracking-wide"
                 style={{ color: currentConfig.color }}
               >
                 {currentConfig.name} ({currentConfig.shortName})
               </span>
-              <span className="text-xs text-amber-300">
+              <span className="text-sm text-amber-300 tracking-wider">
                 {'★'.repeat(currentConfig.stars)}
               </span>
             </div>
-            <p className="text-xs text-slate-300 leading-normal">
-              {currentConfig.description}
-            </p>
+            <div className="px-3 py-1 rounded-lg bg-slate-900/90 border border-slate-700/80 text-xs font-mono text-slate-300">
+              Foil: <span className="text-amber-400 font-bold">{currentConfig.holoStyle}</span>
+            </div>
           </div>
-          <div className="shrink-0 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-[11px] font-mono text-slate-400">
-            Holo: <span className="text-amber-300 font-bold">{currentConfig.holoStyle}</span>
+
+          <p className="text-sm text-slate-300 leading-relaxed">
+            {currentConfig.description}
+          </p>
+
+          {/* Sample Card Stats & Ability */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
+              <span className="text-[10px] text-slate-400 block uppercase font-mono">Tipo / Arte</span>
+              <span className="text-xs font-bold text-white uppercase">{currentCard.isFullArt ? 'Full Art' : 'Estándar'}</span>
+            </div>
+            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
+              <span className="text-[10px] text-slate-400 block uppercase font-mono">Elemento</span>
+              <span className="text-xs font-bold text-white capitalize">{currentCard.element}</span>
+            </div>
+            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
+              <span className="text-[10px] text-slate-400 block uppercase font-mono">Habilidad</span>
+              <span className="text-xs font-bold text-amber-400 truncate block">{currentCard.abilityName}</span>
+            </div>
+            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
+              <span className="text-[10px] text-slate-400 block uppercase font-mono">Puntos Salud</span>
+              <span className="text-xs font-bold text-rose-400">{currentCard.hp} HP</span>
+            </div>
           </div>
         </div>
       </div>

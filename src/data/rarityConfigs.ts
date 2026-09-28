@@ -44,14 +44,14 @@ export const RARITY_CONFIGS: Record<Rarity, RarityConfig> = {
     id: 'super_rare',
     name: 'Súper Rara',
     shortName: 'SR',
-    color: '#eab308',
-    gradient: 'from-amber-500 via-yellow-400 to-amber-600',
-    glowColor: 'rgba(234, 179, 8, 0.6)',
-    borderColor: '#ca8a04',
-    badgeBg: 'bg-amber-950/80 text-amber-300 border-amber-500',
+    color: '#e5c158',
+    gradient: 'from-amber-400/80 via-yellow-200/80 to-amber-500/80',
+    glowColor: 'rgba(229, 193, 88, 0.32)',
+    borderColor: '#b59346',
+    badgeBg: 'bg-amber-950/60 text-amber-200 border-amber-500/40',
     holoStyle: 'gold_stars',
     stars: 4,
-    description: 'Relieve dorado brillante con destellos estelares y marco repujado.'
+    description: 'Relieve dorado suave con destellos estelares sutiles y marco champán.'
   },
   ultra_rare: {
     id: 'ultra_rare',

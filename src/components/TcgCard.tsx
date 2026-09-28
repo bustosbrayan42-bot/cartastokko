@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import type { CardData } from '../types/card';
 import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { ELEMENT_CONFIGS } from '../data/elementConfigs';
@@ -33,6 +33,10 @@ export const TcgCard: React.FC<TcgCardProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [internalFlipped, setInternalFlipped] = useState(isFlipped);
+
+  useEffect(() => {
+    setInternalFlipped(isFlipped);
+  }, [isFlipped]);
   const [transformStyle, setTransformStyle] = useState({
     rotX: 0,
     rotY: 0,
@@ -137,24 +141,29 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`card-perspective-container inline-block select-none ${interactive ? 'cursor-pointer' : ''} ${className}`}
+      className={`card-perspective-container inline-block select-none relative ${interactive ? 'cursor-pointer' : ''} ${className}`}
       style={{
-        transform: `scale(${scale})`,
-        transformOrigin: 'center center',
+        width: `${320 * scale}px`,
+        height: `${450 * scale}px`,
       }}
     >
       <div
-        className={`card-3d-root relative rounded-[20px] shadow-2xl pointer-events-none ${
+        className={`card-3d-root absolute top-1/2 left-1/2 rounded-[20px] shadow-2xl pointer-events-none ${
           !isHovered ? 'is-animating' : ''
         }`}
         style={
           {
             width: '320px',
             height: '450px',
-            transform: `rotateX(${transformStyle.rotX}deg) rotateY(${
+            transform: `translate(-50%, -50%) scale(${scale}) rotateX(${transformStyle.rotX}deg) rotateY(${
               actualFlipped ? transformStyle.rotY + 180 : transformStyle.rotY
             }deg)`,
-            boxShadow: isHovered
+            transformOrigin: 'center center',
+            boxShadow: actualFlipped
+              ? isHovered
+                ? '0 20px 35px -8px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)'
+                : '0 12px 24px -8px rgba(0,0,0,0.7)'
+              : isHovered
               ? `0 20px 35px -8px ${rarityConfig.glowColor}, 0 0 15px ${rarityConfig.glowColor}`
               : `0 12px 24px -8px rgba(0,0,0,0.6), 0 0 8px ${rarityConfig.glowColor}`,
             '--mouse-x': `${transformStyle.glareX}%`,
@@ -174,7 +183,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               : card.rarity === 'ultra_rare'
               ? 'linear-gradient(135deg, #2e1065 0%, #1e1b4b 50%, #030712 100%)'
               : card.rarity === 'super_rare'
-              ? 'linear-gradient(135deg, #451a03 0%, #78350f 50%, #1c1917 100%)'
+              ? 'linear-gradient(135deg, #241c12 0%, #352818 50%, #11141b 100%)'
               : card.rarity === 'rare'
               ? 'linear-gradient(135deg, #3b0764 0%, #1e1b4b 50%, #090d16 100%)'
               : card.rarity === 'uncommon'
@@ -228,15 +237,15 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               FULL ART LAYOUT (Secret Rare / Full Art)
              ========================================= */}
           {isFullArtMode ? (
-            <div className="relative z-20 flex flex-col justify-between h-full w-full">
-              {/* Floating Frosted Header */}
-              <div className="bg-black/55 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20 flex items-center justify-between shadow-lg">
+            <div className="relative z-40 flex flex-col justify-between h-full w-full">
+              {/* Floating Header */}
+              <div className="bg-black/55 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-white/20 flex items-center justify-between shadow-lg">
                 <div className="flex items-center gap-1.5 overflow-hidden">
                   <span className="text-base leading-none" title={elementConfig.name}>
                     {elementConfig.symbol}
                   </span>
                   <div className="truncate text-left">
-                    <div className="font-bold text-[13px] tracking-wide text-white truncate drop-shadow leading-tight">
+                    <div className="font-bold text-[13px] tracking-wide text-white truncate leading-tight">
                       {card.title}
                     </div>
                     <div className="text-[9px] text-amber-300 font-medium truncate leading-none">
@@ -246,10 +255,10 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0 ml-2">
-                  <span className="text-[10px] font-bold text-slate-300 uppercase tracking-tighter drop-shadow">
+                  <span className="text-[10px] font-bold text-slate-300 uppercase tracking-tighter">
                     HP
                   </span>
-                  <span className="font-black text-sm text-red-400 drop-shadow">{card.hp}</span>
+                  <span className="font-black text-sm text-red-400">{card.hp}</span>
                   <span
                     className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-md"
                     style={{ backgroundColor: elementConfig.color, color: '#000' }}
@@ -260,7 +269,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               </div>
 
               {/* Rarity Watermark Badge Top Right */}
-              <div className="self-end mr-1 my-1 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-amber-400/40 text-[9px] font-black tracking-widest text-white shadow flex items-center gap-1">
+              <div className="self-end mr-1 my-1 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-sm border border-amber-400/40 text-[9px] font-black tracking-widest text-white shadow flex items-center gap-1">
                 <span className="text-amber-300">{rarityConfig.shortName}</span>
                 <span className="text-[8px] text-amber-300">
                   {'★'.repeat(rarityConfig.stars)}
@@ -273,10 +282,10 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               {/* Center space is 100% open and transparent to see the image completely! */}
               <div className="flex-1" />
 
-              {/* Floating Frosted Bottom Box (Ability & Stats) */}
+              {/* Floating Bottom Box (Ability & Stats) */}
               <div className="space-y-1">
                 {showFullDetails && (
-                  <div className="bg-black/65 backdrop-blur-md rounded-xl p-2 border border-white/20 shadow-xl text-left flex flex-col gap-1">
+                  <div className="bg-black/65 backdrop-blur-sm rounded-xl p-2 border border-white/20 shadow-xl text-left flex flex-col gap-1">
                     {card.abilityName && (
                       <div className="border-b border-white/10 pb-1">
                         <div className="flex items-center justify-between">
@@ -284,18 +293,18 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                             {card.abilityCost?.map((c, i) => (
                               <span
                                 key={i}
-                                className="w-3.5 h-3.5 rounded-full bg-slate-900/90 border border-slate-600 flex items-center justify-center text-[8px]"
+                                className="w-3.5 h-3.5 rounded-full bg-slate-900 border border-slate-600 flex items-center justify-center text-[8px]"
                                 title={c}
                               >
                                 {ELEMENT_CONFIGS[c as keyof typeof ELEMENT_CONFIGS]?.symbol || '•'}
                               </span>
                             ))}
-                            <span className="font-bold text-[11px] text-amber-300 tracking-tight drop-shadow">
+                            <span className="font-bold text-[11px] text-amber-300 tracking-tight">
                               {card.abilityName}
                             </span>
                           </div>
                           {card.abilityDamage && (
-                            <span className="font-extrabold text-[12px] text-white drop-shadow">
+                            <span className="font-extrabold text-[12px] text-white">
                               {card.abilityDamage}
                             </span>
                           )}
@@ -370,13 +379,13 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                ========================================= */
             <>
               {/* CARD HEADER */}
-              <div className="relative z-10 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-t-[12px] border border-slate-700/60 flex items-center justify-between shadow-md">
+              <div className="relative z-40 bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-t-[12px] border border-slate-700/60 flex items-center justify-between shadow-md">
                 <div className="flex items-center gap-1.5 overflow-hidden">
                   <span className="text-base leading-none" title={elementConfig.name}>
                     {elementConfig.symbol}
                   </span>
                   <div className="truncate text-left">
-                    <div className="font-bold text-[13px] tracking-wide text-white truncate drop-shadow-sm leading-tight">
+                    <div className="font-bold text-[13px] tracking-wide text-white truncate leading-tight">
                       {card.title}
                     </div>
                     <div className="text-[9px] text-slate-300 font-medium truncate leading-none">
@@ -389,7 +398,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
                     HP
                   </span>
-                  <span className="font-black text-sm text-red-400 drop-shadow">{card.hp}</span>
+                  <span className="font-black text-sm text-red-400">{card.hp}</span>
                   <span
                     className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-inner"
                     style={{ backgroundColor: elementConfig.color, color: '#000' }}
@@ -407,7 +416,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                     card.rarity === 'ultra_rare'
                       ? '#f472b6'
                       : card.rarity === 'super_rare'
-                      ? '#facc15'
+                      ? '#d4b256'
                       : card.rarity === 'rare'
                       ? '#c084fc'
                       : card.rarity === 'uncommon'
@@ -433,7 +442,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 )}
 
                 {/* Rarity Watermark Badge in Artwork corner */}
-                <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/20 text-[9px] font-black tracking-widest text-white shadow flex items-center gap-1">
+                <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/75 backdrop-blur-sm border border-white/20 text-[9px] font-black tracking-widest text-white shadow flex items-center gap-1">
                   <span style={{ color: rarityConfig.color }}>{rarityConfig.shortName}</span>
                   <span className="text-[8px] text-amber-300">
                     {'★'.repeat(rarityConfig.stars)}
@@ -443,7 +452,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
 
               {/* CARD ABILITY / DETAILS BOX */}
               {showFullDetails && (
-                <div className="relative z-10 bg-slate-900/95 backdrop-blur-md rounded-[10px] p-2 border border-slate-700/80 shadow text-left flex flex-col gap-1">
+                <div className="relative z-40 bg-slate-900/95 backdrop-blur-sm rounded-[10px] p-2 border border-slate-700/80 shadow text-left flex flex-col gap-1">
                   {card.abilityName && (
                     <div className="border-b border-slate-800 pb-1">
                       <div className="flex items-center justify-between">
@@ -515,7 +524,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               )}
 
               {/* CARD FOOTER */}
-              <div className="relative z-10 px-1 pt-1 flex items-center justify-between text-[8px] text-slate-400">
+              <div className="relative z-40 px-1 pt-1 flex items-center justify-between text-[8px] text-slate-400">
                 <div className="truncate flex items-center gap-1">
                   <span className="text-slate-500">Ilus.</span>
                   <span className="font-medium text-slate-300 truncate">{card.artist}</span>

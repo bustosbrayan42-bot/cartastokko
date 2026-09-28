@@ -181,3 +181,39 @@ export function playLegendaryRevealSound() {
     // Ignore
   }
 }
+
+// Page Turn Sound (Subtle paper rustle / book page swish)
+export function playPageTurnSound() {
+  if (!isSoundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const bufferSize = ctx.sampleRate * 0.18;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.45));
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(800, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.18);
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    noise.start();
+  } catch {
+    // Ignore
+  }
+}
