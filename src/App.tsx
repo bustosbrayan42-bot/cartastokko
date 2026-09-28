@@ -19,6 +19,9 @@ export function App() {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length >= DEFAULT_CARDS.length) {
           return parsed;
+        } else if (Array.isArray(parsed) && parsed.length > 0) {
+          const localMap = new Map(parsed.map((c: CardData) => [c.id, c]));
+          return DEFAULT_CARDS.map((defCard) => localMap.get(defCard.id) || defCard);
         }
       } catch {
         return DEFAULT_CARDS;
@@ -32,7 +35,14 @@ export function App() {
     try {
       const dbCards = await fetchCardsFromSupabase();
       if (dbCards && dbCards.length > 0) {
-        setCards(dbCards);
+        if (dbCards.length >= DEFAULT_CARDS.length) {
+          setCards(dbCards);
+        } else {
+          // Merge custom edits from Supabase while preserving all 140 cards
+          const dbMap = new Map(dbCards.map((c: CardData) => [c.id, c]));
+          const merged = DEFAULT_CARDS.map((defCard) => dbMap.get(defCard.id) || defCard);
+          setCards(merged);
+        }
       }
     } catch (err) {
       console.warn('Could not load cards from Supabase, using local fallback:', err);
