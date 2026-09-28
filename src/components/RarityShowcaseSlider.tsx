@@ -180,7 +180,7 @@ export const RarityShowcaseSlider: React.FC = () => {
       <div className="flex-shrink-0 flex items-center justify-center gap-4 sm:gap-8 relative z-10">
         <button
           onClick={handlePrev}
-          className="w-12 h-12 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
+          className="w-12 h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
           title="Anterior rareza"
         >
           <ChevronLeft className="w-7 h-7" />
@@ -201,7 +201,7 @@ export const RarityShowcaseSlider: React.FC = () => {
 
         <button
           onClick={handleNext}
-          className="w-12 h-12 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
+          className="w-12 h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
           title="Siguiente rareza"
         >
           <ChevronRight className="w-7 h-7" />
@@ -212,20 +212,20 @@ export const RarityShowcaseSlider: React.FC = () => {
       <div className="flex-1 flex flex-col justify-center space-y-5 max-w-2xl text-left relative z-10 w-full">
         {/* Header Title */}
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400">
-            <Sparkles className="w-4 h-4 shrink-0 text-amber-400 animate-pulse" />
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#F50B8C]">
+            <Sparkles className="w-4 h-4 shrink-0 text-[#F50B8C] animate-pulse" />
             <span>Laboratorio de Acabados Holográficos TCG</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-white tracking-wide">
+          <h2 className="text-3xl lg:text-4xl font-black text-[#F9F1F9] tracking-wide">
             Evolución de Rareza & Efectos Láser
           </h2>
-          <p className="text-sm lg:text-base text-slate-300 leading-relaxed">
+          <p className="text-sm lg:text-base text-[#B894B3] leading-relaxed">
             Interactúa con la carta moviendo el ratón para apreciar los reflejos prismáticos, destellos estelares y el marco según su nivel de rareza.
           </p>
         </div>
 
         {/* Rarity Tabs Selector */}
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1.5 bg-slate-950/60 backdrop-blur-md rounded-2xl border border-slate-800/80 w-full shadow-lg">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1.5 bg-[#290A30]/85 backdrop-blur-md rounded-2xl border border-[#610F4E] w-full shadow-lg">
           {rarities.map((r) => {
             const cfg = RARITY_CONFIGS[r];
             const isActive = selectedRarity === r;
@@ -235,15 +235,15 @@ export const RarityShowcaseSlider: React.FC = () => {
                 onClick={() => setSelectedRarity(r)}
                 className={`px-2 py-2.5 rounded-xl text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 cursor-pointer text-center ${
                   isActive
-                    ? 'bg-slate-800/90 text-white border border-amber-400 shadow-[0_0_15px_rgba(234,179,8,0.35)] scale-[1.04]'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
+                    ? 'bg-[#610F4E] text-[#F9F1F9] border border-[#F50B8C]/70 shadow-[0_0_15px_rgba(245,11,140,0.35)] scale-[1.04]'
+                    : 'text-[#B894B3] hover:text-[#F9F1F9] hover:bg-[#610F4E]/30'
                 }`}
               >
                 <div className="flex items-center gap-1">
                   <span className="font-mono text-xs font-extrabold" style={{ color: cfg.color }}>{cfg.shortName}</span>
                   <span className="truncate text-xs">{cfg.name}</span>
                 </div>
-                <span className="text-[10px] text-amber-300 tracking-tighter">
+                <span className="text-[10px] tracking-tighter" style={{ color: cfg.color }}>
                   {'★'.repeat(cfg.stars)}
                 </span>
               </button>
@@ -252,8 +252,8 @@ export const RarityShowcaseSlider: React.FC = () => {
         </div>
 
         {/* Rarity Spec Box */}
-        <div className="w-full bg-slate-950/60 backdrop-blur-md rounded-2xl p-5 border border-slate-800/80 shadow-2xl space-y-3.5">
-          <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+        <div className="w-full bg-[#290A30]/85 backdrop-blur-md rounded-2xl p-5 border border-[#610F4E] shadow-2xl space-y-3.5">
+          <div className="flex items-center justify-between border-b border-[#610F4E] pb-3">
             <div className="flex items-center gap-3">
               <div
                 className="w-4 h-4 rounded-full shadow-md shrink-0"
@@ -265,36 +265,36 @@ export const RarityShowcaseSlider: React.FC = () => {
               >
                 {currentConfig.name} ({currentConfig.shortName})
               </span>
-              <span className="text-sm text-amber-300 tracking-wider">
+              <span className="text-sm tracking-wider" style={{ color: currentConfig.color }}>
                 {'★'.repeat(currentConfig.stars)}
               </span>
             </div>
-            <div className="px-3 py-1 rounded-lg bg-slate-900/90 border border-slate-700/80 text-xs font-mono text-slate-300">
-              Foil: <span className="text-amber-400 font-bold">{currentConfig.holoStyle}</span>
+            <div className="px-3 py-1 rounded-lg bg-[#31213D] border border-[#610F4E] text-xs font-mono text-[#F9F1F9]">
+              Foil: <span className="text-[#F50B8C] font-bold">{currentConfig.holoStyle}</span>
             </div>
           </div>
 
-          <p className="text-sm text-slate-300 leading-relaxed">
+          <p className="text-sm text-[#B894B3] leading-relaxed">
             {currentConfig.description}
           </p>
 
           {/* Sample Card Stats & Ability */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
-              <span className="text-[10px] text-slate-400 block uppercase font-mono">Tipo / Arte</span>
-              <span className="text-xs font-bold text-white uppercase">{currentCard.isFullArt ? 'Full Art' : 'Estándar'}</span>
+            <div className="bg-[#31213D]/80 rounded-xl p-2.5 border border-[#610F4E] text-center">
+              <span className="text-[10px] text-[#B894B3] block uppercase font-mono">Tipo / Arte</span>
+              <span className="text-xs font-bold text-[#F9F1F9] uppercase">{currentCard.isFullArt ? 'Full Art' : 'Estándar'}</span>
             </div>
-            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
-              <span className="text-[10px] text-slate-400 block uppercase font-mono">Elemento</span>
-              <span className="text-xs font-bold text-white capitalize">{currentCard.element}</span>
+            <div className="bg-[#31213D]/80 rounded-xl p-2.5 border border-[#610F4E] text-center">
+              <span className="text-[10px] text-[#B894B3] block uppercase font-mono">Elemento</span>
+              <span className="text-xs font-bold text-[#F9F1F9] capitalize">{currentCard.element}</span>
             </div>
-            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
-              <span className="text-[10px] text-slate-400 block uppercase font-mono">Habilidad</span>
-              <span className="text-xs font-bold text-amber-400 truncate block">{currentCard.abilityName}</span>
+            <div className="bg-[#31213D]/80 rounded-xl p-2.5 border border-[#610F4E] text-center">
+              <span className="text-[10px] text-[#B894B3] block uppercase font-mono">Habilidad</span>
+              <span className="text-xs font-bold text-[#F50B8C] truncate block">{currentCard.abilityName}</span>
             </div>
-            <div className="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800/80 text-center">
-              <span className="text-[10px] text-slate-400 block uppercase font-mono">Puntos Salud</span>
-              <span className="text-xs font-bold text-rose-400">{currentCard.hp} HP</span>
+            <div className="bg-[#31213D]/80 rounded-xl p-2.5 border border-[#610F4E] text-center">
+              <span className="text-[10px] text-[#B894B3] block uppercase font-mono">Puntos Salud</span>
+              <span className="text-xs font-bold text-[#fb7185]">{currentCard.hp} HP</span>
             </div>
           </div>
         </div>
