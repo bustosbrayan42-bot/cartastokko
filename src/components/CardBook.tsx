@@ -19,15 +19,15 @@ export const CardBook: React.FC<CardBookProps> = ({
   cards,
   onInspectCard,
 }) => {
-  // Binder Capacity: 150 card slots in total
+  // Binder Capacity: 144 card slots in total (Pages 1 to 12)
   // 4x3 grid per page = 4 horizontal (cols) x 3 vertical (rows) = 12 cards per Page
   // 2 pages per Spread (Hoja) = 24 cards per Spread
-  // Total Spreads = Math.ceil(150 / 24) = 7 Hojas (14 Páginas)
-  const TOTAL_ALBUM_SLOTS = 150;
+  // Total Spreads = 144 / 24 = 6 Hojas (12 Páginas)
+  const TOTAL_ALBUM_SLOTS = 144;
   const CARDS_PER_PAGE = 12;
   const CARDS_PER_SPREAD = 24;
 
-  const totalPages = Math.ceil(TOTAL_ALBUM_SLOTS / CARDS_PER_SPREAD); // 7 Spreads
+  const totalPages = Math.ceil(TOTAL_ALBUM_SLOTS / CARDS_PER_SPREAD); // 6 Spreads (12 Páginas)
   const [currentSpreadIndex, setCurrentSpreadIndex] = useState<number>(0);
 
   // 2-Phase Continuous Momentum Flip
@@ -298,7 +298,7 @@ export const CardBook: React.FC<CardBookProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-xs sm:text-sm font-black text-[#F9F1F9] tracking-wide">
-                Álbum TCG Coleccionista 4x3 (150 Cartas)
+                Álbum TCG Coleccionista 4x3 (144 Cartas)
               </h2>
               <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-[#290A30] border border-[#610F4E] text-[#F50B8C]">
                 {cards.length} / {TOTAL_ALBUM_SLOTS} cartas
