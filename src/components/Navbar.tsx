@@ -7,6 +7,7 @@ import {
   VolumeX,
   Sliders
 } from 'lucide-react';
+import { resolveImageUrl } from '../utils/imageHelper';
 
 interface NavbarProps {
   activeTab: 'home' | 'binder' | 'showcase' | 'pack';
@@ -31,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(245,11,140,0.35)] border border-[#F50B8C]/40 flex items-center justify-center bg-[#31213D] shrink-0">
             <img
-              src="/cards/Icono.png"
+              src={resolveImageUrl('/cards/Icono.png')}
               alt="Tokkii Logo"
               className="w-full h-full object-cover"
             />
