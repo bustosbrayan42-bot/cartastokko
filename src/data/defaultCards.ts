@@ -3,7 +3,7 @@ import type { CardData } from '../types/card';
 export const DEFAULT_CARDS: CardData[] = [
   {
     "id": "tokkii-001",
-    "title": "Tokkii - EDICIÓN TOTAL",
+    "title": "EDICIÓN TOTAL",
     "subtitle": "Creadora de contenido • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -47,7 +47,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-002",
-    "title": "Tokkii - ENFOQUE PRECISO",
+    "title": "ENFOQUE PRECISO",
     "subtitle": "Cazadora de momentos • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -91,7 +91,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-003",
-    "title": "Tokkii - CUARTO IMPECABLE",
+    "title": "CUARTO IMPECABLE",
     "subtitle": "Guardiana del orden • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -135,7 +135,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-004",
-    "title": "Tokkii - BRILLO DOMÉSTICO",
+    "title": "BRILLO DOMÉSTICO",
     "subtitle": "Maestra del hogar • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -179,7 +179,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-005",
-    "title": "Tokkii - COSECHA URBANA",
+    "title": "COSECHA URBANA",
     "subtitle": "Recolectora urbana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -223,7 +223,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-006",
-    "title": "Tokkii - PEDIDO RELÁMPAGO",
+    "title": "PEDIDO RELÁMPAGO",
     "subtitle": "Servidora veloz • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -267,7 +267,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-007",
-    "title": "Tokkii - ESTILO NUEVO",
+    "title": "ESTILO NUEVO",
     "subtitle": "Exploradora de estilos • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -311,7 +311,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-008",
-    "title": "Tokkii - AJUSTE PERFECTO",
+    "title": "AJUSTE PERFECTO",
     "subtitle": "Técnica de precisión • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -355,7 +355,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-009",
-    "title": "Tokkii - MIRA CUÁNTICA",
+    "title": "MIRA CUÁNTICA",
     "subtitle": "Heroína de neón • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -399,7 +399,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-010",
-    "title": "Tokkii - HALO RESTAURADOR",
+    "title": "HALO RESTAURADOR",
     "subtitle": "Sanadora astral • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -443,7 +443,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-011",
-    "title": "Tokkii - LECCIÓN MAESTRA",
+    "title": "LECCIÓN MAESTRA",
     "subtitle": "Mentora luminosa • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -487,7 +487,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-012",
-    "title": "Tokkii - RIESGO CALCULADO",
+    "title": "RIESGO CALCULADO",
     "subtitle": "Estratega financiera • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -531,7 +531,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-013",
-    "title": "Tokkii - GUANTE BLANCO",
+    "title": "GUANTE BLANCO",
     "subtitle": "Sombra elegante • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -575,7 +575,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-014",
-    "title": "Tokkii - ORDEN PÚBLICO",
+    "title": "ORDEN PÚBLICO",
     "subtitle": "Protectora cercana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -619,7 +619,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-015",
-    "title": "Tokkii - MINIATURA POP",
+    "title": "MINIATURA POP",
     "subtitle": "Arquitecta visual • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -663,7 +663,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-016",
-    "title": "Tokkii - VLOG DIARIO",
+    "title": "VLOG DIARIO",
     "subtitle": "Cronista cotidiana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -707,7 +707,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-017",
-    "title": "Tokkii - RETOQUE LUMÍNICO",
+    "title": "RETOQUE LUMÍNICO",
     "subtitle": "Alquimista de luz • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -751,7 +751,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-018",
-    "title": "Tokkii - SETUP ORDENADO",
+    "title": "SETUP ORDENADO",
     "subtitle": "Ingeniera del setup • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -795,7 +795,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-019",
-    "title": "Tokkii - VISTA CLARA",
+    "title": "VISTA CLARA",
     "subtitle": "Vigía transparente • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -839,7 +839,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-020",
-    "title": "Tokkii - CANASTA ALEGRE",
+    "title": "CANASTA ALEGRE",
     "subtitle": "Recolectora del barrio • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -883,7 +883,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-021",
-    "title": "Tokkii - PAQUETE SORPRESA",
+    "title": "PAQUETE SORPRESA",
     "subtitle": "Operadora de envíos • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -927,7 +927,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-022",
-    "title": "Tokkii - FOCO COMERCIAL",
+    "title": "FOCO COMERCIAL",
     "subtitle": "Directora de estudio • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -971,7 +971,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-023",
-    "title": "Tokkii - FRECUENCIA ABIERTA",
+    "title": "FRECUENCIA ABIERTA",
     "subtitle": "Voz de la comunidad • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1015,7 +1015,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-024",
-    "title": "Tokkii - BRILLO PROFUNDO",
+    "title": "BRILLO PROFUNDO",
     "subtitle": "Purificadora doméstica • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1059,7 +1059,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-025",
-    "title": "Tokkii - VERDURAS FRESCAS",
+    "title": "VERDURAS FRESCAS",
     "subtitle": "Exploradora del mercado • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1103,7 +1103,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-026",
-    "title": "Tokkii - CAMBIO EXACTO",
+    "title": "CAMBIO EXACTO",
     "subtitle": "Operadora de caja • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1147,7 +1147,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-027",
-    "title": "Tokkii - REFLEJO IDEAL",
+    "title": "REFLEJO IDEAL",
     "subtitle": "Curadora de estilo • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1191,7 +1191,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-028",
-    "title": "Tokkii - GIRO RESISTENTE",
+    "title": "GIRO RESISTENTE",
     "subtitle": "Mecánica de emergencia • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1235,7 +1235,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-029",
-    "title": "Tokkii - SALTO TEMPORAL",
+    "title": "SALTO TEMPORAL",
     "subtitle": "Viajera temporal • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1279,7 +1279,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-030",
-    "title": "Tokkii - ARENA CROMÁTICA",
+    "title": "ARENA CROMÁTICA",
     "subtitle": "Campeona del desierto • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1323,7 +1323,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-031",
-    "title": "Tokkii - PINCELADA VITAL",
+    "title": "PINCELADA VITAL",
     "subtitle": "Maestra del color • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1367,7 +1367,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-032",
-    "title": "Tokkii - ACUERDO FAVORABLE",
+    "title": "ACUERDO FAVORABLE",
     "subtitle": "Consultora ejecutiva • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1411,7 +1411,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-033",
-    "title": "Tokkii - SALTO SOMBRÍO",
+    "title": "SALTO SOMBRÍO",
     "subtitle": "Acróbata nocturna • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1455,7 +1455,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-034",
-    "title": "Tokkii - RONDA SEGURA",
+    "title": "RONDA SEGURA",
     "subtitle": "Vigilante urbana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1499,7 +1499,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-035",
-    "title": "Tokkii - ÁNIMO TOTAL",
+    "title": "ÁNIMO TOTAL",
     "subtitle": "Impulsora del chat • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1543,7 +1543,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-036",
-    "title": "Tokkii - REVIEW DIRECTA",
+    "title": "REVIEW DIRECTA",
     "subtitle": "Crítica tecnológica • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1587,7 +1587,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-037",
-    "title": "Tokkii - DETALLE LIMPIO",
+    "title": "DETALLE LIMPIO",
     "subtitle": "Guardiana de detalles • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1631,7 +1631,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-038",
-    "title": "Tokkii - CARRO COMPLETO",
+    "title": "CARRO COMPLETO",
     "subtitle": "Navegante de pasillos • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1675,7 +1675,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-039",
-    "title": "Tokkii - SERVICIO EXPRESS",
+    "title": "SERVICIO EXPRESS",
     "subtitle": "Anfitriona del mostrador • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1719,7 +1719,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-040",
-    "title": "Tokkii - FARO PRECISO",
+    "title": "FARO PRECISO",
     "subtitle": "Técnica de iluminación • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1763,7 +1763,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-041",
-    "title": "Tokkii - DESCENSO CELESTIAL",
+    "title": "DESCENSO CELESTIAL",
     "subtitle": "Guardiana alada • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1807,7 +1807,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-042",
-    "title": "Tokkii - PUNTO EXACTO",
+    "title": "PUNTO EXACTO",
     "subtitle": "Observadora de largo alcance • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1851,7 +1851,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-043",
-    "title": "Tokkii - CÓDIGO CLARO",
+    "title": "CÓDIGO CLARO",
     "subtitle": "Instructora digital • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1895,7 +1895,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-044",
-    "title": "Tokkii - LLAVE MAESTRA",
+    "title": "LLAVE MAESTRA",
     "subtitle": "Guía de espacios • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1939,7 +1939,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-045",
-    "title": "Tokkii - PIEZA ÚNICA",
+    "title": "PIEZA ÚNICA",
     "subtitle": "Coleccionista furtiva • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -1983,7 +1983,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-046",
-    "title": "Tokkii - SEÑAL DE PASO",
+    "title": "SEÑAL DE PASO",
     "subtitle": "Controladora del cruce • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2027,7 +2027,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-047",
-    "title": "Tokkii - ONDA LIMPIA",
+    "title": "ONDA LIMPIA",
     "subtitle": "Ingeniera de sonido • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2071,7 +2071,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-048",
-    "title": "Tokkii - LUZ PREPARADA",
+    "title": "LUZ PREPARADA",
     "subtitle": "Fotógrafa doméstica • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2115,7 +2115,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-049",
-    "title": "Tokkii - ESPUMA PROTECTORA",
+    "title": "ESPUMA PROTECTORA",
     "subtitle": "Cocinera ordenada • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2159,7 +2159,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-050",
-    "title": "Tokkii - RESERVA BRILLANTE",
+    "title": "RESERVA BRILLANTE",
     "subtitle": "Abastecedora del hogar • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2203,7 +2203,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-051",
-    "title": "Tokkii - MEZCLA ESTIMULANTE",
+    "title": "MEZCLA ESTIMULANTE",
     "subtitle": "Barista de neón • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2247,7 +2247,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-052",
-    "title": "Tokkii - LECTURA MECÁNICA",
+    "title": "LECTURA MECÁNICA",
     "subtitle": "Diagnóstica experta • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2291,7 +2291,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-053",
-    "title": "Tokkii - ESCUDO PRISMÁTICO",
+    "title": "ESCUDO PRISMÁTICO",
     "subtitle": "Defensora cromática • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2335,7 +2335,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-054",
-    "title": "Tokkii - PRISMA ARCANO",
+    "title": "PRISMA ARCANO",
     "subtitle": "Hechicera de neón • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2379,7 +2379,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-055",
-    "title": "Tokkii - RECREO SEGURO",
+    "title": "RECREO SEGURO",
     "subtitle": "Supervisora amable • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2423,7 +2423,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-056",
-    "title": "Tokkii - MERCADO ASCENDENTE",
+    "title": "MERCADO ASCENDENTE",
     "subtitle": "Operadora bursátil • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2467,7 +2467,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-057",
-    "title": "Tokkii - BRILLO ROBADO",
+    "title": "BRILLO ROBADO",
     "subtitle": "Cazadora de gemas • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2511,7 +2511,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-058",
-    "title": "Tokkii - INFORME COMPLETO",
+    "title": "INFORME COMPLETO",
     "subtitle": "Archivista de seguridad • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2555,7 +2555,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-059",
-    "title": "Tokkii - GUÍA CREATIVA",
+    "title": "GUÍA CREATIVA",
     "subtitle": "Instructora manual • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2599,7 +2599,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-060",
-    "title": "Tokkii - GALERÍA SELECTA",
+    "title": "GALERÍA SELECTA",
     "subtitle": "Editora de recuerdos • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2643,7 +2643,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-061",
-    "title": "Tokkii - RESERVA FRÍA",
+    "title": "RESERVA FRÍA",
     "subtitle": "Organizadora fresca • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2687,7 +2687,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-062",
-    "title": "Tokkii - DOBLE ELECCIÓN",
+    "title": "DOBLE ELECCIÓN",
     "subtitle": "Asesora de vestuario • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2731,7 +2731,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-063",
-    "title": "Tokkii - MESA ATENDIDA",
+    "title": "MESA ATENDIDA",
     "subtitle": "Servidora cordial • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2775,7 +2775,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-064",
-    "title": "Tokkii - PEDALEO CONTINUO",
+    "title": "PEDALEO CONTINUO",
     "subtitle": "Mecánica de movimiento • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2819,7 +2819,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-065",
-    "title": "Tokkii - ARRANQUE TURBO",
+    "title": "ARRANQUE TURBO",
     "subtitle": "Piloto de alto octanaje • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2863,7 +2863,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-066",
-    "title": "Tokkii - MAPA ABIERTO",
+    "title": "MAPA ABIERTO",
     "subtitle": "Exploradora de portales • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2907,7 +2907,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-067",
-    "title": "Tokkii - ARMONÍA CRECIENTE",
+    "title": "ARMONÍA CRECIENTE",
     "subtitle": "Maestra del ritmo • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2951,7 +2951,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-068",
-    "title": "Tokkii - PROYECCIÓN FUTURA",
+    "title": "PROYECCIÓN FUTURA",
     "subtitle": "Analista de tendencias • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -2995,7 +2995,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-069",
-    "title": "Tokkii - MÁSCARA BRILLANTE",
+    "title": "MÁSCARA BRILLANTE",
     "subtitle": "Infiltrada de gala • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3039,7 +3039,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-070",
-    "title": "Tokkii - RED VECINAL",
+    "title": "RED VECINAL",
     "subtitle": "Protectora vecinal • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3083,7 +3083,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-071",
-    "title": "Tokkii - GOLPE PRECISO",
+    "title": "GOLPE PRECISO",
     "subtitle": "Atleta de cancha • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3127,7 +3127,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-072",
-    "title": "Tokkii - SALTO DECISIVO",
+    "title": "SALTO DECISIVO",
     "subtitle": "Jugadora urbana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3171,7 +3171,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-073",
-    "title": "Tokkii - REMATE NEÓN",
+    "title": "REMATE NEÓN",
     "subtitle": "Guerrera de playa • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3215,7 +3215,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-074",
-    "title": "Tokkii - RITMO IMPARABLE",
+    "title": "RITMO IMPARABLE",
     "subtitle": "Corredora urbana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3259,7 +3259,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-075",
-    "title": "Tokkii - DESCENSO EXTREMO",
+    "title": "DESCENSO EXTREMO",
     "subtitle": "Ciclista de montaña • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3303,7 +3303,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-076",
-    "title": "Tokkii - PULSO ACUÁTICO",
+    "title": "PULSO ACUÁTICO",
     "subtitle": "Nadadora olímpica • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3347,7 +3347,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-077",
-    "title": "Tokkii - EQUILIBRIO URBANO",
+    "title": "EQUILIBRIO URBANO",
     "subtitle": "Patinadora callejera • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3391,7 +3391,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-078",
-    "title": "Tokkii - OLA BRILLANTE",
+    "title": "OLA BRILLANTE",
     "subtitle": "Surfista tropical • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3435,7 +3435,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-079",
-    "title": "Tokkii - AGARRE FIRME",
+    "title": "AGARRE FIRME",
     "subtitle": "Escaladora de altura • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3479,7 +3479,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-080",
-    "title": "Tokkii - NIEVE VELOZ",
+    "title": "NIEVE VELOZ",
     "subtitle": "Esquiadora de neón • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3523,7 +3523,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-081",
-    "title": "Tokkii - SWING PERFECTO",
+    "title": "SWING PERFECTO",
     "subtitle": "Golfista de precisión • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3567,7 +3567,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-082",
-    "title": "Tokkii - PUÑO ENERGÉTICO",
+    "title": "PUÑO ENERGÉTICO",
     "subtitle": "Boxeadora de gimnasio • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3611,7 +3611,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-083",
-    "title": "Tokkii - GIRO ELEGANTE",
+    "title": "GIRO ELEGANTE",
     "subtitle": "Gimnasta artística • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3655,7 +3655,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-084",
-    "title": "Tokkii - PASO URBANO",
+    "title": "PASO URBANO",
     "subtitle": "Bailarina callejera • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3699,7 +3699,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-085",
-    "title": "Tokkii - BATEO POTENTE",
+    "title": "BATEO POTENTE",
     "subtitle": "Jugadora de estadio • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3743,7 +3743,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-086",
-    "title": "Tokkii - PIRUETA GLACIAL",
+    "title": "PIRUETA GLACIAL",
     "subtitle": "Patinadora artística • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3787,7 +3787,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-087",
-    "title": "Tokkii - REMO IMPULSOR",
+    "title": "REMO IMPULSOR",
     "subtitle": "Remera de lago • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3831,7 +3831,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-088",
-    "title": "Tokkii - FLECHA CERTERA",
+    "title": "FLECHA CERTERA",
     "subtitle": "Arquera deportiva • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3875,7 +3875,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-089",
-    "title": "Tokkii - SENDERO VIVO",
+    "title": "SENDERO VIVO",
     "subtitle": "Corredora de montaña • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3919,7 +3919,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-090",
-    "title": "Tokkii - RUEDA URBANA",
+    "title": "RUEDA URBANA",
     "subtitle": "Ciclista de ciudad • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -3963,7 +3963,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-091",
-    "title": "Tokkii - MANGUERA HEROICA",
+    "title": "MANGUERA HEROICA",
     "subtitle": "Bombera profesional • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4007,7 +4007,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-092",
-    "title": "Tokkii - RUTA AÉREA",
+    "title": "RUTA AÉREA",
     "subtitle": "Piloto civil • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4051,7 +4051,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-093",
-    "title": "Tokkii - HORIZONTE ESTELAR",
+    "title": "HORIZONTE ESTELAR",
     "subtitle": "Exploradora espacial • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4095,7 +4095,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-094",
-    "title": "Tokkii - PLANO PERFECTO",
+    "title": "PLANO PERFECTO",
     "subtitle": "Arquitecta urbana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4139,7 +4139,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-095",
-    "title": "Tokkii - SABOR CREATIVO",
+    "title": "SABOR CREATIVO",
     "subtitle": "Chef de neón • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4183,7 +4183,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-096",
-    "title": "Tokkii - PULSO VETERINARIO",
+    "title": "PULSO VETERINARIO",
     "subtitle": "Cuidadora animal • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4227,7 +4227,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-097",
-    "title": "Tokkii - MIRADA SALVAJE",
+    "title": "MIRADA SALVAJE",
     "subtitle": "Fotógrafa naturalista • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4271,7 +4271,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-098",
-    "title": "Tokkii - JARDÍN VIBRANTE",
+    "title": "JARDÍN VIBRANTE",
     "subtitle": "Jardinera botánica • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4315,7 +4315,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-099",
-    "title": "Tokkii - CIELO ROTOR",
+    "title": "CIELO ROTOR",
     "subtitle": "Piloto de helicóptero • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4359,7 +4359,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-100",
-    "title": "Tokkii - HORNEADO ESTELAR",
+    "title": "HORNEADO ESTELAR",
     "subtitle": "Maestra pastelera • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4403,7 +4403,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-101",
-    "title": "Tokkii - CIELO PROFUNDO",
+    "title": "CIELO PROFUNDO",
     "subtitle": "Astrónoma nocturna • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4447,7 +4447,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-102",
-    "title": "Tokkii - NOTICIA ABIERTA",
+    "title": "NOTICIA ABIERTA",
     "subtitle": "Periodista urbana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4491,7 +4491,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-103",
-    "title": "Tokkii - MODA ORIGINAL",
+    "title": "MODA ORIGINAL",
     "subtitle": "Diseñadora de atelier • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4535,7 +4535,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-104",
-    "title": "Tokkii - MADERA FIRME",
+    "title": "MADERA FIRME",
     "subtitle": "Carpintera de taller • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4579,7 +4579,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-105",
-    "title": "Tokkii - GRAVEDAD CERO",
+    "title": "GRAVEDAD CERO",
     "subtitle": "Cadete espacial • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4623,7 +4623,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-106",
-    "title": "Tokkii - RUTA SEGURA",
+    "title": "RUTA SEGURA",
     "subtitle": "Guía de montaña • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4667,7 +4667,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-107",
-    "title": "Tokkii - ABISMO CROMÁTICO",
+    "title": "ABISMO CROMÁTICO",
     "subtitle": "Buzo de arrecife • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4711,7 +4711,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-108",
-    "title": "Tokkii - CAMPAMENTO LUMINOSO",
+    "title": "CAMPAMENTO LUMINOSO",
     "subtitle": "Exploradora del bosque • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4755,7 +4755,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-109",
-    "title": "Tokkii - PASO MONTAÑÉS",
+    "title": "PASO MONTAÑÉS",
     "subtitle": "Caminante de altura • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4799,7 +4799,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-110",
-    "title": "Tokkii - RÍO IMPULSOR",
+    "title": "RÍO IMPULSOR",
     "subtitle": "Kayakista de montaña • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4843,7 +4843,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-111",
-    "title": "Tokkii - VUELO LIBRE",
+    "title": "VUELO LIBRE",
     "subtitle": "Aventurera del cielo • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4887,7 +4887,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-112",
-    "title": "Tokkii - CASCADA SERENA",
+    "title": "CASCADA SERENA",
     "subtitle": "Exploradora natural • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4931,7 +4931,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-113",
-    "title": "Tokkii - CIELO VIAJERO",
+    "title": "CIELO VIAJERO",
     "subtitle": "Viajera de altura • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -4975,7 +4975,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-114",
-    "title": "Tokkii - FUEGO SERENO",
+    "title": "FUEGO SERENO",
     "subtitle": "Campista nocturna • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5019,7 +5019,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-115",
-    "title": "Tokkii - LUZ PARISINA",
+    "title": "LUZ PARISINA",
     "subtitle": "Viajera europea • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5063,7 +5063,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-116",
-    "title": "Tokkii - HORIZONTE LIBRE",
+    "title": "HORIZONTE LIBRE",
     "subtitle": "Viajera americana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5107,7 +5107,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-117",
-    "title": "Tokkii - CAMPANADA URBANA",
+    "title": "CAMPANADA URBANA",
     "subtitle": "Viajera londinense • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5151,7 +5151,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-118",
-    "title": "Tokkii - PIEDRA ETERNA",
+    "title": "PIEDRA ETERNA",
     "subtitle": "Viajera romana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5195,7 +5195,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-119",
-    "title": "Tokkii - FORMA SAGRADA",
+    "title": "FORMA SAGRADA",
     "subtitle": "Viajera catalana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5239,7 +5239,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-120",
-    "title": "Tokkii - PUERTO AUSTRAL",
+    "title": "PUERTO AUSTRAL",
     "subtitle": "Viajera oceánica • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5283,7 +5283,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-121",
-    "title": "Tokkii - JARDÍN BLANCO",
+    "title": "JARDÍN BLANCO",
     "subtitle": "Viajera imperial • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5327,7 +5327,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-122",
-    "title": "Tokkii - ARENA DORADA",
+    "title": "ARENA DORADA",
     "subtitle": "Exploradora del desierto • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5371,7 +5371,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-123",
-    "title": "Tokkii - BRAZOS ABIERTOS",
+    "title": "BRAZOS ABIERTOS",
     "subtitle": "Viajera tropical • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5415,7 +5415,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-124",
-    "title": "Tokkii - MONTAÑA SERENA",
+    "title": "MONTAÑA SERENA",
     "subtitle": "Viajera japonesa • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5459,7 +5459,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-125",
-    "title": "Tokkii - MURALLA INFINITA",
+    "title": "MURALLA INFINITA",
     "subtitle": "Exploradora asiática • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5503,7 +5503,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-126",
-    "title": "Tokkii - TORRE INCLINADA",
+    "title": "TORRE INCLINADA",
     "subtitle": "Viajera italiana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5547,7 +5547,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-127",
-    "title": "Tokkii - CIUDAD PERDIDA",
+    "title": "CIUDAD PERDIDA",
     "subtitle": "Exploradora andina • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5591,7 +5591,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-128",
-    "title": "Tokkii - PUENTE DORADO",
+    "title": "PUENTE DORADO",
     "subtitle": "Viajera californiana • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5635,7 +5635,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-129",
-    "title": "Tokkii - ALTURA IMPERIAL",
+    "title": "ALTURA IMPERIAL",
     "subtitle": "Viajera futurista • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5679,7 +5679,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-130",
-    "title": "Tokkii - ARCOÍRIS GIGANTE",
+    "title": "ARCOÍRIS GIGANTE",
     "subtitle": "Viajera de cascadas • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5723,7 +5723,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-131",
-    "title": "Tokkii - AURORA BOREAL",
+    "title": "AURORA BOREAL",
     "subtitle": "Exploradora polar • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5767,7 +5767,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-132",
-    "title": "Tokkii - OASIS ESCONDIDO",
+    "title": "OASIS ESCONDIDO",
     "subtitle": "Nómada del desierto • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5811,7 +5811,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-133",
-    "title": "Tokkii - CIMA NEVADA",
+    "title": "CIMA NEVADA",
     "subtitle": "Alpinista legendaria • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5855,7 +5855,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-134",
-    "title": "Tokkii - VALLE SECRETO",
+    "title": "VALLE SECRETO",
     "subtitle": "Botánica mística • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5899,7 +5899,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-135",
-    "title": "Tokkii - FARO CELESTE",
+    "title": "FARO CELESTE",
     "subtitle": "Guardiana de costa • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5943,7 +5943,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-136",
-    "title": "Tokkii - CRISTAL SUBTERRÁNEO",
+    "title": "CRISTAL SUBTERRÁNEO",
     "subtitle": "Minera espeleóloga • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -5987,7 +5987,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-137",
-    "title": "Tokkii - ISLA FLOTANTE",
+    "title": "ISLA FLOTANTE",
     "subtitle": "Navegante de nubes • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -6031,7 +6031,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-138",
-    "title": "Tokkii - TEMPLO ANTIGUO",
+    "title": "TEMPLO ANTIGUO",
     "subtitle": "Arqueóloga mística • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -6075,7 +6075,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-139",
-    "title": "Tokkii - CONSTELACIÓN VIVA",
+    "title": "CONSTELACIÓN VIVA",
     "subtitle": "Astrónoma estelar • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
@@ -6119,7 +6119,7 @@ export const DEFAULT_CARDS: CardData[] = [
   },
   {
     "id": "tokkii-140",
-    "title": "Tokkii - DESTINO TOKKII",
+    "title": "DESTINO TOKKII",
     "subtitle": "Emblema del Génesis • Edición Génesis",
     "image": "/cards/tokkii_photographer.jpg",
     "imageZoom": 1,
