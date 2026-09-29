@@ -9,7 +9,7 @@ import { CardEditorModal } from './components/CardEditorModal';
 import { RarityShowcaseSlider } from './components/RarityShowcaseSlider';
 import { Home } from './components/Home';
 import { setSoundEnabled } from './utils/soundEffects';
-import { fetchCardsFromSupabase } from './utils/supabaseClient';
+import { fetchCardsFromSupabase, supabase, rowToCard } from './utils/supabaseClient';
 import { saveCardsToIndexedDb, loadCardsFromIndexedDb } from './utils/cardStorage';
 
 export function App() {
@@ -31,16 +31,13 @@ export function App() {
     return DEFAULT_CARDS;
   });
 
-  // Load from IndexedDB on mount
+  // Load from IndexedDB on mount (offline fallback)
   useEffect(() => {
     const loadFromIdb = async () => {
       try {
         const idbCards = await loadCardsFromIndexedDb();
         if (idbCards && idbCards.length > 0) {
-          setCards((prev) => {
-            const idbMap = new Map(idbCards.map((c: CardData) => [c.id, c]));
-            return prev.map((c) => idbMap.get(c.id) || c);
-          });
+          setCards(idbCards);
         }
       } catch (err) {
         console.warn('Could not load from IndexedDB in Visor:', err);
@@ -49,45 +46,57 @@ export function App() {
     loadFromIdb();
   }, []);
 
-  // Function to load cards from Supabase with smart merge
+  // Function to load cards directly from Supabase (Source of Truth)
   const loadCardsFromSupabase = async () => {
     try {
       const dbCards = await fetchCardsFromSupabase();
       if (dbCards && dbCards.length > 0) {
-        setCards((currentCards) => {
-          const currentMap = new Map(currentCards.map((c) => [c.id, c]));
-          const merged = dbCards.map((sbCard) => {
-            const localCard = currentMap.get(sbCard.id);
-            const sbHasCustomImage = sbCard.image && !sbCard.image.includes('tokkii_photographer.jpg');
-            const localHasCustomImage = localCard?.image && !localCard.image.includes('tokkii_photographer.jpg');
-
-            const chosenImage = sbHasCustomImage
-              ? sbCard.image
-              : (localHasCustomImage ? localCard.image : sbCard.image);
-
-            return {
-              ...sbCard,
-              ...(localCard || {}),
-              image: chosenImage,
-              imageZoom: sbCard.imageZoom ?? localCard?.imageZoom ?? 1,
-              imageOffsetX: sbCard.imageOffsetX ?? localCard?.imageOffsetX ?? 0,
-              imageOffsetY: sbCard.imageOffsetY ?? localCard?.imageOffsetY ?? 0,
-              imageRotation: sbCard.imageRotation ?? localCard?.imageRotation ?? 0,
-              imageFit: sbCard.imageFit ?? localCard?.imageFit ?? 'cover',
-            };
-          });
-          saveCardsToIndexedDb(merged);
-          return merged;
-        });
+        setCards(dbCards);
+        saveCardsToIndexedDb(dbCards);
       }
     } catch (err) {
       console.warn('Could not load cards from Supabase, using local fallback:', err);
     }
   };
 
-  // Load from Supabase on mount
+  // Load from Supabase on mount & listen for real-time card updates from Builder
   useEffect(() => {
     loadCardsFromSupabase();
+
+    const channel = supabase
+      .channel('visor_cards_realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'cards' },
+        (payload) => {
+          if (payload.eventType === 'UPDATE' || payload.eventType === 'INSERT') {
+            const updatedCard = rowToCard(payload.new as any);
+            setCards((prev) => {
+              const existingIdx = prev.findIndex((c) => c.id === updatedCard.id);
+              let next: CardData[];
+              if (existingIdx >= 0) {
+                next = [...prev];
+                next[existingIdx] = updatedCard;
+              } else {
+                next = [...prev, updatedCard];
+              }
+              saveCardsToIndexedDb(next);
+              return next;
+            });
+          } else if (payload.eventType === 'DELETE') {
+            setCards((prev) => {
+              const next = prev.filter((c) => c.id !== payload.old.id);
+              saveCardsToIndexedDb(next);
+              return next;
+            });
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   useEffect(() => {

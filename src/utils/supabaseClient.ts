@@ -65,6 +65,7 @@ export const rowToCard = (row: DbCardRow): CardData => {
     abilityCost: firstAttack?.cost || undefined,
     abilityDamage: firstAttack?.damage || undefined,
     abilityDesc: firstAttack?.description || undefined,
+    attacks: Array.isArray(row.attacks) ? row.attacks : [],
     retreatCost: Number(row.retreat_cost ?? 1),
     weakness: row.weakness || undefined,
     resistance: row.resistance || undefined,
