@@ -56,21 +56,28 @@ export function App() {
       if (dbCards && dbCards.length > 0) {
         setCards((currentCards) => {
           const currentMap = new Map(currentCards.map((c) => [c.id, c]));
-          return dbCards.map((sbCard) => {
+          const merged = dbCards.map((sbCard) => {
             const localCard = currentMap.get(sbCard.id);
-            if (localCard && localCard.image && !localCard.image.includes('tokkii_photographer.jpg')) {
-              return {
-                ...sbCard,
-                image: localCard.image,
-                imageZoom: localCard.imageZoom ?? sbCard.imageZoom,
-                imageOffsetX: localCard.imageOffsetX ?? sbCard.imageOffsetX,
-                imageOffsetY: localCard.imageOffsetY ?? sbCard.imageOffsetY,
-                imageRotation: localCard.imageRotation ?? sbCard.imageRotation,
-                imageFit: localCard.imageFit ?? sbCard.imageFit,
-              };
-            }
-            return localCard ? { ...sbCard, ...localCard } : sbCard;
+            const sbHasCustomImage = sbCard.image && !sbCard.image.includes('tokkii_photographer.jpg');
+            const localHasCustomImage = localCard?.image && !localCard.image.includes('tokkii_photographer.jpg');
+
+            const chosenImage = sbHasCustomImage
+              ? sbCard.image
+              : (localHasCustomImage ? localCard.image : sbCard.image);
+
+            return {
+              ...sbCard,
+              ...(localCard || {}),
+              image: chosenImage,
+              imageZoom: sbCard.imageZoom ?? localCard?.imageZoom ?? 1,
+              imageOffsetX: sbCard.imageOffsetX ?? localCard?.imageOffsetX ?? 0,
+              imageOffsetY: sbCard.imageOffsetY ?? localCard?.imageOffsetY ?? 0,
+              imageRotation: sbCard.imageRotation ?? localCard?.imageRotation ?? 0,
+              imageFit: sbCard.imageFit ?? localCard?.imageFit ?? 'cover',
+            };
           });
+          saveCardsToIndexedDb(merged);
+          return merged;
         });
       }
     } catch (err) {
