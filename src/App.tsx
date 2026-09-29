@@ -10,6 +10,7 @@ import { RarityShowcaseSlider } from './components/RarityShowcaseSlider';
 import { Home } from './components/Home';
 import { setSoundEnabled } from './utils/soundEffects';
 import { fetchCardsFromSupabase } from './utils/supabaseClient';
+import { saveCardsToIndexedDb, loadCardsFromIndexedDb } from './utils/cardStorage';
 
 export function App() {
   const [cards, setCards] = useState<CardData[]>(() => {
@@ -30,19 +31,47 @@ export function App() {
     return DEFAULT_CARDS;
   });
 
-  // Function to load cards from Supabase
+  // Load from IndexedDB on mount
+  useEffect(() => {
+    const loadFromIdb = async () => {
+      try {
+        const idbCards = await loadCardsFromIndexedDb();
+        if (idbCards && idbCards.length > 0) {
+          setCards((prev) => {
+            const idbMap = new Map(idbCards.map((c: CardData) => [c.id, c]));
+            return prev.map((c) => idbMap.get(c.id) || c);
+          });
+        }
+      } catch (err) {
+        console.warn('Could not load from IndexedDB in Visor:', err);
+      }
+    };
+    loadFromIdb();
+  }, []);
+
+  // Function to load cards from Supabase with smart merge
   const loadCardsFromSupabase = async () => {
     try {
       const dbCards = await fetchCardsFromSupabase();
       if (dbCards && dbCards.length > 0) {
-        if (dbCards.length >= DEFAULT_CARDS.length) {
-          setCards(dbCards);
-        } else {
-          // Merge custom edits from Supabase while preserving all 140 cards
-          const dbMap = new Map(dbCards.map((c: CardData) => [c.id, c]));
-          const merged = DEFAULT_CARDS.map((defCard) => dbMap.get(defCard.id) || defCard);
-          setCards(merged);
-        }
+        setCards((currentCards) => {
+          const currentMap = new Map(currentCards.map((c) => [c.id, c]));
+          return dbCards.map((sbCard) => {
+            const localCard = currentMap.get(sbCard.id);
+            if (localCard && localCard.image && !localCard.image.includes('tokkii_photographer.jpg')) {
+              return {
+                ...sbCard,
+                image: localCard.image,
+                imageZoom: localCard.imageZoom ?? sbCard.imageZoom,
+                imageOffsetX: localCard.imageOffsetX ?? sbCard.imageOffsetX,
+                imageOffsetY: localCard.imageOffsetY ?? sbCard.imageOffsetY,
+                imageRotation: localCard.imageRotation ?? sbCard.imageRotation,
+                imageFit: localCard.imageFit ?? sbCard.imageFit,
+              };
+            }
+            return localCard ? { ...sbCard, ...localCard } : sbCard;
+          });
+        });
       }
     } catch (err) {
       console.warn('Could not load cards from Supabase, using local fallback:', err);
@@ -55,7 +84,12 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('tokkii_tcg_cards', JSON.stringify(cards));
+    saveCardsToIndexedDb(cards);
+    try {
+      localStorage.setItem('tokkii_tcg_cards', JSON.stringify(cards));
+    } catch {
+      // quota fallback
+    }
   }, [cards]);
 
   const [activeTab, setActiveTab] = useState<'home' | 'binder' | 'showcase' | 'pack'>('home');
