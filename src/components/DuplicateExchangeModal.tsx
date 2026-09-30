@@ -22,12 +22,14 @@ interface TierConfig {
   rarity: 'common' | 'uncommon' | 'rare' | 'super_rare';
   shortName: string;
   label: string;
+  pluralLabel: string;
   required: number;
   color: string;
   borderColor: string;
   bgGradient: string;
   badgeBg: string;
   progressGradient: string;
+  activeButtonClass: string;
   stars: number;
 }
 
@@ -36,48 +38,60 @@ const EXCHANGE_TIERS: TierConfig[] = [
     rarity: 'common',
     shortName: 'C',
     label: 'Común',
+    pluralLabel: 'Comunes',
     required: 10,
     color: '#94a3b8',
     borderColor: '#64748b',
     bgGradient: 'from-slate-900/90 via-[#290A30] to-slate-950/90',
     badgeBg: 'bg-slate-700/80 text-slate-200 border-slate-500',
     progressGradient: 'from-slate-500 to-slate-300',
+    activeButtonClass:
+      'bg-gradient-to-r from-slate-600 to-slate-400 hover:from-slate-500 hover:to-slate-300 text-white shadow-lg shadow-slate-500/30 border-slate-400/50',
     stars: 1,
   },
   {
     rarity: 'uncommon',
     shortName: 'UC',
     label: 'Poco Común',
+    pluralLabel: 'Poco Comunes',
     required: 8,
     color: '#38bdf8',
     borderColor: '#0284c7',
     bgGradient: 'from-sky-950/50 via-[#290A30] to-slate-950/90',
     badgeBg: 'bg-sky-950/80 text-sky-300 border-sky-500',
     progressGradient: 'from-sky-600 to-sky-400',
+    activeButtonClass:
+      'bg-gradient-to-r from-sky-600 to-blue-500 hover:from-sky-500 hover:to-blue-400 text-white shadow-lg shadow-sky-500/30 border-sky-400/50',
     stars: 2,
   },
   {
     rarity: 'rare',
     shortName: 'R',
     label: 'Rara',
+    pluralLabel: 'Raras',
     required: 6,
     color: '#a855f7',
     borderColor: '#7e22ce',
     bgGradient: 'from-purple-950/50 via-[#290A30] to-slate-950/90',
     badgeBg: 'bg-purple-950/80 text-purple-300 border-purple-500',
     progressGradient: 'from-purple-600 to-purple-400',
+    activeButtonClass:
+      'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-500/30 border-purple-400/50',
     stars: 3,
   },
   {
     rarity: 'super_rare',
     shortName: 'SR',
     label: 'Súper Rara',
+    pluralLabel: 'Súper Raras',
     required: 5,
     color: '#e5c158',
     borderColor: '#b59346',
     bgGradient: 'from-amber-950/50 via-[#290A30] to-slate-950/90',
     badgeBg: 'bg-amber-950/70 text-amber-200 border-amber-500/50',
     progressGradient: 'from-amber-600 to-yellow-300',
+    activeButtonClass:
+      'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/40 border-yellow-300/60',
     stars: 4,
   },
 ];
@@ -227,7 +241,7 @@ export const DuplicateExchangeModal: React.FC<DuplicateExchangeModalProps> = ({
                     <div className="text-xs text-slate-300 font-semibold mb-1 flex items-center justify-between">
                       <span>Costo de canje:</span>
                       <span className="font-mono font-bold" style={{ color: tier.color }}>
-                        {tier.required} {tier.label}s
+                        {tier.required} {tier.pluralLabel}
                       </span>
                     </div>
 
@@ -256,10 +270,10 @@ export const DuplicateExchangeModal: React.FC<DuplicateExchangeModalProps> = ({
                     type="button"
                     disabled={!isEligible || isCurrentlyExchanging}
                     onClick={() => handleExchange(tier)}
-                    className={`w-full py-2.5 rounded-xl font-black text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`w-full py-2.5 rounded-xl font-black text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer border ${
                       isEligible
-                        ? 'bg-gradient-to-r from-[#F50B8C] to-[#9146FF] hover:from-[#ff2b9f] hover:to-[#a35cfc] text-white shadow-lg shadow-[#F50B8C]/30 hover:scale-[1.02] active:scale-95 border border-pink-400/40'
-                        : 'bg-slate-900/80 text-slate-500 border border-slate-800 cursor-not-allowed'
+                        ? `${tier.activeButtonClass} hover:scale-[1.02] active:scale-95`
+                        : 'bg-slate-900/80 text-slate-500 border-slate-800 cursor-not-allowed'
                     }`}
                   >
                     {isCurrentlyExchanging ? (
