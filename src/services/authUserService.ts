@@ -34,39 +34,73 @@ export const signOutUser = async (): Promise<void> => {
  * Get profile for user
  */
 export const getUserProfile = async (userId: string): Promise<UserProfile | null> => {
-  const { data, error } = await supabaseAuth
-    .from('profiles')
-    .select('*')
-    .eq('id', userId)
-    .single();
+  try {
+    const { data } = await supabaseAuth
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
 
-  if (error) {
-    console.warn('Could not fetch user profile:', error);
+    if (data) {
+      return data as UserProfile;
+    }
+
+    // Fallback: extract directly from auth session metadata if table row is missing
+    const { data: authData } = await supabaseAuth.auth.getUser();
+    if (authData?.user && authData.user.id === userId) {
+      const meta = (authData.user.user_metadata || {}) as Record<string, any>;
+      const fallback: UserProfile = {
+        id: userId,
+        twitch_id: meta.provider_id || meta.sub || '',
+        username: meta.preferred_username || meta.user_name || meta.name || 'Usuario',
+        display_name:
+          meta.custom_claims?.display_name ||
+          meta.display_name ||
+          meta.preferred_username ||
+          meta.name ||
+          'Usuario',
+        avatar_url: meta.avatar_url || meta.picture || meta.profile_image_url || '',
+      };
+
+      // Try to insert it into profiles table in background
+      try {
+        await supabaseAuth.from('profiles').upsert(fallback);
+      } catch {
+        // ignore
+      }
+      return fallback;
+    }
+
+    return null;
+  } catch (err) {
+    console.warn('Could not fetch user profile:', err);
     return null;
   }
-
-  return data as UserProfile;
 };
 
 /**
  * Fetch all card IDs owned by a user
  */
 export const fetchUserCards = async (userId: string): Promise<Map<string, number>> => {
-  const { data, error } = await supabaseAuth
-    .from('user_cards')
-    .select('card_id, count')
-    .eq('user_id', userId);
-
   const cardMap = new Map<string, number>();
-  if (error) {
-    console.error('Error fetching user cards:', error);
-    return cardMap;
-  }
+  try {
+    const { data, error } = await supabaseAuth
+      .from('user_cards')
+      .select('card_id, count')
+      .eq('user_id', userId);
 
-  if (data) {
-    data.forEach((row: { card_id: string; count: number }) => {
-      cardMap.set(row.card_id, row.count || 1);
-    });
+    if (error) {
+      console.error('Error fetching user cards:', error);
+      return cardMap;
+    }
+
+    if (data) {
+      data.forEach((row: { card_id: string; count: number }) => {
+        cardMap.set(row.card_id, row.count || 1);
+      });
+    }
+  } catch (err) {
+    console.warn('Error fetching user cards:', err);
   }
 
   return cardMap;
@@ -82,22 +116,32 @@ export const fetchUserPacks = async (userId: string): Promise<UserPacksCount> =>
     pack_5: 0,
   };
 
-  const { data, error } = await supabaseAuth
-    .from('user_packs')
-    .select('pack_type, quantity')
-    .eq('user_id', userId);
+  try {
+    const { data, error } = await supabaseAuth
+      .from('user_packs')
+      .select('pack_type, quantity')
+      .eq('user_id', userId);
 
-  if (error) {
-    console.error('Error fetching user packs:', error);
-    return counts;
-  }
-
-  if (data) {
-    data.forEach((row: { pack_type: string; quantity: number }) => {
-      if (row.pack_type === 'pack_1') counts.pack_1 = Number(row.quantity || 0);
-      if (row.pack_type === 'pack_3') counts.pack_3 = Number(row.quantity || 0);
-      if (row.pack_type === 'pack_5') counts.pack_5 = Number(row.quantity || 0);
-    });
+    if (!error && data && data.length > 0) {
+      data.forEach((row: { pack_type: string; quantity: number }) => {
+        if (row.pack_type === 'pack_1') counts.pack_1 = Number(row.quantity || 0);
+        if (row.pack_type === 'pack_3') counts.pack_3 = Number(row.quantity || 0);
+        if (row.pack_type === 'pack_5') counts.pack_5 = Number(row.quantity || 0);
+      });
+    } else {
+      // Ensure initial records exist
+      try {
+        await supabaseAuth.from('user_packs').upsert([
+          { user_id: userId, pack_type: 'pack_1', quantity: 0 },
+          { user_id: userId, pack_type: 'pack_3', quantity: 0 },
+          { user_id: userId, pack_type: 'pack_5', quantity: 0 },
+        ]);
+      } catch {
+        // ignore
+      }
+    }
+  } catch (err) {
+    console.warn('Error fetching user packs:', err);
   }
 
   return counts;
