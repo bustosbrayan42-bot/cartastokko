@@ -142,7 +142,7 @@ export const Home: React.FC<HomeProps> = ({ cardCount }) => {
               </span>
             </h1>
             <p className="text-sm sm:text-base font-semibold text-[#F50B8C] font-mono">
-              ★ Edición Génesis • Colección Exclusiva 2026 ★
+              ★ Edición GoodTokkii • Colección Exclusiva 2026 ★
             </p>
           </div>
 
