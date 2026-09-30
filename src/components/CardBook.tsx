@@ -156,9 +156,17 @@ export const CardBook: React.FC<CardBookProps> = ({
                     return (
                       <div
                         className={`transform transition-transform duration-200 ${
-                          !isFlipLeaf ? 'hover:scale-[1.07] hover:z-30 cursor-pointer' : ''
+                          !isFlipLeaf && !isCardLocked
+                            ? 'hover:scale-[1.07] hover:z-30 cursor-pointer'
+                            : isCardLocked
+                            ? 'cursor-not-allowed select-none opacity-90'
+                            : ''
                         } flex items-center justify-center`}
-                        onClick={() => !isAnimating && onInspectCard(card)}
+                        onClick={() => {
+                          if (!isAnimating && !isCardLocked && onInspectCard) {
+                            onInspectCard(card);
+                          }
+                        }}
                         title={
                           isCardLocked
                             ? `Carta #${card.cardNumber} - Bloqueada (No Obtenida)`
@@ -170,7 +178,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                             card={card}
                             scale={0.40}
                             isLocked={isCardLocked}
-                            interactive={!isFlipLeaf && !isAnimating}
+                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
                             showBackFlipBtn={false}
                           />
                         </div>
@@ -179,7 +187,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                             card={card}
                             scale={0.38}
                             isLocked={isCardLocked}
-                            interactive={!isFlipLeaf && !isAnimating}
+                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
                             showBackFlipBtn={false}
                           />
                         </div>
@@ -188,7 +196,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                             card={card}
                             scale={0.34}
                             isLocked={isCardLocked}
-                            interactive={!isFlipLeaf && !isAnimating}
+                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
                             showBackFlipBtn={false}
                           />
                         </div>
@@ -197,7 +205,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                             card={card}
                             scale={0.28}
                             isLocked={isCardLocked}
-                            interactive={!isFlipLeaf && !isAnimating}
+                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
                             showBackFlipBtn={false}
                           />
                         </div>

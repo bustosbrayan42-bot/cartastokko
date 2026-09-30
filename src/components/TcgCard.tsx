@@ -139,11 +139,15 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   return (
     <div
       ref={containerRef}
-      onClick={onClick}
+      onClick={() => {
+        if (!isLocked && onClick) onClick();
+      }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`card-perspective-container inline-block select-none relative ${interactive ? 'cursor-pointer' : ''} ${className}`}
+      className={`card-perspective-container inline-block select-none relative ${
+        interactive && !isLocked ? 'cursor-pointer' : isLocked ? 'cursor-not-allowed' : ''
+      } ${className}`}
       style={{
         width: `${320 * scale}px`,
         height: `${450 * scale}px`,
@@ -178,7 +182,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         {/* CARD FRONT */}
         <div
           className={`card-face absolute inset-0 rounded-[20px] overflow-hidden p-[10px] flex flex-col justify-between border-2 ${
-            isLocked ? 'grayscale brightness-[0.7] contrast-[0.85]' : ''
+            isLocked ? 'grayscale brightness-[0.4] contrast-[0.7] blur-[4px]' : ''
           }`}
           style={{
             borderColor: isLocked ? '#475569' : rarityConfig.borderColor,
@@ -197,15 +201,15 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         >
           {/* Mystery Lock Overlay when card is not yet unlocked by user */}
           {isLocked && (
-            <div className="absolute inset-0 z-50 rounded-[18px] bg-black/60 backdrop-blur-[2px] flex flex-col items-center justify-center p-2 text-center pointer-events-none select-none">
-              <div className="w-10 h-10 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-center text-amber-400 shadow-xl mb-1.5 animate-pulse">
-                <Lock className="w-5 h-5" />
+            <div className="absolute inset-0 z-50 rounded-[18px] bg-slate-950/80 backdrop-blur-[12px] flex flex-col items-center justify-center p-3 text-center pointer-events-none select-none border border-slate-700/50">
+              <div className="w-12 h-12 rounded-2xl bg-slate-900/95 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.3)] mb-2">
+                <Lock className="w-6 h-6" />
               </div>
-              <span className="text-[11px] font-mono font-black uppercase tracking-widest text-slate-200">
-                Bloqueada
+              <span className="text-[12px] font-mono font-black uppercase tracking-widest text-[#F9F1F9] bg-[#610F4E]/90 px-3 py-0.5 rounded-full border border-[#F50B8C]/50 shadow-sm mb-1">
+                No Obtenida
               </span>
-              <span className="text-[9px] font-mono text-slate-400">
-                #{card.cardNumber} • ???
+              <span className="text-[10px] font-mono font-bold text-slate-400">
+                Carta #{card.cardNumber}
               </span>
             </div>
           )}
