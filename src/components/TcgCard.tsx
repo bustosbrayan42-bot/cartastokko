@@ -146,7 +146,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`card-perspective-container inline-block select-none relative ${
-        interactive && !isLocked ? 'cursor-pointer' : isLocked ? 'cursor-not-allowed' : ''
+        interactive && !isLocked ? 'cursor-pointer' : 'cursor-default'
       } ${className}`}
       style={{
         width: `${320 * scale}px`,
@@ -182,7 +182,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         {/* CARD FRONT */}
         <div
           className={`card-face absolute inset-0 rounded-[20px] overflow-hidden p-[10px] flex flex-col justify-between border-2 ${
-            isLocked ? 'grayscale brightness-[0.4] contrast-[0.7] blur-[4px]' : ''
+            isLocked ? 'grayscale brightness-[0.55] contrast-[0.8] blur-[1.5px]' : ''
           }`}
           style={{
             borderColor: isLocked ? '#475569' : rarityConfig.borderColor,
@@ -201,14 +201,14 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         >
           {/* Mystery Lock Overlay when card is not yet unlocked by user */}
           {isLocked && (
-            <div className="absolute inset-0 z-50 rounded-[18px] bg-slate-950/80 backdrop-blur-[12px] flex flex-col items-center justify-center p-3 text-center pointer-events-none select-none border border-slate-700/50">
-              <div className="w-12 h-12 rounded-2xl bg-slate-900/95 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.3)] mb-2">
-                <Lock className="w-6 h-6" />
+            <div className="absolute inset-0 z-50 rounded-[18px] bg-black/55 backdrop-blur-[3.5px] flex flex-col items-center justify-center p-3 text-center pointer-events-none select-none border border-slate-700/40">
+              <div className="w-11 h-11 rounded-2xl bg-slate-900/95 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.25)] mb-1.5">
+                <Lock className="w-5 h-5" />
               </div>
-              <span className="text-[12px] font-mono font-black uppercase tracking-widest text-[#F9F1F9] bg-[#610F4E]/90 px-3 py-0.5 rounded-full border border-[#F50B8C]/50 shadow-sm mb-1">
+              <span className="text-[11px] font-mono font-black uppercase tracking-widest text-[#F9F1F9] bg-[#610F4E]/90 px-2.5 py-0.5 rounded-full border border-[#F50B8C]/40 shadow-sm mb-0.5">
                 No Obtenida
               </span>
-              <span className="text-[10px] font-mono font-bold text-slate-400">
+              <span className="text-[9px] font-mono font-bold text-slate-400">
                 Carta #{card.cardNumber}
               </span>
             </div>

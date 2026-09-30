@@ -159,7 +159,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                           !isFlipLeaf && !isCardLocked
                             ? 'hover:scale-[1.07] hover:z-30 cursor-pointer'
                             : isCardLocked
-                            ? 'cursor-not-allowed select-none opacity-90'
+                            ? 'cursor-default select-none'
                             : ''
                         } flex items-center justify-center`}
                         onClick={() => {
