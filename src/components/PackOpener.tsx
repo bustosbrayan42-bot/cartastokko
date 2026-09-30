@@ -78,7 +78,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
       newPulled.push(getRandomCard());
     }
 
-    // 1. INSTANT ANIMATION & SOUND (0ms lag, ultra-snappy)
+    // 1. INSTANT ANIMATION & SOUND (0ms lag on click)
     playPackTearSound();
     setPulledCards(newPulled);
     setRevealedCards(new Array(packCardCount).fill(false));
@@ -87,20 +87,20 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
     // Phase 1: Physical Sliced Tear (Top cap breaks off instantly)
     setAnimState('tearing');
 
-    // Phase 2: Cards Slide Out from the open slit with high-energy pop
+    // Phase 2: Cards Slide Out from the open slit (Original timing)
     const t1 = setTimeout(() => {
       setAnimState('sliding');
       playSparkleSound();
-    }, 280);
+    }, 600);
     timeoutRefs.current.push(t1);
 
-    // Phase 3: Transition to Card Reveal stage smoothly
+    // Phase 3: Transition to Card Reveal stage (Original timing)
     const t2 = setTimeout(() => {
       setAnimState('revealing');
-    }, 780);
+    }, 1350);
     timeoutRefs.current.push(t2);
 
-    // 2. ASYNC BACKGROUND SYNC (completely decoupled from UI frame)
+    // 2. ASYNC BACKGROUND SYNC (completely decoupled from UI)
     if (onOpenUserPack) {
       setTimeout(() => {
         onOpenUserPack(currentPackType, newPulled).catch((err) => {
@@ -284,15 +284,15 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                     return (
                       <div
                         key={`sliding-${packId}-${idx}`}
-                        className="absolute left-1/2 transition-all duration-450 ease-out"
+                        className="absolute left-1/2 transition-all duration-700 ease-out"
                         style={{
                           width: '235px',
                           height: '335px',
-                          top: animState === 'sliding' ? `${-95 + ty}px` : animState === 'tearing' ? '30px' : '90px',
-                          opacity: animState === 'sliding' ? 1 : animState === 'tearing' ? 0.9 : 0,
+                          top: animState === 'sliding' ? `${-95 + ty}px` : '90px',
+                          opacity: animState === 'sliding' ? 1 : 0,
                           transform: animState === 'sliding'
                             ? `translateX(calc(-50% + ${tx}px)) scale(1.02) rotate(${rot}deg)`
-                            : `translateX(-50%) scale(0.88) rotate(${rot * 0.4}deg)`,
+                            : 'translateX(-50%) scale(0.85) rotate(0deg)',
                           zIndex: 15 + idx,
                         }}
                       >
@@ -312,7 +312,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
 
               {/* 1. TOP SLICED FOIL PIECE (EXACT COMPLEMENTARY CLIP-PATH) */}
               <div
-                className="absolute inset-0 z-30 transition-all duration-400 ease-out pointer-events-none"
+                className="absolute inset-0 z-30 transition-all duration-700 ease-in-out pointer-events-none"
                 style={{
                   clipPath: 'polygon(0 0, 100% 0, 100% 17%, 85% 21%, 70% 16%, 50% 22%, 35% 17%, 20% 21%, 0 16%)',
                   transform:
@@ -331,7 +331,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
 
               {/* 2. BOTTOM FOIL BODY PIECE (EXACT CUT SLIT MOUTH) */}
               <div
-                className="absolute inset-0 z-20 transition-all duration-400 ease-out pointer-events-none"
+                className="absolute inset-0 z-20 transition-all duration-700 ease-out pointer-events-none"
                 style={{
                   clipPath: 'polygon(0 16%, 20% 21%, 35% 17%, 50% 22%, 70% 16%, 85% 21%, 100% 17%, 100% 100%, 0 100%)',
                   transform:
