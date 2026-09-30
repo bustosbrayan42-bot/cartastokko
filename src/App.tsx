@@ -269,10 +269,64 @@ export function App() {
     }
   }, [cards]);
 
-  const [activeTab, setActiveTab] = useState<'home' | 'binder' | 'showcase' | 'pack'>('home');
+type TabType = 'home' | 'binder' | 'showcase' | 'pack';
+
+const getInitialTab = (): TabType => {
+  try {
+    const rawHash = window.location.hash.replace('#', '').trim();
+    if (['home', 'binder', 'showcase', 'pack'].includes(rawHash)) {
+      return rawHash as TabType;
+    }
+    const saved = localStorage.getItem('tokkii_active_tab') as TabType;
+    if (['home', 'binder', 'showcase', 'pack'].includes(saved)) {
+      return saved;
+    }
+  } catch {
+    // fallback
+  }
+  return 'home';
+};
+
+  const [activeTab, setActiveTab] = useState<TabType>(getInitialTab);
   const [inspectingCard, setInspectingCard] = useState<CardData | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editingCard, setEditingCard] = useState<CardData | null>(null);
+
+  // Sync tab changes with URL hash and localStorage
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab);
+    window.location.hash = tab;
+    try {
+      localStorage.setItem('tokkii_active_tab', tab);
+    } catch {
+      // ignore
+    }
+  };
+
+  // Listen to browser forward/back buttons or manual hash changes
+  useEffect(() => {
+    const onHashChange = () => {
+      const rawHash = window.location.hash.replace('#', '').trim();
+      if (['home', 'binder', 'showcase', 'pack'].includes(rawHash)) {
+        setActiveTab(rawHash as TabType);
+        try {
+          localStorage.setItem('tokkii_active_tab', rawHash);
+        } catch {
+          // ignore
+        }
+      }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  // Ensure current tab is mirrored in hash on mount
+  useEffect(() => {
+    const currentHash = window.location.hash.replace('#', '').trim();
+    if (currentHash !== activeTab) {
+      window.location.hash = activeTab;
+    }
+  }, [activeTab]);
 
   const [soundOn, setSoundOn] = useState(true);
 
@@ -308,7 +362,7 @@ export function App() {
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
-        onTabChange={setActiveTab}
+        onTabChange={handleTabChange}
         onOpenCreateModal={handleOpenCreateModal}
         soundEnabled={soundOn}
         onToggleSound={toggleSound}
