@@ -224,27 +224,30 @@ export function App() {
   ): Promise<boolean> => {
     if (!userProfile?.id) return false;
 
-    const deducted = await deductUserPack(userProfile.id, packType);
-    if (!deducted) return false;
-
-    // Update local pack count
+    // 1. Immediate optimistic UI update (0ms delay)
     setUserPacks((prev) => ({
       ...prev,
       [packType]: Math.max(0, prev[packType] - 1),
     }));
 
-    // Add cards to user's collection in Supabase
     const cardIds = pulledCards.map((c) => c.id);
-    await addCardsToUserCollection(userProfile.id, cardIds, packType);
-
-    // Update local owned cards
     setUserOwnedCardIds((prev) => {
       const next = new Set(prev);
       cardIds.forEach((id) => next.add(id));
       return next;
     });
 
-    return true;
+    // 2. Concurrently persist deduction and new cards in Supabase
+    try {
+      await Promise.all([
+        deductUserPack(userProfile.id, packType),
+        addCardsToUserCollection(userProfile.id, cardIds, packType),
+      ]);
+      return true;
+    } catch (err) {
+      console.error('Error persisting pack opening:', err);
+      return false;
+    }
   };
 
   useEffect(() => {

@@ -193,34 +193,37 @@ export const addCardsToUserCollection = async (
     idCounts.set(cid, (idCounts.get(cid) || 0) + 1);
   }
 
-  // Process each card
-  for (const [cardId, count] of idCounts.entries()) {
-    // Check if user already owns this card
-    const { data: existing } = await supabaseAuth
-      .from('user_cards')
-      .select('id, count')
-      .eq('user_id', userId)
-      .eq('card_id', cardId)
-      .maybeSingle();
+  // Process all cards concurrently in parallel
+  await Promise.all(
+    Array.from(idCounts.entries()).map(async ([cardId, count]) => {
+      try {
+        const { data: existing } = await supabaseAuth
+          .from('user_cards')
+          .select('id, count')
+          .eq('user_id', userId)
+          .eq('card_id', cardId)
+          .maybeSingle();
 
-    if (existing) {
-      await supabaseAuth
-        .from('user_cards')
-        .update({
-          count: (existing.count || 1) + count,
-          obtained_at: new Date().toISOString(),
-        })
-        .eq('id', existing.id);
-    } else {
-      await supabaseAuth
-        .from('user_cards')
-        .insert({
-          user_id: userId,
-          card_id: cardId,
-          count: count,
-          obtained_at: new Date().toISOString(),
-          source: source,
-        });
-    }
-  }
+        if (existing) {
+          await supabaseAuth
+            .from('user_cards')
+            .update({
+              count: (existing.count || 1) + count,
+              obtained_at: new Date().toISOString(),
+            })
+            .eq('id', existing.id);
+        } else {
+          await supabaseAuth.from('user_cards').insert({
+            user_id: userId,
+            card_id: cardId,
+            count: count,
+            obtained_at: new Date().toISOString(),
+            source: source,
+          });
+        }
+      } catch (err) {
+        console.warn(`Error adding card ${cardId} to user:`, err);
+      }
+    })
+  );
 };

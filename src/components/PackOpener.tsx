@@ -53,7 +53,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
     return cards[Math.floor(Math.random() * cards.length)];
   };
 
-  const handleOpenPack = async () => {
+  const handleOpenPack = () => {
     if (animState !== 'unopened') return;
 
     // Check login
@@ -78,21 +78,13 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
       newPulled.push(getRandomCard());
     }
 
-    // Deduct pack and sync cards to Supabase
-    if (onOpenUserPack) {
-      const ok = await onOpenUserPack(currentPackType, newPulled);
-      if (!ok) {
-        setErrorMessage('Error al abrir el sobre. Por favor intenta de nuevo.');
-        return;
-      }
-    }
-
+    // 1. INSTANT ANIMATION & SOUND (0ms lag, 100% fluid & responsive)
     playPackTearSound();
     setPulledCards(newPulled);
     setRevealedCards(new Array(packCardCount).fill(false));
     setSelectedCardIndex(0);
 
-    // Phase 1: Physical Sliced Tear (Top cap breaks off)
+    // Phase 1: Physical Sliced Tear (Top cap breaks off instantly)
     setAnimState('tearing');
 
     // Phase 2: Cards Slide Out from the open slit
@@ -107,6 +99,13 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
       setAnimState('revealing');
     }, 1350);
     timeoutRefs.current.push(t2);
+
+    // 2. ASYNC BACKGROUND SYNC TO DATABASE (non-blocking while animation plays)
+    if (onOpenUserPack) {
+      onOpenUserPack(currentPackType, newPulled).catch((err) => {
+        console.error('Error in background pack deduction:', err);
+      });
+    }
   };
 
   const handleCardClick = (idx: number) => {
