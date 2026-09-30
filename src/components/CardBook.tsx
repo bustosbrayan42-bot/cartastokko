@@ -7,7 +7,8 @@ import {
   ChevronRight,
   BookOpen,
   Sparkles,
-  Layers
+  Layers,
+  RefreshCw
 } from 'lucide-react';
 
 interface CardBookProps {
@@ -15,6 +16,8 @@ interface CardBookProps {
   onInspectCard: (card: CardData) => void;
   userOwnedCardIds?: Set<string>;
   isLoggedIn?: boolean;
+  onOpenDuplicateModal?: () => void;
+  duplicatesCount?: number;
 }
 
 export const CardBook: React.FC<CardBookProps> = ({
@@ -22,6 +25,8 @@ export const CardBook: React.FC<CardBookProps> = ({
   onInspectCard,
   userOwnedCardIds,
   isLoggedIn = false,
+  onOpenDuplicateModal,
+  duplicatesCount = 0,
 }) => {
   // Binder Capacity: 144 card slots in total (Pages 1 to 12)
   // 4x3 grid per page = 4 horizontal (cols) x 3 vertical (rows) = 12 cards per Page
@@ -332,25 +337,45 @@ export const CardBook: React.FC<CardBookProps> = ({
           </div>
         </div>
 
-        {/* User Collection Progress */}
-        {isLoggedIn && userOwnedCardIds && (
-          <div className="flex items-center gap-2.5 bg-[#290A30]/90 border border-[#610F4E] px-3 py-1.5 rounded-2xl shadow-sm">
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] font-bold text-[#F9F1F9]">
-                Desbloqueadas: <span className="text-[#F50B8C] font-mono">{userOwnedCardIds.size}</span> / {TOTAL_ALBUM_SLOTS}
-              </span>
-              <div className="w-24 sm:w-32 h-1.5 bg-[#31213D] rounded-full overflow-hidden border border-[#610F4E]/60 mt-0.5">
-                <div
-                  className="h-full bg-gradient-to-r from-[#F50B8C] to-pink-400 rounded-full transition-all duration-500"
-                  style={{ width: `${Math.min(100, Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100))}%` }}
-                />
+        {/* Right Header Actions: Duplicates Button + Collection Progress */}
+        <div className="flex items-center gap-2">
+          {/* Button: Cartas repetidas x Sobre */}
+          {isLoggedIn && onOpenDuplicateModal && (
+            <button
+              onClick={onOpenDuplicateModal}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-gradient-to-r from-[#610F4E] to-[#9146FF] hover:from-[#7a1362] hover:to-[#a35cfc] border border-[#F50B8C]/50 text-white text-xs font-bold shadow-md shadow-[#F50B8C]/20 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0"
+              title="Canjear cartas repetidas por sobres de 3 cartas"
+            >
+              <RefreshCw className="w-3.5 h-3.5 text-[#F50B8C]" />
+              <span>Cartas repetidas x Sobre</span>
+              {typeof duplicatesCount === 'number' && duplicatesCount > 0 && (
+                <span className="text-[10px] font-mono font-black px-1.5 py-0.2 rounded-full bg-[#F50B8C] text-white">
+                  {duplicatesCount}
+                </span>
+              )}
+            </button>
+          )}
+
+          {/* User Collection Progress */}
+          {isLoggedIn && userOwnedCardIds && (
+            <div className="flex items-center gap-2.5 bg-[#290A30]/90 border border-[#610F4E] px-3 py-1.5 rounded-2xl shadow-sm">
+              <div className="flex flex-col items-end">
+                <span className="text-[10px] font-bold text-[#F9F1F9]">
+                  Desbloqueadas: <span className="text-[#F50B8C] font-mono">{userOwnedCardIds.size}</span> / {TOTAL_ALBUM_SLOTS}
+                </span>
+                <div className="w-24 sm:w-32 h-1.5 bg-[#31213D] rounded-full overflow-hidden border border-[#610F4E]/60 mt-0.5">
+                  <div
+                    className="h-full bg-gradient-to-r from-[#F50B8C] to-pink-400 rounded-full transition-all duration-500"
+                    style={{ width: `${Math.min(100, Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100))}%` }}
+                  />
+                </div>
               </div>
+              <span className="text-xs font-black font-mono text-[#F50B8C]">
+                {Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100)}%
+              </span>
             </div>
-            <span className="text-xs font-black font-mono text-[#F50B8C]">
-              {Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100)}%
-            </span>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Main 3D Binder Book Stage */}

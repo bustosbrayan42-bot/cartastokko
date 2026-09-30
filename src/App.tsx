@@ -11,6 +11,7 @@ import { Home } from './components/Home';
 import { setSoundEnabled } from './utils/soundEffects';
 import { fetchCardsFromSupabase, supabase, rowToCard } from './utils/supabaseClient';
 import { supabaseAuth } from './utils/authSupabaseClient';
+import { DuplicateExchangeModal } from './components/DuplicateExchangeModal';
 import {
   signInWithTwitch,
   signOutUser,
@@ -19,6 +20,7 @@ import {
   fetchUserPacks,
   deductUserPack,
   addCardsToUserCollection,
+  calculateDuplicatesSummary,
 } from './services/authUserService';
 import type { UserProfile, UserPacksCount } from './types/user';
 import { saveCardsToIndexedDb, loadCardsFromIndexedDb } from './utils/cardStorage';
@@ -45,8 +47,13 @@ export function App() {
   // User Auth & Collection State
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [userOwnedCardIds, setUserOwnedCardIds] = useState<Set<string>>(new Set());
+  const [userCardsMap, setUserCardsMap] = useState<Map<string, number>>(new Map());
   const [userPacks, setUserPacks] = useState<UserPacksCount>({ pack_1: 0, pack_3: 0, pack_5: 0 });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
+
+  // Calculate duplicates summary
+  const duplicatesSummary = calculateDuplicatesSummary(userCardsMap, cards);
 
   // Load from IndexedDB on mount (offline fallback)
   useEffect(() => {
@@ -85,6 +92,7 @@ export function App() {
         fetchUserPacks(userId),
       ]);
       if (profile) setUserProfile(profile);
+      setUserCardsMap(cardMap);
       setUserOwnedCardIds(new Set(cardMap.keys()));
       setUserPacks(packs);
     } catch (err) {
@@ -107,6 +115,7 @@ export function App() {
         loadUserData(session.user.id);
       } else {
         setUserProfile(null);
+        setUserCardsMap(new Map());
         setUserOwnedCardIds(new Set());
         setUserPacks({ pack_1: 0, pack_3: 0, pack_5: 0 });
       }
@@ -133,6 +142,7 @@ export function App() {
         },
         () => {
           fetchUserCards(userProfile.id).then((cardMap) => {
+            setUserCardsMap(cardMap);
             setUserOwnedCardIds(new Set(cardMap.keys()));
           });
         }
@@ -329,6 +339,8 @@ export function App() {
               onInspectCard={(card) => setInspectingCard(card)}
               userOwnedCardIds={userOwnedCardIds}
               isLoggedIn={!!userProfile}
+              onOpenDuplicateModal={() => setIsDuplicateModalOpen(true)}
+              duplicatesCount={duplicatesSummary.totalExchangeable}
             />
           </div>
         )}
@@ -375,6 +387,20 @@ export function App() {
           onClose={() => setInspectingCard(null)}
         />
       )}
+
+      {/* Duplicate Cards Exchange Modal */}
+      <DuplicateExchangeModal
+        isOpen={isDuplicateModalOpen}
+        onClose={() => setIsDuplicateModalOpen(false)}
+        userId={userProfile?.id || ''}
+        userCardsMap={userCardsMap}
+        cards={cards}
+        onExchangeSuccess={() => {
+          if (userProfile?.id) {
+            loadUserData(userProfile.id);
+          }
+        }}
+      />
 
       <CardEditorModal
         card={editingCard}

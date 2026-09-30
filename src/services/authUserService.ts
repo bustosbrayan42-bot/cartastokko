@@ -1,5 +1,6 @@
 import { supabaseAuth } from '../utils/authSupabaseClient';
 import type { UserProfile, UserPacksCount } from '../types/user';
+import type { CardData } from '../types/card';
 
 /**
  * Sign in using Twitch OAuth
@@ -226,4 +227,150 @@ export const addCardsToUserCollection = async (
       }
     })
   );
+};
+
+export interface DuplicatesSummary {
+  common: number;
+  uncommon: number;
+  rare: number;
+  super_rare: number;
+  ultra_rare: number;
+  secret_rare: number;
+  totalExchangeable: number;
+}
+
+/**
+ * Calculate total duplicate cards per rarity (count - 1 for each owned card)
+ */
+export const calculateDuplicatesSummary = (
+  userCardsMap: Map<string, number>,
+  allCards: CardData[]
+): DuplicatesSummary => {
+  const summary: DuplicatesSummary = {
+    common: 0,
+    uncommon: 0,
+    rare: 0,
+    super_rare: 0,
+    ultra_rare: 0,
+    secret_rare: 0,
+    totalExchangeable: 0,
+  };
+
+  const cardRarityMap = new Map<string, string>();
+  allCards.forEach((c) => cardRarityMap.set(c.id, c.rarity));
+
+  userCardsMap.forEach((count, cardId) => {
+    if (count > 1) {
+      const dups = count - 1;
+      const rarity = cardRarityMap.get(cardId);
+      if (rarity === 'common') summary.common += dups;
+      else if (rarity === 'uncommon') summary.uncommon += dups;
+      else if (rarity === 'rare') summary.rare += dups;
+      else if (rarity === 'super_rare') summary.super_rare += dups;
+      else if (rarity === 'ultra_rare') summary.ultra_rare += dups;
+      else if (rarity === 'secret_rare') summary.secret_rare += dups;
+    }
+  });
+
+  summary.totalExchangeable =
+    summary.common + summary.uncommon + summary.rare + summary.super_rare;
+  return summary;
+};
+
+/**
+ * Exchange duplicate cards for 1 pack of 3 cards
+ * Rules:
+ * - 10 common -> 1 pack_3
+ * - 8 uncommon -> 1 pack_3
+ * - 6 rare -> 1 pack_3
+ * - 5 super_rare -> 1 pack_3
+ */
+export const exchangeDuplicatesForPack = async (
+  userId: string,
+  rarity: 'common' | 'uncommon' | 'rare' | 'super_rare',
+  allCards: CardData[]
+): Promise<{ success: boolean; error?: string }> => {
+  if (!userId) return { success: false, error: 'Usuario no autenticado' };
+
+  const requiredMap: Record<string, number> = {
+    common: 10,
+    uncommon: 8,
+    rare: 6,
+    super_rare: 5,
+  };
+
+  const needed = requiredMap[rarity];
+  if (!needed) return { success: false, error: 'Rareza no canjeable' };
+
+  try {
+    // 1. Fetch user cards with count > 1
+    const { data: userCards, error } = await supabaseAuth
+      .from('user_cards')
+      .select('id, card_id, count')
+      .eq('user_id', userId)
+      .gt('count', 1);
+
+    if (error || !userCards) {
+      return { success: false, error: 'Error al consultar cartas repetidas' };
+    }
+
+    // Filter cards matching rarity
+    const targetCardIds = new Set(
+      allCards.filter((c) => c.rarity === rarity).map((c) => c.id)
+    );
+
+    const eligibleRows = userCards.filter((row) => targetCardIds.has(row.card_id));
+    const totalAvailable = eligibleRows.reduce((acc, row) => acc + (row.count - 1), 0);
+
+    if (totalAvailable < needed) {
+      return {
+        success: false,
+        error: `No tienes suficientes repetidas (Disponibles: ${totalAvailable}, Necesitas: ${needed})`,
+      };
+    }
+
+    // 2. Deduct duplicates across eligible rows (never dropping count below 1)
+    let remainingToDeduct = needed;
+    const updatePromises = [];
+
+    for (const row of eligibleRows) {
+      if (remainingToDeduct <= 0) break;
+      const canDeductFromThis = row.count - 1;
+      const toDeduct = Math.min(canDeductFromThis, remainingToDeduct);
+      const newCount = row.count - toDeduct;
+
+      updatePromises.push(
+        supabaseAuth
+          .from('user_cards')
+          .update({ count: newCount, obtained_at: new Date().toISOString() })
+          .eq('id', row.id)
+      );
+
+      remainingToDeduct -= toDeduct;
+    }
+
+    await Promise.all(updatePromises);
+
+    // 3. Award 1 Pack of 3 Cards to user_packs
+    const { data: packRow } = await supabaseAuth
+      .from('user_packs')
+      .select('quantity')
+      .eq('user_id', userId)
+      .eq('pack_type', 'pack_3')
+      .maybeSingle();
+
+    const currentPacks = packRow?.quantity || 0;
+
+    await supabaseAuth.from('user_packs').upsert({
+      user_id: userId,
+      pack_type: 'pack_3',
+      quantity: currentPacks + 1,
+      updated_at: new Date().toISOString(),
+    });
+
+    return { success: true };
+  } catch (err: any) {
+    console.error('Error exchanging duplicates:', err);
+    return { success: false, error: err?.message || 'Error inesperado al canjear' };
+  }
 };
