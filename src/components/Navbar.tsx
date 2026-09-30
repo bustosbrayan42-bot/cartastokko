@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               {/* 2. Nombre */}
-              <span className="text-xs font-bold text-white truncate max-w-[120px] leading-none">
+              <span className="text-xs font-bold text-white max-w-[150px] truncate leading-normal py-0.5 tracking-wide">
                 {userProfile.display_name || userProfile.username}
               </span>
 
