@@ -5,18 +5,27 @@ import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { playPackTearSound, playLegendaryRevealSound, playSparkleSound, playCardFlipSound } from '../utils/soundEffects';
 import { resolveImageUrl } from '../utils/imageHelper';
 import confetti from 'canvas-confetti';
-import { Sparkles, RotateCcw, X, Scissors } from 'lucide-react';
+import { Sparkles, RotateCcw, X, Scissors, AlertCircle } from 'lucide-react';
+import type { UserProfile, UserPacksCount } from '../types/user';
 
 interface PackOpenerProps {
   cards: CardData[];
   onClose?: () => void;
   onInspectCard?: (card: CardData) => void;
+  userProfile?: UserProfile | null;
+  userPacks?: UserPacksCount;
+  onOpenUserPack?: (packType: 'pack_1' | 'pack_3' | 'pack_5', cards: CardData[]) => Promise<boolean>;
+  onLoginTwitch?: () => void;
 }
 
 export const PackOpener: React.FC<PackOpenerProps> = ({
   cards,
   onClose,
   onInspectCard,
+  userProfile,
+  userPacks,
+  onOpenUserPack,
+  onLoginTwitch,
 }) => {
   const [packCardCount, setPackCardCount] = useState<number>(3);
   const [animState, setAnimState] = useState<'unopened' | 'tearing' | 'sliding' | 'revealing'>('unopened');
@@ -24,6 +33,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   const [revealedCards, setRevealedCards] = useState<boolean[]>([]);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number>(0);
   const [packId, setPackId] = useState<number>(1);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearTimeouts = () => {
@@ -35,22 +45,49 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
     return () => clearTimeouts();
   }, []);
 
+  const currentPackType: 'pack_1' | 'pack_3' | 'pack_5' =
+    packCardCount === 1 ? 'pack_1' : packCardCount === 3 ? 'pack_3' : 'pack_5';
+  const availablePackCount = userPacks ? userPacks[currentPackType] : 0;
+
   const getRandomCard = () => {
     return cards[Math.floor(Math.random() * cards.length)];
   };
 
-  const handleOpenPack = () => {
+  const handleOpenPack = async () => {
     if (animState !== 'unopened') return;
 
+    // Check login
+    if (!userProfile) {
+      if (onLoginTwitch) onLoginTwitch();
+      return;
+    }
+
+    // Check inventory
+    if (availablePackCount <= 0) {
+      setErrorMessage(`No tienes sobres de ${packCardCount} ${packCardCount === 1 ? 'carta' : 'cartas'} disponibles.`);
+      setTimeout(() => setErrorMessage(null), 4000);
+      return;
+    }
+
     clearTimeouts();
+    setErrorMessage(null);
     setPackId((prev) => prev + 1);
-    playPackTearSound();
 
     const newPulled: CardData[] = [];
     for (let i = 0; i < packCardCount; i++) {
       newPulled.push(getRandomCard());
     }
 
+    // Deduct pack and sync cards to Supabase
+    if (onOpenUserPack) {
+      const ok = await onOpenUserPack(currentPackType, newPulled);
+      if (!ok) {
+        setErrorMessage('Error al abrir el sobre. Por favor intenta de nuevo.');
+        return;
+      }
+    }
+
+    playPackTearSound();
     setPulledCards(newPulled);
     setRevealedCards(new Array(packCardCount).fill(false));
     setSelectedCardIndex(0);
@@ -146,24 +183,76 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                 Sobre de Cartas Tokkii
               </h2>
 
-              {/* CARD COUNT SELECTOR BUTTONS (1, 3, 5) */}
-              {animState === 'unopened' && (
-                <div className="flex items-center justify-center gap-2 pt-1">
-                  <span className="text-xs font-bold text-[#B894B3] mr-1">Cartas por sobre:</span>
-                  {[1, 3, 5].map((count) => (
+              {/* Error / Warning Alert */}
+              {errorMessage && (
+                <div className="bg-red-950/80 border border-red-500/50 text-red-200 text-xs py-2 px-4 rounded-xl flex items-center justify-center gap-2 max-w-md mx-auto animate-in fade-in">
+                  <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
+              {/* Twitch Login prompt if not logged in */}
+              {!userProfile && (
+                <div className="bg-[#290A30]/90 border border-[#610F4E] p-3 rounded-2xl max-w-md mx-auto space-y-2">
+                  <p className="text-xs text-[#B894B3]">
+                    Inicia sesión con tu cuenta de Twitch para registrar tus sobres y cartas obtenidas.
+                  </p>
+                  {onLoginTwitch && (
                     <button
-                      key={count}
-                      type="button"
-                      onClick={() => setPackCardCount(count)}
-                      className={`px-3 py-1 rounded-xl text-xs font-black transition-all border cursor-pointer ${
-                        packCardCount === count
-                          ? 'bg-[#F50B8C] text-white border-[#ff6ebb] shadow-md scale-105'
-                          : 'bg-[#290A30] text-[#B894B3] border-[#610F4E] hover:border-[#F50B8C]/50 hover:text-[#F9F1F9]'
-                      }`}
+                      onClick={onLoginTwitch}
+                      className="px-4 py-1.5 rounded-xl bg-[#9146FF] hover:bg-[#772CE8] text-white text-xs font-black shadow transition-all flex items-center justify-center gap-2 mx-auto cursor-pointer"
                     >
-                      {count} {count === 1 ? 'Carta' : 'Cartas'}
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" />
+                      </svg>
+                      <span>Conectar Twitch</span>
                     </button>
-                  ))}
+                  )}
+                </div>
+              )}
+
+              {/* CARD COUNT SELECTOR BUTTONS (1, 3, 5) with Available Inventories */}
+              {animState === 'unopened' && (
+                <div className="flex flex-col items-center gap-2 pt-1">
+                  <div className="flex items-center justify-center gap-2">
+                    {[
+                      { count: 1, type: 'pack_1' as const, label: '1 Carta', qty: userPacks?.pack_1 || 0 },
+                      { count: 3, type: 'pack_3' as const, label: '3 Cartas', qty: userPacks?.pack_3 || 0 },
+                      { count: 5, type: 'pack_5' as const, label: '5 Cartas', qty: userPacks?.pack_5 || 0 },
+                    ].map((item) => (
+                      <button
+                        key={item.count}
+                        type="button"
+                        onClick={() => setPackCardCount(item.count)}
+                        className={`px-3 py-2 rounded-xl text-xs font-black transition-all border flex flex-col items-center gap-0.5 cursor-pointer ${
+                          packCardCount === item.count
+                            ? 'bg-[#F50B8C] text-white border-[#ff6ebb] shadow-md scale-105'
+                            : 'bg-[#290A30] text-[#B894B3] border-[#610F4E] hover:border-[#F50B8C]/50 hover:text-[#F9F1F9]'
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        {userProfile && (
+                          <span
+                            className={`text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full ${
+                              item.qty > 0
+                                ? packCardCount === item.count
+                                  ? 'bg-black/30 text-white'
+                                  : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40'
+                                : 'bg-slate-900/60 text-slate-400'
+                            }`}
+                          >
+                            {item.qty} {item.qty === 1 ? 'disp.' : 'disp.'}
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+
+                  {userProfile && availablePackCount <= 0 && (
+                    <span className="text-[11px] text-amber-400 font-semibold bg-amber-950/60 border border-amber-500/40 px-3 py-1 rounded-full">
+                      ⚠️ No tienes sobres disponibles de {packCardCount} {packCardCount === 1 ? 'carta' : 'cartas'}
+                    </span>
+                  )}
                 </div>
               )}
             </div>
@@ -172,7 +261,11 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
             <div
               onClick={handleOpenPack}
               className={`relative w-[300px] h-[450px] select-none cursor-pointer transition-transform duration-300 ${
-                animState === 'unopened' ? 'hover:scale-[1.04] active:scale-95' : ''
+                animState === 'unopened'
+                  ? userProfile && availablePackCount <= 0
+                    ? 'opacity-60 cursor-not-allowed'
+                    : 'hover:scale-[1.04] active:scale-95'
+                  : ''
               }`}
             >
               {/* CARDS SLIDING OUT FROM THE OPEN MOUTH (Dynamic fan of 1, 3 or 5 cards) */}

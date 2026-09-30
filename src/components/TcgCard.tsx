@@ -4,12 +4,13 @@ import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { ELEMENT_CONFIGS } from '../data/elementConfigs';
 import { playCardFlipSound, playCardHoverSound, playSparkleSound } from '../utils/soundEffects';
 import { resolveImageUrl } from '../utils/imageHelper';
-import { RotateCw } from 'lucide-react';
+import { RotateCw, Lock } from 'lucide-react';
 
 interface TcgCardProps {
   card: CardData;
   scale?: number;
   isFlipped?: boolean;
+  isLocked?: boolean;
   onFlipToggle?: () => void;
   onClick?: () => void;
   showBackFlipBtn?: boolean;
@@ -23,6 +24,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   card,
   scale = 1,
   isFlipped = false,
+  isLocked = false,
   onFlipToggle,
   onClick,
   showBackFlipBtn = true,
@@ -175,9 +177,11 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       >
         {/* CARD FRONT */}
         <div
-          className="card-face absolute inset-0 rounded-[20px] overflow-hidden p-[10px] flex flex-col justify-between border-2"
+          className={`card-face absolute inset-0 rounded-[20px] overflow-hidden p-[10px] flex flex-col justify-between border-2 ${
+            isLocked ? 'grayscale brightness-[0.7] contrast-[0.85]' : ''
+          }`}
           style={{
-            borderColor: rarityConfig.borderColor,
+            borderColor: isLocked ? '#475569' : rarityConfig.borderColor,
             background: isFullArtMode
               ? '#0f172a'
               : card.rarity === 'ultra_rare'
@@ -191,6 +195,20 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               : 'linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #090d16 100%)',
           }}
         >
+          {/* Mystery Lock Overlay when card is not yet unlocked by user */}
+          {isLocked && (
+            <div className="absolute inset-0 z-50 rounded-[18px] bg-black/60 backdrop-blur-[2px] flex flex-col items-center justify-center p-2 text-center pointer-events-none select-none">
+              <div className="w-10 h-10 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-center text-amber-400 shadow-xl mb-1.5 animate-pulse">
+                <Lock className="w-5 h-5" />
+              </div>
+              <span className="text-[11px] font-mono font-black uppercase tracking-widest text-slate-200">
+                Bloqueada
+              </span>
+              <span className="text-[9px] font-mono text-slate-400">
+                #{card.cardNumber} • ???
+              </span>
+            </div>
+          )}
           {/* FULL ART BACKGROUND IMAGE (When Secret Rare or Full Art) */}
           {isFullArtMode && (
             <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-slate-950">

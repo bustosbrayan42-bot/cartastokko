@@ -13,11 +13,15 @@ import {
 interface CardBookProps {
   cards: CardData[];
   onInspectCard: (card: CardData) => void;
+  userOwnedCardIds?: Set<string>;
+  isLoggedIn?: boolean;
 }
 
 export const CardBook: React.FC<CardBookProps> = ({
   cards,
   onInspectCard,
+  userOwnedCardIds,
+  isLoggedIn = false,
 }) => {
   // Binder Capacity: 144 card slots in total (Pages 1 to 12)
   // 4x3 grid per page = 4 horizontal (cols) x 3 vertical (rows) = 12 cards per Page
@@ -147,46 +151,59 @@ export const CardBook: React.FC<CardBookProps> = ({
               >
                 {card ? (
                   /* Filled Card Slot */
-                  <div
-                    className={`transform transition-transform duration-200 ${
-                      !isFlipLeaf ? 'hover:scale-[1.07] hover:z-30 cursor-pointer' : ''
-                    } flex items-center justify-center`}
-                    onClick={() => !isAnimating && onInspectCard(card)}
-                    title={`${card.title} (#${card.cardNumber}) - Clic para inspeccionar`}
-                  >
-                    <div className="hidden lg:block">
-                      <TcgCard
-                        card={card}
-                        scale={0.40}
-                        interactive={!isFlipLeaf && !isAnimating}
-                        showBackFlipBtn={false}
-                      />
-                    </div>
-                    <div className="hidden md:block lg:hidden">
-                      <TcgCard
-                        card={card}
-                        scale={0.38}
-                        interactive={!isFlipLeaf && !isAnimating}
-                        showBackFlipBtn={false}
-                      />
-                    </div>
-                    <div className="hidden sm:block md:hidden">
-                      <TcgCard
-                        card={card}
-                        scale={0.34}
-                        interactive={!isFlipLeaf && !isAnimating}
-                        showBackFlipBtn={false}
-                      />
-                    </div>
-                    <div className="block sm:hidden">
-                      <TcgCard
-                        card={card}
-                        scale={0.28}
-                        interactive={!isFlipLeaf && !isAnimating}
-                        showBackFlipBtn={false}
-                      />
-                    </div>
-                  </div>
+                  (() => {
+                    const isCardLocked = isLoggedIn && userOwnedCardIds ? !userOwnedCardIds.has(card.id) : false;
+                    return (
+                      <div
+                        className={`transform transition-transform duration-200 ${
+                          !isFlipLeaf ? 'hover:scale-[1.07] hover:z-30 cursor-pointer' : ''
+                        } flex items-center justify-center`}
+                        onClick={() => !isAnimating && onInspectCard(card)}
+                        title={
+                          isCardLocked
+                            ? `Carta #${card.cardNumber} - Bloqueada (No Obtenida)`
+                            : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
+                        }
+                      >
+                        <div className="hidden lg:block">
+                          <TcgCard
+                            card={card}
+                            scale={0.40}
+                            isLocked={isCardLocked}
+                            interactive={!isFlipLeaf && !isAnimating}
+                            showBackFlipBtn={false}
+                          />
+                        </div>
+                        <div className="hidden md:block lg:hidden">
+                          <TcgCard
+                            card={card}
+                            scale={0.38}
+                            isLocked={isCardLocked}
+                            interactive={!isFlipLeaf && !isAnimating}
+                            showBackFlipBtn={false}
+                          />
+                        </div>
+                        <div className="hidden sm:block md:hidden">
+                          <TcgCard
+                            card={card}
+                            scale={0.34}
+                            isLocked={isCardLocked}
+                            interactive={!isFlipLeaf && !isAnimating}
+                            showBackFlipBtn={false}
+                          />
+                        </div>
+                        <div className="block sm:hidden">
+                          <TcgCard
+                            card={card}
+                            scale={0.28}
+                            isLocked={isCardLocked}
+                            interactive={!isFlipLeaf && !isAnimating}
+                            showBackFlipBtn={false}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })()
                 ) : isWithin150 ? (
                   /* Empty Numbered Sleeve Slot */
                   <div className="w-full h-full rounded-lg sm:rounded-xl border border-dashed border-slate-800/60 flex flex-col items-center justify-center text-slate-700/60 space-y-0.5 select-none hover:border-slate-700 hover:text-slate-600 transition-colors">
@@ -290,7 +307,7 @@ export const CardBook: React.FC<CardBookProps> = ({
       `}</style>
 
       {/* Top Header Bar */}
-      <div className="w-full max-w-[1240px] flex items-center justify-between px-2 sm:px-4">
+      <div className="w-full max-w-[1240px] flex flex-col sm:flex-row items-center justify-between gap-2 px-2 sm:px-4">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#610F4E] border border-[#F50B8C]/40 flex items-center justify-center text-[#F50B8C] shadow-[0_0_10px_rgba(245,11,140,0.25)]">
             <BookOpen className="w-3.5 h-3.5" />
@@ -300,15 +317,32 @@ export const CardBook: React.FC<CardBookProps> = ({
               <h2 className="text-xs sm:text-sm font-black text-[#F9F1F9] tracking-wide">
                 Álbum TCG Coleccionista 4x3 (144 Cartas)
               </h2>
-              <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-[#290A30] border border-[#610F4E] text-[#F50B8C]">
-                {cards.length} / {TOTAL_ALBUM_SLOTS} cartas
-              </span>
               <span className="text-[10px] font-semibold px-2 py-0.2 rounded-full bg-[#610F4E]/80 border border-[#F50B8C]/40 text-[#F9F1F9] hidden sm:inline-block">
-                Hoja {currentSpreadIndex + 1} de {totalPages} (24 cartas por pliego)
+                Hoja {currentSpreadIndex + 1} de {totalPages}
               </span>
             </div>
           </div>
         </div>
+
+        {/* User Collection Progress */}
+        {isLoggedIn && userOwnedCardIds && (
+          <div className="flex items-center gap-2.5 bg-[#290A30]/90 border border-[#610F4E] px-3 py-1.5 rounded-2xl shadow-sm">
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] font-bold text-[#F9F1F9]">
+                Desbloqueadas: <span className="text-[#F50B8C] font-mono">{userOwnedCardIds.size}</span> / {TOTAL_ALBUM_SLOTS}
+              </span>
+              <div className="w-24 sm:w-32 h-1.5 bg-[#31213D] rounded-full overflow-hidden border border-[#610F4E]/60 mt-0.5">
+                <div
+                  className="h-full bg-gradient-to-r from-[#F50B8C] to-pink-400 rounded-full transition-all duration-500"
+                  style={{ width: `${Math.min(100, Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100))}%` }}
+                />
+              </div>
+            </div>
+            <span className="text-xs font-black font-mono text-[#F50B8C]">
+              {Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100)}%
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Main 3D Binder Book Stage */}

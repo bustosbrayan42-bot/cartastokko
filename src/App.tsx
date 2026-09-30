@@ -10,6 +10,17 @@ import { RarityShowcaseSlider } from './components/RarityShowcaseSlider';
 import { Home } from './components/Home';
 import { setSoundEnabled } from './utils/soundEffects';
 import { fetchCardsFromSupabase, supabase, rowToCard } from './utils/supabaseClient';
+import { supabaseAuth } from './utils/authSupabaseClient';
+import {
+  signInWithTwitch,
+  signOutUser,
+  getUserProfile,
+  fetchUserCards,
+  fetchUserPacks,
+  deductUserPack,
+  addCardsToUserCollection,
+} from './services/authUserService';
+import type { UserProfile, UserPacksCount } from './types/user';
 import { saveCardsToIndexedDb, loadCardsFromIndexedDb } from './utils/cardStorage';
 
 export function App() {
@@ -30,6 +41,12 @@ export function App() {
     }
     return DEFAULT_CARDS;
   });
+
+  // User Auth & Collection State
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [userOwnedCardIds, setUserOwnedCardIds] = useState<Set<string>>(new Set());
+  const [userPacks, setUserPacks] = useState<UserPacksCount>({ pack_1: 0, pack_3: 0, pack_5: 0 });
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   // Load from IndexedDB on mount (offline fallback)
   useEffect(() => {
@@ -58,6 +75,88 @@ export function App() {
       console.warn('Could not load cards from Supabase, using local fallback:', err);
     }
   };
+
+  // Load user data (profile, cards, packs)
+  const loadUserData = async (userId: string) => {
+    try {
+      const [profile, cardMap, packs] = await Promise.all([
+        getUserProfile(userId),
+        fetchUserCards(userId),
+        fetchUserPacks(userId),
+      ]);
+      if (profile) setUserProfile(profile);
+      setUserOwnedCardIds(new Set(cardMap.keys()));
+      setUserPacks(packs);
+    } catch (err) {
+      console.warn('Error loading user profile and collection:', err);
+    }
+  };
+
+  // Auth state listener & Twitch session
+  useEffect(() => {
+    supabaseAuth.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        loadUserData(session.user.id);
+      }
+    });
+
+    const {
+      data: { subscription },
+    } = supabaseAuth.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        loadUserData(session.user.id);
+      } else {
+        setUserProfile(null);
+        setUserOwnedCardIds(new Set());
+        setUserPacks({ pack_1: 0, pack_3: 0, pack_5: 0 });
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Live real-time sync for user cards and packs
+  useEffect(() => {
+    if (!userProfile?.id) return;
+
+    const userChannel = supabaseAuth
+      .channel(`user_data_${userProfile.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'user_cards',
+          filter: `user_id=eq.${userProfile.id}`,
+        },
+        () => {
+          fetchUserCards(userProfile.id).then((cardMap) => {
+            setUserOwnedCardIds(new Set(cardMap.keys()));
+          });
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'user_packs',
+          filter: `user_id=eq.${userProfile.id}`,
+        },
+        () => {
+          fetchUserPacks(userProfile.id).then((packs) => {
+            setUserPacks(packs);
+          });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabaseAuth.removeChannel(userChannel);
+    };
+  }, [userProfile?.id]);
 
   // Load from Supabase on mount & listen for real-time card updates from Builder
   useEffect(() => {
@@ -98,6 +197,55 @@ export function App() {
       supabase.removeChannel(channel);
     };
   }, []);
+
+  // Handlers for Twitch login and logout
+  const handleLoginTwitch = async () => {
+    try {
+      setIsLoggingIn(true);
+      await signInWithTwitch();
+    } catch (err) {
+      console.error('Login error:', err);
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    await signOutUser();
+    setUserProfile(null);
+    setUserOwnedCardIds(new Set());
+    setUserPacks({ pack_1: 0, pack_3: 0, pack_5: 0 });
+  };
+
+  // Open User Pack Handler (deducts pack from Supabase and adds cards to user_cards)
+  const handleOpenUserPack = async (
+    packType: 'pack_1' | 'pack_3' | 'pack_5',
+    pulledCards: CardData[]
+  ): Promise<boolean> => {
+    if (!userProfile?.id) return false;
+
+    const deducted = await deductUserPack(userProfile.id, packType);
+    if (!deducted) return false;
+
+    // Update local pack count
+    setUserPacks((prev) => ({
+      ...prev,
+      [packType]: Math.max(0, prev[packType] - 1),
+    }));
+
+    // Add cards to user's collection in Supabase
+    const cardIds = pulledCards.map((c) => c.id);
+    await addCardsToUserCollection(userProfile.id, cardIds, packType);
+
+    // Update local owned cards
+    setUserOwnedCardIds((prev) => {
+      const next = new Set(prev);
+      cardIds.forEach((id) => next.add(id));
+      return next;
+    });
+
+    return true;
+  };
 
   useEffect(() => {
     saveCardsToIndexedDb(cards);
@@ -152,6 +300,11 @@ export function App() {
         soundEnabled={soundOn}
         onToggleSound={toggleSound}
         cardCount={cards.length}
+        userProfile={userProfile}
+        userPacks={userPacks}
+        onLoginTwitch={handleLoginTwitch}
+        onLogout={handleLogout}
+        isLoggingIn={isLoggingIn}
       />
 
       {/* Main Content Area */}
@@ -171,6 +324,8 @@ export function App() {
             <CardBook
               cards={cards}
               onInspectCard={(card) => setInspectingCard(card)}
+              userOwnedCardIds={userOwnedCardIds}
+              isLoggedIn={!!userProfile}
             />
           </div>
         )}
@@ -188,6 +343,10 @@ export function App() {
             <PackOpener
               cards={cards}
               onInspectCard={setInspectingCard}
+              userProfile={userProfile}
+              userPacks={userPacks}
+              onOpenUserPack={handleOpenUserPack}
+              onLoginTwitch={handleLoginTwitch}
             />
           </div>
         )}

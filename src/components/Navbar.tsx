@@ -5,9 +5,12 @@ import {
   Package,
   Volume2,
   VolumeX,
-  Sliders
+  Sliders,
+  LogOut,
+  Sparkles
 } from 'lucide-react';
 import { resolveImageUrl } from '../utils/imageHelper';
+import type { UserProfile, UserPacksCount } from '../types/user';
 
 interface NavbarProps {
   activeTab: 'home' | 'binder' | 'showcase' | 'pack';
@@ -16,6 +19,11 @@ interface NavbarProps {
   soundEnabled: boolean;
   onToggleSound: () => void;
   cardCount: number;
+  userProfile?: UserProfile | null;
+  userPacks?: UserPacksCount;
+  onLoginTwitch?: () => void;
+  onLogout?: () => void;
+  isLoggingIn?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -24,7 +32,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   soundEnabled,
   onToggleSound,
   cardCount,
+  userProfile,
+  userPacks,
+  onLoginTwitch,
+  onLogout,
+  isLoggingIn = false,
 }) => {
+  const totalPacks = (userPacks?.pack_1 || 0) + (userPacks?.pack_3 || 0) + (userPacks?.pack_5 || 0);
+
   return (
     <header className="sticky top-0 z-40 w-full bg-[#290A30]/90 backdrop-blur-xl border-b border-[#610F4E]/80 shadow-lg">
       <div className="max-w-[1650px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
@@ -97,11 +112,62 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Package className={`w-4 h-4 ${activeTab === 'pack' ? 'text-[#F50B8C]' : ''}`} />
             <span className="hidden sm:inline">Abrir Sobre</span>
+            {userProfile && totalPacks > 0 && (
+              <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-[#F50B8C] text-white font-bold font-mono animate-pulse">
+                {totalPacks}
+              </span>
+            )}
           </button>
         </nav>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-2">
+        {/* Right Actions: Twitch Login & Sound Toggle */}
+        <div className="flex items-center gap-2.5">
+          {/* User Profile / Twitch Login Button */}
+          {userProfile ? (
+            <div className="flex items-center gap-2 bg-[#31213D] border border-[#610F4E] rounded-2xl p-1 pr-2.5 shadow-md">
+              <div className="w-8 h-8 rounded-xl overflow-hidden bg-purple-900 border border-[#F50B8C]/50 flex items-center justify-center shrink-0">
+                {userProfile.avatar_url ? (
+                  <img
+                    src={userProfile.avatar_url}
+                    alt={userProfile.display_name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-xs font-bold text-white">
+                    {userProfile.display_name?.charAt(0) || 'U'}
+                  </span>
+                )}
+              </div>
+              <div className="hidden sm:flex flex-col text-left">
+                <span className="text-xs font-bold text-white truncate max-w-[110px] leading-tight">
+                  {userProfile.display_name || userProfile.username}
+                </span>
+                <span className="text-[9px] text-[#F50B8C] font-semibold flex items-center gap-1 leading-tight">
+                  <Sparkles className="w-2.5 h-2.5" />
+                  {totalPacks} {totalPacks === 1 ? 'Sobre' : 'Sobres'}
+                </span>
+              </div>
+              <button
+                onClick={onLogout}
+                title="Cerrar sesión de Twitch"
+                className="ml-1 p-1.5 rounded-lg text-[#B894B3] hover:text-red-400 hover:bg-[#610F4E]/40 transition-colors cursor-pointer"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={onLoginTwitch}
+              disabled={isLoggingIn}
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#9146FF] hover:bg-[#772CE8] text-white text-xs font-black shadow-lg shadow-[#9146FF]/30 transition-all active:scale-95 cursor-pointer disabled:opacity-50"
+            >
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" />
+              </svg>
+              <span>{isLoggingIn ? 'Conectando...' : 'Iniciar con Twitch'}</span>
+            </button>
+          )}
+
           {/* Sound Toggle */}
           <button
             onClick={onToggleSound}
