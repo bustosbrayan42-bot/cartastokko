@@ -124,7 +124,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-2.5">
           {/* User Profile / Twitch Login Button */}
           {userProfile ? (
-            <div className="flex items-center gap-2 bg-[#31213D] border border-[#610F4E] rounded-2xl p-1 pr-2.5 shadow-md">
+            <div className="flex items-center gap-2.5 bg-[#31213D] border border-[#610F4E] rounded-2xl p-1 pr-2 shadow-md">
+              {/* 1. Imagen / Avatar */}
               <div className="w-8 h-8 rounded-xl overflow-hidden bg-purple-900 border border-[#F50B8C]/50 flex items-center justify-center shrink-0">
                 {userProfile.avatar_url ? (
                   <img
@@ -138,19 +139,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </span>
                 )}
               </div>
-              <div className="hidden sm:flex flex-col text-left">
-                <span className="text-xs font-bold text-white truncate max-w-[110px] leading-tight">
-                  {userProfile.display_name || userProfile.username}
-                </span>
-                <span className="text-[9px] text-[#F50B8C] font-semibold flex items-center gap-1 leading-tight">
-                  <Sparkles className="w-2.5 h-2.5" />
-                  {totalPacks} {totalPacks === 1 ? 'Sobre' : 'Sobres'}
-                </span>
+
+              {/* 2. Nombre */}
+              <span className="text-xs font-bold text-white truncate max-w-[120px] leading-none">
+                {userProfile.display_name || userProfile.username}
+              </span>
+
+              {/* 3. Cantidad de Sobres */}
+              <div className="flex items-center gap-1 bg-[#610F4E]/90 border border-[#F50B8C]/40 px-2 py-1 rounded-xl text-[11px] font-mono font-bold text-[#F9F1F9] shrink-0">
+                <Sparkles className="w-3 h-3 text-[#F50B8C]" />
+                <span>{totalPacks} {totalPacks === 1 ? 'Sobre' : 'Sobres'}</span>
               </div>
+
+              {/* 4. Botón Cerrar Sesión */}
               <button
                 onClick={onLogout}
                 title="Cerrar sesión de Twitch"
-                className="ml-1 p-1.5 rounded-lg text-[#B894B3] hover:text-red-400 hover:bg-[#610F4E]/40 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-[#B894B3] hover:text-red-400 hover:bg-[#610F4E]/50 transition-colors cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5" />
               </button>
