@@ -128,11 +128,11 @@ export const CardBook: React.FC<CardBookProps> = ({
                 <Sparkles className="w-2.5 h-2.5" />
                 PÁGINA {pageNumber}
               </span>
-              <span className="tracking-wider uppercase text-[#B894B3]/70 text-[8px]">TOKKII BINDER 4x3</span>
+              <span className="tracking-wider uppercase text-[#B894B3]/70 text-[8px]">TOKKII BINDER</span>
             </>
           ) : (
             <>
-              <span className="tracking-wider uppercase text-[#B894B3]/70 text-[8px]">TOKKII BINDER 4x3</span>
+              <span className="tracking-wider uppercase text-[#B894B3]/70 text-[8px]">TOKKII BINDER</span>
               <span className="flex items-center gap-1 text-[#F50B8C] font-bold">
                 PÁGINA {pageNumber}
                 <Sparkles className="w-2.5 h-2.5" />
@@ -320,7 +320,7 @@ export const CardBook: React.FC<CardBookProps> = ({
       `}</style>
 
       {/* Top Header Bar */}
-      <div className="w-full max-w-[1240px] flex flex-col sm:flex-row items-center justify-between gap-2 px-2 sm:px-4">
+      <div className="w-full max-w-[850px] sm:max-w-[1014px] md:max-w-[1114px] lg:max-w-[1174px] flex flex-col sm:flex-row items-center justify-between gap-2 px-1 sm:px-0 mb-0.5">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#610F4E] border border-[#F50B8C]/40 flex items-center justify-center text-[#F50B8C] shadow-[0_0_10px_rgba(245,11,140,0.25)]">
             <BookOpen className="w-3.5 h-3.5" />
@@ -328,7 +328,7 @@ export const CardBook: React.FC<CardBookProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-xs sm:text-sm font-black text-[#F9F1F9] tracking-wide">
-                Álbum TCG Coleccionista 4x3 (144 Cartas)
+                Álbum TCG Coleccionista (144 Cartas)
               </h2>
               <span className="text-[10px] font-semibold px-2 py-0.2 rounded-full bg-[#610F4E]/80 border border-[#F50B8C]/40 text-[#F9F1F9] hidden sm:inline-block">
                 Hoja {currentSpreadIndex + 1} de {totalPages}

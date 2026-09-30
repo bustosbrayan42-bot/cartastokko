@@ -372,7 +372,7 @@ export function App() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-[#B894B3]">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#F50B8C] animate-ping" />
-            <span className="text-[#F9F1F9]/90 font-medium">Visor TCG • Álbum Coleccionista 4x3 de 144 Cartas</span>
+            <span className="text-[#F9F1F9]/90 font-medium">Visor TCG • Álbum Coleccionista de 144 Cartas</span>
           </div>
           <div className="font-mono text-[10px] text-[#B894B3]/90">
             © 2026 EvilTokkii TCG • Cartas e ilustraciones protegidas por derechos de autor (Copyright). Todos los derechos reservados.
