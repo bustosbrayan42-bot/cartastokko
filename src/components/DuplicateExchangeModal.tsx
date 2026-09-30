@@ -20,54 +20,64 @@ interface DuplicateExchangeModalProps {
 
 interface TierConfig {
   rarity: 'common' | 'uncommon' | 'rare' | 'super_rare';
+  shortName: string;
   label: string;
   required: number;
   color: string;
   borderColor: string;
   bgGradient: string;
   badgeBg: string;
+  progressGradient: string;
   stars: number;
 }
 
 const EXCHANGE_TIERS: TierConfig[] = [
   {
     rarity: 'common',
+    shortName: 'C',
     label: 'Común',
     required: 10,
     color: '#94a3b8',
-    borderColor: '#475569',
-    bgGradient: 'from-slate-900/90 via-slate-950/90 to-slate-900/90',
-    badgeBg: 'bg-slate-800 text-slate-200 border-slate-600',
+    borderColor: '#64748b',
+    bgGradient: 'from-slate-900/90 via-[#290A30] to-slate-950/90',
+    badgeBg: 'bg-slate-700/80 text-slate-200 border-slate-500',
+    progressGradient: 'from-slate-500 to-slate-300',
     stars: 1,
   },
   {
     rarity: 'uncommon',
+    shortName: 'UC',
     label: 'Poco Común',
     required: 8,
-    color: '#34d399',
-    borderColor: '#059669',
-    bgGradient: 'from-emerald-950/40 via-slate-950/90 to-slate-900/90',
-    badgeBg: 'bg-emerald-900/80 text-emerald-200 border-emerald-500/50',
+    color: '#38bdf8',
+    borderColor: '#0284c7',
+    bgGradient: 'from-sky-950/50 via-[#290A30] to-slate-950/90',
+    badgeBg: 'bg-sky-950/80 text-sky-300 border-sky-500',
+    progressGradient: 'from-sky-600 to-sky-400',
     stars: 2,
   },
   {
     rarity: 'rare',
+    shortName: 'R',
     label: 'Rara',
     required: 6,
-    color: '#38bdf8',
-    borderColor: '#0284c7',
-    bgGradient: 'from-sky-950/40 via-slate-950/90 to-slate-900/90',
-    badgeBg: 'bg-sky-900/80 text-sky-200 border-sky-500/50',
+    color: '#a855f7',
+    borderColor: '#7e22ce',
+    bgGradient: 'from-purple-950/50 via-[#290A30] to-slate-950/90',
+    badgeBg: 'bg-purple-950/80 text-purple-300 border-purple-500',
+    progressGradient: 'from-purple-600 to-purple-400',
     stars: 3,
   },
   {
     rarity: 'super_rare',
+    shortName: 'SR',
     label: 'Súper Rara',
     required: 5,
-    color: '#fbbf24',
-    borderColor: '#d97706',
-    bgGradient: 'from-amber-950/40 via-slate-950/90 to-slate-900/90',
-    badgeBg: 'bg-amber-900/80 text-amber-200 border-amber-500/50',
+    color: '#e5c158',
+    borderColor: '#b59346',
+    bgGradient: 'from-amber-950/50 via-[#290A30] to-slate-950/90',
+    badgeBg: 'bg-amber-950/70 text-amber-200 border-amber-500/50',
+    progressGradient: 'from-amber-600 to-yellow-300',
     stars: 4,
   },
 ];
@@ -186,20 +196,28 @@ export const DuplicateExchangeModal: React.FC<DuplicateExchangeModalProps> = ({
               return (
                 <div
                   key={tier.rarity}
-                  className={`bg-gradient-to-b ${tier.bgGradient} border rounded-2xl p-4 flex flex-col justify-between gap-3 shadow-md transition-all ${
-                    isEligible
-                      ? 'border-[#F50B8C]/60 shadow-[0_0_15px_rgba(245,11,140,0.15)] ring-1 ring-[#F50B8C]/30'
-                      : 'border-slate-800/80 opacity-85'
-                  }`}
+                  className={`bg-gradient-to-b ${tier.bgGradient} border rounded-2xl p-4 flex flex-col justify-between gap-3 shadow-md transition-all`}
+                  style={{
+                    borderColor: isEligible ? tier.color : '#3b2046',
+                    boxShadow: isEligible ? `0 0 15px ${tier.color}33` : undefined,
+                  }}
                 >
                   {/* Top: Rarity Header & Exchange Rate */}
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2">
-                      <span
-                        className={`text-[10px] font-black font-mono uppercase px-2 py-0.5 rounded-full border ${tier.badgeBg}`}
-                      >
-                        {tier.label} {'★'.repeat(tier.stars)}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={`text-[10px] font-black font-mono px-2 py-0.5 rounded-full border ${tier.badgeBg}`}
+                          style={{ color: tier.color, borderColor: `${tier.color}88` }}
+                        >
+                          <span className="font-extrabold mr-1">{tier.shortName}</span>
+                          {tier.label}
+                        </span>
+                        <span className="text-[11px] font-black tracking-tight" style={{ color: tier.color }}>
+                          {'★'.repeat(tier.stars)}
+                        </span>
+                      </div>
+
                       <span className="text-[11px] font-mono font-bold text-[#F9F1F9] flex items-center gap-1">
                         <Package className="w-3.5 h-3.5 text-[#F50B8C]" />
                         <span>1 Sobre (3c)</span>
@@ -208,7 +226,7 @@ export const DuplicateExchangeModal: React.FC<DuplicateExchangeModalProps> = ({
 
                     <div className="text-xs text-slate-300 font-semibold mb-1 flex items-center justify-between">
                       <span>Costo de canje:</span>
-                      <span className="font-mono text-white font-bold">
+                      <span className="font-mono font-bold" style={{ color: tier.color }}>
                         {tier.required} {tier.label}s
                       </span>
                     </div>
@@ -218,20 +236,15 @@ export const DuplicateExchangeModal: React.FC<DuplicateExchangeModalProps> = ({
                       <div className="flex items-center justify-between text-[11px] font-mono">
                         <span className="text-slate-400">Repetidas disponibles:</span>
                         <span
-                          className={`font-black ${
-                            isEligible ? 'text-emerald-400' : 'text-amber-400'
-                          }`}
+                          className="font-black"
+                          style={{ color: isEligible ? tier.color : '#94a3b8' }}
                         >
                           {available} / {tier.required}
                         </span>
                       </div>
                       <div className="w-full h-2 bg-black/60 rounded-full overflow-hidden border border-slate-700/50">
                         <div
-                          className={`h-full rounded-full transition-all duration-500 ${
-                            isEligible
-                              ? 'bg-gradient-to-r from-emerald-500 to-[#F50B8C]'
-                              : 'bg-gradient-to-r from-slate-600 to-amber-500'
-                          }`}
+                          className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${tier.progressGradient}`}
                           style={{ width: `${percent}%` }}
                         />
                       </div>
@@ -271,12 +284,20 @@ export const DuplicateExchangeModal: React.FC<DuplicateExchangeModalProps> = ({
               <ShieldCheck className="w-3.5 h-3.5 text-[#F50B8C]" />
               <span>Reglas de Protección de Colección:</span>
             </div>
-            <ul className="list-disc list-inside space-y-0.5 text-[10.5px] leading-relaxed">
+            <ul className="list-disc list-inside space-y-1 text-[10.5px] leading-relaxed">
               <li>
                 <strong>Tu álbum está 100% seguro:</strong> Siempre conservas al menos 1 copia de cada carta en tu colección; solo se entregan las cartas repetidas adicionales.
               </li>
               <li>
-                <strong>Rarezas Excluidas:</strong> Las cartas <span className="text-purple-300 font-semibold">Ultra Rara</span> y <span className="text-amber-300 font-semibold">Rara Secreta</span> no aplican para este intercambio debido a su alto valor coleccionable.
+                <strong>Rarezas Excluidas:</strong> Las cartas{' '}
+                <span className="font-bold text-[#ec4899] bg-pink-950/80 px-1.5 py-0.5 rounded border border-pink-500/40">
+                  UR Ultra Rara ★★★★★
+                </span>{' '}
+                y{' '}
+                <span className="font-bold text-[#10b981] bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/40">
+                  SEC Rara Secreta ★★★★★★
+                </span>{' '}
+                no aplican para este intercambio debido a su alto valor coleccionable.
               </li>
             </ul>
           </div>
