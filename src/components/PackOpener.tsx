@@ -323,7 +323,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                 }}
               >
                 <img
-                  src={resolveImageUrl('/cards/Imagen_Sobre_2.png')}
+                  src={resolveImageUrl('/cards/Imagen_Sobre_3.png')}
                   alt="Sobre Tokkii TCG"
                   className="w-full h-full object-contain pointer-events-none select-none"
                 />
@@ -344,7 +344,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                 }}
               >
                 <img
-                  src={resolveImageUrl('/cards/Imagen_Sobre_2.png')}
+                  src={resolveImageUrl('/cards/Imagen_Sobre_3.png')}
                   alt="Sobre Tokkii TCG"
                   className="w-full h-full object-contain pointer-events-none select-none"
                 />

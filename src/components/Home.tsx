@@ -106,7 +106,7 @@ export const Home: React.FC<HomeProps> = ({ cardCount }) => {
             <div className="absolute z-20 transform -rotate-6 select-none pointer-events-none">
               <div className="relative w-[240px] sm:w-[280px] md:w-[310px] aspect-[2/3] filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)] drop-shadow-[0_0_30px_rgba(245,11,140,0.35)]">
                 <img
-                  src={resolveImageUrl('/cards/Imagen_Sobre_2.png')}
+                  src={resolveImageUrl('/cards/Imagen_Sobre_3.png')}
                   alt="Sobre Oficial EvilTokkii TCG"
                   className="w-full h-full object-contain pointer-events-none select-none"
                 />
