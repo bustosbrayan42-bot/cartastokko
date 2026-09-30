@@ -46,7 +46,7 @@ const EXCHANGE_TIERS: TierConfig[] = [
     badgeBg: 'bg-slate-700/80 text-slate-200 border-slate-500',
     progressGradient: 'from-slate-500 to-slate-300',
     activeButtonClass:
-      'bg-gradient-to-r from-slate-600 to-slate-400 hover:from-slate-500 hover:to-slate-300 text-white shadow-lg shadow-slate-500/30 border-slate-400/50',
+      'bg-slate-800/95 hover:bg-slate-700 text-white border-slate-400/80 shadow-[0_0_15px_rgba(148,163,184,0.25)]',
     stars: 1,
   },
   {
@@ -61,7 +61,7 @@ const EXCHANGE_TIERS: TierConfig[] = [
     badgeBg: 'bg-sky-950/80 text-sky-300 border-sky-500',
     progressGradient: 'from-sky-600 to-sky-400',
     activeButtonClass:
-      'bg-gradient-to-r from-sky-600 to-blue-500 hover:from-sky-500 hover:to-blue-400 text-white shadow-lg shadow-sky-500/30 border-sky-400/50',
+      'bg-sky-950/90 hover:bg-sky-900/90 text-white border-sky-400/80 shadow-[0_0_15px_rgba(56,189,248,0.3)]',
     stars: 2,
   },
   {
@@ -76,7 +76,7 @@ const EXCHANGE_TIERS: TierConfig[] = [
     badgeBg: 'bg-purple-950/80 text-purple-300 border-purple-500',
     progressGradient: 'from-purple-600 to-purple-400',
     activeButtonClass:
-      'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-500/30 border-purple-400/50',
+      'bg-purple-950/90 hover:bg-purple-900/90 text-white border-purple-400/80 shadow-[0_0_15px_rgba(168,85,247,0.3)]',
     stars: 3,
   },
   {
@@ -91,7 +91,7 @@ const EXCHANGE_TIERS: TierConfig[] = [
     badgeBg: 'bg-amber-950/70 text-amber-200 border-amber-500/50',
     progressGradient: 'from-amber-600 to-yellow-300',
     activeButtonClass:
-      'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/40 border-yellow-300/60',
+      'bg-amber-950/90 hover:bg-amber-900/90 text-white border-amber-400/80 shadow-[0_0_15px_rgba(229,193,88,0.3)]',
     stars: 4,
   },
 ];
