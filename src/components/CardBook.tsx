@@ -98,7 +98,7 @@ export const CardBook: React.FC<CardBookProps> = ({
 
     return (
       <div
-        className="w-[410px] sm:w-[490px] md:w-[535px] lg:w-[565px] h-[500px] sm:h-[555px] md:h-[585px] lg:h-[608px] rounded-[22px] sm:rounded-[26px] p-2 sm:p-2.5 md:p-3 border border-slate-800/80 shadow-[inset_0_0_25px_rgba(0,0,0,0.7)] flex flex-col justify-between relative overflow-hidden select-none"
+        className="w-[410px] sm:w-[490px] md:w-[535px] lg:w-[575px] xl:w-[635px] h-[500px] sm:h-[555px] md:h-[585px] lg:h-[615px] xl:h-[675px] rounded-[22px] sm:rounded-[26px] p-2 sm:p-2.5 md:p-3 border border-slate-800/80 shadow-[inset_0_0_25px_rgba(0,0,0,0.7)] flex flex-col justify-between relative overflow-hidden select-none"
         style={{
           background:
             side === 'left'
@@ -152,7 +152,7 @@ export const CardBook: React.FC<CardBookProps> = ({
             return (
               <div
                 key={`${side}-${pageNumber}-slot-${absoluteSlotNum}`}
-                className="w-[92px] h-[130px] sm:w-[110px] sm:h-[156px] md:w-[122px] md:h-[172px] lg:w-[128px] lg:h-[181px] flex items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/60 border border-slate-800/60 relative group transition-all"
+                className="w-[92px] h-[130px] sm:w-[110px] sm:h-[156px] md:w-[122px] md:h-[172px] lg:w-[130px] lg:h-[184px] xl:w-[145px] xl:h-[204px] flex items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/60 border border-slate-800/60 relative group transition-all"
               >
                 {card ? (
                   /* Filled Card Slot */
@@ -178,10 +178,19 @@ export const CardBook: React.FC<CardBookProps> = ({
                             : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
                         }
                       >
-                        <div className="hidden lg:block">
+                        <div className="hidden xl:block">
                           <TcgCard
                             card={card}
-                            scale={0.40}
+                            scale={0.45}
+                            isLocked={isCardLocked}
+                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
+                            showBackFlipBtn={false}
+                          />
+                        </div>
+                        <div className="hidden lg:block xl:hidden">
+                          <TcgCard
+                            card={card}
+                            scale={0.41}
                             isLocked={isCardLocked}
                             interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
                             showBackFlipBtn={false}
@@ -220,11 +229,11 @@ export const CardBook: React.FC<CardBookProps> = ({
                 ) : isWithin150 ? (
                   /* Empty Numbered Sleeve Slot */
                   <div className="w-full h-full rounded-lg sm:rounded-xl border border-dashed border-slate-800/60 flex flex-col items-center justify-center text-slate-700/60 space-y-0.5 select-none hover:border-slate-700 hover:text-slate-600 transition-colors">
-                    <Layers className="w-3.5 h-3.5 stroke-[1.2]" />
-                    <span className="text-[10px] sm:text-[11px] font-mono font-bold text-slate-500">
+                    <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.2]" />
+                    <span className="text-[10px] sm:text-[11px] xl:text-[12px] font-mono font-bold text-slate-500">
                       #{slotFormatted}
                     </span>
-                    <span className="text-[7px] font-mono uppercase tracking-wider text-slate-600">
+                    <span className="text-[7px] sm:text-[8px] font-mono uppercase tracking-wider text-slate-600">
                       Vacío
                     </span>
                   </div>
@@ -271,7 +280,7 @@ export const CardBook: React.FC<CardBookProps> = ({
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center select-none py-0 space-y-1 animate-in fade-in duration-300">
+    <div className="w-full flex flex-col items-center justify-center select-none py-1 space-y-3 animate-in fade-in duration-300">
       {/* Continuous Momentum Physics Keyframes */}
       <style>{`
         @keyframes foldRightAccelerate {
@@ -320,17 +329,17 @@ export const CardBook: React.FC<CardBookProps> = ({
       `}</style>
 
       {/* Top Header Bar */}
-      <div className="w-full max-w-[850px] sm:max-w-[1014px] md:max-w-[1114px] lg:max-w-[1174px] flex flex-col sm:flex-row items-center justify-between gap-2 px-1 sm:px-0 mb-0.5">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#610F4E] border border-[#F50B8C]/40 flex items-center justify-center text-[#F50B8C] shadow-[0_0_10px_rgba(245,11,140,0.25)]">
-            <BookOpen className="w-3.5 h-3.5" />
+      <div className="w-full max-w-[850px] sm:max-w-[1014px] md:max-w-[1114px] lg:max-w-[1194px] xl:max-w-[1314px] flex flex-col sm:flex-row items-center justify-between gap-3 px-1 sm:px-0">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#610F4E] border border-[#F50B8C]/40 flex items-center justify-center text-[#F50B8C] shadow-[0_0_12px_rgba(245,11,140,0.3)]">
+            <BookOpen className="w-4 h-4" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xs sm:text-sm font-black text-[#F9F1F9] tracking-wide">
+            <div className="flex items-center gap-2.5">
+              <h2 className="text-xs sm:text-sm md:text-base font-black text-[#F9F1F9] tracking-wide">
                 Álbum TCG Coleccionista (144 Cartas)
               </h2>
-              <span className="text-[10px] font-semibold px-2 py-0.2 rounded-full bg-[#610F4E]/80 border border-[#F50B8C]/40 text-[#F9F1F9] hidden sm:inline-block">
+              <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#610F4E]/90 border border-[#F50B8C]/40 text-[#F9F1F9] hidden sm:inline-block shadow-sm">
                 Hoja {currentSpreadIndex + 1} de {totalPages}
               </span>
             </div>
@@ -338,12 +347,12 @@ export const CardBook: React.FC<CardBookProps> = ({
         </div>
 
         {/* Right Header Actions: Duplicates Button + Collection Progress */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {/* Button: Cartas repetidas x Sobre */}
           {isLoggedIn && onOpenDuplicateModal && (
             <button
               onClick={onOpenDuplicateModal}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-gradient-to-r from-[#610F4E] to-[#9146FF] hover:from-[#7a1362] hover:to-[#a35cfc] border border-[#F50B8C]/50 text-white text-xs font-bold shadow-md shadow-[#F50B8C]/20 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-gradient-to-r from-[#610F4E] to-[#9146FF] hover:from-[#7a1362] hover:to-[#a35cfc] border border-[#F50B8C]/50 text-white text-xs font-bold shadow-md shadow-[#F50B8C]/20 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0"
               title="Canjear cartas repetidas por sobres de 3 cartas"
             >
               <RefreshCw className="w-3.5 h-3.5 text-[#F50B8C]" />
@@ -358,19 +367,19 @@ export const CardBook: React.FC<CardBookProps> = ({
 
           {/* User Collection Progress */}
           {isLoggedIn && userOwnedCardIds && (
-            <div className="flex items-center gap-2.5 bg-[#290A30]/90 border border-[#610F4E] px-3 py-1.5 rounded-2xl shadow-sm">
+            <div className="flex items-center gap-3 bg-[#290A30]/90 border border-[#610F4E] px-3.5 py-1.5 rounded-2xl shadow-sm">
               <div className="flex flex-col items-end">
-                <span className="text-[10px] font-bold text-[#F9F1F9]">
+                <span className="text-[10px] sm:text-[11px] font-bold text-[#F9F1F9]">
                   Desbloqueadas: <span className="text-[#F50B8C] font-mono">{userOwnedCardIds.size}</span> / {TOTAL_ALBUM_SLOTS}
                 </span>
-                <div className="w-24 sm:w-32 h-1.5 bg-[#31213D] rounded-full overflow-hidden border border-[#610F4E]/60 mt-0.5">
+                <div className="w-24 sm:w-32 md:w-36 h-1.5 bg-[#31213D] rounded-full overflow-hidden border border-[#610F4E]/60 mt-0.5">
                   <div
                     className="h-full bg-gradient-to-r from-[#F50B8C] to-pink-400 rounded-full transition-all duration-500"
                     style={{ width: `${Math.min(100, Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100))}%` }}
                   />
                 </div>
               </div>
-              <span className="text-xs font-black font-mono text-[#F50B8C]">
+              <span className="text-xs sm:text-sm font-black font-mono text-[#F50B8C]">
                 {Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100)}%
               </span>
             </div>
