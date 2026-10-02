@@ -58,10 +58,13 @@
 .card-3d-root {
   transform-style: preserve-3d;
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+.card-perspective-container:hover .card-3d-root {
+  will-change: transform;
 }
 
 .card-3d-root.is-animating {

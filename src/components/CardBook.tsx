@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { CardData } from '../types/card';
 import { TcgCard } from './TcgCard';
 import { playPageTurnSound } from '../utils/soundEffects';
@@ -38,6 +38,31 @@ export const CardBook: React.FC<CardBookProps> = ({
 
   const totalPages = Math.ceil(TOTAL_ALBUM_SLOTS / CARDS_PER_SPREAD); // 6 Spreads (12 Páginas)
   const [currentSpreadIndex, setCurrentSpreadIndex] = useState<number>(0);
+
+  // Responsive scale hook for ultra-efficient single-instance card rendering
+  const [cardScale, setCardScale] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0.45;
+    const w = window.innerWidth;
+    if (w >= 1280) return 0.45;
+    if (w >= 1024) return 0.41;
+    if (w >= 768) return 0.38;
+    if (w >= 640) return 0.34;
+    return 0.28;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      if (w >= 1280) setCardScale(0.45);
+      else if (w >= 1024) setCardScale(0.41);
+      else if (w >= 768) setCardScale(0.38);
+      else if (w >= 640) setCardScale(0.34);
+      else setCardScale(0.28);
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // 2-Phase Continuous Momentum Flip
   const [turnState, setTurnState] = useState<
@@ -178,51 +203,14 @@ export const CardBook: React.FC<CardBookProps> = ({
                             : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
                         }
                       >
-                        <div className="hidden xl:block">
-                          <TcgCard
-                            card={card}
-                            scale={0.45}
-                            isLocked={isCardLocked}
-                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
-                            showBackFlipBtn={false}
-                          />
-                        </div>
-                        <div className="hidden lg:block xl:hidden">
-                          <TcgCard
-                            card={card}
-                            scale={0.41}
-                            isLocked={isCardLocked}
-                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
-                            showBackFlipBtn={false}
-                          />
-                        </div>
-                        <div className="hidden md:block lg:hidden">
-                          <TcgCard
-                            card={card}
-                            scale={0.38}
-                            isLocked={isCardLocked}
-                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
-                            showBackFlipBtn={false}
-                          />
-                        </div>
-                        <div className="hidden sm:block md:hidden">
-                          <TcgCard
-                            card={card}
-                            scale={0.34}
-                            isLocked={isCardLocked}
-                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
-                            showBackFlipBtn={false}
-                          />
-                        </div>
-                        <div className="block sm:hidden">
-                          <TcgCard
-                            card={card}
-                            scale={0.28}
-                            isLocked={isCardLocked}
-                            interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
-                            showBackFlipBtn={false}
-                          />
-                        </div>
+                        <TcgCard
+                          card={card}
+                          scale={cardScale}
+                          isLocked={isCardLocked}
+                          interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
+                          showBackFlipBtn={false}
+                          simplified={true}
+                        />
                       </div>
                     );
                   })()

@@ -18,6 +18,7 @@ interface TcgCardProps {
   showFullDetails?: boolean;
   className?: string;
   enableSound?: boolean;
+  simplified?: boolean;
 }
 
 export const TcgCard: React.FC<TcgCardProps> = ({
@@ -32,6 +33,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   showFullDetails = true,
   className = '',
   enableSound = true,
+  simplified = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [internalFlipped, setInternalFlipped] = useState(isFlipped);
@@ -57,7 +59,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!interactive || !containerRef.current) return;
+      if (!interactive || !containerRef.current || isLocked) return;
+      if (simplified && !isHovered) return;
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -80,7 +83,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         holoAngle: angle,
       });
     },
-    [interactive]
+    [interactive, isLocked, simplified, isHovered]
   );
 
   const handleMouseEnter = () => {
@@ -154,24 +157,29 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       }}
     >
       <div
-        className={`card-3d-root absolute top-1/2 left-1/2 rounded-[20px] shadow-2xl pointer-events-none ${
+        className={`card-3d-root absolute top-1/2 left-1/2 rounded-[20px] pointer-events-none ${
           !isHovered ? 'is-animating' : ''
         }`}
         style={
           {
             width: '320px',
             height: '450px',
-            transform: `translate(-50%, -50%) scale(${scale}) rotateX(${transformStyle.rotX}deg) rotateY(${
-              actualFlipped ? transformStyle.rotY + 180 : transformStyle.rotY
-            }deg)`,
+            transform: `translate(-50%, -50%) scale(${scale})${
+              !simplified || isHovered
+                ? ` rotateX(${transformStyle.rotX}deg) rotateY(${actualFlipped ? transformStyle.rotY + 180 : transformStyle.rotY}deg)`
+                : ''
+            }`,
             transformOrigin: 'center center',
-            boxShadow: actualFlipped
-              ? isHovered
-                ? '0 20px 35px -8px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)'
-                : '0 12px 24px -8px rgba(0,0,0,0.7)'
-              : isHovered
-              ? `0 20px 35px -8px ${rarityConfig.glowColor}, 0 0 15px ${rarityConfig.glowColor}`
-              : `0 12px 24px -8px rgba(0,0,0,0.6), 0 0 8px ${rarityConfig.glowColor}`,
+            boxShadow:
+              simplified && !isHovered
+                ? '0 8px 16px -4px rgba(0,0,0,0.6)'
+                : actualFlipped
+                ? isHovered
+                  ? '0 20px 35px -8px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)'
+                  : '0 12px 24px -8px rgba(0,0,0,0.7)'
+                : isHovered
+                ? `0 20px 35px -8px ${rarityConfig.glowColor}, 0 0 15px ${rarityConfig.glowColor}`
+                : `0 12px 24px -8px rgba(0,0,0,0.6), 0 0 8px ${rarityConfig.glowColor}`,
             '--mouse-x': `${transformStyle.glareX}%`,
             '--mouse-y': `${transformStyle.glareY}%`,
             '--glare-opacity': `${transformStyle.glareOpacity}`,
@@ -182,7 +190,11 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         {/* CARD FRONT */}
         <div
           className={`card-face absolute inset-0 rounded-[20px] overflow-hidden p-[10px] flex flex-col justify-between border-2 ${
-            isLocked ? 'grayscale brightness-[0.55] contrast-[0.8] blur-[1.5px]' : ''
+            isLocked
+              ? simplified
+                ? 'grayscale brightness-[0.55]'
+                : 'grayscale brightness-[0.55] contrast-[0.8]'
+              : ''
           }`}
           style={{
             borderColor: isLocked ? '#475569' : rarityConfig.borderColor,
@@ -201,7 +213,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         >
           {/* Mystery Lock Overlay when card is not yet unlocked by user */}
           {isLocked && (
-            <div className="absolute inset-0 z-50 rounded-[18px] bg-black/55 backdrop-blur-[3.5px] flex flex-col items-center justify-center p-3 text-center pointer-events-none select-none border border-slate-700/40">
+            <div className="absolute inset-0 z-50 rounded-[18px] bg-slate-950/75 flex flex-col items-center justify-center p-3 text-center pointer-events-none select-none border border-slate-700/40">
               <div className="w-11 h-11 rounded-2xl bg-slate-900/95 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.25)] mb-1.5">
                 <Lock className="w-5 h-5" />
               </div>
@@ -224,6 +236,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 } object-center transition-transform duration-75`}
                 style={imageTransformStyle}
                 loading="lazy"
+                decoding="async"
               />
             </div>
           )}
@@ -240,8 +253,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
           {/* Glare Flare */}
           <div className="card-glare z-30 pointer-events-none" />
 
-          {/* Sparkles for Super/Ultra/Secret Rare */}
-          {(card.rarity === 'secret_rare' || card.rarity === 'ultra_rare') && (
+          {/* Sparkles for Super/Ultra/Secret Rare (Only active when hovered in simplified mode to protect GPU) */}
+          {(!simplified || isHovered) && (card.rarity === 'secret_rare' || card.rarity === 'ultra_rare') && (
             <>
               <div className="absolute top-8 left-8 text-amber-300 text-sm animate-sparkle-1 pointer-events-none z-30 opacity-80">
                 ✦
@@ -454,6 +467,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                   } object-center transition-transform duration-75`}
                   style={imageTransformStyle}
                   loading="lazy"
+                  decoding="async"
                 />
 
                 {/* In-Art Holo Texture Effect Layer */}
