@@ -393,7 +393,7 @@ export const CardBook: React.FC<CardBookProps> = ({
         <div
           className="w-fit bg-gradient-to-b from-[#290A30] via-[#31213D] to-[#290A30] border-2 sm:border-[3px] border-[#610F4E] rounded-[24px] sm:rounded-[30px] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95),0_0_35px_rgba(0,0,0,0.75)] p-2 sm:p-3 relative select-none"
           style={{
-            perspective: '2800px',
+            perspective: isAnimating ? '2800px' : undefined,
             boxShadow: 'inset 0 0 45px rgba(0,0,0,0.88), 0 20px 50px rgba(0,0,0,0.95), 0 0 1px 1px rgba(255,255,255,0.08)',
           }}
         >
@@ -417,11 +417,11 @@ export const CardBook: React.FC<CardBookProps> = ({
           <div
             className="flex flex-row items-center gap-2.5 sm:gap-3.5 relative"
             style={{
-              transformStyle: 'preserve-3d',
+              transformStyle: isAnimating ? 'preserve-3d' : 'flat',
             }}
           >
             {/* 1. LEFT PAGE CONTAINER */}
-            <div className="relative z-10" style={{ transformStyle: 'preserve-3d' }}>
+            <div className="relative z-10" style={{ transformStyle: isAnimating ? 'preserve-3d' : 'flat' }}>
               {renderPageFace(baseLeftPageNum, 'left')}
 
               {/* NEXT PHASE 2: New Left Page Unfolds 90° -> 0° */}
@@ -460,7 +460,7 @@ export const CardBook: React.FC<CardBookProps> = ({
             </div>
 
             {/* 2. RIGHT PAGE CONTAINER */}
-            <div className="relative z-10" style={{ transformStyle: 'preserve-3d' }}>
+            <div className="relative z-10" style={{ transformStyle: isAnimating ? 'preserve-3d' : 'flat' }}>
               {renderPageFace(baseRightPageNum, 'right')}
 
               {/* NEXT PHASE 1: Current Right Page Folds 0° -> -90° */}

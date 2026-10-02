@@ -241,8 +241,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             </div>
           )}
 
-          {/* Full Card Holographic Foil Overlay */}
-          {card.rarity !== 'common' && (
+          {/* Full Card Holographic Foil Overlay (Only rendered on hover in simplified mode) */}
+          {(!simplified || isHovered) && card.rarity !== 'common' && (
             <div
               className={`absolute inset-0 rounded-[18px] ${getHoloClass()} ${
                 isFullArtMode ? 'opacity-40 mix-blend-overlay' : 'opacity-75'
@@ -250,8 +250,10 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             />
           )}
 
-          {/* Glare Flare */}
-          <div className="card-glare z-30 pointer-events-none" />
+          {/* Glare Flare (Only rendered when interacting) */}
+          {(!simplified || isHovered) && (
+            <div className="card-glare z-30 pointer-events-none" />
+          )}
 
           {/* Sparkles for Super/Ultra/Secret Rare (Only active when hovered in simplified mode to protect GPU) */}
           {(!simplified || isHovered) && (card.rarity === 'secret_rare' || card.rarity === 'ultra_rare') && (
@@ -471,7 +473,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 />
 
                 {/* In-Art Holo Texture Effect Layer */}
-                {card.rarity !== 'common' && (
+                {(!simplified || isHovered) && card.rarity !== 'common' && (
                   <div
                     className={`absolute inset-0 ${getHoloClass()} opacity-40 mix-blend-overlay pointer-events-none`}
                   />
