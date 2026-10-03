@@ -8,8 +8,106 @@ import {
   BookOpen,
   Sparkles,
   Layers,
-  RefreshCw
+  RefreshCw,
+  Lock
 } from 'lucide-react';
+
+interface AlbumCardSlotProps {
+  card: CardData;
+  isCardLocked: boolean;
+  isFlipLeaf: boolean;
+  isAnimating: boolean;
+  cardScale: number;
+  onInspectCard?: (card: CardData) => void;
+}
+
+const AlbumCardSlot: React.FC<AlbumCardSlotProps> = ({
+  card,
+  isCardLocked,
+  isFlipLeaf,
+  isAnimating,
+  cardScale,
+  onInspectCard,
+}) => {
+  const [imgError, setImgError] = useState(false);
+  const numStr = String(card.cardNumber).padStart(3, '0');
+  const renderedImageUrl = `https://pub-0bf9a87cec964ff49bfd058873c948c3.r2.dev/cartas_renderizadas/carta_${numStr}.png`;
+
+  if (imgError) {
+    return (
+      <div
+        className={`transform transition-transform duration-200 ${
+          !isFlipLeaf && !isCardLocked
+            ? 'hover:scale-[1.07] hover:z-30 cursor-pointer'
+            : isCardLocked
+            ? 'cursor-default select-none'
+            : ''
+        } flex items-center justify-center`}
+        onClick={() => {
+          if (!isAnimating && !isCardLocked && onInspectCard) {
+            onInspectCard(card);
+          }
+        }}
+        title={
+          isCardLocked
+            ? `Carta #${card.cardNumber} - Bloqueada (No Obtenida)`
+            : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
+        }
+      >
+        <TcgCard
+          card={card}
+          scale={cardScale}
+          isLocked={isCardLocked}
+          interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
+          showBackFlipBtn={false}
+          simplified={true}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`relative w-full h-full flex items-center justify-center p-0.5 group transition-all duration-200 ${
+        !isFlipLeaf && !isCardLocked
+          ? 'hover:scale-[1.06] hover:z-30 cursor-pointer'
+          : isCardLocked
+          ? 'cursor-default select-none'
+          : ''
+      }`}
+      onClick={() => {
+        if (!isAnimating && !isCardLocked && onInspectCard) {
+          onInspectCard(card);
+        }
+      }}
+      title={
+        isCardLocked
+          ? `Carta #${card.cardNumber} - Bloqueada (No Obtenida)`
+          : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
+      }
+    >
+      <img
+        src={renderedImageUrl}
+        alt={card.title}
+        loading="lazy"
+        decoding="async"
+        onError={() => setImgError(true)}
+        className={`w-full h-full object-contain rounded-lg sm:rounded-xl shadow-md transition-all duration-300 ${
+          isCardLocked
+            ? 'grayscale brightness-[0.55] contrast-[0.9] opacity-80'
+            : 'group-hover:shadow-[0_0_15px_rgba(245,11,140,0.4)]'
+        }`}
+      />
+      {isCardLocked && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/35 rounded-lg sm:rounded-xl pointer-events-none">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-950/80 border border-slate-700/80 flex items-center justify-center shadow-lg">
+            <Lock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-400" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 interface CardBookProps {
   cards: CardData[];
@@ -180,40 +278,15 @@ export const CardBook: React.FC<CardBookProps> = ({
                 className="w-[92px] h-[130px] sm:w-[110px] sm:h-[156px] md:w-[122px] md:h-[172px] lg:w-[130px] lg:h-[184px] xl:w-[145px] xl:h-[204px] flex items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/60 border border-slate-800/60 relative group transition-all"
               >
                 {card ? (
-                  /* Filled Card Slot */
-                  (() => {
-                    const isCardLocked = isLoggedIn && userOwnedCardIds ? !userOwnedCardIds.has(card.id) : false;
-                    return (
-                      <div
-                        className={`transform transition-transform duration-200 ${
-                          !isFlipLeaf && !isCardLocked
-                            ? 'hover:scale-[1.07] hover:z-30 cursor-pointer'
-                            : isCardLocked
-                            ? 'cursor-default select-none'
-                            : ''
-                        } flex items-center justify-center`}
-                        onClick={() => {
-                          if (!isAnimating && !isCardLocked && onInspectCard) {
-                            onInspectCard(card);
-                          }
-                        }}
-                        title={
-                          isCardLocked
-                            ? `Carta #${card.cardNumber} - Bloqueada (No Obtenida)`
-                            : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
-                        }
-                      >
-                        <TcgCard
-                          card={card}
-                          scale={cardScale}
-                          isLocked={isCardLocked}
-                          interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
-                          showBackFlipBtn={false}
-                          simplified={true}
-                        />
-                      </div>
-                    );
-                  })()
+                  /* Filled Card Slot using Static R2 Image with dynamic fallback */
+                  <AlbumCardSlot
+                    card={card}
+                    isCardLocked={isLoggedIn && userOwnedCardIds ? !userOwnedCardIds.has(card.id) : false}
+                    isFlipLeaf={isFlipLeaf}
+                    isAnimating={isAnimating}
+                    cardScale={cardScale}
+                    onInspectCard={onInspectCard}
+                  />
                 ) : isWithin150 ? (
                   /* Empty Numbered Sleeve Slot */
                   <div className="w-full h-full rounded-lg sm:rounded-xl border border-dashed border-slate-800/60 flex flex-col items-center justify-center text-slate-700/60 space-y-0.5 select-none hover:border-slate-700 hover:text-slate-600 transition-colors">
