@@ -56,9 +56,8 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   const handleOpenPack = () => {
     if (animState !== 'unopened') return;
 
-    // Check login
+    // Check login - do nothing if not logged in
     if (!userProfile) {
-      if (onLoginTwitch) onLoginTwitch();
       return;
     }
 
@@ -178,7 +177,13 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase tracking-widest text-[#F9F1F9] bg-[#610F4E]/80 px-3 py-1 rounded-full border border-[#F50B8C]/40 flex items-center justify-center gap-1.5 mx-auto w-fit">
                 <Scissors className="w-3.5 h-3.5 text-[#F50B8C]" />
-                {animState === 'unopened' ? 'Toca para abrir' : '¡Abriendo sobre...!'}
+                {animState === 'unopened'
+                  ? userProfile
+                    ? availablePackCount > 0
+                      ? 'Toca para abrir'
+                      : 'Sin sobres disponibles'
+                    : 'Inicia sesión para abrir'
+                  : '¡Abriendo sobre...!'}
               </span>
               <h2 className="text-3xl font-black text-[#F9F1F9] tracking-wide">
                 Sobre de Cartas Tokkii
@@ -237,9 +242,9 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                             className={`text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full ${
                               item.qty > 0
                                 ? packCardCount === item.count
-                                  ? 'bg-black/30 text-white'
-                                  : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40'
-                                : 'bg-slate-900/60 text-slate-400'
+                                ? 'bg-black/30 text-white'
+                                : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40'
+                              : 'bg-slate-900/60 text-slate-400'
                             }`}
                           >
                             {item.qty} {item.qty === 1 ? 'disp.' : 'disp.'}
@@ -261,11 +266,13 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
             {/* REALISTIC PHYSICAL SPLIT PACK CONTAINER (Exact 2:3 ratio of PNG: 300px x 450px) */}
             <div
               onClick={handleOpenPack}
-              className={`relative w-[300px] h-[450px] select-none cursor-pointer transition-transform duration-300 ${
+              className={`relative w-[300px] h-[450px] select-none transition-transform duration-300 ${
                 animState === 'unopened'
-                  ? userProfile && availablePackCount <= 0
+                  ? !userProfile
+                    ? 'opacity-85 cursor-default'
+                    : availablePackCount <= 0
                     ? 'opacity-60 cursor-not-allowed'
-                    : 'hover:scale-[1.04] active:scale-95'
+                    : 'hover:scale-[1.04] active:scale-95 cursor-pointer'
                   : ''
               }`}
             >
