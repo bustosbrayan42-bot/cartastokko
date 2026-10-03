@@ -277,10 +277,6 @@ const getInitialTab = (): TabType => {
     if (['home', 'binder', 'showcase', 'pack'].includes(rawHash)) {
       return rawHash as TabType;
     }
-    const saved = localStorage.getItem('tokkii_active_tab') as TabType;
-    if (['home', 'binder', 'showcase', 'pack'].includes(saved)) {
-      return saved;
-    }
   } catch {
     // fallback
   }
@@ -292,15 +288,10 @@ const getInitialTab = (): TabType => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editingCard, setEditingCard] = useState<CardData | null>(null);
 
-  // Sync tab changes with URL hash and localStorage
+  // Sync tab changes with URL hash
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
     window.location.hash = tab;
-    try {
-      localStorage.setItem('tokkii_active_tab', tab);
-    } catch {
-      // ignore
-    }
   };
 
   // Listen to browser forward/back buttons or manual hash changes
@@ -309,11 +300,6 @@ const getInitialTab = (): TabType => {
       const rawHash = window.location.hash.replace('#', '').trim();
       if (['home', 'binder', 'showcase', 'pack'].includes(rawHash)) {
         setActiveTab(rawHash as TabType);
-        try {
-          localStorage.setItem('tokkii_active_tab', rawHash);
-        } catch {
-          // ignore
-        }
       }
     };
     window.addEventListener('hashchange', onHashChange);
