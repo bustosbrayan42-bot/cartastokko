@@ -152,7 +152,7 @@ export const RarityShowcaseSlider: React.FC = () => {
     'ultra_rare',
     'secret_rare',
   ];
-  const [selectedRarity, setSelectedRarity] = useState<Rarity>('secret_rare');
+  const [selectedRarity, setSelectedRarity] = useState<Rarity>('common');
 
   const currentCard = SHOWCASE_CARDS_BY_RARITY[selectedRarity];
   const currentIndex = rarities.indexOf(selectedRarity);
