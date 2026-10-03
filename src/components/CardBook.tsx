@@ -281,7 +281,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                   /* Filled Card Slot using Static R2 Image with dynamic fallback */
                   <AlbumCardSlot
                     card={card}
-                    isCardLocked={isLoggedIn && userOwnedCardIds ? !userOwnedCardIds.has(card.id) : false}
+                    isCardLocked={!isLoggedIn || !userOwnedCardIds || !userOwnedCardIds.has(card.id)}
                     isFlipLeaf={isFlipLeaf}
                     isAnimating={isAnimating}
                     cardScale={cardScale}
@@ -426,8 +426,8 @@ export const CardBook: React.FC<CardBookProps> = ({
             </button>
           )}
 
-          {/* User Collection Progress */}
-          {isLoggedIn && userOwnedCardIds && (
+          {/* User Collection Progress / Login reminder */}
+          {isLoggedIn && userOwnedCardIds ? (
             <div className="flex items-center gap-3 bg-[#290A30]/90 border border-[#610F4E] px-3.5 py-1.5 rounded-2xl shadow-sm">
               <div className="flex flex-col items-end">
                 <span className="text-[10px] sm:text-[11px] font-bold text-[#F9F1F9]">
@@ -442,6 +442,13 @@ export const CardBook: React.FC<CardBookProps> = ({
               </div>
               <span className="text-xs sm:text-sm font-black font-mono text-[#F50B8C]">
                 {Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100)}%
+              </span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 bg-[#290A30]/90 border border-[#610F4E]/70 px-3 py-1.5 rounded-2xl shadow-sm">
+              <Lock className="w-3.5 h-3.5 text-[#F50B8C]" />
+              <span className="text-[10px] sm:text-[11px] font-bold text-[#B894B3]">
+                Inicia sesión con Twitch para ver tu colección
               </span>
             </div>
           )}
