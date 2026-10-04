@@ -57,6 +57,20 @@ export const TcgCard: React.FC<TcgCardProps> = ({
 
   const isFullArtMode = card.rarity === 'secret_rare' || card.isFullArt;
 
+  const effectiveHoloStyle = card.customHoloStyle || rarityConfig.holoStyle;
+  const effectiveFoilOpacity =
+    card.customFoilOpacity !== undefined
+      ? card.customFoilOpacity
+      : card.rarity === 'common'
+      ? 0
+      : 0.7;
+  const effectiveGlareOpacity =
+    card.customMaskOpacity !== undefined
+      ? card.customMaskOpacity
+      : (card as any).customGlareOpacity !== undefined
+      ? (card as any).customGlareOpacity
+      : 0.28;
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!interactive || !containerRef.current || isLocked) return;
@@ -79,11 +93,11 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         rotY,
         glareX: percentX,
         glareY: percentY,
-        glareOpacity: Math.min(0.28, Math.hypot(percentX - 50, percentY - 50) / 75),
+        glareOpacity: Math.min(effectiveGlareOpacity, Math.hypot(percentX - 50, percentY - 50) / 75),
         holoAngle: angle,
       });
     },
-    [interactive, isLocked, simplified, isHovered]
+    [interactive, isLocked, simplified, isHovered, effectiveGlareOpacity]
   );
 
   const handleMouseEnter = () => {
@@ -117,7 +131,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   };
 
   const getHoloClass = () => {
-    switch (rarityConfig.holoStyle) {
+    switch (effectiveHoloStyle) {
       case 'silver':
         return 'holo-silver';
       case 'prismatic':
@@ -128,6 +142,10 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         return 'holo-cosmic';
       case 'secret_gold':
         return 'holo-secret-gold';
+      case 'glitter':
+        return 'holo-glitter';
+      case 'wave':
+        return 'holo-wave';
       default:
         return '';
     }
@@ -242,11 +260,13 @@ export const TcgCard: React.FC<TcgCardProps> = ({
           )}
 
           {/* Full Card Holographic Foil Overlay (Only rendered on hover in simplified mode) */}
-          {(!simplified || isHovered) && card.rarity !== 'common' && (
+          {(!simplified || isHovered) && effectiveHoloStyle !== 'none' && card.rarity !== 'common' && (
             <div
-              className={`absolute inset-0 rounded-[18px] ${getHoloClass()} ${
-                isFullArtMode ? 'opacity-40 mix-blend-overlay' : 'opacity-75'
-              } z-20 pointer-events-none`}
+              className={`absolute inset-0 rounded-[18px] ${getHoloClass()} z-20 pointer-events-none`}
+              style={{
+                opacity: isFullArtMode ? effectiveFoilOpacity * 0.75 : effectiveFoilOpacity,
+                mixBlendMode: 'overlay',
+              }}
             />
           )}
 
@@ -473,9 +493,13 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 />
 
                 {/* In-Art Holo Texture Effect Layer */}
-                {(!simplified || isHovered) && card.rarity !== 'common' && (
+                {(!simplified || isHovered) && effectiveHoloStyle !== 'none' && card.rarity !== 'common' && (
                   <div
-                    className={`absolute inset-0 ${getHoloClass()} opacity-40 mix-blend-overlay pointer-events-none`}
+                    className={`absolute inset-0 ${getHoloClass()} pointer-events-none`}
+                    style={{
+                      opacity: effectiveFoilOpacity * 0.75,
+                      mixBlendMode: 'overlay',
+                    }}
                   />
                 )}
 

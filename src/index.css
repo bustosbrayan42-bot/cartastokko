@@ -178,6 +178,35 @@
   pointer-events: none;
 }
 
+/* 6. Glitter Hologram */
+.holo-glitter {
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.5) 0%, transparent 60%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 0, 150, 0.2) 0px,
+      rgba(0, 200, 255, 0.2) 6px,
+      rgba(255, 255, 0, 0.2) 12px,
+      transparent 12px,
+      transparent 20px
+    );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* 7. Wave Foil */
+.holo-wave {
+  background:
+    repeating-radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(56, 189, 248, 0.25) 0 5px,
+      rgba(168, 85, 247, 0.25) 5px 10px,
+      transparent 10px 20px
+    );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
 /* Dynamic Glare Flare - Balanced Gloss */
 .card-glare {
   position: absolute;

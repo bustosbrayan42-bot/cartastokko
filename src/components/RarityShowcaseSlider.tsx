@@ -30,11 +30,14 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     retreatCost: 1,
     isFullArt: false,
     tags: ['EvilTokkii', 'Común', 'Showcase'],
+    customHoloStyle: 'none',
+    customFoilOpacity: 0,
+    customMaskOpacity: 0.28,
   },
   uncommon: {
     id: 'showcase-uncommon',
     title: 'EvilTokkii',
-    subtitle: 'Muestra Poco Común • Silver Sheen',
+    subtitle: 'Muestra Poco Común • Wave Refraction',
     image: '/cards/Muestra_Showcase.jpeg',
     imageZoom: 1,
     rarity: 'uncommon',
@@ -43,20 +46,23 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     cardNumber: '002',
     totalInSet: '000',
     artist: 'EvilTokkii Studio',
-    flavorText: 'Muestra de carta poco común con sutil reflejo plateado brillante.',
-    abilityName: 'Destello Plateado',
+    flavorText: 'Muestra de carta poco común con lámina holográfica Wave Refraction (65% foil, 28% brillo).',
+    abilityName: 'Destello Ondulante',
     abilityDamage: '60',
-    abilityDesc: 'Efecto de demostración para el acabado Silver Sheen.',
+    abilityDesc: 'Efecto de demostración para el acabado Wave Refraction.',
     weakness: 'aventura',
     resistance: 'arte',
     retreatCost: 1,
     isFullArt: false,
-    tags: ['EvilTokkii', 'PocoComún', 'Silver'],
+    tags: ['EvilTokkii', 'PocoComún', 'WaveRefraction'],
+    customHoloStyle: 'wave',
+    customFoilOpacity: 0.65,
+    customMaskOpacity: 0.28,
   },
   rare: {
     id: 'showcase-rare',
     title: 'EvilTokkii',
-    subtitle: 'Muestra Rara • Foil Prismático',
+    subtitle: 'Muestra Rara • Holo Glitter Spark',
     image: '/cards/Muestra_Showcase.jpeg',
     imageZoom: 1,
     rarity: 'rare',
@@ -65,15 +71,18 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     cardNumber: '003',
     totalInSet: '000',
     artist: 'EvilTokkii Studio',
-    flavorText: 'Muestra de carta rara con refracción de luz arcoíris en ángulo dinámico.',
-    abilityName: 'Prisma Cromático',
+    flavorText: 'Muestra de carta rara con lámina holográfica Holo Glitter Spark (100% foil, 18% brillo).',
+    abilityName: 'Prisma Glitter',
     abilityDamage: '90',
-    abilityDesc: 'Efecto de demostración para el acabado Prismático Arcoíris.',
+    abilityDesc: 'Efecto de demostración para el acabado Holo Glitter Spark.',
     weakness: 'desafio',
     resistance: 'aura',
     retreatCost: 2,
     isFullArt: false,
-    tags: ['EvilTokkii', 'Rara', 'Prismatic'],
+    tags: ['EvilTokkii', 'Rara', 'HoloGlitter'],
+    customHoloStyle: 'glitter',
+    customFoilOpacity: 1,
+    customMaskOpacity: 0.18,
   },
   super_rare: {
     id: 'showcase-super-rare',
@@ -87,7 +96,7 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     cardNumber: '004',
     totalInSet: '000',
     artist: 'EvilTokkii Studio',
-    flavorText: 'Muestra de carta súper rara con destellos estelares dorados y microtexturas.',
+    flavorText: 'Muestra de carta súper rara con destellos estelares dorados y microtexturas (80% foil, 28% brillo).',
     abilityName: 'Destello Dorado',
     abilityDamage: '140',
     abilityDesc: 'Efecto de demostración para el acabado Gold Starlight.',
@@ -96,11 +105,14 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     retreatCost: 2,
     isFullArt: false,
     tags: ['EvilTokkii', 'SuperRare', 'GoldStars'],
+    customHoloStyle: 'gold_stars',
+    customFoilOpacity: 0.8,
+    customMaskOpacity: 0.28,
   },
   ultra_rare: {
     id: 'showcase-ultra-rare',
     title: 'EvilTokkii',
-    subtitle: 'Muestra Ultra Rara • Cósmico Full Art',
+    subtitle: 'Muestra Ultra Rara • Secret Gold Mythic Full Art',
     image: '/cards/Muestra_Showcase.jpeg',
     imageZoom: 1,
     rarity: 'ultra_rare',
@@ -109,20 +121,23 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     cardNumber: '005',
     totalInSet: '000',
     artist: 'EvilTokkii Studio',
-    flavorText: 'Muestra de carta ultra rara con efecto holográfico cósmico multidireccional.',
-    abilityName: 'Distorsión Cósmica',
+    flavorText: 'Muestra de carta ultra rara Full Art con lámina Secret Gold Mythic (70% foil, 20% brillo).',
+    abilityName: 'Distorsión Mítica',
     abilityDamage: '190',
-    abilityDesc: 'Efecto de demostración para el acabado Cósmico Radial Full Art.',
+    abilityDesc: 'Efecto de demostración para el acabado Secret Gold Mythic Full Art.',
     weakness: 'desafio',
     resistance: 'ingenio',
     retreatCost: 2,
     isFullArt: true,
-    tags: ['EvilTokkii', 'UltraRare', 'Cosmic', 'FullArt'],
+    tags: ['EvilTokkii', 'UltraRare', 'SecretGold', 'FullArt'],
+    customHoloStyle: 'secret_gold',
+    customFoilOpacity: 0.7,
+    customMaskOpacity: 0.2,
   },
   secret_rare: {
     id: 'showcase-secret-rare',
     title: 'EvilTokkii',
-    subtitle: 'Muestra Rara Secreta • Secret Gold Masterpiece',
+    subtitle: 'Muestra Rara Secreta • Prismatic Laser Masterpiece',
     image: '/cards/Muestra_Showcase.jpeg',
     imageZoom: 1,
     rarity: 'secret_rare',
@@ -131,15 +146,18 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     cardNumber: '006',
     totalInSet: '000',
     artist: 'EvilTokkii Studio',
-    flavorText: 'Muestra de carta secreta con lámina dorada mística, partículas láser y refracción.',
+    flavorText: 'Muestra de carta secreta Full Art con lámina prismática arcoíris láser y aura mítica (90% foil, 20% brillo).',
     abilityName: 'Soberanía Mítica',
     abilityDamage: '250',
-    abilityDesc: 'Efecto de demostración para el acabado Secret Gold Mythic.',
+    abilityDesc: 'Efecto de demostración para el acabado Prismatic Laser Masterpiece.',
     weakness: 'desafio',
     resistance: 'rutina',
     retreatCost: 3,
     isFullArt: true,
-    tags: ['EvilTokkii', 'SecretRare', 'SecretGold', 'Masterpiece'],
+    tags: ['EvilTokkii', 'SecretRare', 'Prismatic', 'Masterpiece', 'FullArt'],
+    customHoloStyle: 'prismatic',
+    customFoilOpacity: 0.9,
+    customMaskOpacity: 0.2,
   },
 };
 
@@ -270,7 +288,22 @@ export const RarityShowcaseSlider: React.FC = () => {
               </span>
             </div>
             <div className="px-3 py-1 rounded-lg bg-[#31213D] border border-[#610F4E] text-xs font-mono text-[#F9F1F9]">
-              Foil: <span className="text-[#F50B8C] font-bold">{currentConfig.holoStyle}</span>
+              Foil:{' '}
+              <span className="text-[#F50B8C] font-bold">
+                {currentConfig.holoStyle === 'none'
+                  ? 'Sin Foil (Mate)'
+                  : currentConfig.holoStyle === 'wave'
+                  ? 'Wave Refraction'
+                  : currentConfig.holoStyle === 'glitter'
+                  ? 'Holo Glitter Spark'
+                  : currentConfig.holoStyle === 'gold_stars'
+                  ? 'Gold Starlight'
+                  : currentConfig.holoStyle === 'secret_gold'
+                  ? 'Secret Gold Mythic'
+                  : currentConfig.holoStyle === 'prismatic'
+                  ? 'Prismatic Laser'
+                  : currentConfig.holoStyle}
+              </span>
             </div>
           </div>
 
