@@ -8,6 +8,7 @@ import { PackOpener } from './components/PackOpener';
 import { CardEditorModal } from './components/CardEditorModal';
 import { RarityShowcaseSlider } from './components/RarityShowcaseSlider';
 import { Home } from './components/Home';
+import { PoliciesView } from './components/PoliciesView';
 import { setSoundEnabled } from './utils/soundEffects';
 import { fetchCardsFromSupabase, supabase, rowToCard } from './utils/supabaseClient';
 import { supabaseAuth } from './utils/authSupabaseClient';
@@ -285,13 +286,14 @@ export function App() {
     }
   }, [cards]);
 
-type TabType = 'home' | 'binder' | 'showcase' | 'pack';
+type TabType = 'home' | 'binder' | 'showcase' | 'pack' | 'policies';
 
 const TAB_ROUTES: Record<TabType, string> = {
   home: '/Home',
   binder: '/AlbumTCG',
   showcase: '/Showcase',
   pack: '/AbrirSobre',
+  policies: '/Politicas',
 };
 
 const pathToTab = (pathname: string, hash: string): TabType => {
@@ -308,11 +310,14 @@ const pathToTab = (pathname: string, hash: string): TabType => {
   if (['abrirsobre', 'abrir-sobre', 'pack', 'packs', 'sobres'].includes(cleanPath)) {
     return 'pack';
   }
+  if (['politicas', 'normas', 'politicasynormas', 'policies', 'rules', 'reglas'].includes(cleanPath)) {
+    return 'policies';
+  }
   if (['home', 'inicio'].includes(cleanPath)) {
     return 'home';
   }
 
-  // 2. Check hash legacy fallback (e.g. #binder, #home)
+  // 2. Check hash legacy fallback (e.g. #binder, #home, #politicas)
   if (['binder', 'album', 'albumtcg'].includes(cleanHash)) {
     return 'binder';
   }
@@ -321,6 +326,9 @@ const pathToTab = (pathname: string, hash: string): TabType => {
   }
   if (['pack', 'packs', 'abrirsobre'].includes(cleanHash)) {
     return 'pack';
+  }
+  if (['politicas', 'normas', 'policies', 'rules'].includes(cleanHash)) {
+    return 'policies';
   }
   if (['home'].includes(cleanHash)) {
     return 'home';
@@ -458,6 +466,13 @@ const getInitialTab = (): TabType => {
               onOpenUserPack={handleOpenUserPack}
               onLoginTwitch={handleLoginTwitch}
             />
+          </div>
+        )}
+
+        {/* VIEW 4: POLICIES & NORMATIVE RULES */}
+        {activeTab === 'policies' && (
+          <div className="py-2 w-full flex-1 animate-in fade-in duration-300">
+            <PoliciesView />
           </div>
         )}
       </main>

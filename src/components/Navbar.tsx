@@ -7,14 +7,15 @@ import {
   VolumeX,
   Sliders,
   LogOut,
-  Sparkles
+  Sparkles,
+  ScrollText,
 } from 'lucide-react';
 import { resolveImageUrl } from '../utils/imageHelper';
 import type { UserProfile, UserPacksCount } from '../types/user';
 
 interface NavbarProps {
-  activeTab: 'home' | 'binder' | 'showcase' | 'pack';
-  onTabChange: (tab: 'home' | 'binder' | 'showcase' | 'pack') => void;
+  activeTab: 'home' | 'binder' | 'showcase' | 'pack' | 'policies';
+  onTabChange: (tab: 'home' | 'binder' | 'showcase' | 'pack' | 'policies') => void;
   onOpenCreateModal?: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
@@ -117,6 +118,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {totalPacks}
               </span>
             )}
+          </button>
+
+          <button
+            onClick={() => onTabChange('policies')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
+              activeTab === 'policies'
+                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
+                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
+            }`}
+          >
+            <ScrollText className={`w-4 h-4 ${activeTab === 'policies' ? 'text-[#F50B8C]' : ''}`} />
+            <span className="hidden sm:inline">Políticas y Normas</span>
           </button>
         </nav>
 
