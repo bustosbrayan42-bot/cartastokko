@@ -351,22 +351,46 @@ export const exchangeDuplicatesForPack = async (
 
     await Promise.all(updatePromises);
 
-    // 3. Award 1 Pack of 3 Cards to user_packs
-    const { data: packRow } = await supabaseAuth
+    // 3. Award 1 Pack of 3 Cards to user_packs (update existing row by ID or insert new)
+    const { data: existingPack, error: fetchPackError } = await supabaseAuth
       .from('user_packs')
-      .select('quantity')
+      .select('id, quantity')
       .eq('user_id', userId)
       .eq('pack_type', 'pack_3')
       .maybeSingle();
 
-    const currentPacks = packRow?.quantity || 0;
+    if (fetchPackError) {
+      console.error('Error fetching user pack row:', fetchPackError);
+    }
 
-    await supabaseAuth.from('user_packs').upsert({
-      user_id: userId,
-      pack_type: 'pack_3',
-      quantity: currentPacks + 1,
-      updated_at: new Date().toISOString(),
-    });
+    if (existingPack) {
+      const { error: updatePackError } = await supabaseAuth
+        .from('user_packs')
+        .update({
+          quantity: (Number(existingPack.quantity) || 0) + 1,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', existingPack.id);
+
+      if (updatePackError) {
+        console.error('Error updating pack count in Supabase:', updatePackError);
+        return { success: false, error: 'Error al acreditar el sobre en tu cuenta: ' + updatePackError.message };
+      }
+    } else {
+      const { error: insertPackError } = await supabaseAuth
+        .from('user_packs')
+        .insert({
+          user_id: userId,
+          pack_type: 'pack_3',
+          quantity: 1,
+          updated_at: new Date().toISOString(),
+        });
+
+      if (insertPackError) {
+        console.error('Error inserting pack row in Supabase:', insertPackError);
+        return { success: false, error: 'Error al acreditar el sobre en tu cuenta: ' + insertPackError.message };
+      }
+    }
 
     return { success: true };
   } catch (err: any) {
