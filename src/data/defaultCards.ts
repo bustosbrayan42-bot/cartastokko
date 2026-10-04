@@ -1922,7 +1922,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",
@@ -2474,7 +2474,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",
@@ -2842,7 +2842,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",
@@ -3302,7 +3302,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",
@@ -3808,7 +3808,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",
@@ -4314,7 +4314,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",
@@ -5372,7 +5372,7 @@ export const DEFAULT_CARDS: CardData[] = [
       }
     ],
     "retreatCost": 1,
-    "isFullArt": false,
+    "isFullArt": true,
     "dateAdded": "2026-09-28",
     "tags": [
       "Tokkii",

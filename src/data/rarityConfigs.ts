@@ -75,8 +75,8 @@ export const RARITY_CONFIGS: Record<Rarity, RarityConfig> = {
     glowColor: 'rgba(16, 185, 129, 0.85)',
     borderColor: '#059669',
     badgeBg: 'bg-emerald-950/90 text-emerald-300 border-emerald-400',
-    holoStyle: 'secret_gold',
+    holoStyle: 'prismatic',
     stars: 6,
-    description: 'Acabado Masterpiece Full-Art con textura dorada, brillo de diamantes y aura mítica.'
+    description: 'Acabado Masterpiece Full-Art con lámina prismática arcoíris y aura mítica.'
   }
 };
