@@ -287,16 +287,54 @@ export function App() {
 
 type TabType = 'home' | 'binder' | 'showcase' | 'pack';
 
+const TAB_ROUTES: Record<TabType, string> = {
+  home: '/Home',
+  binder: '/AlbumTCG',
+  showcase: '/Showcase',
+  pack: '/AbrirSobre',
+};
+
+const pathToTab = (pathname: string, hash: string): TabType => {
+  const cleanPath = (pathname || '').replace(/^\/+|\/+$/g, '').toLowerCase();
+  const cleanHash = (hash || '').replace(/^#+/, '').toLowerCase();
+
+  // 1. Check path matches
+  if (['albumtcg', 'album-tcg', 'album_tcg', 'album', 'binder'].includes(cleanPath)) {
+    return 'binder';
+  }
+  if (['showcase', 'showcaserarezas', 'showcase-rarezas', 'rarezas'].includes(cleanPath)) {
+    return 'showcase';
+  }
+  if (['abrirsobre', 'abrir-sobre', 'pack', 'packs', 'sobres'].includes(cleanPath)) {
+    return 'pack';
+  }
+  if (['home', 'inicio'].includes(cleanPath)) {
+    return 'home';
+  }
+
+  // 2. Check hash legacy fallback (e.g. #binder, #home)
+  if (['binder', 'album', 'albumtcg'].includes(cleanHash)) {
+    return 'binder';
+  }
+  if (['showcase', 'rarezas'].includes(cleanHash)) {
+    return 'showcase';
+  }
+  if (['pack', 'packs', 'abrirsobre'].includes(cleanHash)) {
+    return 'pack';
+  }
+  if (['home'].includes(cleanHash)) {
+    return 'home';
+  }
+
+  return 'home';
+};
+
 const getInitialTab = (): TabType => {
   try {
-    const rawHash = window.location.hash.replace('#', '').trim();
-    if (['home', 'binder', 'showcase', 'pack'].includes(rawHash)) {
-      return rawHash as TabType;
-    }
+    return pathToTab(window.location.pathname, window.location.hash);
   } catch {
-    // fallback
+    return 'home';
   }
-  return 'home';
 };
 
   const [activeTab, setActiveTab] = useState<TabType>(getInitialTab);
@@ -304,29 +342,30 @@ const getInitialTab = (): TabType => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editingCard, setEditingCard] = useState<CardData | null>(null);
 
-  // Sync tab changes with URL hash
+  // Sync tab changes with clean URL pathname (without #)
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
-    window.location.hash = tab;
+    const targetPath = TAB_ROUTES[tab] || '/Home';
+    if (window.location.pathname !== targetPath || window.location.hash) {
+      window.history.pushState({ tab }, '', targetPath);
+    }
   };
 
-  // Listen to browser forward/back buttons or manual hash changes
+  // Listen to browser forward/back buttons (popstate)
   useEffect(() => {
-    const onHashChange = () => {
-      const rawHash = window.location.hash.replace('#', '').trim();
-      if (['home', 'binder', 'showcase', 'pack'].includes(rawHash)) {
-        setActiveTab(rawHash as TabType);
-      }
+    const onPopState = () => {
+      const tab = pathToTab(window.location.pathname, window.location.hash);
+      setActiveTab(tab);
     };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  // Ensure current tab is mirrored in hash on mount
+  // Ensure URL is clean on mount and synchronized with activeTab
   useEffect(() => {
-    const currentHash = window.location.hash.replace('#', '').trim();
-    if (currentHash !== activeTab) {
-      window.location.hash = activeTab;
+    const targetPath = TAB_ROUTES[activeTab] || '/Home';
+    if (window.location.pathname !== targetPath || window.location.hash) {
+      window.history.replaceState({ tab: activeTab }, '', targetPath);
     }
   }, [activeTab]);
 
