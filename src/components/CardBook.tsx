@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import type { CardData } from '../types/card';
 import { TcgCard } from './TcgCard';
 import { playPageTurnSound } from '../utils/soundEffects';
@@ -16,8 +16,6 @@ import {
 interface AlbumCardSlotProps {
   card: CardData;
   isCardLocked: boolean;
-  isFlipLeaf: boolean;
-  isAnimating: boolean;
   cardScale: number;
   onInspectCard?: (card: CardData) => void;
 }
@@ -25,22 +23,18 @@ interface AlbumCardSlotProps {
 const AlbumCardSlot: React.FC<AlbumCardSlotProps> = ({
   card,
   isCardLocked,
-  isFlipLeaf,
-  isAnimating,
   cardScale,
   onInspectCard,
 }) => {
   return (
     <div
       className={`transform transition-transform duration-200 ${
-        !isFlipLeaf && !isCardLocked
+        !isCardLocked
           ? 'hover:scale-[1.07] hover:z-30 cursor-pointer'
-          : isCardLocked
-          ? 'cursor-default select-none'
-          : ''
+          : 'cursor-default select-none'
       } flex items-center justify-center w-full h-full`}
       onClick={() => {
-        if (!isAnimating && !isCardLocked && onInspectCard) {
+        if (!isCardLocked && onInspectCard) {
           onInspectCard(card);
         }
       }}
@@ -54,7 +48,7 @@ const AlbumCardSlot: React.FC<AlbumCardSlotProps> = ({
         card={card}
         scale={cardScale}
         isLocked={isCardLocked}
-        interactive={!isCardLocked && !isFlipLeaf && !isAnimating}
+        interactive={!isCardLocked}
         showBackFlipBtn={false}
         simplified={true}
       />
@@ -126,7 +120,7 @@ export const CardBook: React.FC<CardBookProps> = ({
     });
   }, [cards, sortBy]);
 
-  // Responsive scale hook for ultra-efficient single-instance card rendering
+  // Responsive scale hook for single-instance card rendering
   const [cardScale, setCardScale] = useState<number>(() => {
     if (typeof window === 'undefined') return 0.45;
     const w = window.innerWidth;
@@ -151,59 +145,23 @@ export const CardBook: React.FC<CardBookProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 2-Phase Continuous Momentum Flip
-  const [turnState, setTurnState] = useState<
-    'next-phase1' | 'next-phase2' | 'prev-phase1' | 'prev-phase2' | null
-  >(null);
-
-  const phaseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const isAnimating = turnState !== null;
-  const PHASE_DURATION_MS = 210;
-
-  // Turn Forward (Next Spread)
+  // Direct, instant page navigation (no heavy 3D rendering overhead)
   const handleNextPage = () => {
-    if (currentSpreadIndex >= totalPages - 1 || isAnimating) return;
+    if (currentSpreadIndex >= totalPages - 1) return;
     playPageTurnSound();
-
-    if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
-
-    setTurnState('next-phase1');
-
-    phaseTimeoutRef.current = setTimeout(() => {
-      setTurnState('next-phase2');
-
-      phaseTimeoutRef.current = setTimeout(() => {
-        setCurrentSpreadIndex((prev) => prev + 1);
-        setTurnState(null);
-      }, PHASE_DURATION_MS);
-    }, PHASE_DURATION_MS);
+    setCurrentSpreadIndex((prev) => prev + 1);
   };
 
-  // Turn Backward (Prev Spread)
   const handlePrevPage = () => {
-    if (currentSpreadIndex <= 0 || isAnimating) return;
+    if (currentSpreadIndex <= 0) return;
     playPageTurnSound();
-
-    if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
-
-    setTurnState('prev-phase1');
-
-    phaseTimeoutRef.current = setTimeout(() => {
-      setTurnState('prev-phase2');
-
-      phaseTimeoutRef.current = setTimeout(() => {
-        setCurrentSpreadIndex((prev) => prev - 1);
-        setTurnState(null);
-      }, PHASE_DURATION_MS);
-    }, PHASE_DURATION_MS);
+    setCurrentSpreadIndex((prev) => prev - 1);
   };
 
   // Render a 4x3 page face (calibrated precisely to maximize viewport usage with ZERO scroll)
   const renderPageFace = (
     pageNumber: number,
-    side: 'left' | 'right',
-    isFlipLeaf = false
+    side: 'left' | 'right'
   ) => {
     const pageStartSlot = (pageNumber - 1) * CARDS_PER_PAGE + 1;
     const pageEndSlot = Math.min(TOTAL_ALBUM_SLOTS, pageNumber * CARDS_PER_PAGE);
@@ -267,17 +225,13 @@ export const CardBook: React.FC<CardBookProps> = ({
                 className="w-[92px] h-[130px] sm:w-[110px] sm:h-[156px] md:w-[122px] md:h-[172px] lg:w-[130px] lg:h-[184px] xl:w-[145px] xl:h-[204px] flex items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/60 border border-slate-800/60 relative group transition-all"
               >
                 {card ? (
-                  /* Filled Card Slot using Static R2 Image with dynamic fallback */
                   <AlbumCardSlot
                     card={card}
                     isCardLocked={!isLoggedIn || !userOwnedCardIds || !userOwnedCardIds.has(card.id)}
-                    isFlipLeaf={isFlipLeaf}
-                    isAnimating={isAnimating}
                     cardScale={cardScale}
                     onInspectCard={onInspectCard}
                   />
                 ) : isWithin150 ? (
-                  /* Empty Numbered Sleeve Slot */
                   <div className="w-full h-full rounded-lg sm:rounded-xl border border-dashed border-slate-800/60 flex flex-col items-center justify-center text-slate-700/60 space-y-0.5 select-none hover:border-slate-700 hover:text-slate-600 transition-colors">
                     <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.2]" />
                     <span className="text-[10px] sm:text-[11px] xl:text-[12px] font-mono font-bold text-slate-500">
@@ -288,7 +242,6 @@ export const CardBook: React.FC<CardBookProps> = ({
                     </span>
                   </div>
                 ) : (
-                  /* Out of 150 bounds padding */
                   <div className="w-full h-full rounded-lg sm:rounded-xl border border-slate-900/30 bg-slate-950/20" />
                 )}
               </div>
@@ -310,74 +263,11 @@ export const CardBook: React.FC<CardBookProps> = ({
   };
 
   // Page Numbers
-  const curLeftPageNum = currentSpreadIndex * 2 + 1;
-  const curRightPageNum = currentSpreadIndex * 2 + 2;
-
-  // Base Left Page to show
-  let baseLeftPageNum = curLeftPageNum;
-  if (turnState === 'next-phase2') {
-    baseLeftPageNum = (currentSpreadIndex + 1) * 2 + 1;
-  } else if (turnState === 'prev-phase1' || turnState === 'prev-phase2') {
-    baseLeftPageNum = (currentSpreadIndex - 1) * 2 + 1;
-  }
-
-  // Base Right Page to show
-  let baseRightPageNum = curRightPageNum;
-  if (turnState === 'next-phase1' || turnState === 'next-phase2') {
-    baseRightPageNum = (currentSpreadIndex + 1) * 2 + 2;
-  } else if (turnState === 'prev-phase2') {
-    baseRightPageNum = (currentSpreadIndex - 1) * 2 + 2;
-  }
+  const leftPageNum = currentSpreadIndex * 2 + 1;
+  const rightPageNum = currentSpreadIndex * 2 + 2;
 
   return (
     <div className="w-full flex flex-col items-center justify-center select-none py-1 space-y-3 animate-in fade-in duration-300">
-      {/* Continuous Momentum Physics Keyframes */}
-      <style>{`
-        @keyframes foldRightAccelerate {
-          0% {
-            transform: rotateY(0deg) translateZ(0px);
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-          }
-          100% {
-            transform: rotateY(-90deg) translateZ(35px);
-            filter: drop-shadow(-20px 20px 30px rgba(0,0,0,0.9));
-          }
-        }
-
-        @keyframes unfoldLeftDecelerate {
-          0% {
-            transform: rotateY(90deg) translateZ(35px);
-            filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.9));
-          }
-          100% {
-            transform: rotateY(0deg) translateZ(0px);
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-          }
-        }
-
-        @keyframes foldLeftAccelerate {
-          0% {
-            transform: rotateY(0deg) translateZ(0px);
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-          }
-          100% {
-            transform: rotateY(90deg) translateZ(35px);
-            filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.9));
-          }
-        }
-
-        @keyframes unfoldRightDecelerate {
-          0% {
-            transform: rotateY(-90deg) translateZ(35px);
-            filter: drop-shadow(-20px 20px 30px rgba(0,0,0,0.9));
-          }
-          100% {
-            transform: rotateY(0deg) translateZ(0px);
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-          }
-        }
-      `}</style>
-
       {/* Top Header Bar */}
       <div className="w-full max-w-[850px] sm:max-w-[1014px] md:max-w-[1114px] lg:max-w-[1194px] xl:max-w-[1314px] flex flex-col sm:flex-row items-center justify-between gap-3 px-1 sm:px-0">
         <div className="flex items-center gap-2.5">
@@ -480,25 +370,24 @@ export const CardBook: React.FC<CardBookProps> = ({
         </div>
       </div>
 
-      {/* Main 3D Binder Book Stage */}
+      {/* Main Binder Book Stage */}
       <div className="w-full flex items-center justify-center relative px-2 sm:px-4">
         {/* Navigation Arrow Left */}
         <button
           onClick={handlePrevPage}
-          disabled={currentSpreadIndex === 0 || isAnimating}
+          disabled={currentSpreadIndex === 0}
           className={`z-40 w-9 h-9 sm:w-11 sm:h-11 mr-1 sm:mr-3 rounded-full bg-[#290A30]/90 border border-[#610F4E] hover:border-[#F50B8C] text-[#F9F1F9] flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer disabled:opacity-20 disabled:pointer-events-none ${
             currentSpreadIndex > 0 ? 'hover:scale-110 hover:shadow-[0_0_15px_rgba(245,11,140,0.3)]' : ''
           }`}
-          title="Página anterior (Giro 3D)"
+          title="Página anterior"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* Double-Page Binder Container with 3D Perspective */}
+        {/* Double-Page Binder Container */}
         <div
           className="w-fit bg-gradient-to-b from-[#290A30] via-[#31213D] to-[#290A30] border-2 sm:border-[3px] border-[#610F4E] rounded-[24px] sm:rounded-[30px] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95),0_0_35px_rgba(0,0,0,0.75)] p-2 sm:p-3 relative select-none"
           style={{
-            perspective: isAnimating ? '2800px' : undefined,
             boxShadow: 'inset 0 0 45px rgba(0,0,0,0.88), 0 20px 50px rgba(0,0,0,0.95), 0 0 1px 1px rgba(255,255,255,0.08)',
           }}
         >
@@ -519,88 +408,15 @@ export const CardBook: React.FC<CardBookProps> = ({
           </div>
 
           {/* Book Inner Spread Stage */}
-          <div
-            className="flex flex-row items-center gap-2.5 sm:gap-3.5 relative"
-            style={{
-              transformStyle: isAnimating ? 'preserve-3d' : 'flat',
-            }}
-          >
-            {/* 1. LEFT PAGE CONTAINER */}
-            <div className="relative z-10" style={{ transformStyle: isAnimating ? 'preserve-3d' : 'flat' }}>
-              {renderPageFace(baseLeftPageNum, 'left')}
-
-              {/* NEXT PHASE 2: New Left Page Unfolds 90° -> 0° */}
-              {turnState === 'next-phase2' && (
-                <div
-                  className="absolute inset-0 z-40 pointer-events-none"
-                  style={{
-                    transformOrigin: '100% 50%',
-                    transformStyle: 'preserve-3d',
-                    willChange: 'transform',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    animation: `unfoldLeftDecelerate ${PHASE_DURATION_MS}ms cubic-bezier(0, 0, 0.2, 1) forwards`,
-                  }}
-                >
-                  {renderPageFace((currentSpreadIndex + 1) * 2 + 1, 'left', true)}
-                </div>
-              )}
-
-              {/* PREV PHASE 1: Current Left Page Folds 0° -> 90° */}
-              {turnState === 'prev-phase1' && (
-                <div
-                  className="absolute inset-0 z-40 pointer-events-none"
-                  style={{
-                    transformOrigin: '100% 50%',
-                    transformStyle: 'preserve-3d',
-                    willChange: 'transform',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    animation: `foldLeftAccelerate ${PHASE_DURATION_MS}ms cubic-bezier(0.4, 0, 1, 1) forwards`,
-                  }}
-                >
-                  {renderPageFace(curLeftPageNum, 'left', true)}
-                </div>
-              )}
+          <div className="flex flex-row items-center gap-2.5 sm:gap-3.5 relative">
+            {/* 1. LEFT PAGE */}
+            <div className="relative z-10">
+              {renderPageFace(leftPageNum, 'left')}
             </div>
 
-            {/* 2. RIGHT PAGE CONTAINER */}
-            <div className="relative z-10" style={{ transformStyle: isAnimating ? 'preserve-3d' : 'flat' }}>
-              {renderPageFace(baseRightPageNum, 'right')}
-
-              {/* NEXT PHASE 1: Current Right Page Folds 0° -> -90° */}
-              {turnState === 'next-phase1' && (
-                <div
-                  className="absolute inset-0 z-40 pointer-events-none"
-                  style={{
-                    transformOrigin: '0% 50%',
-                    transformStyle: 'preserve-3d',
-                    willChange: 'transform',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    animation: `foldRightAccelerate ${PHASE_DURATION_MS}ms cubic-bezier(0.4, 0, 1, 1) forwards`,
-                  }}
-                >
-                  {renderPageFace(curRightPageNum, 'right', true)}
-                </div>
-              )}
-
-              {/* PREV PHASE 2: New Right Page Unfolds -90° -> 0° */}
-              {turnState === 'prev-phase2' && (
-                <div
-                  className="absolute inset-0 z-40 pointer-events-none"
-                  style={{
-                    transformOrigin: '0% 50%',
-                    transformStyle: 'preserve-3d',
-                    willChange: 'transform',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    animation: `unfoldRightDecelerate ${PHASE_DURATION_MS}ms cubic-bezier(0, 0, 0.2, 1) forwards`,
-                  }}
-                >
-                  {renderPageFace((currentSpreadIndex - 1) * 2 + 2, 'right', true)}
-                </div>
-              )}
+            {/* 2. RIGHT PAGE */}
+            <div className="relative z-10">
+              {renderPageFace(rightPageNum, 'right')}
             </div>
           </div>
         </div>
@@ -608,11 +424,11 @@ export const CardBook: React.FC<CardBookProps> = ({
         {/* Navigation Arrow Right */}
         <button
           onClick={handleNextPage}
-          disabled={currentSpreadIndex >= totalPages - 1 || isAnimating}
+          disabled={currentSpreadIndex >= totalPages - 1}
           className={`z-40 w-9 h-9 sm:w-11 sm:h-11 ml-1 sm:ml-3 rounded-full bg-[#290A30]/90 border border-[#610F4E] hover:border-[#F50B8C] text-[#F9F1F9] flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer disabled:opacity-20 disabled:pointer-events-none ${
             currentSpreadIndex < totalPages - 1 ? 'hover:scale-110 hover:shadow-[0_0_15px_rgba(245,11,140,0.3)]' : ''
           }`}
-          title="Página siguiente (Giro 3D)"
+          title="Página siguiente"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
