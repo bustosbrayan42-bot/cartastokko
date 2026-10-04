@@ -57,18 +57,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "ingenio",
-    "hp": 80,
+    "hp": 130,
     "cardNumber": "002",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Su lente especial es capaz de ver fluctuaciones cuánticas y memorias.",
-    "abilityName": "💻⚙️🔮 Apertura espectral",
+    "abilityName": "💻⚙️🔮 ️ Apertura espectral",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "50",
     "abilityDesc": "Roba 2 cartas de tu mazo y reorganiza la parte superior de tu baraja.",
     "attacks": [
       {
@@ -77,7 +77,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "30+",
+        "damage": "50+",
         "description": "Roba 2 cartas de tu mazo y reorganiza la parte superior de tu baraja."
       }
     ],
@@ -103,18 +103,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "arte",
-    "hp": 90,
+    "hp": 110,
     "cardNumber": "003",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada rincón limpio libera una nueva dosis de energía.",
-    "abilityName": "💎🖌️✨ Barrido energético",
+    "abilityName": "💎🖌️✨ ️ Barrido energético",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "110",
     "abilityDesc": "Elimina el desorden y recupera el control de tu espacio.",
     "attacks": [
       {
@@ -123,7 +123,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "40",
+        "damage": "80",
         "description": "Elimina el desorden y recupera el control de tu espacio."
       }
     ],
@@ -156,7 +156,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un hogar ordenado también es una estrategia.",
-    "abilityName": "🛡️🔮✨ Pulso reluciente",
+    "abilityName": "🛡️🔮✨ ️ Pulso reluciente",
     "abilityCost": [
       "aura"
     ],
@@ -195,9 +195,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "talento",
-    "hp": 110,
+    "hp": 100,
     "cardNumber": "005",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -206,7 +206,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "50+",
     "abilityDesc": "Obtén recursos frescos y conserva una carta adicional en tu mano.",
     "attacks": [
       {
@@ -215,7 +215,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "30",
+        "damage": "50",
         "description": "Obtén recursos frescos y conserva una carta adicional en tu mano."
       }
     ],
@@ -241,18 +241,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "estilo",
-    "hp": 80,
+    "hp": 125,
     "cardNumber": "006",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Rapidez, sonrisa y cero errores en la bandeja.",
-    "abilityName": "🛍️💖🌟 Pedido relámpago",
+    "abilityName": "🛍️💖🌟 ️ Pedido relámpago",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "90",
     "abilityDesc": "Entrega una acción inmediata antes de que termine el turno.",
     "attacks": [
       {
@@ -261,7 +261,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "60",
+        "damage": "100",
         "description": "Entrega una acción inmediata antes de que termine el turno."
       }
     ],
@@ -294,7 +294,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "A veces el look correcto cambia toda la partida.",
-    "abilityName": "🏕️🌲⭐ Cambio de imagen",
+    "abilityName": "🏕️🌲⭐ ️ Cambio de imagen",
     "abilityCost": [
       "aventura"
     ],
@@ -303,7 +303,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-7",
-        "name": "🏔️🧗✨ Cambio de imagen",
+        "name": "🏔️🧗✨ ️ Cambio de imagen",
         "cost": [
           "aventura"
         ],
@@ -333,18 +333,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "desafio",
-    "hp": 100,
+    "hp": 115,
     "cardNumber": "008",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Escucha al motor antes de que el motor pida ayuda.",
-    "abilityName": "🌋🔥⚔️ Ajuste perfecto",
+    "abilityName": "🌋🔥⚔️ ️ Ajuste perfecto",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "80",
     "abilityDesc": "Repara un recurso dañado y déjalo listo para volver a funcionar.",
     "attacks": [
       {
@@ -353,7 +353,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "50",
+        "damage": "70",
         "description": "Repara un recurso dañado y déjalo listo para volver a funcionar."
       }
     ],
@@ -379,18 +379,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "rutina",
-    "hp": 110,
+    "hp": 140,
     "cardNumber": "009",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un segundo de enfoque puede cambiar el futuro.",
-    "abilityName": "🧘‍♀️🌿✨ Mira cuántica",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Mira cuántica",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "70",
     "abilityDesc": "Observa las próximas cartas y elige cuál quedará en la cima.",
     "attacks": [
       {
@@ -399,7 +399,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "30+",
+        "damage": "70+",
         "description": "Observa las próximas cartas y elige cuál quedará en la cima."
       }
     ],
@@ -432,7 +432,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Su luz llega justo cuando todo parecía perdido.",
-    "abilityName": "✨⚜️🪐 Halo restaurador",
+    "abilityName": "✨⚜️🪐 ️ Halo restaurador",
     "abilityCost": [
       "leyenda"
     ],
@@ -441,7 +441,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-10",
-        "name": "✨⚜️🪐 Halo restaurador",
+        "name": "✨⚜️🪐 ️ Halo restaurador",
         "cost": [
           "leyenda"
         ],
@@ -471,9 +471,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "impulso",
-    "hp": 90,
+    "hp": 130,
     "cardNumber": "011",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -482,7 +482,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "60",
     "abilityDesc": "Comparte conocimiento y permite que otra carta mejore su efecto.",
     "attacks": [
       {
@@ -491,7 +491,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "70",
+        "damage": "90",
         "description": "Comparte conocimiento y permite que otra carta mejore su efecto."
       }
     ],
@@ -517,18 +517,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "ingenio",
-    "hp": 100,
+    "hp": 110,
     "cardNumber": "012",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Toda gran jugada parece obvia después de verla.",
-    "abilityName": "💻⚙️🔮 Riesgo calculado",
+    "abilityName": "💻⚙️🔮 ️ Riesgo calculado",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "70+",
     "abilityDesc": "Mira tres cartas y elige la que mejor se adapte a tu plan.",
     "attacks": [
       {
@@ -537,7 +537,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "30",
+        "damage": "70",
         "description": "Mira tres cartas y elige la que mejor se adapte a tu plan."
       }
     ],
@@ -570,7 +570,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Nunca deja huellas; solo dudas impecables.",
-    "abilityName": "💎🖌️✨ Hurto silencioso",
+    "abilityName": "💎🖌️✨ ️ Hurto silencioso",
     "abilityCost": [
       "arte"
     ],
@@ -609,18 +609,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aura",
-    "hp": 80,
+    "hp": 100,
     "cardNumber": "014",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La tranquilidad del barrio también necesita una guardiana.",
-    "abilityName": "🛡️🔮✨ Orden público",
+    "abilityName": "🛡️🔮✨ ️ Orden público",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "60x",
     "abilityDesc": "Protege una carta aliada y evita que sea retirada este turno.",
     "attacks": [
       {
@@ -629,7 +629,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "40x",
+        "damage": "60x",
         "description": "Protege una carta aliada y evita que sea retirada este turno."
       }
     ],
@@ -655,9 +655,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "talento",
-    "hp": 90,
+    "hp": 125,
     "cardNumber": "015",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -666,7 +666,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "100",
     "abilityDesc": "Convierte una idea pequeña en un efecto que todos puedan notar.",
     "attacks": [
       {
@@ -675,7 +675,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "50",
+        "damage": "90",
         "description": "Convierte una idea pequeña en un efecto que todos puedan notar."
       }
     ],
@@ -708,7 +708,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada día tiene una escena que merece repetirse.",
-    "abilityName": "🛍️💖🌟 Registro instantáneo",
+    "abilityName": "🛍️💖🌟 ️ Registro instantáneo",
     "abilityCost": [
       "estilo"
     ],
@@ -747,27 +747,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aventura",
-    "hp": 110,
+    "hp": 115,
     "cardNumber": "017",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La imagen ideal suele esconderse detrás de un pequeño ajuste.",
-    "abilityName": "🏕️🌲⭐ Enfoque selectivo",
+    "abilityName": "🏕️🌲⭐ ️ Enfoque selectivo",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "90",
     "abilityDesc": "Ajusta una carta y elimina una desventaja visible.",
     "attacks": [
       {
         "id": "atk-17",
-        "name": "🏔️🧗✨ Enfoque selectivo",
+        "name": "🏔️🧗✨ ️ Enfoque selectivo",
         "cost": [
           "aventura"
         ],
-        "damage": "40",
+        "damage": "60",
         "description": "Ajusta una carta y elimina una desventaja visible."
       }
     ],
@@ -793,18 +793,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "desafio",
-    "hp": 80,
+    "hp": 140,
     "cardNumber": "018",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cuando cada cable encuentra su lugar, las ideas fluyen.",
-    "abilityName": "🌋🔥⚔️ Cableado limpio",
+    "abilityName": "🌋🔥⚔️ ️ Cableado limpio",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "80",
     "abilityDesc": "Reorganiza tus recursos y recupera una acción desperdiciada.",
     "attacks": [
       {
@@ -813,7 +813,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "70",
+        "damage": "110",
         "description": "Reorganiza tus recursos y recupera una acción desperdiciada."
       }
     ],
@@ -846,7 +846,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Nada se esconde detrás de un vidrio bien pulido.",
-    "abilityName": "🧘‍♀️🌿✨ Visión despejada",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Visión despejada",
     "abilityCost": [
       "rutina"
     ],
@@ -892,7 +892,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Pan, fruta y una buena ruta hacen un gran día.",
-    "abilityName": "✨⚜️🪐 Canasta abundante",
+    "abilityName": "✨⚜️🪐 ️ Canasta abundante",
     "abilityCost": [
       "leyenda"
     ],
@@ -901,7 +901,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-20",
-        "name": "✨⚜️🪐 Canasta abundante",
+        "name": "✨⚜️🪐 ️ Canasta abundante",
         "cost": [
           "leyenda"
         ],
@@ -931,9 +931,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "impulso",
-    "hp": 110,
+    "hp": 90,
     "cardNumber": "021",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -942,7 +942,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "60x",
     "abilityDesc": "Prepara una carta y déjala lista para activarse más adelante.",
     "attacks": [
       {
@@ -951,7 +951,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "40x",
+        "damage": "60x",
         "description": "Prepara una carta y déjala lista para activarse más adelante."
       }
     ],
@@ -977,18 +977,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "ingenio",
-    "hp": 80,
+    "hp": 115,
     "cardNumber": "022",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Con la luz correcta, hasta lo simple se vuelve inolvidable.",
-    "abilityName": "💻⚙️🔮 Enfoque comercial",
+    "abilityName": "💻⚙️🔮 ️ Enfoque comercial",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "100",
     "abilityDesc": "Duplica temporalmente el valor de un recurso elegido.",
     "attacks": [
       {
@@ -997,7 +997,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "50",
+        "damage": "90",
         "description": "Duplica temporalmente el valor de un recurso elegido."
       }
     ],
@@ -1030,7 +1030,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una conversación genuina siempre encuentra audiencia.",
-    "abilityName": "💎🖌️✨ Frecuencia abierta",
+    "abilityName": "💎🖌️✨ ️ Frecuencia abierta",
     "abilityCost": [
       "arte"
     ],
@@ -1069,18 +1069,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aura",
-    "hp": 100,
+    "hp": 105,
     "cardNumber": "024",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Hasta la tarea más difícil mejora con música y determinación.",
-    "abilityName": "🛡️🔮✨ Brillo profundo",
+    "abilityName": "🛡️🔮✨ ️ Brillo profundo",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "90",
     "abilityDesc": "Elimina un efecto negativo de una carta aliada.",
     "attacks": [
       {
@@ -1089,7 +1089,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "40",
+        "damage": "60",
         "description": "Elimina un efecto negativo de una carta aliada."
       }
     ],
@@ -1115,9 +1115,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "talento",
-    "hp": 110,
+    "hp": 130,
     "cardNumber": "025",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -1126,7 +1126,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "80",
     "abilityDesc": "Elige un recurso del mazo y colócalo en tu mano.",
     "attacks": [
       {
@@ -1135,7 +1135,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "70",
+        "damage": "110",
         "description": "Elige un recurso del mazo y colócalo en tu mano."
       }
     ],
@@ -1168,7 +1168,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La precisión también puede venir acompañada de una sonrisa.",
-    "abilityName": "🛍️💖🌟 Cambio exacto",
+    "abilityName": "🛍️💖🌟 ️ Cambio exacto",
     "abilityCost": [
       "estilo"
     ],
@@ -1207,27 +1207,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aventura",
-    "hp": 90,
+    "hp": 120,
     "cardNumber": "027",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El espejo no decide por ella, solo confirma su intuición.",
-    "abilityName": "🏕️🌲⭐ Reflejo ideal",
+    "abilityName": "🏕️🌲⭐ ️ Reflejo ideal",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "70",
     "abilityDesc": "Revisa una carta y decide si conservarla o devolverla al mazo.",
     "attacks": [
       {
         "id": "atk-27",
-        "name": "🏔️🧗✨ Reflejo ideal",
+        "name": "🏔️🧗✨ ️ Reflejo ideal",
         "cost": [
           "aventura"
         ],
-        "damage": "60",
+        "damage": "80",
         "description": "Revisa una carta y decide si conservarla o devolverla al mazo."
       }
     ],
@@ -1253,18 +1253,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "desafio",
-    "hp": 100,
+    "hp": 145,
     "cardNumber": "028",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un imprevisto no detiene a quien lleva las herramientas correctas.",
-    "abilityName": "🌋🔥⚔️ Giro resistente",
+    "abilityName": "🌋🔥⚔️ ️ Giro resistente",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "80x",
     "abilityDesc": "Recupera una carta agotada y vuelve a ponerla en movimiento.",
     "attacks": [
       {
@@ -1273,7 +1273,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "40x",
+        "damage": "80x",
         "description": "Recupera una carta agotada y vuelve a ponerla en movimiento."
       }
     ],
@@ -1306,7 +1306,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Si algo sale mal, quizá solo falte intentarlo un segundo antes.",
-    "abilityName": "🧘‍♀️🌿✨ Rebobinado breve",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Rebobinado breve",
     "abilityCost": [
       "rutina"
     ],
@@ -1345,27 +1345,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "leyenda",
-    "hp": 80,
+    "hp": 90,
     "cardNumber": "030",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Bajo el sol intenso, cada paso se vuelve una declaración.",
-    "abilityName": "✨⚜️🪐 Tormenta de arena",
+    "abilityName": "✨⚜️🪐 ️ Tormenta de arena",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "50",
     "abilityDesc": "Confunde al rival y reduce la precisión de su próximo efecto.",
     "attacks": [
       {
         "id": "atk-30",
-        "name": "✨⚜️🪐 Tormenta de arena",
+        "name": "✨⚜️🪐 ️ Tormenta de arena",
         "cost": [
           "leyenda"
         ],
-        "damage": "30+",
+        "damage": "50+",
         "description": "Confunde al rival y reduce la precisión de su próximo efecto."
       }
     ],
@@ -1391,9 +1391,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "impulso",
-    "hp": 90,
+    "hp": 115,
     "cardNumber": "031",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -1402,7 +1402,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "110",
     "abilityDesc": "Transforma una carta común en una herramienta más poderosa.",
     "attacks": [
       {
@@ -1411,7 +1411,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "40",
+        "damage": "80",
         "description": "Transforma una carta común en una herramienta más poderosa."
       }
     ],
@@ -1444,7 +1444,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Escucha con calma; el mejor trato aparece entre líneas.",
-    "abilityName": "💻⚙️🔮 Acuerdo favorable",
+    "abilityName": "💻⚙️🔮 ️ Acuerdo favorable",
     "abilityCost": [
       "ingenio"
     ],
@@ -1483,18 +1483,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "arte",
-    "hp": 110,
+    "hp": 105,
     "cardNumber": "033",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La ciudad duerme, pero sus pasos nunca pierden el compás.",
-    "abilityName": "💎🖌️✨ Salto de sombra",
+    "abilityName": "💎🖌️✨ ️ Salto de sombra",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "50+",
     "abilityDesc": "Evade una amenaza y cambia la posición de una carta.",
     "attacks": [
       {
@@ -1503,7 +1503,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "30",
+        "damage": "50",
         "description": "Evade una amenaza y cambia la posición de una carta."
       }
     ],
@@ -1529,18 +1529,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "aura",
-    "hp": 80,
+    "hp": 130,
     "cardNumber": "034",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un paseo atento puede prevenir más de lo que imaginas.",
-    "abilityName": "🛡️🔮✨ Ronda segura",
+    "abilityName": "🛡️🔮✨ ️ Ronda segura",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "90",
     "abilityDesc": "Revisa el campo y detecta cualquier peligro oculto.",
     "attacks": [
       {
@@ -1549,7 +1549,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "60",
+        "damage": "100",
         "description": "Revisa el campo y detecta cualquier peligro oculto."
       }
     ],
@@ -1621,18 +1621,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "estilo",
-    "hp": 100,
+    "hp": 120,
     "cardNumber": "036",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Antes de recomendar algo, siempre lo prueba desde todos los ángulos.",
-    "abilityName": "🛍️💖🌟 Evaluación sincera",
+    "abilityName": "🛍️💖🌟 ️ Evaluación sincera",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "80",
     "abilityDesc": "Revela el valor de una carta antes de decidir si la utilizas.",
     "attacks": [
       {
@@ -1641,7 +1641,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "50",
+        "damage": "70",
         "description": "Revela el valor de una carta antes de decidir si la utilizas."
       }
     ],
@@ -1667,27 +1667,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "aventura",
-    "hp": 110,
+    "hp": 145,
     "cardNumber": "037",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Los detalles pequeños son los que hacen brillar el conjunto.",
-    "abilityName": "🏕️🌲⭐ Pulido brillante",
+    "abilityName": "🏕️🌲⭐ ️ Pulido brillante",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "70",
     "abilityDesc": "Elimina una penalización y deja tu recurso listo para usar.",
     "attacks": [
       {
         "id": "atk-37",
-        "name": "🏔️🧗✨ Pulido brillante",
+        "name": "🏔️🧗✨ ️ Pulido brillante",
         "cost": [
           "aventura"
         ],
-        "damage": "30+",
+        "damage": "70+",
         "description": "Elimina una penalización y deja tu recurso listo para usar."
       }
     ],
@@ -1720,7 +1720,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entró por una cosa y salió lista para toda la semana.",
-    "abilityName": "🌋🔥⚔️ Carro completo",
+    "abilityName": "🌋🔥⚔️ ️ Carro completo",
     "abilityCost": [
       "desafio"
     ],
@@ -1766,7 +1766,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Rapidez sin perder la amabilidad: esa es su especialidad.",
-    "abilityName": "🧘‍♀️🌿✨ Servicio express",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Servicio express",
     "abilityCost": [
       "rutina"
     ],
@@ -1805,27 +1805,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "leyenda",
-    "hp": 100,
+    "hp": 95,
     "cardNumber": "040",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una luz bien dirigida revela hasta el problema más pequeño.",
-    "abilityName": "✨⚜️🪐 Faro preciso",
+    "abilityName": "✨⚜️🪐 ️ Faro preciso",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "50+",
     "abilityDesc": "Ilumina una carta oculta y descubre su efecto.",
     "attacks": [
       {
         "id": "atk-40",
-        "name": "✨⚜️🪐 Faro preciso",
+        "name": "✨⚜️🪐 ️ Faro preciso",
         "cost": [
           "leyenda"
         ],
-        "damage": "30",
+        "damage": "50",
         "description": "Ilumina una carta oculta y descubre su efecto."
       }
     ],
@@ -1851,9 +1851,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "impulso",
-    "hp": 110,
+    "hp": 120,
     "cardNumber": "041",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -1862,7 +1862,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "90",
     "abilityDesc": "Coloca una carta desde tu mano directamente en el campo.",
     "attacks": [
       {
@@ -1871,7 +1871,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "60",
+        "damage": "100",
         "description": "Coloca una carta desde tu mano directamente en el campo."
       }
     ],
@@ -1904,7 +1904,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La distancia no importa cuando la concentración es absoluta.",
-    "abilityName": "💻⚙️🔮 Punto exacto",
+    "abilityName": "💻⚙️🔮 ️ Punto exacto",
     "abilityCost": [
       "ingenio"
     ],
@@ -1943,18 +1943,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "arte",
-    "hp": 90,
+    "hp": 110,
     "cardNumber": "043",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Todo problema parece menos complejo después de explicarlo bien.",
-    "abilityName": "💎🖌️✨ Código claro",
+    "abilityName": "💎🖌️✨ ️ Código claro",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "80",
     "abilityDesc": "Ordena tus recursos y elimina una carta innecesaria.",
     "attacks": [
       {
@@ -1963,7 +1963,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "50",
+        "damage": "70",
         "description": "Ordena tus recursos y elimina una carta innecesaria."
       }
     ],
@@ -1989,18 +1989,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "aura",
-    "hp": 100,
+    "hp": 135,
     "cardNumber": "044",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada puerta es el comienzo de una nueva posibilidad.",
-    "abilityName": "🛡️🔮✨ Llave maestra",
+    "abilityName": "🛡️🔮✨ ️ Llave maestra",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "70",
     "abilityDesc": "Abre una zona bloqueada y permite usarla de inmediato.",
     "attacks": [
       {
@@ -2009,7 +2009,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "30+",
+        "damage": "70+",
         "description": "Abre una zona bloqueada y permite usarla de inmediato."
       }
     ],
@@ -2081,18 +2081,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "estilo",
-    "hp": 80,
+    "hp": 125,
     "cardNumber": "046",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un gesto preciso basta para poner el caos en orden.",
-    "abilityName": "🛍️💖🌟 Señal de paso",
+    "abilityName": "🛍️💖🌟 ️ Señal de paso",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "60",
     "abilityDesc": "Detén una acción rival y concede prioridad a tu siguiente jugada.",
     "attacks": [
       {
@@ -2101,7 +2101,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "70",
+        "damage": "90",
         "description": "Detén una acción rival y concede prioridad a tu siguiente jugada."
       }
     ],
@@ -2127,27 +2127,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "aventura",
-    "hp": 90,
+    "hp": 150,
     "cardNumber": "047",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Sabe distinguir una gran idea incluso entre toda la estática.",
-    "abilityName": "🏕️🌲⭐ Onda limpia",
+    "abilityName": "🏕️🌲⭐ ️ Onda limpia",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "70+",
     "abilityDesc": "Cancela un ruido negativo y conserva el efecto principal.",
     "attacks": [
       {
         "id": "atk-47",
-        "name": "🏔️🧗✨ Onda limpia",
+        "name": "🏔️🧗✨ ️ Onda limpia",
         "cost": [
           "aventura"
         ],
-        "damage": "30",
+        "damage": "70",
         "description": "Cancela un ruido negativo y conserva el efecto principal."
       }
     ],
@@ -2180,7 +2180,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La toma perfecta comienza mucho antes de presionar el botón.",
-    "abilityName": "🌋🔥⚔️ Luz preparada",
+    "abilityName": "🌋🔥⚔️ ️ Luz preparada",
     "abilityCost": [
       "desafio"
     ],
@@ -2219,18 +2219,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "rutina",
-    "hp": 110,
+    "hp": 95,
     "cardNumber": "049",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre burbujas y platos, también se construyen defensas.",
-    "abilityName": "🧘‍♀️🌿✨ Espuma protectora",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Espuma protectora",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "60x",
     "abilityDesc": "Limpia una carta y protégela contra el próximo efecto rival.",
     "attacks": [
       {
@@ -2239,7 +2239,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "40x",
+        "damage": "60x",
         "description": "Limpia una carta y protégela contra el próximo efecto rival."
       }
     ],
@@ -2265,27 +2265,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "leyenda",
-    "hp": 80,
+    "hp": 120,
     "cardNumber": "050",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Tener lo necesario a mano es una forma de estar preparada.",
-    "abilityName": "✨⚜️🪐 Reserva brillante",
+    "abilityName": "✨⚜️🪐 ️ Reserva brillante",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "100",
     "abilityDesc": "Busca un recurso básico y guárdalo para usarlo después.",
     "attacks": [
       {
         "id": "atk-50",
-        "name": "✨⚜️🪐 Reserva brillante",
+        "name": "✨⚜️🪐 ️ Reserva brillante",
         "cost": [
           "leyenda"
         ],
-        "damage": "50",
+        "damage": "90",
         "description": "Busca un recurso básico y guárdalo para usarlo después."
       }
     ],
@@ -2357,18 +2357,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "ingenio",
-    "hp": 100,
+    "hp": 110,
     "cardNumber": "052",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Antes de desmontar nada, escucha lo que la máquina quiere decir.",
-    "abilityName": "💻⚙️🔮 Lectura mecánica",
+    "abilityName": "💻⚙️🔮 ️ Lectura mecánica",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "90",
     "abilityDesc": "Examina un recurso y descubre si todavía puede activarse.",
     "attacks": [
       {
@@ -2377,7 +2377,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "40",
+        "damage": "60",
         "description": "Examina un recurso y descubre si todavía puede activarse."
       }
     ],
@@ -2403,18 +2403,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "arte",
-    "hp": 110,
+    "hp": 135,
     "cardNumber": "053",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Su defensa no apaga la luz: la convierte en un muro.",
-    "abilityName": "💎🖌️✨ Escudo prismático",
+    "abilityName": "💎🖌️✨ ️ Escudo prismático",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "80",
     "abilityDesc": "Bloquea el próximo efecto que apunte a una carta aliada.",
     "attacks": [
       {
@@ -2423,7 +2423,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "70",
+        "damage": "110",
         "description": "Bloquea el próximo efecto que apunte a una carta aliada."
       }
     ],
@@ -2456,7 +2456,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La magia no se crea ni se pierde; solo cambia de color.",
-    "abilityName": "🛡️🔮✨ Prisma arcano",
+    "abilityName": "🛡️🔮✨ ️ Prisma arcano",
     "abilityCost": [
       "aura"
     ],
@@ -2495,9 +2495,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "talento",
-    "hp": 90,
+    "hp": 125,
     "cardNumber": "055",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -2506,7 +2506,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "70",
     "abilityDesc": "Mantén protegidas tus cartas mientras reorganizas tu campo.",
     "attacks": [
       {
@@ -2515,7 +2515,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "60",
+        "damage": "80",
         "description": "Mantén protegidas tus cartas mientras reorganizas tu campo."
       }
     ],
@@ -2541,18 +2541,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "estilo",
-    "hp": 100,
+    "hp": 150,
     "cardNumber": "056",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Lee las tendencias como si fueran luces moviéndose en la ciudad.",
-    "abilityName": "🛍️💖🌟 Mercado ascendente",
+    "abilityName": "🛍️💖🌟 ️ Mercado ascendente",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "80x",
     "abilityDesc": "Aumenta temporalmente el valor de tus recursos disponibles.",
     "attacks": [
       {
@@ -2561,7 +2561,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "40x",
+        "damage": "80x",
         "description": "Aumenta temporalmente el valor de tus recursos disponibles."
       }
     ],
@@ -2594,7 +2594,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La gema no era el plan; solo era imposible de ignorar.",
-    "abilityName": "🏕️🌲⭐ Brillo robado",
+    "abilityName": "🏕️🌲⭐ ️ Brillo robado",
     "abilityCost": [
       "aventura"
     ],
@@ -2603,7 +2603,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-57",
-        "name": "🏔️🧗✨ Brillo robado",
+        "name": "🏔️🧗✨ ️ Brillo robado",
         "cost": [
           "aventura"
         ],
@@ -2640,7 +2640,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "En cada carpeta hay una pista esperando ser encontrada.",
-    "abilityName": "🌋🔥⚔️ Informe completo",
+    "abilityName": "🌋🔥⚔️ ️ Informe completo",
     "abilityCost": [
       "desafio"
     ],
@@ -2679,18 +2679,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "rutina",
-    "hp": 90,
+    "hp": 100,
     "cardNumber": "059",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El secreto no es hacerlo rápido; es mostrar cómo hacerlo bien.",
-    "abilityName": "🧘‍♀️🌿✨ Explicación clara",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Explicación clara",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "90",
     "abilityDesc": "Enseña una técnica y permite repetir un efecto sencillo.",
     "attacks": [
       {
@@ -2699,7 +2699,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "40",
+        "damage": "60",
         "description": "Enseña una técnica y permite repetir un efecto sencillo."
       }
     ],
@@ -2725,27 +2725,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "leyenda",
-    "hp": 100,
+    "hp": 125,
     "cardNumber": "060",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre cientos de imágenes, siempre encuentra la que cuenta la historia.",
-    "abilityName": "✨⚜️🪐 Galería selecta",
+    "abilityName": "✨⚜️🪐 ️ Galería selecta",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "80",
     "abilityDesc": "Mira varias opciones y conserva únicamente la mejor.",
     "attacks": [
       {
         "id": "atk-60",
-        "name": "✨⚜️🪐 Galería selecta",
+        "name": "✨⚜️🪐 ️ Galería selecta",
         "cost": [
           "leyenda"
         ],
-        "damage": "70",
+        "damage": "110",
         "description": "Mira varias opciones y conserva únicamente la mejor."
       }
     ],
@@ -2817,18 +2817,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "ingenio",
-    "hp": 80,
+    "hp": 115,
     "cardNumber": "062",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Dos chaquetas, un espejo y una decisión con mucho estilo.",
-    "abilityName": "💻⚙️🔮 Doble elección",
+    "abilityName": "💻⚙️🔮 ️ Doble elección",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "70",
     "abilityDesc": "Compara dos opciones y elige la que más te convenga.",
     "attacks": [
       {
@@ -2837,7 +2837,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "60",
+        "damage": "80",
         "description": "Compara dos opciones y elige la que más te convenga."
       }
     ],
@@ -2863,18 +2863,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "arte",
-    "hp": 90,
+    "hp": 140,
     "cardNumber": "063",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un buen servicio hace que todo vuelva a estar listo.",
-    "abilityName": "💎🖌️✨ Mesa atendida",
+    "abilityName": "💎🖌️✨ ️ Mesa atendida",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "80x",
     "abilityDesc": "Recupera un recurso utilizado y colócalo nuevamente en tu reserva.",
     "attacks": [
       {
@@ -2883,7 +2883,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "40x",
+        "damage": "80x",
         "description": "Recupera un recurso utilizado y colócalo nuevamente en tu reserva."
       }
     ],
@@ -2916,7 +2916,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Con la cadena ajustada, ningún camino parece demasiado largo.",
-    "abilityName": "🛡️🔮✨ Pedaleo continuo",
+    "abilityName": "🛡️🔮✨ ️ Pedaleo continuo",
     "abilityCost": [
       "aura"
     ],
@@ -2955,9 +2955,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "talento",
-    "hp": 110,
+    "hp": 130,
     "cardNumber": "065",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -2966,7 +2966,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "50",
     "abilityDesc": "Obtén impulso inmediato y adelántate a la próxima jugada.",
     "attacks": [
       {
@@ -2975,7 +2975,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "30+",
+        "damage": "50+",
         "description": "Obtén impulso inmediato y adelántate a la próxima jugada."
       }
     ],
@@ -3001,18 +3001,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "estilo",
-    "hp": 80,
+    "hp": 110,
     "cardNumber": "066",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un mapa en blanco no es un problema: es una invitación.",
-    "abilityName": "🛍️💖🌟 Mapa sin límites",
+    "abilityName": "🛍️💖🌟 ️ Mapa sin límites",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "110",
     "abilityDesc": "Descubre una ruta oculta y elige entre dos caminos.",
     "attacks": [
       {
@@ -3021,7 +3021,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "40",
+        "damage": "80",
         "description": "Descubre una ruta oculta y elige entre dos caminos."
       }
     ],
@@ -3054,7 +3054,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada nota encuentra su lugar cuando alguien marca el compás.",
-    "abilityName": "🏕️🌲⭐ Armonía creciente",
+    "abilityName": "🏕️🌲⭐ ️ Armonía creciente",
     "abilityCost": [
       "aventura"
     ],
@@ -3063,7 +3063,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-67",
-        "name": "🏔️🧗✨ Armonía creciente",
+        "name": "🏔️🧗✨ ️ Armonía creciente",
         "cost": [
           "aventura"
         ],
@@ -3093,18 +3093,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "desafio",
     "hp": 100,
     "cardNumber": "068",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Los números cambian; la mirada estratégica permanece.",
-    "abilityName": "🌋🔥⚔️ Proyección futura",
+    "abilityName": "🌋🔥⚔️ ️ Proyección futura",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "50+",
     "abilityDesc": "Predice la próxima oportunidad y prepara tu estrategia.",
     "attacks": [
       {
@@ -3113,7 +3113,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "30",
+        "damage": "50",
         "description": "Predice la próxima oportunidad y prepara tu estrategia."
       }
     ],
@@ -3139,18 +3139,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "rutina",
-    "hp": 110,
+    "hp": 125,
     "cardNumber": "069",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "En una gala, la mejor identidad es la que nadie cuestiona.",
-    "abilityName": "🧘‍♀️🌿✨ Máscara brillante",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Máscara brillante",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "90",
     "abilityDesc": "Oculta una carta y sorprende al rival cuando sea revelada.",
     "attacks": [
       {
@@ -3159,7 +3159,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "60",
+        "damage": "100",
         "description": "Oculta una carta y sorprende al rival cuando sea revelada."
       }
     ],
@@ -3192,7 +3192,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una comunidad unida siempre es más fuerte que cualquier problema.",
-    "abilityName": "✨⚜️🪐 Red de apoyo",
+    "abilityName": "✨⚜️🪐 ️ Red de apoyo",
     "abilityCost": [
       "leyenda"
     ],
@@ -3201,7 +3201,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-70",
-        "name": "✨⚜️🪐 Red de apoyo",
+        "name": "✨⚜️🪐 ️ Red de apoyo",
         "cost": [
           "leyenda"
         ],
@@ -3231,9 +3231,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "impulso",
-    "hp": 90,
+    "hp": 115,
     "cardNumber": "071",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -3242,7 +3242,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "80",
     "abilityDesc": "Coloca una carta de acción en la parte superior de tu mazo.",
     "attacks": [
       {
@@ -3251,7 +3251,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "50",
+        "damage": "70",
         "description": "Coloca una carta de acción en la parte superior de tu mazo."
       }
     ],
@@ -3277,18 +3277,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "ingenio",
-    "hp": 100,
+    "hp": 140,
     "cardNumber": "072",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cuando se eleva, la canasta parece mucho más cerca.",
-    "abilityName": "💻⚙️🔮 Lanzamiento aéreo",
+    "abilityName": "💻⚙️🔮 ️ Lanzamiento aéreo",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "70",
     "abilityDesc": "Aumenta el poder de una carta durante este turno.",
     "attacks": [
       {
@@ -3297,7 +3297,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "30+",
+        "damage": "70+",
         "description": "Aumenta el poder de una carta durante este turno."
       }
     ],
@@ -3330,7 +3330,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La pelota cruza la red antes de que el público pueda reaccionar.",
-    "abilityName": "💎🖌️✨ Remate brillante",
+    "abilityName": "💎🖌️✨ ️ Remate brillante",
     "abilityCost": [
       "arte"
     ],
@@ -3369,18 +3369,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aura",
-    "hp": 80,
+    "hp": 130,
     "cardNumber": "074",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada paso la acerca a la meta y la aleja de cualquier duda.",
-    "abilityName": "🛡️🔮✨ Carrera continua",
+    "abilityName": "🛡️🔮✨ ️ Carrera continua",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "60",
     "abilityDesc": "Avanza una etapa adicional sin perder recursos.",
     "attacks": [
       {
@@ -3389,7 +3389,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "70",
+        "damage": "90",
         "description": "Avanza una etapa adicional sin perder recursos."
       }
     ],
@@ -3415,9 +3415,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "talento",
-    "hp": 90,
+    "hp": 110,
     "cardNumber": "075",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -3426,7 +3426,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "70+",
     "abilityDesc": "Obtén una acción extra si mantienes el control del turno.",
     "attacks": [
       {
@@ -3435,7 +3435,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "30",
+        "damage": "70",
         "description": "Obtén una acción extra si mantienes el control del turno."
       }
     ],
@@ -3468,7 +3468,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada brazada corta el agua como un destello de cian.",
-    "abilityName": "🛍️💖🌟 Carrera de agua",
+    "abilityName": "🛍️💖🌟 ️ Carrera de agua",
     "abilityCost": [
       "estilo"
     ],
@@ -3514,7 +3514,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El suelo se mueve, pero ella siempre encuentra su centro.",
-    "abilityName": "🏕️🌲⭐ Maniobra perfecta",
+    "abilityName": "🏕️🌲⭐ ️ Maniobra perfecta",
     "abilityCost": [
       "aventura"
     ],
@@ -3523,7 +3523,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-77",
-        "name": "🏔️🧗✨ Maniobra perfecta",
+        "name": "🏔️🧗✨ ️ Maniobra perfecta",
         "cost": [
           "aventura"
         ],
@@ -3553,18 +3553,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "desafio",
-    "hp": 80,
+    "hp": 105,
     "cardNumber": "078",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Solo necesita una ola, una tabla y el momento exacto.",
-    "abilityName": "🌋🔥⚔️ Cresta luminosa",
+    "abilityName": "🌋🔥⚔️ ️ Cresta luminosa",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "80",
     "abilityDesc": "Aprovecha el impulso y duplica el valor de tu próximo recurso.",
     "attacks": [
       {
@@ -3573,7 +3573,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "50",
+        "damage": "70",
         "description": "Aprovecha el impulso y duplica el valor de tu próximo recurso."
       }
     ],
@@ -3599,18 +3599,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "rutina",
-    "hp": 90,
+    "hp": 130,
     "cardNumber": "079",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada roca es un desafío; cada agarre, una nueva victoria.",
-    "abilityName": "🧘‍♀️🌿✨ Punto de apoyo",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Punto de apoyo",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "70",
     "abilityDesc": "Protege una carta mientras avanzas hacia la siguiente etapa.",
     "attacks": [
       {
@@ -3619,7 +3619,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "30+",
+        "damage": "70+",
         "description": "Protege una carta mientras avanzas hacia la siguiente etapa."
       }
     ],
@@ -3652,7 +3652,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La nieve se levanta detrás de ella como una estela de luz.",
-    "abilityName": "✨⚜️🪐 Descenso helado",
+    "abilityName": "✨⚜️🪐 ️ Descenso helado",
     "abilityCost": [
       "leyenda"
     ],
@@ -3661,7 +3661,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-80",
-        "name": "✨⚜️🪐 Descenso helado",
+        "name": "✨⚜️🪐 ️ Descenso helado",
         "cost": [
           "leyenda"
         ],
@@ -3691,9 +3691,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "impulso",
-    "hp": 110,
+    "hp": 120,
     "cardNumber": "081",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -3702,7 +3702,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "60",
     "abilityDesc": "Envía una carta objetivo al descarte sin activar su efecto.",
     "attacks": [
       {
@@ -3711,7 +3711,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "70",
+        "damage": "90",
         "description": "Envía una carta objetivo al descarte sin activar su efecto."
       }
     ],
@@ -3737,18 +3737,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "ingenio",
-    "hp": 80,
+    "hp": 145,
     "cardNumber": "082",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entrena para dominar su fuerza, no para perder el control.",
-    "abilityName": "💻⚙️🔮 Golpe controlado",
+    "abilityName": "💻⚙️🔮 ️ Golpe controlado",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "70+",
     "abilityDesc": "Debilita una carta rival sin causar daño permanente.",
     "attacks": [
       {
@@ -3757,7 +3757,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "30",
+        "damage": "70",
         "description": "Debilita una carta rival sin causar daño permanente."
       }
     ],
@@ -3790,7 +3790,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada movimiento parece imposible hasta que ella lo convierte en arte.",
-    "abilityName": "💎🖌️✨ Rutina perfecta",
+    "abilityName": "💎🖌️✨ ️ Rutina perfecta",
     "abilityCost": [
       "arte"
     ],
@@ -3829,18 +3829,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aura",
-    "hp": 100,
+    "hp": 90,
     "cardNumber": "084",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La plaza entera sigue su ritmo cuando comienza la música.",
-    "abilityName": "🛡️🔮✨ Ritmo cinético",
+    "abilityName": "🛡️🔮✨ ️ Ritmo cinético",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "60x",
     "abilityDesc": "Activa una carta adicional después de resolver tu primera acción.",
     "attacks": [
       {
@@ -3849,7 +3849,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "40x",
+        "damage": "60x",
         "description": "Activa una carta adicional después de resolver tu primera acción."
       }
     ],
@@ -3875,9 +3875,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "talento",
-    "hp": 110,
+    "hp": 115,
     "cardNumber": "085",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -3886,7 +3886,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "100",
     "abilityDesc": "Envía un recurso rival fuera del campo durante un turno.",
     "attacks": [
       {
@@ -3895,7 +3895,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "50",
+        "damage": "90",
         "description": "Envía un recurso rival fuera del campo durante un turno."
       }
     ],
@@ -3928,7 +3928,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El hielo refleja cada giro como si estuviera hecho de estrellas.",
-    "abilityName": "🛍️💖🌟 Giro cristalino",
+    "abilityName": "🛍️💖🌟 ️ Giro cristalino",
     "abilityCost": [
       "estilo"
     ],
@@ -3967,27 +3967,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "aventura",
-    "hp": 90,
+    "hp": 105,
     "cardNumber": "087",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El agua se abre a su paso y las montañas observan en silencio.",
-    "abilityName": "🏕️🌲⭐ Palada poderosa",
+    "abilityName": "🏕️🌲⭐ ️ Palada poderosa",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "90",
     "abilityDesc": "Avanza dos espacios y roba una carta si terminas el movimiento.",
     "attacks": [
       {
         "id": "atk-87",
-        "name": "🏔️🧗✨ Palada poderosa",
+        "name": "🏔️🧗✨ ️ Palada poderosa",
         "cost": [
           "aventura"
         ],
-        "damage": "40",
+        "damage": "60",
         "description": "Avanza dos espacios y roba una carta si terminas el movimiento."
       }
     ],
@@ -4013,18 +4013,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "desafio",
-    "hp": 100,
+    "hp": 130,
     "cardNumber": "088",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La cuerda vibra una sola vez; el objetivo ya está decidido.",
-    "abilityName": "🌋🔥⚔️ Trayectoria limpia",
+    "abilityName": "🌋🔥⚔️ ️ Trayectoria limpia",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "80",
     "abilityDesc": "Elige una carta entre varias y colócala en la cima del mazo.",
     "attacks": [
       {
@@ -4033,7 +4033,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "70",
+        "damage": "110",
         "description": "Elige una carta entre varias y colócala en la cima del mazo."
       }
     ],
@@ -4066,7 +4066,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Corre con la ligereza de quien conoce cada curva del sendero.",
-    "abilityName": "🧘‍♀️🌿✨ Ritmo del bosque",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Ritmo del bosque",
     "abilityCost": [
       "rutina"
     ],
@@ -4105,27 +4105,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "leyenda",
-    "hp": 80,
+    "hp": 120,
     "cardNumber": "090",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre luces y edificios, siempre encuentra un camino despejado.",
-    "abilityName": "✨⚜️🪐 Pedaleo veloz",
+    "abilityName": "✨⚜️🪐 ️ Pedaleo veloz",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "70",
     "abilityDesc": "Cambia la posición de una carta y continúa tu turno.",
     "attacks": [
       {
         "id": "atk-90",
-        "name": "✨⚜️🪐 Pedaleo veloz",
+        "name": "✨⚜️🪐 ️ Pedaleo veloz",
         "cost": [
           "leyenda"
         ],
-        "damage": "60",
+        "damage": "80",
         "description": "Cambia la posición de una carta y continúa tu turno."
       }
     ],
@@ -4151,9 +4151,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "impulso",
-    "hp": 90,
+    "hp": 145,
     "cardNumber": "091",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -4162,7 +4162,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "80x",
     "abilityDesc": "Elimina un peligro y protege tus cartas durante la próxima acción.",
     "attacks": [
       {
@@ -4171,7 +4171,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "40x",
+        "damage": "80x",
         "description": "Elimina un peligro y protege tus cartas durante la próxima acción."
       }
     ],
@@ -4204,7 +4204,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada vuelo comienza con una decisión firme y un cielo abierto.",
-    "abilityName": "💻⚙️🔮 Despegue seguro",
+    "abilityName": "💻⚙️🔮 ️ Despegue seguro",
     "abilityCost": [
       "ingenio"
     ],
@@ -4243,18 +4243,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "uncommon",
     "element": "arte",
-    "hp": 110,
+    "hp": 90,
     "cardNumber": "093",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El universo es enorme, pero su curiosidad lo es todavía más.",
-    "abilityName": "💎🖌️✨ Salto orbital",
+    "abilityName": "💎🖌️✨ ️ Salto orbital",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "50",
     "abilityDesc": "Mira las próximas cartas y elige el camino que seguirás.",
     "attacks": [
       {
@@ -4263,7 +4263,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "30+",
+        "damage": "50+",
         "description": "Mira las próximas cartas y elige el camino que seguirás."
       }
     ],
@@ -4289,18 +4289,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "rare",
     "element": "aura",
-    "hp": 80,
+    "hp": 115,
     "cardNumber": "094",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Antes de levantar muros, imagina todo lo que puede suceder dentro.",
-    "abilityName": "🛡️🔮✨ Diseño estructural",
+    "abilityName": "🛡️🔮✨ ️ Diseño estructural",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "110",
     "abilityDesc": "Construye una combinación de dos recursos en una sola jugada.",
     "attacks": [
       {
@@ -4309,7 +4309,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "40",
+        "damage": "80",
         "description": "Construye una combinación de dos recursos en una sola jugada."
       }
     ],
@@ -4381,18 +4381,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "estilo",
-    "hp": 100,
+    "hp": 145,
     "cardNumber": "096",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una mirada tranquila puede devolverle la calma a cualquier criatura.",
-    "abilityName": "🛍️💖🌟 Cuidado experto",
+    "abilityName": "🛍️💖🌟 ️ Cuidado experto",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "90+",
     "abilityDesc": "Restaura una carta aliada y elimina una condición negativa.",
     "attacks": [
       {
@@ -4401,7 +4401,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "30",
+        "damage": "90",
         "description": "Restaura una carta aliada y elimina una condición negativa."
       }
     ],
@@ -4427,27 +4427,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aventura",
-    "hp": 110,
+    "hp": 150,
     "cardNumber": "097",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Espera el momento exacto para guardar la belleza del paisaje.",
-    "abilityName": "🏕️🌲⭐ Captura lejana",
+    "abilityName": "🏕️🌲⭐ ️ Captura lejana",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "110",
     "abilityDesc": "Revela una carta oculta sin activar sus efectos.",
     "attacks": [
       {
         "id": "atk-97",
-        "name": "🏔️🧗✨ Captura lejana",
+        "name": "🏔️🧗✨ ️ Captura lejana",
         "cost": [
           "aventura"
         ],
-        "damage": "60",
+        "damage": "120",
         "description": "Revela una carta oculta sin activar sus efectos."
       }
     ],
@@ -4473,18 +4473,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "desafio",
-    "hp": 80,
+    "hp": 155,
     "cardNumber": "098",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre flores y senderos, cada semilla guarda una pequeña promesa.",
-    "abilityName": "🌋🔥⚔️ Brote brillante",
+    "abilityName": "🌋🔥⚔️ ️ Brote brillante",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "100x",
     "abilityDesc": "Haz crecer un recurso y aumenta su valor durante este turno.",
     "attacks": [
       {
@@ -4493,7 +4493,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "40x",
+        "damage": "100x",
         "description": "Haz crecer un recurso y aumenta su valor durante este turno."
       }
     ],
@@ -4519,18 +4519,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "rutina",
-    "hp": 90,
+    "hp": 160,
     "cardNumber": "099",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Desde arriba, hasta la ruta más difícil parece posible.",
-    "abilityName": "🧘‍♀️🌿✨ Vuelo panorámico",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Vuelo panorámico",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "120",
     "abilityDesc": "Ignora un obstáculo del campo y continúa avanzando.",
     "attacks": [
       {
@@ -4539,7 +4539,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "50",
+        "damage": "110",
         "description": "Ignora un obstáculo del campo y continúa avanzando."
       }
     ],
@@ -4565,27 +4565,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
-    "hp": 100,
+    "hp": 165,
     "cardNumber": "100",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La paciencia, el calor y un poco de magia hacen el resto.",
-    "abilityName": "✨⚜️🪐 Dulce creación",
+    "abilityName": "✨⚜️🪐 ️ Dulce creación",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "90",
     "abilityDesc": "Convierte dos recursos básicos en una carta especial.",
     "attacks": [
       {
         "id": "atk-100",
-        "name": "✨⚜️🪐 Dulce creación",
+        "name": "✨⚜️🪐 ️ Dulce creación",
         "cost": [
           "leyenda"
         ],
-        "damage": "30+",
+        "damage": "90+",
         "description": "Convierte dos recursos básicos en una carta especial."
       }
     ],
@@ -4611,9 +4611,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "impulso",
-    "hp": 110,
+    "hp": 170,
     "cardNumber": "101",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -4622,7 +4622,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "130",
     "abilityDesc": "Mira tres cartas del mazo y ordénalas como prefieras.",
     "attacks": [
       {
@@ -4631,7 +4631,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "40",
+        "damage": "100",
         "description": "Mira tres cartas del mazo y ordénalas como prefieras."
       }
     ],
@@ -4657,18 +4657,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "ingenio",
-    "hp": 80,
+    "hp": 130,
     "cardNumber": "102",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Hace las preguntas correctas antes de encender el micrófono.",
-    "abilityName": "💻⚙️🔮 Fuente directa",
+    "abilityName": "💻⚙️🔮 ️ Fuente directa",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "100",
     "abilityDesc": "Obtén información sobre una carta antes de elegir tu objetivo.",
     "attacks": [
       {
@@ -4677,7 +4677,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "70",
+        "damage": "130",
         "description": "Obtén información sobre una carta antes de elegir tu objetivo."
       }
     ],
@@ -4703,18 +4703,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "arte",
-    "hp": 90,
+    "hp": 135,
     "cardNumber": "103",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una línea bien trazada puede convertir una idea en tendencia.",
-    "abilityName": "💎🖌️✨ Corte creativo",
+    "abilityName": "💎🖌️✨ ️ Corte creativo",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "90+",
     "abilityDesc": "Cambia la apariencia de una carta sin alterar sus habilidades.",
     "attacks": [
       {
@@ -4723,7 +4723,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "30",
+        "damage": "90",
         "description": "Cambia la apariencia de una carta sin alterar sus habilidades."
       }
     ],
@@ -4749,18 +4749,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aura",
-    "hp": 100,
+    "hp": 140,
     "cardNumber": "104",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada pieza encuentra su lugar cuando las manos conocen el oficio.",
-    "abilityName": "🛡️🔮✨ Ensamble preciso",
+    "abilityName": "🛡️🔮✨ ️ Ensamble preciso",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "110",
     "abilityDesc": "Une dos recursos compatibles y crea una estructura más resistente.",
     "attacks": [
       {
@@ -4769,7 +4769,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "60",
+        "damage": "120",
         "description": "Une dos recursos compatibles y crea una estructura más resistente."
       }
     ],
@@ -4795,9 +4795,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "talento",
-    "hp": 110,
+    "hp": 145,
     "cardNumber": "105",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -4806,7 +4806,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "100x",
     "abilityDesc": "Evita el próximo coste de movimiento de una carta.",
     "attacks": [
       {
@@ -4815,7 +4815,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "40x",
+        "damage": "100x",
         "description": "Evita el próximo coste de movimiento de una carta."
       }
     ],
@@ -4841,18 +4841,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "estilo",
-    "hp": 80,
+    "hp": 150,
     "cardNumber": "106",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Conoce la montaña lo suficiente para respetarla y atravesarla.",
-    "abilityName": "🛍️💖🌟 Paso experto",
+    "abilityName": "🛍️💖🌟 ️ Paso experto",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "120",
     "abilityDesc": "Avanza sin activar la próxima amenaza del camino.",
     "attacks": [
       {
@@ -4861,7 +4861,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "50",
+        "damage": "110",
         "description": "Avanza sin activar la próxima amenaza del camino."
       }
     ],
@@ -4887,27 +4887,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aventura",
-    "hp": 90,
+    "hp": 155,
     "cardNumber": "107",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Bajo la superficie, los colores cuentan historias que nadie más escucha.",
-    "abilityName": "🏕️🌲⭐ Inmersión profunda",
+    "abilityName": "🏕️🌲⭐ ️ Inmersión profunda",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "90",
     "abilityDesc": "Recupera una carta desde la zona de descarte acuática.",
     "attacks": [
       {
         "id": "atk-107",
-        "name": "🏔️🧗✨ Inmersión profunda",
+        "name": "🏔️🧗✨ ️ Inmersión profunda",
         "cost": [
           "aventura"
         ],
-        "damage": "30+",
+        "damage": "90+",
         "description": "Recupera una carta desde la zona de descarte acuática."
       }
     ],
@@ -4933,18 +4933,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "desafio",
-    "hp": 100,
+    "hp": 160,
     "cardNumber": "108",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una tienda, una linterna y el bosque convertido en hogar.",
-    "abilityName": "🌋🔥⚔️ Refugio nocturno",
+    "abilityName": "🌋🔥⚔️ ️ Refugio nocturno",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "130",
     "abilityDesc": "Protege tus cartas durante la próxima ronda.",
     "attacks": [
       {
@@ -4953,7 +4953,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "40",
+        "damage": "100",
         "description": "Protege tus cartas durante la próxima ronda."
       }
     ],
@@ -4979,18 +4979,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "rutina",
-    "hp": 110,
+    "hp": 165,
     "cardNumber": "109",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El cansancio pesa menos cuando el paisaje recompensa cada paso.",
-    "abilityName": "🧘‍♀️🌿✨ Sendero firme",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Sendero firme",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "100",
     "abilityDesc": "Descubre una ruta alternativa y elige tu siguiente destino.",
     "attacks": [
       {
@@ -4999,7 +4999,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "rutina"
         ],
-        "damage": "70",
+        "damage": "130",
         "description": "Descubre una ruta alternativa y elige tu siguiente destino."
       }
     ],
@@ -5025,27 +5025,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
-    "hp": 80,
+    "hp": 170,
     "cardNumber": "110",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La corriente no pregunta hacia dónde ir; ella sí sabe responder.",
-    "abilityName": "✨⚜️🪐 Corriente veloz",
+    "abilityName": "✨⚜️🪐 ️ Corriente veloz",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "90+",
     "abilityDesc": "Desplaza una carta y gana una acción de movimiento.",
     "attacks": [
       {
         "id": "atk-110",
-        "name": "✨⚜️🪐 Corriente veloz",
+        "name": "✨⚜️🪐 ️ Corriente veloz",
         "cost": [
           "leyenda"
         ],
-        "damage": "30",
+        "damage": "90",
         "description": "Desplaza una carta y gana una acción de movimiento."
       }
     ],
@@ -5071,9 +5071,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "impulso",
-    "hp": 90,
+    "hp": 130,
     "cardNumber": "111",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -5082,7 +5082,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "110",
     "abilityDesc": "Cruza una zona peligrosa sin detener tu avance.",
     "attacks": [
       {
@@ -5091,7 +5091,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "60",
+        "damage": "120",
         "description": "Cruza una zona peligrosa sin detener tu avance."
       }
     ],
@@ -5117,18 +5117,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "ingenio",
-    "hp": 100,
+    "hp": 135,
     "cardNumber": "112",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El ruido del agua convierte cualquier pausa en un momento especial.",
-    "abilityName": "💻⚙️🔮 Descanso brillante",
+    "abilityName": "💻⚙️🔮 ️ Descanso brillante",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "40x",
+    "abilityDamage": "100x",
     "abilityDesc": "Recupera energía y elimina una penalización de tu campo.",
     "attacks": [
       {
@@ -5137,7 +5137,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "40x",
+        "damage": "100x",
         "description": "Recupera energía y elimina una penalización de tu campo."
       }
     ],
@@ -5163,18 +5163,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "arte",
-    "hp": 110,
+    "hp": 140,
     "cardNumber": "113",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Desde la canasta, cada paisaje parece una postal viviente.",
-    "abilityName": "💎🖌️✨ Ascenso aéreo",
+    "abilityName": "💎🖌️✨ ️ Ascenso aéreo",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "120",
     "abilityDesc": "Observa el campo desde arriba y elige una carta visible.",
     "attacks": [
       {
@@ -5183,7 +5183,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "50",
+        "damage": "110",
         "description": "Observa el campo desde arriba y elige una carta visible."
       }
     ],
@@ -5209,18 +5209,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aura",
-    "hp": 80,
+    "hp": 145,
     "cardNumber": "114",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Las mejores historias aparecen cuando el fuego ilumina los rostros.",
-    "abilityName": "🛡️🔮✨ Calor compartido",
+    "abilityName": "🛡️🔮✨ ️ Calor compartido",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "90",
     "abilityDesc": "Recupera una carta de apoyo y protege la siguiente jugada.",
     "attacks": [
       {
@@ -5229,7 +5229,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "30+",
+        "damage": "90+",
         "description": "Recupera una carta de apoyo y protege la siguiente jugada."
       }
     ],
@@ -5255,9 +5255,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "talento",
-    "hp": 90,
+    "hp": 150,
     "cardNumber": "115",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -5266,7 +5266,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "70",
+    "abilityDamage": "130",
     "abilityDesc": "Conserva una carta de viaje y roba una carta adicional.",
     "attacks": [
       {
@@ -5275,7 +5275,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "talento"
         ],
-        "damage": "40",
+        "damage": "100",
         "description": "Conserva una carta de viaje y roba una carta adicional."
       }
     ],
@@ -5301,18 +5301,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "estilo",
-    "hp": 100,
+    "hp": 175,
     "cardNumber": "116",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Hay lugares tan grandes que obligan a mirar hacia arriba.",
-    "abilityName": "🛍️💖🌟 Mirada monumental",
+    "abilityName": "🛍️💖🌟 ️ Mirada monumental",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "120",
     "abilityDesc": "Revela una carta de paisaje y úsala para ampliar tu campo.",
     "attacks": [
       {
@@ -5321,7 +5321,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "estilo"
         ],
-        "damage": "70",
+        "damage": "150",
         "description": "Revela una carta de paisaje y úsala para ampliar tu campo."
       }
     ],
@@ -5347,27 +5347,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "aventura",
-    "hp": 110,
+    "hp": 180,
     "cardNumber": "117",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cuando el reloj marca la hora, ella ya está lista para avanzar.",
-    "abilityName": "🏕️🌲⭐ Tiempo exacto",
+    "abilityName": "🏕️🌲⭐ ️ Tiempo exacto",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "30+",
+    "abilityDamage": "160",
     "abilityDesc": "Ajusta el orden de dos cartas en el campo.",
     "attacks": [
       {
         "id": "atk-117",
-        "name": "🏔️🧗✨ Tiempo exacto",
+        "name": "🏔️🧗✨ ️ Tiempo exacto",
         "cost": [
           "aventura"
         ],
-        "damage": "30",
+        "damage": "110",
         "description": "Ajusta el orden de dos cartas en el campo."
       }
     ],
@@ -5393,18 +5393,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "desafio",
-    "hp": 80,
+    "hp": 185,
     "cardNumber": "118",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada piedra conserva una historia que merece ser descubierta.",
-    "abilityName": "🌋🔥⚔️ Legado antiguo",
+    "abilityName": "🌋🔥⚔️ ️ Legado antiguo",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "130",
     "abilityDesc": "Recupera una carta histórica y aumenta su resistencia.",
     "attacks": [
       {
@@ -5413,7 +5413,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "desafio"
         ],
-        "damage": "60",
+        "damage": "140",
         "description": "Recupera una carta histórica y aumenta su resistencia."
       }
     ],
@@ -5439,27 +5439,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "rutina",
-    "hp": 115,
+    "hp": 190,
     "cardNumber": "119",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La imaginación convierte la piedra en una obra que parece viva.",
-    "abilityName": "Visión arquitectónica",
+    "abilityName": "🧘‍♀️🌿✨ Visión arquitectónica",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "110+",
     "abilityDesc": "Transforma una carta de estructura en un recurso especial.",
     "attacks": [
       {
         "id": "atk-119",
-        "name": "Visión arquitectónica",
+        "name": "🚿🧼✨ Visión arquitectónica",
         "cost": [
           "rutina"
         ],
-        "damage": "60",
+        "damage": "110+",
         "description": "Transforma una carta de estructura en un recurso especial."
       }
     ],
@@ -5471,7 +5471,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera catalana",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "aventura",
+    "resistance": "aura"
   },
   {
     "id": "tokkii-120",
@@ -5483,27 +5485,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "leyenda",
-    "hp": 80,
+    "hp": 150,
     "cardNumber": "120",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El mar, la luz y la ciudad se encuentran en un solo recuerdo.",
-    "abilityName": "Brisa costera",
+    "abilityName": "✨⚜️🪐 Brisa costera",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "20",
+    "abilityDamage": "140",
     "abilityDesc": "Mueve una carta hacia una zona segura del campo.",
     "attacks": [
       {
         "id": "atk-120",
-        "name": "Brisa costera",
+        "name": "✨⚜️🪐 Brisa costera",
         "cost": [
           "leyenda"
         ],
-        "damage": "20",
+        "damage": "130",
         "description": "Mueve una carta hacia una zona segura del campo."
       }
     ],
@@ -5515,7 +5517,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera oceánica",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "aura",
+    "resistance": "estilo"
   },
   {
     "id": "tokkii-121",
@@ -5527,27 +5531,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "impulso",
-    "hp": 85,
+    "hp": 155,
     "cardNumber": "121",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Algunos lugares parecen construidos para detener el tiempo.",
-    "abilityName": "Paz simétrica",
+    "abilityName": "⚡🌟💥 Paz simétrica",
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "110",
     "abilityDesc": "Equilibra dos recursos y elimina la diferencia entre sus valores.",
     "attacks": [
       {
         "id": "atk-121",
-        "name": "Paz simétrica",
+        "name": "⚡🔥💥 Paz simétrica",
         "cost": [
           "impulso"
         ],
-        "damage": "30",
+        "damage": "160",
         "description": "Equilibra dos recursos y elimina la diferencia entre sus valores."
       }
     ],
@@ -5559,7 +5563,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera imperial",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "rutina",
+    "resistance": "arte"
   },
   {
     "id": "tokkii-122",
@@ -5571,27 +5577,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "ingenio",
-    "hp": 90,
+    "hp": 160,
     "cardNumber": "122",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada huella en la arena puede conducir a una historia milenaria.",
-    "abilityName": "Rastro antiguo",
+    "abilityName": "💻⚙️🔮 Rastro antiguo",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "150",
     "abilityDesc": "Busca una carta de aventura y colócala en tu mano.",
     "attacks": [
       {
         "id": "atk-122",
-        "name": "Rastro antiguo",
+        "name": "📡🧠⚡ Rastro antiguo",
         "cost": [
           "ingenio"
         ],
-        "damage": "40",
+        "damage": "120",
         "description": "Busca una carta de aventura y colócala en tu mano."
       }
     ],
@@ -5603,7 +5609,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Exploradora del desierto",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "arte",
+    "resistance": "estilo"
   },
   {
     "id": "tokkii-123",
@@ -5615,27 +5623,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "arte",
-    "hp": 95,
+    "hp": 165,
     "cardNumber": "123",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La ciudad y la montaña parecen abrazarse bajo el mismo cielo.",
-    "abilityName": "Mirador verde",
+    "abilityName": "💎🖌️✨ Mirador verde",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "120",
     "abilityDesc": "Aumenta el alcance de tus cartas de exploración durante este turno.",
     "attacks": [
       {
         "id": "atk-123",
-        "name": "Mirador verde",
+        "name": "🌺🎨💫 Mirador verde",
         "cost": [
           "arte"
         ],
-        "damage": "50",
+        "damage": "150",
         "description": "Aumenta el alcance de tus cartas de exploración durante este turno."
       }
     ],
@@ -5647,7 +5655,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera tropical",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "impulso",
+    "resistance": "ingenio"
   },
   {
     "id": "tokkii-124",
@@ -5659,27 +5669,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "aura",
-    "hp": 100,
+    "hp": 170,
     "cardNumber": "124",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre flores y agua quieta, hasta el viento aprende a susurrar.",
-    "abilityName": "Silencio rosado",
+    "abilityName": "🛡️🔮✨ Silencio rosado",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "160",
     "abilityDesc": "Reduce el ruido del campo y protege tu próxima carta.",
     "attacks": [
       {
         "id": "atk-124",
-        "name": "Silencio rosado",
+        "name": "✨🧿🔮 Silencio rosado",
         "cost": [
           "aura"
         ],
-        "damage": "60",
+        "damage": "110",
         "description": "Reduce el ruido del campo y protege tu próxima carta."
       }
     ],
@@ -5691,7 +5701,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera japonesa",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "desafio",
+    "resistance": "arte"
   },
   {
     "id": "tokkii-125",
@@ -5703,27 +5715,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "talento",
-    "hp": 105,
+    "hp": 175,
     "cardNumber": "125",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El sendero continúa mucho después de que desaparece el horizonte.",
-    "abilityName": "Camino elevado",
+    "abilityName": "🎷🎵✨ Camino elevado",
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "20",
+    "abilityDamage": "130",
     "abilityDesc": "Cruza una zona extensa sin gastar una acción adicional.",
     "attacks": [
       {
         "id": "atk-125",
-        "name": "Camino elevado",
+        "name": "🎷🎵✨ Camino elevado",
         "cost": [
           "talento"
         ],
-        "damage": "20",
+        "damage": "140",
         "description": "Cruza una zona extensa sin gastar una acción adicional."
       }
     ],
@@ -5735,7 +5747,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Exploradora asiática",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "impulso",
+    "resistance": "desafio"
   },
   {
     "id": "tokkii-126",
@@ -5747,27 +5761,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "estilo",
-    "hp": 110,
+    "hp": 180,
     "cardNumber": "126",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "A veces la mejor fotografía requiere sostener el mundo con una mano.",
-    "abilityName": "Equilibrio turístico",
+    "abilityName": "🛍️💖🌟 Equilibrio turístico",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "110+",
     "abilityDesc": "Evita que una carta sea desplazada durante el próximo turno.",
     "attacks": [
       {
         "id": "atk-126",
-        "name": "Equilibrio turístico",
+        "name": "🎀💎💖 Equilibrio turístico",
         "cost": [
           "estilo"
         ],
-        "damage": "30",
+        "damage": "110+",
         "description": "Evita que una carta sea desplazada durante el próximo turno."
       }
     ],
@@ -5779,7 +5793,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera italiana",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "arte",
+    "resistance": "talento"
   },
   {
     "id": "tokkii-127",
@@ -5791,27 +5807,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "aventura",
-    "hp": 115,
+    "hp": 185,
     "cardNumber": "127",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La niebla se aparta lentamente para mostrar un lugar fuera del tiempo.",
-    "abilityName": "Ruta ancestral",
+    "abilityName": "🏕️🌲⭐ Ruta ancestral",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "140",
     "abilityDesc": "Recupera una carta de exploración y revela una zona desconocida.",
     "attacks": [
       {
         "id": "atk-127",
-        "name": "Ruta ancestral",
+        "name": "🏔️🧗✨ Ruta ancestral",
         "cost": [
           "aventura"
         ],
-        "damage": "40",
+        "damage": "130",
         "description": "Recupera una carta de exploración y revela una zona desconocida."
       }
     ],
@@ -5823,7 +5839,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Exploradora andina",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "impulso",
+    "resistance": "ingenio"
   },
   {
     "id": "tokkii-128",
@@ -5835,27 +5853,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "desafio",
-    "hp": 80,
+    "hp": 190,
     "cardNumber": "128",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El puente une orillas, historias y nuevas posibilidades.",
-    "abilityName": "Cruce brillante",
+    "abilityName": "🌋🔥⚔️ Cruce brillante",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "110",
     "abilityDesc": "Conecta dos zonas del campo y permite mover una carta entre ellas.",
     "attacks": [
       {
         "id": "atk-128",
-        "name": "Cruce brillante",
+        "name": "💥🔨⚡ Cruce brillante",
         "cost": [
           "desafio"
         ],
-        "damage": "50",
+        "damage": "160",
         "description": "Conecta dos zonas del campo y permite mover una carta entre ellas."
       }
     ],
@@ -5867,7 +5885,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera californiana",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "aura",
+    "resistance": "rutina"
   },
   {
     "id": "tokkii-129",
@@ -5879,27 +5899,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "rutina",
-    "hp": 85,
+    "hp": 150,
     "cardNumber": "129",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Desde abajo parece imposible; desde cerca, solo parece enorme.",
-    "abilityName": "Mirada vertical",
+    "abilityName": "🧘‍♀️🌿✨ Mirada vertical",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "150",
     "abilityDesc": "Aumenta el valor de una carta de ciudad durante este turno.",
     "attacks": [
       {
         "id": "atk-129",
-        "name": "Mirada vertical",
+        "name": "🚿🧼✨ Mirada vertical",
         "cost": [
           "rutina"
         ],
-        "damage": "60",
+        "damage": "120",
         "description": "Aumenta el valor de una carta de ciudad durante este turno."
       }
     ],
@@ -5911,7 +5931,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera futurista",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "talento",
+    "resistance": "aura"
   },
   {
     "id": "tokkii-130",
@@ -5923,27 +5945,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "leyenda",
-    "hp": 90,
+    "hp": 155,
     "cardNumber": "130",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El agua cae con tanta fuerza que parece partir el cielo en colores.",
-    "abilityName": "Salto natural",
+    "abilityName": "✨⚜️🪐 Salto natural",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "20",
+    "abilityDamage": "120",
     "abilityDesc": "Elimina un obstáculo de terreno y roba una carta de paisaje.",
     "attacks": [
       {
         "id": "atk-130",
-        "name": "Salto natural",
+        "name": "✨⚜️🪐 Salto natural",
         "cost": [
           "leyenda"
         ],
-        "damage": "20",
+        "damage": "150",
         "description": "Elimina un obstáculo de terreno y roba una carta de paisaje."
       }
     ],
@@ -5955,7 +5977,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Viajera de cascadas",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "talento",
+    "resistance": "estilo"
   },
   {
     "id": "tokkii-131",
@@ -5967,27 +5991,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "impulso",
-    "hp": 95,
+    "hp": 160,
     "cardNumber": "131",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El cielo nocturno se viste de verde y violeta para guiar su camino.",
-    "abilityName": "Danza del norte",
+    "abilityName": "⚡🌟💥 Danza del norte",
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "160",
     "abilityDesc": "Ilumina el campo de juego y roba dos cartas de tu mazo.",
     "attacks": [
       {
         "id": "atk-131",
-        "name": "Danza del norte",
+        "name": "⚡🔥💥 Danza del norte",
         "cost": [
           "impulso"
         ],
-        "damage": "30",
+        "damage": "110",
         "description": "Ilumina el campo de juego y roba dos cartas de tu mazo."
       }
     ],
@@ -5999,7 +6023,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Exploradora polar",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "ingenio",
+    "resistance": "arte"
   },
   {
     "id": "tokkii-132",
@@ -6011,27 +6037,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "ingenio",
-    "hp": 100,
+    "hp": 165,
     "cardNumber": "132",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "En medio de la arena ardiente, el agua es el mayor tesoro.",
-    "abilityName": "Manantial puro",
+    "abilityName": "💻⚙️🔮 Manantial puro",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "130",
     "abilityDesc": "Restaura la energía de todas tus cartas aliadas en juego.",
     "attacks": [
       {
         "id": "atk-132",
-        "name": "Manantial puro",
+        "name": "📡🧠⚡ Manantial puro",
         "cost": [
           "ingenio"
         ],
-        "damage": "40",
+        "damage": "140",
         "description": "Restaura la energía de todas tus cartas aliadas en juego."
       }
     ],
@@ -6043,7 +6069,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Nómada del desierto",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "aura",
+    "resistance": "estilo"
   },
   {
     "id": "tokkii-133",
@@ -6055,27 +6083,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "arte",
-    "hp": 105,
+    "hp": 170,
     "cardNumber": "133",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El aire es delgado, pero la vista desde la cima no tiene precio.",
-    "abilityName": "Conquista cumbre",
+    "abilityName": "💎🖌️✨ Conquista cumbre",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "110+",
     "abilityDesc": "Otorga inmunidad temporal a tu carta activa contra efectos rivales.",
     "attacks": [
       {
         "id": "atk-133",
-        "name": "Conquista cumbre",
+        "name": "🌺🎨💫 Conquista cumbre",
         "cost": [
           "arte"
         ],
-        "damage": "50",
+        "damage": "110+",
         "description": "Otorga inmunidad temporal a tu carta activa contra efectos rivales."
       }
     ],
@@ -6087,7 +6115,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Alpinista legendaria",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "rutina",
+    "resistance": "ingenio"
   },
   {
     "id": "tokkii-134",
@@ -6099,27 +6129,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "ultra_rare",
     "element": "aura",
-    "hp": 110,
+    "hp": 175,
     "cardNumber": "134",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Plantas que no crecen en ningún otro lugar florecen bajo su cuidado.",
-    "abilityName": "Flora ancestral",
+    "abilityName": "🛡️🔮✨ Flora ancestral",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "140",
     "abilityDesc": "Busca en tu mazo una carta de recurso y colócala en tu mano.",
     "attacks": [
       {
         "id": "atk-134",
-        "name": "Flora ancestral",
+        "name": "✨🧿🔮 Flora ancestral",
         "cost": [
           "aura"
         ],
-        "damage": "60",
+        "damage": "130",
         "description": "Busca en tu mazo una carta de recurso y colócala en tu mano."
       }
     ],
@@ -6131,7 +6161,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Botánica mística",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "leyenda",
+    "resistance": "arte"
   },
   {
     "id": "tokkii-135",
@@ -6143,27 +6175,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "talento",
-    "hp": 115,
+    "hp": 200,
     "cardNumber": "135",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Ningún navío se pierde cuando su luz atraviesa la tormenta.",
-    "abilityName": "Destello guía",
+    "abilityName": "🎷🎵✨ Destello guía",
     "abilityCost": [
       "talento"
     ],
-    "abilityDamage": "20",
+    "abilityDamage": "140",
     "abilityDesc": "Revela las tres primeras cartas del mazo rival.",
     "attacks": [
       {
         "id": "atk-135",
-        "name": "Destello guía",
+        "name": "🎷🎵✨ Destello guía",
         "cost": [
           "talento"
         ],
-        "damage": "20",
+        "damage": "200",
         "description": "Revela las tres primeras cartas del mazo rival."
       }
     ],
@@ -6175,7 +6207,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Guardiana de costa",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "estilo",
+    "resistance": "desafio"
   },
   {
     "id": "tokkii-136",
@@ -6187,27 +6221,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "estilo",
-    "hp": 80,
+    "hp": 180,
     "cardNumber": "136",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La oscuridad de la cueva se desvanece ante el brillo del mineral.",
-    "abilityName": "Resonancia cuarzo",
+    "abilityName": "🛍️💖🌟 Resonancia cuarzo",
     "abilityCost": [
       "estilo"
     ],
-    "abilityDamage": "30",
+    "abilityDamage": "180",
     "abilityDesc": "Aumenta el poder de tus habilidades durante este turno.",
     "attacks": [
       {
         "id": "atk-136",
-        "name": "Resonancia cuarzo",
+        "name": "🎀💎💖 Resonancia cuarzo",
         "cost": [
           "estilo"
         ],
-        "damage": "30",
+        "damage": "150",
         "description": "Aumenta el poder de tus habilidades durante este turno."
       }
     ],
@@ -6219,7 +6253,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Minera espeleóloga",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "aura",
+    "resistance": "talento"
   },
   {
     "id": "tokkii-137",
@@ -6231,27 +6267,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "aventura",
-    "hp": 85,
+    "hp": 220,
     "cardNumber": "137",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Lugares que solo los pájaros y los soñadores han visto.",
-    "abilityName": "Viento ascendente",
+    "abilityName": "🏕️🌲⭐ Viento ascendente",
     "abilityCost": [
       "aventura"
     ],
-    "abilityDamage": "40",
+    "abilityDamage": "150",
     "abilityDesc": "Permite a una carta aliada esquivar la próxima penalización.",
     "attacks": [
       {
         "id": "atk-137",
-        "name": "Viento ascendente",
+        "name": "🏔️🧗✨ Viento ascendente",
         "cost": [
           "aventura"
         ],
-        "damage": "40",
+        "damage": "180",
         "description": "Permite a una carta aliada esquivar la próxima penalización."
       }
     ],
@@ -6263,7 +6299,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Navegante de nubes",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "desafio",
+    "resistance": "ingenio"
   },
   {
     "id": "tokkii-138",
@@ -6275,27 +6313,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "desafio",
-    "hp": 90,
+    "hp": 200,
     "cardNumber": "138",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Secretos grabados en piedra que han esperado siglos para ser leídos.",
-    "abilityName": "Glifo sagrado",
+    "abilityName": "🌋🔥⚔️ Glifo sagrado",
     "abilityCost": [
       "desafio"
     ],
-    "abilityDamage": "50",
+    "abilityDamage": "200",
     "abilityDesc": "Recupera una carta del descarte y añade un punto de poder.",
     "attacks": [
       {
         "id": "atk-138",
-        "name": "Glifo sagrado",
+        "name": "💥🔨⚡ Glifo sagrado",
         "cost": [
           "desafio"
         ],
-        "damage": "50",
+        "damage": "140",
         "description": "Recupera una carta del descarte y añade un punto de poder."
       }
     ],
@@ -6307,7 +6345,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Arqueóloga mística",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "leyenda",
+    "resistance": "rutina"
   },
   {
     "id": "tokkii-139",
@@ -6319,27 +6359,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "rutina",
-    "hp": 95,
+    "hp": 180,
     "cardNumber": "139",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Las estrellas no solo brillan, también trazan el mapa de su victoria.",
-    "abilityName": "Alineación cósmica",
+    "abilityName": "🧘‍♀️🌿✨ Alineación cósmica",
     "abilityCost": [
       "rutina"
     ],
-    "abilityDamage": "60",
+    "abilityDamage": "160",
     "abilityDesc": "Duplica el efecto de tu próxima habilidad especial.",
     "attacks": [
       {
         "id": "atk-139",
-        "name": "Alineación cósmica",
+        "name": "🚿🧼✨ Alineación cósmica",
         "cost": [
           "rutina"
         ],
-        "damage": "60",
+        "damage": "170",
         "description": "Duplica el efecto de tu próxima habilidad especial."
       }
     ],
@@ -6351,7 +6391,9 @@ export const DEFAULT_CARDS: CardData[] = [
       "Astrónoma estelar",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "arte",
+    "resistance": "aura"
   },
   {
     "id": "tokkii-140",
@@ -6363,27 +6405,27 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "leyenda",
-    "hp": 100,
+    "hp": 220,
     "cardNumber": "140",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El primer gran paso de un viaje que recién comienza.",
-    "abilityName": "Chispa infinita",
+    "abilityName": "✨⚜️🪐 Chispa infinita",
     "abilityCost": [
       "leyenda"
     ],
-    "abilityDamage": "20",
+    "abilityDamage": "150+",
     "abilityDesc": "Une todas las energías del equipo y roba una carta adicional.",
     "attacks": [
       {
         "id": "atk-140",
-        "name": "Chispa infinita",
+        "name": "✨⚜️🪐 Chispa infinita",
         "cost": [
           "leyenda"
         ],
-        "damage": "20",
+        "damage": "150+",
         "description": "Une todas las energías del equipo y roba una carta adicional."
       }
     ],
@@ -6395,6 +6437,8 @@ export const DEFAULT_CARDS: CardData[] = [
       "Emblema del Génesis",
       "Génesis",
       "Común"
-    ]
+    ],
+    "weakness": "desafio",
+    "resistance": "estilo"
   }
 ];
