@@ -62,9 +62,9 @@ export const RARITY_CONFIGS: Record<Rarity, RarityConfig> = {
     glowColor: 'rgba(236, 72, 153, 0.7)',
     borderColor: '#db2777',
     badgeBg: 'bg-pink-950/80 text-pink-300 border-pink-500',
-    holoStyle: 'cosmic',
+    holoStyle: 'secret_gold',
     stars: 5,
-    description: 'Efecto holográfico cósmico multidireccional con refracción de luz dinámica.'
+    description: 'Acabado Masterpiece Full-Art con lámina Secret Gold Mythic (70% foil, 20% glare).'
   },
   secret_rare: {
     id: 'secret_rare',
