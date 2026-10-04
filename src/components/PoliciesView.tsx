@@ -148,12 +148,12 @@ export const PoliciesView: React.FC = () => {
         </div>
 
         {/* Section Navigation Tabs */}
-        <div className="relative z-10 flex items-center gap-2 pt-6 overflow-x-auto no-scrollbar">
+        <div className="relative z-10 flex items-center gap-2.5 pt-6 pb-2 px-1 overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveSection('probabilities')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'probabilities'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-md shadow-[#F50B8C]/25 scale-105'
+                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -163,9 +163,9 @@ export const PoliciesView: React.FC = () => {
 
           <button
             onClick={() => setActiveSection('packs')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'packs'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-md shadow-[#F50B8C]/25 scale-105'
+                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -175,9 +175,9 @@ export const PoliciesView: React.FC = () => {
 
           <button
             onClick={() => setActiveSection('exchange')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'exchange'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-md shadow-[#F50B8C]/25 scale-105'
+                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -187,9 +187,9 @@ export const PoliciesView: React.FC = () => {
 
           <button
             onClick={() => setActiveSection('terms')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'terms'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-md shadow-[#F50B8C]/25 scale-105'
+                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
