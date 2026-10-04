@@ -73,8 +73,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!interactive || !containerRef.current || isLocked) return;
-      if (simplified && !isHovered) return;
+      if (simplified || !interactive || !containerRef.current || isLocked) return;
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -97,17 +96,17 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         holoAngle: angle,
       });
     },
-    [interactive, isLocked, simplified, isHovered, effectiveGlareOpacity]
+    [simplified, interactive, isLocked, effectiveGlareOpacity]
   );
 
   const handleMouseEnter = () => {
-    if (!interactive) return;
+    if (simplified || !interactive) return;
     setIsHovered(true);
     if (enableSound) playCardHoverSound();
   };
 
   const handleMouseLeave = () => {
-    if (!interactive) return;
+    if (simplified || !interactive) return;
     setIsHovered(false);
     setTransformStyle((prev) => ({
       ...prev,
@@ -176,33 +175,36 @@ export const TcgCard: React.FC<TcgCardProps> = ({
     >
       <div
         className={`card-3d-root absolute top-1/2 left-1/2 rounded-[20px] pointer-events-none ${
-          !isHovered ? 'is-animating' : ''
+          !isHovered && !simplified ? 'is-animating' : ''
         }`}
         style={
-          {
-            width: '320px',
-            height: '450px',
-            transform: `translate(-50%, -50%) scale(${scale})${
-              !simplified || isHovered
-                ? ` rotateX(${transformStyle.rotX}deg) rotateY(${actualFlipped ? transformStyle.rotY + 180 : transformStyle.rotY}deg)`
-                : ''
-            }`,
-            transformOrigin: 'center center',
-            boxShadow:
-              simplified && !isHovered
-                ? '0 8px 16px -4px rgba(0,0,0,0.6)'
-                : actualFlipped
-                ? isHovered
-                  ? '0 20px 35px -8px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)'
-                  : '0 12px 24px -8px rgba(0,0,0,0.7)'
-                : isHovered
-                ? `0 20px 35px -8px ${rarityConfig.glowColor}, 0 0 15px ${rarityConfig.glowColor}`
-                : `0 12px 24px -8px rgba(0,0,0,0.6), 0 0 8px ${rarityConfig.glowColor}`,
-            '--mouse-x': `${transformStyle.glareX}%`,
-            '--mouse-y': `${transformStyle.glareY}%`,
-            '--glare-opacity': `${transformStyle.glareOpacity}`,
-            '--holo-angle': `${transformStyle.holoAngle}deg`,
-          } as React.CSSProperties
+          simplified
+            ? {
+                width: '320px',
+                height: '450px',
+                transform: `translate(-50%, -50%) scale(${scale})`,
+                transformOrigin: 'center center',
+                boxShadow: '0 6px 14px -3px rgba(0,0,0,0.65)',
+              }
+            : ({
+                width: '320px',
+                height: '450px',
+                transform: `translate(-50%, -50%) scale(${scale}) rotateX(${transformStyle.rotX}deg) rotateY(${
+                  actualFlipped ? transformStyle.rotY + 180 : transformStyle.rotY
+                }deg)`,
+                transformOrigin: 'center center',
+                boxShadow: actualFlipped
+                  ? isHovered
+                    ? '0 20px 35px -8px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)'
+                    : '0 12px 24px -8px rgba(0,0,0,0.7)'
+                  : isHovered
+                  ? `0 20px 35px -8px ${rarityConfig.glowColor}, 0 0 15px ${rarityConfig.glowColor}`
+                  : `0 12px 24px -8px rgba(0,0,0,0.6), 0 0 8px ${rarityConfig.glowColor}`,
+                '--mouse-x': `${transformStyle.glareX}%`,
+                '--mouse-y': `${transformStyle.glareY}%`,
+                '--glare-opacity': `${transformStyle.glareOpacity}`,
+                '--holo-angle': `${transformStyle.holoAngle}deg`,
+              } as React.CSSProperties)
         }
       >
         {/* CARD FRONT */}
@@ -259,8 +261,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             </div>
           )}
 
-          {/* Full Card Holographic Foil Overlay (Only rendered on hover in simplified mode) */}
-          {(!simplified || isHovered) && effectiveHoloStyle !== 'none' && card.rarity !== 'common' && (
+          {/* Full Card Holographic Foil Overlay (Only rendered in full inspector/interactive mode) */}
+          {!simplified && effectiveHoloStyle !== 'none' && card.rarity !== 'common' && (
             <div
               className={`absolute inset-0 rounded-[18px] ${getHoloClass()} z-20 pointer-events-none`}
               style={{
@@ -270,13 +272,13 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             />
           )}
 
-          {/* Glare Flare (Only rendered when interacting) */}
-          {(!simplified || isHovered) && (
+          {/* Glare Flare (Only rendered in full inspector mode) */}
+          {!simplified && (
             <div className="card-glare z-30 pointer-events-none" />
           )}
 
-          {/* Sparkles for Super/Ultra/Secret Rare (Only active when hovered in simplified mode to protect GPU) */}
-          {(!simplified || isHovered) && (card.rarity === 'secret_rare' || card.rarity === 'ultra_rare') && (
+          {/* Sparkles for Super/Ultra/Secret Rare (Only active in full inspector mode) */}
+          {!simplified && (card.rarity === 'secret_rare' || card.rarity === 'ultra_rare') && (
             <>
               <div className="absolute top-8 left-8 text-amber-300 text-sm animate-sparkle-1 pointer-events-none z-30 opacity-80">
                 ✦
@@ -492,8 +494,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                   decoding="async"
                 />
 
-                {/* In-Art Holo Texture Effect Layer */}
-                {(!simplified || isHovered) && effectiveHoloStyle !== 'none' && card.rarity !== 'common' && (
+                {/* In-Art Holo Texture Effect Layer (Only in full inspector mode) */}
+                {!simplified && effectiveHoloStyle !== 'none' && card.rarity !== 'common' && (
                   <div
                     className={`absolute inset-0 ${getHoloClass()} pointer-events-none`}
                     style={{
@@ -606,18 +608,20 @@ export const TcgCard: React.FC<TcgCardProps> = ({
           )}
         </div>
 
-        {/* CARD BACK */}
-        <div
-          className="card-face card-back absolute inset-0 rounded-[20px] overflow-hidden border-2 border-amber-500/80 bg-slate-950 shadow-2xl flex items-center justify-center"
-        >
-          <img
-            src={resolveImageUrl('/cards/Card_Trasera.png')}
-            alt="Reverso de Carta TCG"
-            className="w-full h-full object-cover rounded-[18px]"
-            loading="lazy"
-          />
-          <div className="card-glare z-30 pointer-events-none" />
-        </div>
+        {/* CARD BACK (Only rendered when not in simplified mode) */}
+        {!simplified && (
+          <div
+            className="card-face card-back absolute inset-0 rounded-[20px] overflow-hidden border-2 border-amber-500/80 bg-slate-950 shadow-2xl flex items-center justify-center"
+          >
+            <img
+              src={resolveImageUrl('/cards/Card_Trasera.png')}
+              alt="Reverso de Carta TCG"
+              className="w-full h-full object-cover rounded-[18px]"
+              loading="lazy"
+            />
+            <div className="card-glare z-30 pointer-events-none" />
+          </div>
+        )}
 
         {/* Quick Flip Button */}
         {showBackFlipBtn && (

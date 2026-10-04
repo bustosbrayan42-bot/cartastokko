@@ -20,7 +20,7 @@ interface AlbumCardSlotProps {
   onInspectCard?: (card: CardData) => void;
 }
 
-const AlbumCardSlot: React.FC<AlbumCardSlotProps> = ({
+const AlbumCardSlot: React.FC<AlbumCardSlotProps> = React.memo(({
   card,
   isCardLocked,
   cardScale,
@@ -28,9 +28,9 @@ const AlbumCardSlot: React.FC<AlbumCardSlotProps> = ({
 }) => {
   return (
     <div
-      className={`transform transition-transform duration-200 ${
+      className={`transform transition-transform duration-150 ${
         !isCardLocked
-          ? 'hover:scale-[1.07] hover:z-30 cursor-pointer'
+          ? 'hover:scale-[1.04] hover:z-30 cursor-pointer'
           : 'cursor-default select-none'
       } flex items-center justify-center w-full h-full`}
       onClick={() => {
@@ -48,13 +48,13 @@ const AlbumCardSlot: React.FC<AlbumCardSlotProps> = ({
         card={card}
         scale={cardScale}
         isLocked={isCardLocked}
-        interactive={!isCardLocked}
+        interactive={false}
         showBackFlipBtn={false}
         simplified={true}
       />
     </div>
   );
-};
+});
 
 interface CardBookProps {
   cards: CardData[];
