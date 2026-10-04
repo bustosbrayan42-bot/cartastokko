@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import type { CardData } from '../types/card';
 import { TcgCard } from './TcgCard';
 import { playPageTurnSound } from '../utils/soundEffects';
@@ -9,7 +9,8 @@ import {
   Sparkles,
   Layers,
   RefreshCw,
-  Lock
+  Lock,
+  Hash
 } from 'lucide-react';
 
 interface AlbumCardSlotProps {
@@ -136,6 +137,42 @@ export const CardBook: React.FC<CardBookProps> = ({
 
   const totalPages = Math.ceil(TOTAL_ALBUM_SLOTS / CARDS_PER_SPREAD); // 6 Spreads (12 Páginas)
   const [currentSpreadIndex, setCurrentSpreadIndex] = useState<number>(0);
+  const [sortBy, setSortBy] = useState<'number' | 'rarity'>('number');
+
+  // Sorted cards based on sort mode (both ascending: menor a mayor)
+  const sortedCards = useMemo(() => {
+    const list = [...cards];
+    if (sortBy === 'rarity') {
+      // Rarity order from lowest to highest:
+      // Común (1) -> Poco Común (2) -> Rara (3) -> Súper Rara (4) -> Ultra Rara (5) -> Rara Secreta (6)
+      const rarityRank: Record<string, number> = {
+        common: 1,
+        uncommon: 2,
+        rare: 3,
+        super_rare: 4,
+        ultra_rare: 5,
+        secret_rare: 6,
+      };
+
+      return list.sort((a, b) => {
+        const rankA = rarityRank[a.rarity] || 1;
+        const rankB = rarityRank[b.rarity] || 1;
+        if (rankA !== rankB) {
+          return rankA - rankB;
+        }
+        const numA = parseInt(a.cardNumber, 10) || 0;
+        const numB = parseInt(b.cardNumber, 10) || 0;
+        return numA - numB;
+      });
+    }
+
+    // Default: Sort by cardNumber ascending (#001 -> #140)
+    return list.sort((a, b) => {
+      const numA = parseInt(a.cardNumber, 10) || 0;
+      const numB = parseInt(b.cardNumber, 10) || 0;
+      return numA - numB;
+    });
+  }, [cards, sortBy]);
 
   // Responsive scale hook for ultra-efficient single-instance card rendering
   const [cardScale, setCardScale] = useState<number>(() => {
@@ -269,7 +306,7 @@ export const CardBook: React.FC<CardBookProps> = ({
           {[...Array(12)].map((_, slotIdx) => {
             const absoluteSlotNum = (pageNumber - 1) * CARDS_PER_PAGE + slotIdx + 1;
             const isWithin150 = absoluteSlotNum <= TOTAL_ALBUM_SLOTS;
-            const card = isWithin150 ? cards[absoluteSlotNum - 1] : undefined;
+            const card = isWithin150 ? sortedCards[absoluteSlotNum - 1] : undefined;
             const slotFormatted = String(absoluteSlotNum).padStart(3, '0');
 
             return (
@@ -407,8 +444,44 @@ export const CardBook: React.FC<CardBookProps> = ({
           </div>
         </div>
 
-        {/* Right Header Actions: Duplicates Button + Collection Progress */}
-        <div className="flex items-center gap-3">
+        {/* Right Header Actions: Sort Switch + Duplicates Button + Collection Progress */}
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
+          {/* Switch: Ordenar por Número vs Rareza */}
+          <div className="flex items-center bg-[#290A30]/90 border border-[#610F4E] p-0.5 sm:p-1 rounded-2xl shadow-sm">
+            <button
+              type="button"
+              onClick={() => {
+                setSortBy('number');
+                setCurrentSpreadIndex(0);
+              }}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
+                sortBy === 'number'
+                  ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white shadow-sm font-black'
+                  : 'text-[#B894B3] hover:text-[#F9F1F9]'
+              }`}
+              title="Ordenar de menor a mayor por Número de Carta (#001 → #140)"
+            >
+              <Hash className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              <span>Nº Carta</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setSortBy('rarity');
+                setCurrentSpreadIndex(0);
+              }}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
+                sortBy === 'rarity'
+                  ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white shadow-sm font-black'
+                  : 'text-[#B894B3] hover:text-[#F9F1F9]'
+              }`}
+              title="Ordenar de menor a mayor por Rareza (Común → Poco Común → Rara → Súper Rara → Ultra Rara → Secreta)"
+            >
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              <span>Rareza</span>
+            </button>
+          </div>
+
           {/* Button: Cartas repetidas x Sobre */}
           {isLoggedIn && onOpenDuplicateModal && (
             <button
