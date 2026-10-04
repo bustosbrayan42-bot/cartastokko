@@ -23,9 +23,9 @@ export const RARITY_CONFIGS: Record<Rarity, RarityConfig> = {
     glowColor: 'rgba(56, 189, 248, 0.4)',
     borderColor: '#0284c7',
     badgeBg: 'bg-sky-950/80 text-sky-300 border-sky-500',
-    holoStyle: 'silver',
+    holoStyle: 'wave',
     stars: 2,
-    description: 'Bordes metálicos plateados con brillo especular sutil en movimiento.'
+    description: 'Lámina holográfica Wave Refraction (65% foil, 28% glare).'
   },
   rare: {
     id: 'rare',
