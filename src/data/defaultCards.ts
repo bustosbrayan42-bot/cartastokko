@@ -64,7 +64,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Su lente especial es capaz de ver fluctuaciones cuánticas y memorias.",
-    "abilityName": "💻⚙️🔮 ️ Apertura espectral",
+    "abilityName": "💻⚙️🔮 ️ ️ Apertura espectral",
     "abilityCost": [
       "ingenio"
     ],
@@ -110,7 +110,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada rincón limpio libera una nueva dosis de energía.",
-    "abilityName": "💎🖌️✨ ️ Barrido energético",
+    "abilityName": "💎🖌️✨ ️ ️ Barrido energético",
     "abilityCost": [
       "arte"
     ],
@@ -156,7 +156,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un hogar ordenado también es una estrategia.",
-    "abilityName": "🛡️🔮✨ ️ Pulso reluciente",
+    "abilityName": "🛡️🔮✨ ️ ️ Pulso reluciente",
     "abilityCost": [
       "aura"
     ],
@@ -248,7 +248,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Rapidez, sonrisa y cero errores en la bandeja.",
-    "abilityName": "🛍️💖🌟 ️ Pedido relámpago",
+    "abilityName": "🛍️💖🌟 ️ ️ Pedido relámpago",
     "abilityCost": [
       "estilo"
     ],
@@ -294,7 +294,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "A veces el look correcto cambia toda la partida.",
-    "abilityName": "🏕️🌲⭐ ️ Cambio de imagen",
+    "abilityName": "🏕️🌲⭐ ️ ️ Cambio de imagen",
     "abilityCost": [
       "aventura"
     ],
@@ -303,7 +303,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-7",
-        "name": "🏔️🧗✨ ️ Cambio de imagen",
+        "name": "🏔️🧗✨ ️ ️ Cambio de imagen",
         "cost": [
           "aventura"
         ],
@@ -340,7 +340,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Escucha al motor antes de que el motor pida ayuda.",
-    "abilityName": "🌋🔥⚔️ ️ Ajuste perfecto",
+    "abilityName": "🌋🔥⚔️ ️ ️ Ajuste perfecto",
     "abilityCost": [
       "desafio"
     ],
@@ -386,7 +386,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un segundo de enfoque puede cambiar el futuro.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Mira cuántica",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Mira cuántica",
     "abilityCost": [
       "rutina"
     ],
@@ -432,7 +432,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Su luz llega justo cuando todo parecía perdido.",
-    "abilityName": "✨⚜️🪐 ️ Halo restaurador",
+    "abilityName": "✨⚜️🪐 ️ ️ Halo restaurador",
     "abilityCost": [
       "leyenda"
     ],
@@ -441,7 +441,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-10",
-        "name": "✨⚜️🪐 ️ Halo restaurador",
+        "name": "✨⚜️🪐 ️ ️ Halo restaurador",
         "cost": [
           "leyenda"
         ],
@@ -524,7 +524,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Toda gran jugada parece obvia después de verla.",
-    "abilityName": "💻⚙️🔮 ️ Riesgo calculado",
+    "abilityName": "💻⚙️🔮 ️ ️ Riesgo calculado",
     "abilityCost": [
       "ingenio"
     ],
@@ -570,7 +570,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Nunca deja huellas; solo dudas impecables.",
-    "abilityName": "💎🖌️✨ ️ Hurto silencioso",
+    "abilityName": "💎🖌️✨ ️ ️ Hurto silencioso",
     "abilityCost": [
       "arte"
     ],
@@ -616,7 +616,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La tranquilidad del barrio también necesita una guardiana.",
-    "abilityName": "🛡️🔮✨ ️ Orden público",
+    "abilityName": "🛡️🔮✨ ️ ️ Orden público",
     "abilityCost": [
       "aura"
     ],
@@ -708,7 +708,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada día tiene una escena que merece repetirse.",
-    "abilityName": "🛍️💖🌟 ️ Registro instantáneo",
+    "abilityName": "🛍️💖🌟 ️ ️ Registro instantáneo",
     "abilityCost": [
       "estilo"
     ],
@@ -754,7 +754,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La imagen ideal suele esconderse detrás de un pequeño ajuste.",
-    "abilityName": "🏕️🌲⭐ ️ Enfoque selectivo",
+    "abilityName": "🏕️🌲⭐ ️ ️ Enfoque selectivo",
     "abilityCost": [
       "aventura"
     ],
@@ -763,7 +763,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-17",
-        "name": "🏔️🧗✨ ️ Enfoque selectivo",
+        "name": "🏔️🧗✨ ️ ️ Enfoque selectivo",
         "cost": [
           "aventura"
         ],
@@ -800,7 +800,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cuando cada cable encuentra su lugar, las ideas fluyen.",
-    "abilityName": "🌋🔥⚔️ ️ Cableado limpio",
+    "abilityName": "🌋🔥⚔️ ️ ️ Cableado limpio",
     "abilityCost": [
       "desafio"
     ],
@@ -846,7 +846,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Nada se esconde detrás de un vidrio bien pulido.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Visión despejada",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Visión despejada",
     "abilityCost": [
       "rutina"
     ],
@@ -892,7 +892,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Pan, fruta y una buena ruta hacen un gran día.",
-    "abilityName": "✨⚜️🪐 ️ Canasta abundante",
+    "abilityName": "✨⚜️🪐 ️ ️ Canasta abundante",
     "abilityCost": [
       "leyenda"
     ],
@@ -901,7 +901,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-20",
-        "name": "✨⚜️🪐 ️ Canasta abundante",
+        "name": "✨⚜️🪐 ️ ️ Canasta abundante",
         "cost": [
           "leyenda"
         ],
@@ -984,7 +984,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Con la luz correcta, hasta lo simple se vuelve inolvidable.",
-    "abilityName": "💻⚙️🔮 ️ Enfoque comercial",
+    "abilityName": "💻⚙️🔮 ️ ️ Enfoque comercial",
     "abilityCost": [
       "ingenio"
     ],
@@ -1030,7 +1030,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una conversación genuina siempre encuentra audiencia.",
-    "abilityName": "💎🖌️✨ ️ Frecuencia abierta",
+    "abilityName": "💎🖌️✨ ️ ️ Frecuencia abierta",
     "abilityCost": [
       "arte"
     ],
@@ -1076,7 +1076,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Hasta la tarea más difícil mejora con música y determinación.",
-    "abilityName": "🛡️🔮✨ ️ Brillo profundo",
+    "abilityName": "🛡️🔮✨ ️ ️ Brillo profundo",
     "abilityCost": [
       "aura"
     ],
@@ -1168,7 +1168,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La precisión también puede venir acompañada de una sonrisa.",
-    "abilityName": "🛍️💖🌟 ️ Cambio exacto",
+    "abilityName": "🛍️💖🌟 ️ ️ Cambio exacto",
     "abilityCost": [
       "estilo"
     ],
@@ -1214,7 +1214,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El espejo no decide por ella, solo confirma su intuición.",
-    "abilityName": "🏕️🌲⭐ ️ Reflejo ideal",
+    "abilityName": "🏕️🌲⭐ ️ ️ Reflejo ideal",
     "abilityCost": [
       "aventura"
     ],
@@ -1223,7 +1223,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-27",
-        "name": "🏔️🧗✨ ️ Reflejo ideal",
+        "name": "🏔️🧗✨ ️ ️ Reflejo ideal",
         "cost": [
           "aventura"
         ],
@@ -1260,7 +1260,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un imprevisto no detiene a quien lleva las herramientas correctas.",
-    "abilityName": "🌋🔥⚔️ ️ Giro resistente",
+    "abilityName": "🌋🔥⚔️ ️ ️ Giro resistente",
     "abilityCost": [
       "desafio"
     ],
@@ -1306,7 +1306,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Si algo sale mal, quizá solo falte intentarlo un segundo antes.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Rebobinado breve",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Rebobinado breve",
     "abilityCost": [
       "rutina"
     ],
@@ -1352,7 +1352,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Bajo el sol intenso, cada paso se vuelve una declaración.",
-    "abilityName": "✨⚜️🪐 ️ Tormenta de arena",
+    "abilityName": "✨⚜️🪐 ️ ️ Tormenta de arena",
     "abilityCost": [
       "leyenda"
     ],
@@ -1361,7 +1361,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-30",
-        "name": "✨⚜️🪐 ️ Tormenta de arena",
+        "name": "✨⚜️🪐 ️ ️ Tormenta de arena",
         "cost": [
           "leyenda"
         ],
@@ -1444,7 +1444,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Escucha con calma; el mejor trato aparece entre líneas.",
-    "abilityName": "💻⚙️🔮 ️ Acuerdo favorable",
+    "abilityName": "💻⚙️🔮 ️ ️ Acuerdo favorable",
     "abilityCost": [
       "ingenio"
     ],
@@ -1490,7 +1490,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La ciudad duerme, pero sus pasos nunca pierden el compás.",
-    "abilityName": "💎🖌️✨ ️ Salto de sombra",
+    "abilityName": "💎🖌️✨ ️ ️ Salto de sombra",
     "abilityCost": [
       "arte"
     ],
@@ -1536,7 +1536,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un paseo atento puede prevenir más de lo que imaginas.",
-    "abilityName": "🛡️🔮✨ ️ Ronda segura",
+    "abilityName": "🛡️🔮✨ ️ ️ Ronda segura",
     "abilityCost": [
       "aura"
     ],
@@ -1628,7 +1628,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Antes de recomendar algo, siempre lo prueba desde todos los ángulos.",
-    "abilityName": "🛍️💖🌟 ️ Evaluación sincera",
+    "abilityName": "🛍️💖🌟 ️ ️ Evaluación sincera",
     "abilityCost": [
       "estilo"
     ],
@@ -1674,7 +1674,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Los detalles pequeños son los que hacen brillar el conjunto.",
-    "abilityName": "🏕️🌲⭐ ️ Pulido brillante",
+    "abilityName": "🏕️🌲⭐ ️ ️ Pulido brillante",
     "abilityCost": [
       "aventura"
     ],
@@ -1683,7 +1683,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-37",
-        "name": "🏔️🧗✨ ️ Pulido brillante",
+        "name": "🏔️🧗✨ ️ ️ Pulido brillante",
         "cost": [
           "aventura"
         ],
@@ -1720,7 +1720,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entró por una cosa y salió lista para toda la semana.",
-    "abilityName": "🌋🔥⚔️ ️ Carro completo",
+    "abilityName": "🌋🔥⚔️ ️ ️ Carro completo",
     "abilityCost": [
       "desafio"
     ],
@@ -1766,7 +1766,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Rapidez sin perder la amabilidad: esa es su especialidad.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Servicio express",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Servicio express",
     "abilityCost": [
       "rutina"
     ],
@@ -1812,7 +1812,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una luz bien dirigida revela hasta el problema más pequeño.",
-    "abilityName": "✨⚜️🪐 ️ Faro preciso",
+    "abilityName": "✨⚜️🪐 ️ ️ Faro preciso",
     "abilityCost": [
       "leyenda"
     ],
@@ -1821,7 +1821,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-40",
-        "name": "✨⚜️🪐 ️ Faro preciso",
+        "name": "✨⚜️🪐 ️ ️ Faro preciso",
         "cost": [
           "leyenda"
         ],
@@ -1904,7 +1904,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La distancia no importa cuando la concentración es absoluta.",
-    "abilityName": "💻⚙️🔮 ️ Punto exacto",
+    "abilityName": "💻⚙️🔮 ️ ️ Punto exacto",
     "abilityCost": [
       "ingenio"
     ],
@@ -1950,7 +1950,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Todo problema parece menos complejo después de explicarlo bien.",
-    "abilityName": "💎🖌️✨ ️ Código claro",
+    "abilityName": "💎🖌️✨ ️ ️ Código claro",
     "abilityCost": [
       "arte"
     ],
@@ -1996,7 +1996,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada puerta es el comienzo de una nueva posibilidad.",
-    "abilityName": "🛡️🔮✨ ️ Llave maestra",
+    "abilityName": "🛡️🔮✨ ️ ️ Llave maestra",
     "abilityCost": [
       "aura"
     ],
@@ -2088,7 +2088,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un gesto preciso basta para poner el caos en orden.",
-    "abilityName": "🛍️💖🌟 ️ Señal de paso",
+    "abilityName": "🛍️💖🌟 ️ ️ Señal de paso",
     "abilityCost": [
       "estilo"
     ],
@@ -2134,7 +2134,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Sabe distinguir una gran idea incluso entre toda la estática.",
-    "abilityName": "🏕️🌲⭐ ️ Onda limpia",
+    "abilityName": "🏕️🌲⭐ ️ ️ Onda limpia",
     "abilityCost": [
       "aventura"
     ],
@@ -2143,7 +2143,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-47",
-        "name": "🏔️🧗✨ ️ Onda limpia",
+        "name": "🏔️🧗✨ ️ ️ Onda limpia",
         "cost": [
           "aventura"
         ],
@@ -2180,7 +2180,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La toma perfecta comienza mucho antes de presionar el botón.",
-    "abilityName": "🌋🔥⚔️ ️ Luz preparada",
+    "abilityName": "🌋🔥⚔️ ️ ️ Luz preparada",
     "abilityCost": [
       "desafio"
     ],
@@ -2226,7 +2226,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre burbujas y platos, también se construyen defensas.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Espuma protectora",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Espuma protectora",
     "abilityCost": [
       "rutina"
     ],
@@ -2272,7 +2272,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Tener lo necesario a mano es una forma de estar preparada.",
-    "abilityName": "✨⚜️🪐 ️ Reserva brillante",
+    "abilityName": "✨⚜️🪐 ️ ️ Reserva brillante",
     "abilityCost": [
       "leyenda"
     ],
@@ -2281,7 +2281,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-50",
-        "name": "✨⚜️🪐 ️ Reserva brillante",
+        "name": "✨⚜️🪐 ️ ️ Reserva brillante",
         "cost": [
           "leyenda"
         ],
@@ -2364,7 +2364,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Antes de desmontar nada, escucha lo que la máquina quiere decir.",
-    "abilityName": "💻⚙️🔮 ️ Lectura mecánica",
+    "abilityName": "💻⚙️🔮 ️ ️ Lectura mecánica",
     "abilityCost": [
       "ingenio"
     ],
@@ -2410,7 +2410,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Su defensa no apaga la luz: la convierte en un muro.",
-    "abilityName": "💎🖌️✨ ️ Escudo prismático",
+    "abilityName": "💎🖌️✨ ️ ️ Escudo prismático",
     "abilityCost": [
       "arte"
     ],
@@ -2456,7 +2456,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La magia no se crea ni se pierde; solo cambia de color.",
-    "abilityName": "🛡️🔮✨ ️ Prisma arcano",
+    "abilityName": "🛡️🔮✨ ️ ️ Prisma arcano",
     "abilityCost": [
       "aura"
     ],
@@ -2548,7 +2548,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Lee las tendencias como si fueran luces moviéndose en la ciudad.",
-    "abilityName": "🛍️💖🌟 ️ Mercado ascendente",
+    "abilityName": "🛍️💖🌟 ️ ️ Mercado ascendente",
     "abilityCost": [
       "estilo"
     ],
@@ -2594,7 +2594,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La gema no era el plan; solo era imposible de ignorar.",
-    "abilityName": "🏕️🌲⭐ ️ Brillo robado",
+    "abilityName": "🏕️🌲⭐ ️ ️ Brillo robado",
     "abilityCost": [
       "aventura"
     ],
@@ -2603,7 +2603,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-57",
-        "name": "🏔️🧗✨ ️ Brillo robado",
+        "name": "🏔️🧗✨ ️ ️ Brillo robado",
         "cost": [
           "aventura"
         ],
@@ -2640,7 +2640,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "En cada carpeta hay una pista esperando ser encontrada.",
-    "abilityName": "🌋🔥⚔️ ️ Informe completo",
+    "abilityName": "🌋🔥⚔️ ️ ️ Informe completo",
     "abilityCost": [
       "desafio"
     ],
@@ -2686,7 +2686,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El secreto no es hacerlo rápido; es mostrar cómo hacerlo bien.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Explicación clara",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Explicación clara",
     "abilityCost": [
       "rutina"
     ],
@@ -2732,7 +2732,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre cientos de imágenes, siempre encuentra la que cuenta la historia.",
-    "abilityName": "✨⚜️🪐 ️ Galería selecta",
+    "abilityName": "✨⚜️🪐 ️ ️ Galería selecta",
     "abilityCost": [
       "leyenda"
     ],
@@ -2741,7 +2741,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-60",
-        "name": "✨⚜️🪐 ️ Galería selecta",
+        "name": "✨⚜️🪐 ️ ️ Galería selecta",
         "cost": [
           "leyenda"
         ],
@@ -2824,7 +2824,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Dos chaquetas, un espejo y una decisión con mucho estilo.",
-    "abilityName": "💻⚙️🔮 ️ Doble elección",
+    "abilityName": "💻⚙️🔮 ️ ️ Doble elección",
     "abilityCost": [
       "ingenio"
     ],
@@ -2870,7 +2870,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un buen servicio hace que todo vuelva a estar listo.",
-    "abilityName": "💎🖌️✨ ️ Mesa atendida",
+    "abilityName": "💎🖌️✨ ️ ️ Mesa atendida",
     "abilityCost": [
       "arte"
     ],
@@ -2916,7 +2916,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Con la cadena ajustada, ningún camino parece demasiado largo.",
-    "abilityName": "🛡️🔮✨ ️ Pedaleo continuo",
+    "abilityName": "🛡️🔮✨ ️ ️ Pedaleo continuo",
     "abilityCost": [
       "aura"
     ],
@@ -3008,7 +3008,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Un mapa en blanco no es un problema: es una invitación.",
-    "abilityName": "🛍️💖🌟 ️ Mapa sin límites",
+    "abilityName": "🛍️💖🌟 ️ ️ Mapa sin límites",
     "abilityCost": [
       "estilo"
     ],
@@ -3054,7 +3054,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada nota encuentra su lugar cuando alguien marca el compás.",
-    "abilityName": "🏕️🌲⭐ ️ Armonía creciente",
+    "abilityName": "🏕️🌲⭐ ️ ️ Armonía creciente",
     "abilityCost": [
       "aventura"
     ],
@@ -3063,7 +3063,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-67",
-        "name": "🏔️🧗✨ ️ Armonía creciente",
+        "name": "🏔️🧗✨ ️ ️ Armonía creciente",
         "cost": [
           "aventura"
         ],
@@ -3100,7 +3100,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Los números cambian; la mirada estratégica permanece.",
-    "abilityName": "🌋🔥⚔️ ️ Proyección futura",
+    "abilityName": "🌋🔥⚔️ ️ ️ Proyección futura",
     "abilityCost": [
       "desafio"
     ],
@@ -3146,7 +3146,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "En una gala, la mejor identidad es la que nadie cuestiona.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Máscara brillante",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Máscara brillante",
     "abilityCost": [
       "rutina"
     ],
@@ -3192,7 +3192,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una comunidad unida siempre es más fuerte que cualquier problema.",
-    "abilityName": "✨⚜️🪐 ️ Red de apoyo",
+    "abilityName": "✨⚜️🪐 ️ ️ Red de apoyo",
     "abilityCost": [
       "leyenda"
     ],
@@ -3201,7 +3201,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-70",
-        "name": "✨⚜️🪐 ️ Red de apoyo",
+        "name": "✨⚜️🪐 ️ ️ Red de apoyo",
         "cost": [
           "leyenda"
         ],
@@ -3284,7 +3284,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cuando se eleva, la canasta parece mucho más cerca.",
-    "abilityName": "💻⚙️🔮 ️ Lanzamiento aéreo",
+    "abilityName": "💻⚙️🔮 ️ ️ Lanzamiento aéreo",
     "abilityCost": [
       "ingenio"
     ],
@@ -3330,7 +3330,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La pelota cruza la red antes de que el público pueda reaccionar.",
-    "abilityName": "💎🖌️✨ ️ Remate brillante",
+    "abilityName": "💎🖌️✨ ️ ️ Remate brillante",
     "abilityCost": [
       "arte"
     ],
@@ -3376,7 +3376,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada paso la acerca a la meta y la aleja de cualquier duda.",
-    "abilityName": "🛡️🔮✨ ️ Carrera continua",
+    "abilityName": "🛡️🔮✨ ️ ️ Carrera continua",
     "abilityCost": [
       "aura"
     ],
@@ -3468,7 +3468,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada brazada corta el agua como un destello de cian.",
-    "abilityName": "🛍️💖🌟 ️ Carrera de agua",
+    "abilityName": "🛍️💖🌟 ️ ️ Carrera de agua",
     "abilityCost": [
       "estilo"
     ],
@@ -3514,7 +3514,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El suelo se mueve, pero ella siempre encuentra su centro.",
-    "abilityName": "🏕️🌲⭐ ️ Maniobra perfecta",
+    "abilityName": "🏕️🌲⭐ ️ ️ Maniobra perfecta",
     "abilityCost": [
       "aventura"
     ],
@@ -3523,7 +3523,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-77",
-        "name": "🏔️🧗✨ ️ Maniobra perfecta",
+        "name": "🏔️🧗✨ ️ ️ Maniobra perfecta",
         "cost": [
           "aventura"
         ],
@@ -3560,7 +3560,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Solo necesita una ola, una tabla y el momento exacto.",
-    "abilityName": "🌋🔥⚔️ ️ Cresta luminosa",
+    "abilityName": "🌋🔥⚔️ ️ ️ Cresta luminosa",
     "abilityCost": [
       "desafio"
     ],
@@ -3606,7 +3606,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada roca es un desafío; cada agarre, una nueva victoria.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Punto de apoyo",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Punto de apoyo",
     "abilityCost": [
       "rutina"
     ],
@@ -3652,7 +3652,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La nieve se levanta detrás de ella como una estela de luz.",
-    "abilityName": "✨⚜️🪐 ️ Descenso helado",
+    "abilityName": "✨⚜️🪐 ️ ️ Descenso helado",
     "abilityCost": [
       "leyenda"
     ],
@@ -3661,7 +3661,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-80",
-        "name": "✨⚜️🪐 ️ Descenso helado",
+        "name": "✨⚜️🪐 ️ ️ Descenso helado",
         "cost": [
           "leyenda"
         ],
@@ -3744,7 +3744,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entrena para dominar su fuerza, no para perder el control.",
-    "abilityName": "💻⚙️🔮 ️ Golpe controlado",
+    "abilityName": "💻⚙️🔮 ️ ️ Golpe controlado",
     "abilityCost": [
       "ingenio"
     ],
@@ -3790,7 +3790,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada movimiento parece imposible hasta que ella lo convierte en arte.",
-    "abilityName": "💎🖌️✨ ️ Rutina perfecta",
+    "abilityName": "💎🖌️✨ ️ ️ Rutina perfecta",
     "abilityCost": [
       "arte"
     ],
@@ -3836,7 +3836,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La plaza entera sigue su ritmo cuando comienza la música.",
-    "abilityName": "🛡️🔮✨ ️ Ritmo cinético",
+    "abilityName": "🛡️🔮✨ ️ ️ Ritmo cinético",
     "abilityCost": [
       "aura"
     ],
@@ -3928,7 +3928,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El hielo refleja cada giro como si estuviera hecho de estrellas.",
-    "abilityName": "🛍️💖🌟 ️ Giro cristalino",
+    "abilityName": "🛍️💖🌟 ️ ️ Giro cristalino",
     "abilityCost": [
       "estilo"
     ],
@@ -3974,7 +3974,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El agua se abre a su paso y las montañas observan en silencio.",
-    "abilityName": "🏕️🌲⭐ ️ Palada poderosa",
+    "abilityName": "🏕️🌲⭐ ️ ️ Palada poderosa",
     "abilityCost": [
       "aventura"
     ],
@@ -3983,7 +3983,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-87",
-        "name": "🏔️🧗✨ ️ Palada poderosa",
+        "name": "🏔️🧗✨ ️ ️ Palada poderosa",
         "cost": [
           "aventura"
         ],
@@ -4020,7 +4020,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La cuerda vibra una sola vez; el objetivo ya está decidido.",
-    "abilityName": "🌋🔥⚔️ ️ Trayectoria limpia",
+    "abilityName": "🌋🔥⚔️ ️ ️ Trayectoria limpia",
     "abilityCost": [
       "desafio"
     ],
@@ -4066,7 +4066,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Corre con la ligereza de quien conoce cada curva del sendero.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Ritmo del bosque",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Ritmo del bosque",
     "abilityCost": [
       "rutina"
     ],
@@ -4112,7 +4112,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre luces y edificios, siempre encuentra un camino despejado.",
-    "abilityName": "✨⚜️🪐 ️ Pedaleo veloz",
+    "abilityName": "✨⚜️🪐 ️ ️ Pedaleo veloz",
     "abilityCost": [
       "leyenda"
     ],
@@ -4121,7 +4121,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-90",
-        "name": "✨⚜️🪐 ️ Pedaleo veloz",
+        "name": "✨⚜️🪐 ️ ️ Pedaleo veloz",
         "cost": [
           "leyenda"
         ],
@@ -4204,7 +4204,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada vuelo comienza con una decisión firme y un cielo abierto.",
-    "abilityName": "💻⚙️🔮 ️ Despegue seguro",
+    "abilityName": "💻⚙️🔮 ️ ️ Despegue seguro",
     "abilityCost": [
       "ingenio"
     ],
@@ -4250,7 +4250,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El universo es enorme, pero su curiosidad lo es todavía más.",
-    "abilityName": "💎🖌️✨ ️ Salto orbital",
+    "abilityName": "💎🖌️✨ ️ ️ Salto orbital",
     "abilityCost": [
       "arte"
     ],
@@ -4296,7 +4296,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Antes de levantar muros, imagina todo lo que puede suceder dentro.",
-    "abilityName": "🛡️🔮✨ ️ Diseño estructural",
+    "abilityName": "🛡️🔮✨ ️ ️ Diseño estructural",
     "abilityCost": [
       "aura"
     ],
@@ -4388,7 +4388,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una mirada tranquila puede devolverle la calma a cualquier criatura.",
-    "abilityName": "🛍️💖🌟 ️ Cuidado experto",
+    "abilityName": "🛍️💖🌟 ️ ️ Cuidado experto",
     "abilityCost": [
       "estilo"
     ],
@@ -4434,7 +4434,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Espera el momento exacto para guardar la belleza del paisaje.",
-    "abilityName": "🏕️🌲⭐ ️ Captura lejana",
+    "abilityName": "🏕️🌲⭐ ️ ️ Captura lejana",
     "abilityCost": [
       "aventura"
     ],
@@ -4443,7 +4443,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-97",
-        "name": "🏔️🧗✨ ️ Captura lejana",
+        "name": "🏔️🧗✨ ️ ️ Captura lejana",
         "cost": [
           "aventura"
         ],
@@ -4480,7 +4480,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre flores y senderos, cada semilla guarda una pequeña promesa.",
-    "abilityName": "🌋🔥⚔️ ️ Brote brillante",
+    "abilityName": "🌋🔥⚔️ ️ ️ Brote brillante",
     "abilityCost": [
       "desafio"
     ],
@@ -4526,7 +4526,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Desde arriba, hasta la ruta más difícil parece posible.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Vuelo panorámico",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Vuelo panorámico",
     "abilityCost": [
       "rutina"
     ],
@@ -4572,7 +4572,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La paciencia, el calor y un poco de magia hacen el resto.",
-    "abilityName": "✨⚜️🪐 ️ Dulce creación",
+    "abilityName": "✨⚜️🪐 ️ ️ Dulce creación",
     "abilityCost": [
       "leyenda"
     ],
@@ -4581,7 +4581,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-100",
-        "name": "✨⚜️🪐 ️ Dulce creación",
+        "name": "✨⚜️🪐 ️ ️ Dulce creación",
         "cost": [
           "leyenda"
         ],
@@ -4664,7 +4664,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Hace las preguntas correctas antes de encender el micrófono.",
-    "abilityName": "💻⚙️🔮 ️ Fuente directa",
+    "abilityName": "💻⚙️🔮 ️ ️ Fuente directa",
     "abilityCost": [
       "ingenio"
     ],
@@ -4710,7 +4710,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una línea bien trazada puede convertir una idea en tendencia.",
-    "abilityName": "💎🖌️✨ ️ Corte creativo",
+    "abilityName": "💎🖌️✨ ️ ️ Corte creativo",
     "abilityCost": [
       "arte"
     ],
@@ -4756,7 +4756,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada pieza encuentra su lugar cuando las manos conocen el oficio.",
-    "abilityName": "🛡️🔮✨ ️ Ensamble preciso",
+    "abilityName": "🛡️🔮✨ ️ ️ Ensamble preciso",
     "abilityCost": [
       "aura"
     ],
@@ -4848,7 +4848,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Conoce la montaña lo suficiente para respetarla y atravesarla.",
-    "abilityName": "🛍️💖🌟 ️ Paso experto",
+    "abilityName": "🛍️💖🌟 ️ ️ Paso experto",
     "abilityCost": [
       "estilo"
     ],
@@ -4894,7 +4894,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Bajo la superficie, los colores cuentan historias que nadie más escucha.",
-    "abilityName": "🏕️🌲⭐ ️ Inmersión profunda",
+    "abilityName": "🏕️🌲⭐ ️ ️ Inmersión profunda",
     "abilityCost": [
       "aventura"
     ],
@@ -4903,7 +4903,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-107",
-        "name": "🏔️🧗✨ ️ Inmersión profunda",
+        "name": "🏔️🧗✨ ️ ️ Inmersión profunda",
         "cost": [
           "aventura"
         ],
@@ -4940,7 +4940,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Una tienda, una linterna y el bosque convertido en hogar.",
-    "abilityName": "🌋🔥⚔️ ️ Refugio nocturno",
+    "abilityName": "🌋🔥⚔️ ️ ️ Refugio nocturno",
     "abilityCost": [
       "desafio"
     ],
@@ -4986,7 +4986,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El cansancio pesa menos cuando el paisaje recompensa cada paso.",
-    "abilityName": "🧘‍♀️🌿✨ ‍️ Sendero firme",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ ‍️ Sendero firme",
     "abilityCost": [
       "rutina"
     ],
@@ -5032,7 +5032,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La corriente no pregunta hacia dónde ir; ella sí sabe responder.",
-    "abilityName": "✨⚜️🪐 ️ Corriente veloz",
+    "abilityName": "✨⚜️🪐 ️ ️ Corriente veloz",
     "abilityCost": [
       "leyenda"
     ],
@@ -5041,7 +5041,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-110",
-        "name": "✨⚜️🪐 ️ Corriente veloz",
+        "name": "✨⚜️🪐 ️ ️ Corriente veloz",
         "cost": [
           "leyenda"
         ],
@@ -5124,7 +5124,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El ruido del agua convierte cualquier pausa en un momento especial.",
-    "abilityName": "💻⚙️🔮 ️ Descanso brillante",
+    "abilityName": "💻⚙️🔮 ️ ️ Descanso brillante",
     "abilityCost": [
       "ingenio"
     ],
@@ -5170,7 +5170,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Desde la canasta, cada paisaje parece una postal viviente.",
-    "abilityName": "💎🖌️✨ ️ Ascenso aéreo",
+    "abilityName": "💎🖌️✨ ️ ️ Ascenso aéreo",
     "abilityCost": [
       "arte"
     ],
@@ -5216,7 +5216,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Las mejores historias aparecen cuando el fuego ilumina los rostros.",
-    "abilityName": "🛡️🔮✨ ️ Calor compartido",
+    "abilityName": "🛡️🔮✨ ️ ️ Calor compartido",
     "abilityCost": [
       "aura"
     ],
@@ -5308,7 +5308,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Hay lugares tan grandes que obligan a mirar hacia arriba.",
-    "abilityName": "🛍️💖🌟 ️ Mirada monumental",
+    "abilityName": "🛍️💖🌟 ️ ️ Mirada monumental",
     "abilityCost": [
       "estilo"
     ],
@@ -5354,7 +5354,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cuando el reloj marca la hora, ella ya está lista para avanzar.",
-    "abilityName": "🏕️🌲⭐ ️ Tiempo exacto",
+    "abilityName": "🏕️🌲⭐ ️ ️ Tiempo exacto",
     "abilityCost": [
       "aventura"
     ],
@@ -5363,7 +5363,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-117",
-        "name": "🏔️🧗✨ ️ Tiempo exacto",
+        "name": "🏔️🧗✨ ️ ️ Tiempo exacto",
         "cost": [
           "aventura"
         ],
@@ -5400,7 +5400,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada piedra conserva una historia que merece ser descubierta.",
-    "abilityName": "🌋🔥⚔️ ️ Legado antiguo",
+    "abilityName": "🌋🔥⚔️ ️ ️ Legado antiguo",
     "abilityCost": [
       "desafio"
     ],
@@ -5446,7 +5446,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La imaginación convierte la piedra en una obra que parece viva.",
-    "abilityName": "🧘‍♀️🌿✨ Visión arquitectónica",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Visión arquitectónica",
     "abilityCost": [
       "rutina"
     ],
@@ -5492,7 +5492,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El mar, la luz y la ciudad se encuentran en un solo recuerdo.",
-    "abilityName": "✨⚜️🪐 Brisa costera",
+    "abilityName": "✨⚜️🪐 ️ Brisa costera",
     "abilityCost": [
       "leyenda"
     ],
@@ -5501,7 +5501,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-120",
-        "name": "✨⚜️🪐 Brisa costera",
+        "name": "✨⚜️🪐 ️ Brisa costera",
         "cost": [
           "leyenda"
         ],
@@ -5584,7 +5584,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Cada huella en la arena puede conducir a una historia milenaria.",
-    "abilityName": "💻⚙️🔮 Rastro antiguo",
+    "abilityName": "💻⚙️🔮 ️ Rastro antiguo",
     "abilityCost": [
       "ingenio"
     ],
@@ -5630,7 +5630,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La ciudad y la montaña parecen abrazarse bajo el mismo cielo.",
-    "abilityName": "💎🖌️✨ Mirador verde",
+    "abilityName": "💎🖌️✨ ️ Mirador verde",
     "abilityCost": [
       "arte"
     ],
@@ -5676,7 +5676,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Entre flores y agua quieta, hasta el viento aprende a susurrar.",
-    "abilityName": "🛡️🔮✨ Silencio rosado",
+    "abilityName": "🛡️🔮✨ ️ Silencio rosado",
     "abilityCost": [
       "aura"
     ],
@@ -5768,7 +5768,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "A veces la mejor fotografía requiere sostener el mundo con una mano.",
-    "abilityName": "🛍️💖🌟 Equilibrio turístico",
+    "abilityName": "🛍️💖🌟 ️ Equilibrio turístico",
     "abilityCost": [
       "estilo"
     ],
@@ -5814,7 +5814,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La niebla se aparta lentamente para mostrar un lugar fuera del tiempo.",
-    "abilityName": "🏕️🌲⭐ Ruta ancestral",
+    "abilityName": "🏕️🌲⭐ ️ Ruta ancestral",
     "abilityCost": [
       "aventura"
     ],
@@ -5823,7 +5823,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-127",
-        "name": "🏔️🧗✨ Ruta ancestral",
+        "name": "🏔️🧗✨ ️ Ruta ancestral",
         "cost": [
           "aventura"
         ],
@@ -5860,7 +5860,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El puente une orillas, historias y nuevas posibilidades.",
-    "abilityName": "🌋🔥⚔️ Cruce brillante",
+    "abilityName": "🌋🔥⚔️ ️ Cruce brillante",
     "abilityCost": [
       "desafio"
     ],
@@ -5906,7 +5906,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Desde abajo parece imposible; desde cerca, solo parece enorme.",
-    "abilityName": "🧘‍♀️🌿✨ Mirada vertical",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Mirada vertical",
     "abilityCost": [
       "rutina"
     ],
@@ -5952,7 +5952,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El agua cae con tanta fuerza que parece partir el cielo en colores.",
-    "abilityName": "✨⚜️🪐 Salto natural",
+    "abilityName": "✨⚜️🪐 ️ Salto natural",
     "abilityCost": [
       "leyenda"
     ],
@@ -5961,7 +5961,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-130",
-        "name": "✨⚜️🪐 Salto natural",
+        "name": "✨⚜️🪐 ️ Salto natural",
         "cost": [
           "leyenda"
         ],
@@ -5991,9 +5991,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "ultra_rare",
+    "rarity": "secret_rare",
     "element": "impulso",
-    "hp": 160,
+    "hp": 220,
     "cardNumber": "131",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -6002,7 +6002,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "abilityCost": [
       "impulso"
     ],
-    "abilityDamage": "160",
+    "abilityDamage": "200",
     "abilityDesc": "Ilumina el campo de juego y roba dos cartas de tu mazo.",
     "attacks": [
       {
@@ -6011,7 +6011,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "impulso"
         ],
-        "damage": "110",
+        "damage": "140",
         "description": "Ilumina el campo de juego y roba dos cartas de tu mazo."
       }
     ],
@@ -6037,18 +6037,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "ultra_rare",
+    "rarity": "secret_rare",
     "element": "ingenio",
-    "hp": 165,
+    "hp": 200,
     "cardNumber": "132",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "En medio de la arena ardiente, el agua es el mayor tesoro.",
-    "abilityName": "💻⚙️🔮 Manantial puro",
+    "abilityName": "💻⚙️🔮 ️ Manantial puro",
     "abilityCost": [
       "ingenio"
     ],
-    "abilityDamage": "130",
+    "abilityDamage": "160",
     "abilityDesc": "Restaura la energía de todas tus cartas aliadas en juego.",
     "attacks": [
       {
@@ -6057,7 +6057,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "140",
+        "damage": "170",
         "description": "Restaura la energía de todas tus cartas aliadas en juego."
       }
     ],
@@ -6083,18 +6083,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "ultra_rare",
+    "rarity": "secret_rare",
     "element": "arte",
-    "hp": 170,
+    "hp": 180,
     "cardNumber": "133",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El aire es delgado, pero la vista desde la cima no tiene precio.",
-    "abilityName": "💎🖌️✨ Conquista cumbre",
+    "abilityName": "💎🖌️✨ ️ Conquista cumbre",
     "abilityCost": [
       "arte"
     ],
-    "abilityDamage": "110+",
+    "abilityDamage": "150+",
     "abilityDesc": "Otorga inmunidad temporal a tu carta activa contra efectos rivales.",
     "attacks": [
       {
@@ -6103,7 +6103,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "110+",
+        "damage": "150+",
         "description": "Otorga inmunidad temporal a tu carta activa contra efectos rivales."
       }
     ],
@@ -6129,18 +6129,18 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "ultra_rare",
+    "rarity": "secret_rare",
     "element": "aura",
-    "hp": 175,
+    "hp": 220,
     "cardNumber": "134",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Plantas que no crecen en ningún otro lugar florecen bajo su cuidado.",
-    "abilityName": "🛡️🔮✨ Flora ancestral",
+    "abilityName": "🛡️🔮✨ ️ Flora ancestral",
     "abilityCost": [
       "aura"
     ],
-    "abilityDamage": "140",
+    "abilityDamage": "170",
     "abilityDesc": "Busca en tu mazo una carta de recurso y colócala en tu mano.",
     "attacks": [
       {
@@ -6149,7 +6149,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "130",
+        "damage": "160",
         "description": "Busca en tu mazo una carta de recurso y colócala en tu mano."
       }
     ],
@@ -6228,7 +6228,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "La oscuridad de la cueva se desvanece ante el brillo del mineral.",
-    "abilityName": "🛍️💖🌟 Resonancia cuarzo",
+    "abilityName": "🛍️💖🌟 ️ Resonancia cuarzo",
     "abilityCost": [
       "estilo"
     ],
@@ -6274,7 +6274,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Lugares que solo los pájaros y los soñadores han visto.",
-    "abilityName": "🏕️🌲⭐ Viento ascendente",
+    "abilityName": "🏕️🌲⭐ ️ Viento ascendente",
     "abilityCost": [
       "aventura"
     ],
@@ -6283,7 +6283,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-137",
-        "name": "🏔️🧗✨ Viento ascendente",
+        "name": "🏔️🧗✨ ️ Viento ascendente",
         "cost": [
           "aventura"
         ],
@@ -6320,7 +6320,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Secretos grabados en piedra que han esperado siglos para ser leídos.",
-    "abilityName": "🌋🔥⚔️ Glifo sagrado",
+    "abilityName": "🌋🔥⚔️ ️ Glifo sagrado",
     "abilityCost": [
       "desafio"
     ],
@@ -6366,7 +6366,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "Las estrellas no solo brillan, también trazan el mapa de su victoria.",
-    "abilityName": "🧘‍♀️🌿✨ Alineación cósmica",
+    "abilityName": "🧘‍♀️🌿✨ ‍️ Alineación cósmica",
     "abilityCost": [
       "rutina"
     ],
@@ -6412,7 +6412,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "totalInSet": "140",
     "artist": "Tokkii Studio",
     "flavorText": "El primer gran paso de un viaje que recién comienza.",
-    "abilityName": "✨⚜️🪐 Chispa infinita",
+    "abilityName": "✨⚜️🪐 ️ Chispa infinita",
     "abilityCost": [
       "leyenda"
     ],
@@ -6421,7 +6421,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "attacks": [
       {
         "id": "atk-140",
-        "name": "✨⚜️🪐 Chispa infinita",
+        "name": "✨⚜️🪐 ️ Chispa infinita",
         "cost": [
           "leyenda"
         ],
