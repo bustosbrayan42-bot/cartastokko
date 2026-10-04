@@ -244,7 +244,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "estilo",
     "hp": 125,
     "cardNumber": "006",
@@ -278,7 +278,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "arte",
-    "resistance": "talento"
+    "resistance": "talento",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-007",
@@ -336,7 +339,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "desafio",
     "hp": 115,
     "cardNumber": "008",
@@ -370,7 +373,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "aura",
-    "resistance": "rutina"
+    "resistance": "rutina",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-009",
@@ -753,7 +759,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aventura",
     "hp": 115,
     "cardNumber": "017",
@@ -787,7 +793,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "ingenio"
+    "resistance": "ingenio",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-018",
@@ -891,7 +900,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
     "hp": 100,
     "cardNumber": "020",
@@ -925,7 +934,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-021",
@@ -1308,7 +1320,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "rutina",
     "hp": 110,
     "cardNumber": "029",
@@ -1342,7 +1354,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "aventura",
-    "resistance": "aura"
+    "resistance": "aura",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-030",
@@ -1728,7 +1743,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "desafio",
     "hp": 80,
     "cardNumber": "038",
@@ -1762,7 +1777,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "aura",
-    "resistance": "rutina"
+    "resistance": "rutina",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-039",
@@ -2103,7 +2121,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "estilo",
     "hp": 125,
     "cardNumber": "046",
@@ -2137,7 +2155,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "aura",
-    "resistance": "talento"
+    "resistance": "talento",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-047",
@@ -2382,7 +2403,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "ingenio",
     "hp": 110,
     "cardNumber": "052",
@@ -2416,7 +2437,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-053",
@@ -2899,7 +2923,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "arte",
     "hp": 140,
     "cardNumber": "063",
@@ -2933,7 +2957,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "impulso",
-    "resistance": "ingenio"
+    "resistance": "ingenio",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-064",
@@ -3227,7 +3254,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
     "hp": 80,
     "cardNumber": "070",
@@ -3261,7 +3288,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "talento",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-071",
@@ -3553,7 +3583,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aventura",
     "hp": 110,
     "cardNumber": "077",
@@ -3587,7 +3617,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "ingenio"
+    "resistance": "ingenio",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-078",
@@ -4023,7 +4056,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aventura",
     "hp": 105,
     "cardNumber": "087",
@@ -4057,7 +4090,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "rutina",
-    "resistance": "ingenio"
+    "resistance": "ingenio",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-088",
@@ -4161,7 +4197,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
     "hp": 120,
     "cardNumber": "090",
@@ -4195,7 +4231,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "aura",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-091",
@@ -4674,7 +4713,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "impulso",
     "hp": 170,
     "cardNumber": "101",
@@ -4708,7 +4747,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "ingenio",
-    "resistance": "arte"
+    "resistance": "arte",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-102",
@@ -4766,7 +4808,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "arte",
     "hp": 135,
     "cardNumber": "103",
@@ -4800,7 +4842,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "rutina",
-    "resistance": "ingenio"
+    "resistance": "ingenio",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-104",
@@ -5183,7 +5228,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "ingenio",
     "hp": 135,
     "cardNumber": "112",
@@ -5217,7 +5262,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-113",
@@ -5558,7 +5606,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
     "hp": 150,
     "cardNumber": "120",
@@ -5592,7 +5640,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "aura",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-121",
@@ -5742,7 +5793,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aura",
     "hp": 170,
     "cardNumber": "124",
@@ -5776,7 +5827,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "arte"
+    "resistance": "arte",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-125",
@@ -6018,7 +6072,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "leyenda",
     "hp": 155,
     "cardNumber": "130",
@@ -6052,7 +6106,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "talento",
-    "resistance": "estilo"
+    "resistance": "estilo",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-131",
@@ -6340,7 +6397,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "super_rare",
     "element": "aventura",
     "hp": 220,
     "cardNumber": "137",
@@ -6374,7 +6431,10 @@ export const DEFAULT_CARDS: CardData[] = [
       "Común"
     ],
     "weakness": "desafio",
-    "resistance": "ingenio"
+    "resistance": "ingenio",
+    "customHoloStyle": "gold_stars",
+    "customFoilOpacity": 0.8,
+    "customMaskOpacity": 0.28
   },
   {
     "id": "tokkii-138",
