@@ -1897,9 +1897,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "ingenio",
-    "hp": 80,
+    "hp": 180,
     "cardNumber": "042",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -1917,7 +1917,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "40x",
+        "damage": "150+",
         "description": "Elige un objetivo entre varias cartas y enfoca todo el efecto."
       }
     ],
@@ -2449,9 +2449,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "aura",
-    "hp": 80,
+    "hp": 180,
     "cardNumber": "054",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -2469,7 +2469,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "30",
+        "damage": "150+",
         "description": "Cambia el tipo de energía de una carta sin alterar su poder."
       }
     ],
@@ -2817,9 +2817,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "ingenio",
-    "hp": 115,
+    "hp": 180,
     "cardNumber": "062",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -2837,7 +2837,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "80",
+        "damage": "150+",
         "description": "Compara dos opciones y elige la que más te convenga."
       }
     ],
@@ -3277,9 +3277,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "ingenio",
-    "hp": 140,
+    "hp": 180,
     "cardNumber": "072",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -3297,7 +3297,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "ingenio"
         ],
-        "damage": "70+",
+        "damage": "150+",
         "description": "Aumenta el poder de una carta durante este turno."
       }
     ],
@@ -3783,9 +3783,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "arte",
-    "hp": 90,
+    "hp": 180,
     "cardNumber": "083",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -3803,7 +3803,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "arte"
         ],
-        "damage": "60",
+        "damage": "150+",
         "description": "Reorganiza dos cartas y conserva la mejor posición."
       }
     ],
@@ -4289,9 +4289,9 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "aura",
-    "hp": 115,
+    "hp": 180,
     "cardNumber": "094",
     "totalInSet": "140",
     "artist": "Tokkii Studio",
@@ -4309,7 +4309,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aura"
         ],
-        "damage": "80",
+        "damage": "150+",
         "description": "Construye una combinación de dos recursos en una sola jugada."
       }
     ],
@@ -5347,7 +5347,7 @@ export const DEFAULT_CARDS: CardData[] = [
     "imageOffsetY": 0,
     "imageRotation": 0,
     "imageFit": "cover",
-    "rarity": "common",
+    "rarity": "secret_rare",
     "element": "aventura",
     "hp": 180,
     "cardNumber": "117",
@@ -5367,7 +5367,7 @@ export const DEFAULT_CARDS: CardData[] = [
         "cost": [
           "aventura"
         ],
-        "damage": "110",
+        "damage": "150+",
         "description": "Ajusta el orden de dos cartas en el campo."
       }
     ],
