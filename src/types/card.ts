@@ -65,7 +65,7 @@ export interface RarityConfig {
   glowColor: string;
   borderColor: string;
   badgeBg: string;
-  holoStyle: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold';
+  holoStyle: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold' | 'glitter' | 'wave';
   stars: number;
   description: string;
 }

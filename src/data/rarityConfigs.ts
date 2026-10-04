@@ -36,9 +36,9 @@ export const RARITY_CONFIGS: Record<Rarity, RarityConfig> = {
     glowColor: 'rgba(168, 85, 247, 0.5)',
     borderColor: '#7e22ce',
     badgeBg: 'bg-purple-950/80 text-purple-300 border-purple-500',
-    holoStyle: 'prismatic',
+    holoStyle: 'glitter',
     stars: 3,
-    description: 'Ilustración con lámina holográfica prismática y reflejo de arcoíris lineal.'
+    description: 'Ilustración con lámina Holo Glitter Spark (100% foil, 18% glare).'
   },
   super_rare: {
     id: 'super_rare',
