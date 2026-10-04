@@ -75,8 +75,24 @@ export function App() {
     try {
       const dbCards = await fetchCardsFromSupabase();
       if (dbCards && dbCards.length > 0) {
-        setCards(dbCards);
-        saveCardsToIndexedDb(dbCards);
+        setCards((currentCards) => {
+          const defMap = new Map(DEFAULT_CARDS.map((c) => [c.id, c]));
+          const currentMap = new Map(currentCards.map((c) => [c.id, c]));
+          const merged = dbCards.map((sbCard) => {
+            const defCard = defMap.get(sbCard.id);
+            const localCard = currentMap.get(sbCard.id);
+            const localHasCustom = localCard?.image && !localCard.image.includes('tokkii_photographer.jpg');
+            const defHasCustom = defCard?.image && !defCard.image.includes('tokkii_photographer.jpg');
+            const sbHasDefault = !sbCard.image || sbCard.image.includes('tokkii_photographer.jpg');
+            const finalImage = !sbHasDefault ? sbCard.image : (localHasCustom ? localCard.image : (defHasCustom ? defCard.image : sbCard.image));
+            return {
+              ...sbCard,
+              image: finalImage,
+            };
+          });
+          saveCardsToIndexedDb(merged);
+          return merged;
+        });
       }
     } catch (err) {
       console.warn('Could not load cards from Supabase, using local fallback:', err);

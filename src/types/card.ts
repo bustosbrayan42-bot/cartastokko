@@ -47,6 +47,11 @@ export interface CardData {
   weakness?: CardElement;
   resistance?: CardElement;
   isFullArt?: boolean;
+  borderColor?: string;
+  customHoloStyle?: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold' | 'glitter' | 'wave';
+  customFoilOpacity?: number;
+  customMaskOpacity?: number;
+  customGlareOpacity?: number;
   dateAdded?: string;
   tags?: string[];
 }
