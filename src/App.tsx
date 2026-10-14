@@ -463,6 +463,7 @@ const getInitialTab = (): TabType => {
               onInspectCard={setInspectingCard}
               userProfile={userProfile}
               userPacks={userPacks}
+              userOwnedCardIds={userOwnedCardIds}
               onOpenUserPack={handleOpenUserPack}
               onLoginTwitch={handleLoginTwitch}
             />

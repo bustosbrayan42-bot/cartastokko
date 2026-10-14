@@ -14,6 +14,7 @@ interface PackOpenerProps {
   onInspectCard?: (card: CardData) => void;
   userProfile?: UserProfile | null;
   userPacks?: UserPacksCount;
+  userOwnedCardIds?: Set<string>;
   onOpenUserPack?: (packType: 'pack_1' | 'pack_3' | 'pack_5', cards: CardData[]) => Promise<boolean>;
   onLoginTwitch?: () => void;
 }
@@ -24,6 +25,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   onInspectCard,
   userProfile,
   userPacks,
+  userOwnedCardIds,
   onOpenUserPack,
   onLoginTwitch,
 }) => {
@@ -31,6 +33,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   const [animState, setAnimState] = useState<'unopened' | 'tearing' | 'sliding' | 'revealing'>('unopened');
   const [pulledCards, setPulledCards] = useState<CardData[]>([]);
   const [revealedCards, setRevealedCards] = useState<boolean[]>([]);
+  const [duplicateSlots, setDuplicateSlots] = useState<boolean[]>([]);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number>(0);
   const [packId, setPackId] = useState<number>(1);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -76,6 +79,15 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
     for (let i = 0; i < packCardCount; i++) {
       newPulled.push(getRandomCard());
     }
+
+    // Capture snapshot of currently owned cards BEFORE background DB addition to detect duplicates
+    const ownedSnapshot = new Set(userOwnedCardIds || []);
+    const duplicates = newPulled.map((c, i) => {
+      const alreadyOwned = ownedSnapshot.has(c.id);
+      const repeatedInPack = newPulled.slice(0, i).some((prev) => prev.id === c.id);
+      return alreadyOwned || repeatedInPack;
+    });
+    setDuplicateSlots(duplicates);
 
     // 1. INSTANT ANIMATION & SOUND (0ms lag on click)
     playPackTearSound();
@@ -143,6 +155,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
     setAnimState('unopened');
     setPulledCards([]);
     setRevealedCards([]);
+    setDuplicateSlots([]);
     setSelectedCardIndex(0);
     setPackId((prev) => prev + 1);
   };
@@ -397,6 +410,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                   const isRevealed = revealedCards[idx];
                   const isSelected = selectedCardIndex === idx;
                   const rConfig = RARITY_CONFIGS[card.rarity] || RARITY_CONFIGS.common;
+                  const isDuplicate = duplicateSlots[idx] || false;
 
                   return (
                     <div
@@ -405,7 +419,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                       className="flex flex-col items-center gap-2 cursor-pointer group"
                     >
                       <div
-                        className={`transition-all duration-300 transform rounded-2xl ${
+                        className={`transition-all duration-300 transform rounded-2xl relative ${
                           !isRevealed
                             ? 'hover:scale-105 hover:-translate-y-2'
                             : isSelected
@@ -420,22 +434,30 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                           onFlipToggle={() => handleCardClick(idx)}
                           showBackFlipBtn={false}
                           interactive={true}
+                          isDuplicate={isRevealed && isDuplicate}
                         />
                       </div>
 
                       {/* State Label Below Card */}
-                      <div className="h-6 flex items-center justify-center">
+                      <div className="h-6 flex items-center justify-center gap-1.5">
                         {isRevealed ? (
-                          <span
-                            className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider border shadow"
-                            style={{
-                              color: rConfig.color,
-                              borderColor: rConfig.borderColor,
-                              backgroundColor: 'rgba(41, 10, 48, 0.9)',
-                            }}
-                          >
-                            {rConfig.name} {'★'.repeat(rConfig.stars)}
-                          </span>
+                          <>
+                            <span
+                              className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider border shadow"
+                              style={{
+                                color: rConfig.color,
+                                borderColor: rConfig.borderColor,
+                                backgroundColor: 'rgba(41, 10, 48, 0.9)',
+                              }}
+                            >
+                              {rConfig.name} {'★'.repeat(rConfig.stars)}
+                            </span>
+                            {isDuplicate && (
+                              <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-sky-950/80 text-sky-300 border border-sky-500/50 shadow-sm">
+                                Repetida
+                              </span>
+                            )}
+                          </>
                         ) : (
                           <span className="text-[10px] font-bold text-[#F9F1F9] bg-[#610F4E]/90 px-2.5 py-0.5 rounded-full border border-[#F50B8C]/50 animate-pulse">
                             Toca para revelar

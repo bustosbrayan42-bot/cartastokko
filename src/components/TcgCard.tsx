@@ -19,6 +19,7 @@ interface TcgCardProps {
   className?: string;
   enableSound?: boolean;
   simplified?: boolean;
+  isDuplicate?: boolean;
 }
 
 export const TcgCard: React.FC<TcgCardProps> = ({
@@ -34,6 +35,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   className = '',
   enableSound = true,
   simplified = false,
+  isDuplicate = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [internalFlipped, setInternalFlipped] = useState(isFlipped);
@@ -632,6 +634,29 @@ export const TcgCard: React.FC<TcgCardProps> = ({
           >
             <RotateCw className="w-3.5 h-3.5" />
           </button>
+        )}
+
+        {/* DUPLICATE BADGE: Integrado a la animación 3D de la carta, borde blanco y sin sombra */}
+        {isDuplicate && !actualFlipped && (
+          <div
+            className="absolute -top-2 -right-2 sm:-top-2.5 sm:-right-2.5 z-40 pointer-events-none transition-all duration-300 animate-in zoom-in-75"
+            style={{
+              transform: 'translateZ(18px)',
+            }}
+          >
+            <div
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center p-1 border-2 border-white shadow-none"
+              style={{
+                background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%)',
+              }}
+            >
+              <img
+                src={resolveImageUrl('/cards/duplicado.png')}
+                alt="Duplicada"
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain select-none pointer-events-none"
+              />
+            </div>
+          </div>
         )}
       </div>
     </div>
