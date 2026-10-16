@@ -5,7 +5,7 @@ import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { playPackTearSound, playLegendaryRevealSound, playSparkleSound, playCardFlipSound } from '../utils/soundEffects';
 import { resolveImageUrl } from '../utils/imageHelper';
 import confetti from 'canvas-confetti';
-import { Sparkles, RotateCcw, X, Scissors, AlertCircle } from 'lucide-react';
+import { Sparkles, RotateCcw, X, Scissors, AlertCircle, Ticket } from 'lucide-react';
 import type { UserProfile, UserPacksCount } from '../types/user';
 
 interface PackOpenerProps {
@@ -17,6 +17,7 @@ interface PackOpenerProps {
   userOwnedCardIds?: Set<string>;
   onOpenUserPack?: (packType: 'pack_1' | 'pack_3' | 'pack_5', cards: CardData[]) => Promise<boolean>;
   onLoginTwitch?: () => void;
+  onOpenRedeemModal?: () => void;
 }
 
 export const PackOpener: React.FC<PackOpenerProps> = ({
@@ -28,6 +29,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   userOwnedCardIds,
   onOpenUserPack,
   onLoginTwitch,
+  onOpenRedeemModal,
 }) => {
   const [packCardCount, setPackCardCount] = useState<number>(3);
   const [animState, setAnimState] = useState<'unopened' | 'tearing' | 'sliding' | 'revealing'>('unopened');
@@ -271,6 +273,20 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                     <span className="text-[11px] text-amber-400 font-semibold bg-amber-950/60 border border-amber-500/40 px-3 py-1 rounded-full">
                       ⚠️ No tienes sobres disponibles de {packCardCount} {packCardCount === 1 ? 'carta' : 'cartas'}
                     </span>
+                  )}
+
+                  {onOpenRedeemModal && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenRedeemModal();
+                      }}
+                      className="flex items-center gap-1.5 text-xs font-bold text-[#F50B8C] hover:text-white bg-[#610F4E]/60 hover:bg-[#610F4E] border border-[#F50B8C]/40 hover:border-[#F50B8C] px-3.5 py-1.5 rounded-full transition-all cursor-pointer shadow-sm shadow-[#F50B8C]/20 active:scale-95"
+                    >
+                      <Ticket className="w-3.5 h-3.5 text-[#F50B8C]" />
+                      <span>¿Tienes un código de regalo? Canjéalo aquí</span>
+                    </button>
                   )}
                 </div>
               )}

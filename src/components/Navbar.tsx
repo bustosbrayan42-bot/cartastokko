@@ -9,6 +9,7 @@ import {
   LogOut,
   Sparkles,
   ScrollText,
+  Ticket
 } from 'lucide-react';
 import { resolveImageUrl } from '../utils/imageHelper';
 import type { UserProfile, UserPacksCount } from '../types/user';
@@ -17,6 +18,7 @@ interface NavbarProps {
   activeTab: 'home' | 'binder' | 'showcase' | 'pack' | 'policies';
   onTabChange: (tab: 'home' | 'binder' | 'showcase' | 'pack' | 'policies') => void;
   onOpenCreateModal?: () => void;
+  onOpenRedeemModal?: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
   cardCount: number;
@@ -38,6 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onLoginTwitch,
   onLogout,
   isLoggingIn = false,
+  onOpenRedeemModal,
 }) => {
   const totalPacks = (userPacks?.pack_1 || 0) + (userPacks?.pack_3 || 0) + (userPacks?.pack_5 || 0);
 
@@ -134,7 +137,19 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Right Actions: Twitch Login & Sound Toggle */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Canjear Código Button */}
+          {onOpenRedeemModal && (
+            <button
+              onClick={onOpenRedeemModal}
+              title="Canjear código de regalo de sobres"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-[#F50B8C] to-[#C1076D] hover:from-[#F50B8C]/90 hover:to-[#A0055A] text-white text-xs font-black shadow-md shadow-[#F50B8C]/35 transition-all active:scale-95 cursor-pointer border border-[#F50B8C]/50"
+            >
+              <Ticket className="w-3.5 h-3.5 text-pink-100" />
+              <span className="hidden md:inline">Canjear Código</span>
+            </button>
+          )}
+
           {/* User Profile / Twitch Login Button */}
           {userProfile ? (
             <div className="flex items-center gap-2.5 bg-[#31213D] border border-[#610F4E] rounded-2xl p-1 pr-2 shadow-md">

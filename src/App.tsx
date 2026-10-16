@@ -13,6 +13,7 @@ import { setSoundEnabled } from './utils/soundEffects';
 import { fetchCardsFromSupabase, supabase, rowToCard } from './utils/supabaseClient';
 import { supabaseAuth } from './utils/authSupabaseClient';
 import { DuplicateExchangeModal } from './components/DuplicateExchangeModal';
+import { RedeemCodeModal } from './components/RedeemCodeModal';
 import {
   signInWithTwitch,
   signOutUser,
@@ -52,6 +53,7 @@ export function App() {
   const [userPacks, setUserPacks] = useState<UserPacksCount>({ pack_1: 0, pack_3: 0, pack_5: 0 });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
+  const [isRedeemModalOpen, setIsRedeemModalOpen] = useState(false);
 
   // Calculate duplicates summary
   const duplicatesSummary = calculateDuplicatesSummary(userCardsMap, cards);
@@ -421,6 +423,7 @@ const getInitialTab = (): TabType => {
         onLoginTwitch={handleLoginTwitch}
         onLogout={handleLogout}
         isLoggingIn={isLoggingIn}
+        onOpenRedeemModal={() => setIsRedeemModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -466,6 +469,7 @@ const getInitialTab = (): TabType => {
               userOwnedCardIds={userOwnedCardIds}
               onOpenUserPack={handleOpenUserPack}
               onLoginTwitch={handleLoginTwitch}
+              onOpenRedeemModal={() => setIsRedeemModalOpen(true)}
             />
           </div>
         )}
@@ -511,6 +515,24 @@ const getInitialTab = (): TabType => {
             loadUserData(userProfile.id);
           }
         }}
+      />
+
+      {/* Redeem Gift Code Modal */}
+      <RedeemCodeModal
+        isOpen={isRedeemModalOpen}
+        onClose={() => setIsRedeemModalOpen(false)}
+        userProfile={userProfile}
+        onLoginTwitch={handleLoginTwitch}
+        onSuccessRedeem={(packType, qty) => {
+          setUserPacks((prev) => ({
+            ...prev,
+            [packType]: (prev[packType] || 0) + qty,
+          }));
+          if (userProfile?.id) {
+            loadUserData(userProfile.id);
+          }
+        }}
+        onNavigateToPacks={() => handleTabChange('pack')}
       />
 
       <CardEditorModal

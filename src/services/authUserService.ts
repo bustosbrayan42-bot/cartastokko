@@ -97,7 +97,9 @@ export const fetchUserCards = async (userId: string): Promise<Map<string, number
 
     if (data) {
       data.forEach((row: { card_id: string; count: number }) => {
-        cardMap.set(row.card_id, row.count || 1);
+        if (!row.card_id || !row.card_id.startsWith('GIFT_CODE:')) {
+          cardMap.set(row.card_id, row.count || 1);
+        }
       });
     }
   } catch (err) {
