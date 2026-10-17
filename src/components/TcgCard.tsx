@@ -1,9 +1,9 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import type { CardData } from '../types/card';
 import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { ELEMENT_CONFIGS } from '../data/elementConfigs';
 import { playCardFlipSound, playCardHoverSound, playSparkleSound } from '../utils/soundEffects';
-import { resolveImageUrl } from '../utils/imageHelper';
+import { resolveImageUrl, resolveCardThumbnailUrl } from '../utils/imageHelper';
 import { RotateCw, Lock } from 'lucide-react';
 
 interface TcgCardProps {
@@ -38,20 +38,22 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   isDuplicate = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const cardRootRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+
   const [internalFlipped, setInternalFlipped] = useState(isFlipped);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     setInternalFlipped(isFlipped);
   }, [isFlipped]);
-  const [transformStyle, setTransformStyle] = useState({
-    rotX: 0,
-    rotY: 0,
-    glareX: 50,
-    glareY: 50,
-    glareOpacity: 0,
-    holoAngle: 135,
-  });
-  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
 
   const rarityConfig = RARITY_CONFIGS[card.rarity] || RARITY_CONFIGS.common;
   const elementConfig = ELEMENT_CONFIGS[card.element] || ELEMENT_CONFIGS.impulso;
@@ -73,49 +75,59 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       ? (card as any).customGlareOpacity
       : 0.28;
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (simplified || !interactive || !containerRef.current || isLocked) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+  // Ultra-fast 60/120 FPS tilt engine: Updates CSS variables directly without re-rendering React
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (simplified || !interactive || isLocked) return;
+    if (!rectRef.current && containerRef.current) {
+      rectRef.current = containerRef.current.getBoundingClientRect();
+    }
+    const rect = rectRef.current;
+    if (!rect) return;
 
-      const percentX = (x / rect.width) * 100;
-      const percentY = (y / rect.height) * 100;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-      // Smooth gentle tilt angle (max +/- 8.5 degrees)
-      const rotY = ((x - rect.width / 2) / (rect.width / 2)) * 8.5;
-      const rotX = -((y - rect.height / 2) / (rect.height / 2)) * 8.5;
+    const percentX = (x / rect.width) * 100;
+    const percentY = (y / rect.height) * 100;
 
-      const angle = Math.atan2(y - rect.height / 2, x - rect.width / 2) * (180 / Math.PI) + 180;
+    // Smooth gentle tilt angle (max +/- 8.5 degrees)
+    const rotY = ((x - rect.width / 2) / (rect.width / 2)) * 8.5;
+    const rotX = -((y - rect.height / 2) / (rect.height / 2)) * 8.5;
 
-      setTransformStyle({
-        rotX,
-        rotY,
-        glareX: percentX,
-        glareY: percentY,
-        glareOpacity: Math.min(effectiveGlareOpacity, Math.hypot(percentX - 50, percentY - 50) / 75),
-        holoAngle: angle,
-      });
-    },
-    [simplified, interactive, isLocked, effectiveGlareOpacity]
-  );
+    const angle = Math.atan2(y - rect.height / 2, x - rect.width / 2) * (180 / Math.PI) + 180;
+    const glareOp = Math.min(effectiveGlareOpacity, Math.hypot(percentX - 50, percentY - 50) / 75);
+
+    if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    rafIdRef.current = requestAnimationFrame(() => {
+      const root = cardRootRef.current;
+      if (!root) return;
+      root.style.transform = `translate(-50%, -50%) scale(${scale}) rotateX(${rotX}deg) rotateY(${actualFlipped ? rotY + 180 : rotY}deg)`;
+      root.style.setProperty('--mouse-x', `${percentX}%`);
+      root.style.setProperty('--mouse-y', `${percentY}%`);
+      root.style.setProperty('--glare-opacity', `${glareOp}`);
+      root.style.setProperty('--holo-angle', `${angle}deg`);
+    });
+  };
 
   const handleMouseEnter = () => {
     if (simplified || !interactive) return;
+    if (containerRef.current) {
+      rectRef.current = containerRef.current.getBoundingClientRect();
+    }
     setIsHovered(true);
     if (enableSound) playCardHoverSound();
   };
 
   const handleMouseLeave = () => {
     if (simplified || !interactive) return;
+    rectRef.current = null;
+    if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     setIsHovered(false);
-    setTransformStyle((prev) => ({
-      ...prev,
-      rotX: 0,
-      rotY: 0,
-      glareOpacity: 0,
-    }));
+    const root = cardRootRef.current;
+    if (root) {
+      root.style.transform = `translate(-50%, -50%) scale(${scale}) rotateX(0deg) rotateY(${actualFlipped ? 180 : 0}deg)`;
+      root.style.setProperty('--glare-opacity', '0');
+    }
   };
 
   const handleFlip = (e?: React.MouseEvent) => {
@@ -158,15 +170,18 @@ export const TcgCard: React.FC<TcgCardProps> = ({
     transformOrigin: 'center center',
   };
 
+  // High performance: Use lightweight WebP thumbnail for album/simplified mode, full res for inspector
+  const cardImgSrc = simplified ? resolveCardThumbnailUrl(card.image) : resolveImageUrl(card.image);
+
   return (
     <div
       ref={containerRef}
       onClick={() => {
         if (!isLocked && onClick) onClick();
       }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={simplified ? undefined : handleMouseMove}
+      onMouseEnter={simplified ? undefined : handleMouseEnter}
+      onMouseLeave={simplified ? undefined : handleMouseLeave}
       className={`card-perspective-container inline-block select-none relative ${
         interactive && !isLocked ? 'cursor-pointer' : 'cursor-default'
       } ${className}`}
@@ -176,6 +191,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       }}
     >
       <div
+        ref={cardRootRef}
         className={`card-3d-root absolute top-1/2 left-1/2 rounded-[20px] pointer-events-none ${
           !isHovered && !simplified ? 'is-animating' : ''
         }`}
@@ -187,12 +203,13 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 transform: `translate(-50%, -50%) scale(${scale})`,
                 transformOrigin: 'center center',
                 boxShadow: '0 6px 14px -3px rgba(0,0,0,0.65)',
+                contain: 'paint layout',
               }
             : ({
                 width: '320px',
                 height: '450px',
-                transform: `translate(-50%, -50%) scale(${scale}) rotateX(${transformStyle.rotX}deg) rotateY(${
-                  actualFlipped ? transformStyle.rotY + 180 : transformStyle.rotY
+                transform: `translate(-50%, -50%) scale(${scale}) rotateX(0deg) rotateY(${
+                  actualFlipped ? 180 : 0
                 }deg)`,
                 transformOrigin: 'center center',
                 boxShadow: actualFlipped
@@ -202,10 +219,10 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                   : isHovered
                   ? `0 20px 35px -8px ${rarityConfig.glowColor}, 0 0 15px ${rarityConfig.glowColor}`
                   : `0 12px 24px -8px rgba(0,0,0,0.6), 0 0 8px ${rarityConfig.glowColor}`,
-                '--mouse-x': `${transformStyle.glareX}%`,
-                '--mouse-y': `${transformStyle.glareY}%`,
-                '--glare-opacity': `${transformStyle.glareOpacity}`,
-                '--holo-angle': `${transformStyle.holoAngle}deg`,
+                '--mouse-x': '50%',
+                '--mouse-y': '50%',
+                '--glare-opacity': '0',
+                '--holo-angle': '135deg',
               } as React.CSSProperties)
         }
       >
@@ -251,14 +268,20 @@ export const TcgCard: React.FC<TcgCardProps> = ({
           {isFullArtMode && (
             <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-slate-950">
               <img
-                src={resolveImageUrl(card.image)}
+                src={cardImgSrc}
                 alt={card.title}
                 className={`w-full h-full ${
                   card.imageFit === 'contain' ? 'object-contain' : 'object-cover'
                 } object-center transition-transform duration-75`}
                 style={imageTransformStyle}
-                loading="lazy"
+                loading={simplified ? 'lazy' : 'eager'}
                 decoding="async"
+                onError={(e) => {
+                  const fallback = resolveImageUrl(card.image);
+                  if (e.currentTarget.src !== fallback) {
+                    e.currentTarget.src = fallback;
+                  }
+                }}
               />
             </div>
           )}
@@ -486,14 +509,20 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 }}
               >
                 <img
-                  src={resolveImageUrl(card.image)}
+                  src={cardImgSrc}
                   alt={card.title}
                   className={`w-full h-full ${
                     card.imageFit === 'contain' ? 'object-contain' : 'object-cover'
                   } object-center transition-transform duration-75`}
                   style={imageTransformStyle}
-                  loading="lazy"
+                  loading={simplified ? 'lazy' : 'eager'}
                   decoding="async"
+                  onError={(e) => {
+                    const fallback = resolveImageUrl(card.image);
+                    if (e.currentTarget.src !== fallback) {
+                      e.currentTarget.src = fallback;
+                    }
+                  }}
                 />
 
                 {/* In-Art Holo Texture Effect Layer (Only in full inspector mode) */}

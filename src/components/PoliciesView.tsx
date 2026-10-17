@@ -13,6 +13,9 @@ import {
   Flame,
   Info,
   HelpCircle,
+  Calendar,
+  Clock,
+  Dices,
 } from 'lucide-react';
 import type { Rarity } from '../types/card';
 
@@ -112,7 +115,7 @@ const DROP_RATES: DropRateItem[] = [
 ];
 
 export const PoliciesView: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<'probabilities' | 'packs' | 'exchange' | 'terms'>('probabilities');
+  const [activeSection, setActiveSection] = useState<'probabilities' | 'packs' | 'exchange' | 'tokkiipass' | 'terms'>('probabilities');
 
   return (
     <div className="w-full max-w-[1550px] mx-auto px-2 sm:px-6 py-4 space-y-6 animate-in fade-in duration-300">
@@ -134,7 +137,7 @@ export const PoliciesView: React.FC = () => {
               Políticas, Normas & Probabilidades del TCG
             </h1>
             <p className="text-sm sm:text-base text-[#B894B3] max-w-3xl leading-relaxed">
-              Conoce en detalle el funcionamiento del sistema de cartas coleccionables de EvilTokkii: tasas de drop garantizadas, reglas de canje de repetidas y directrices de juego limpio.
+              Conoce en detalle el funcionamiento del sistema de cartas coleccionables de EvilTokkii: tasas de drop garantizadas, reglas de canje de repetidas, funcionamiento del TokkiiPass y directrices de juego limpio.
             </p>
           </div>
 
@@ -153,7 +156,7 @@ export const PoliciesView: React.FC = () => {
             onClick={() => setActiveSection('probabilities')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'probabilities'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
+                ? 'bg-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/35 font-black'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -165,7 +168,7 @@ export const PoliciesView: React.FC = () => {
             onClick={() => setActiveSection('packs')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'packs'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
+                ? 'bg-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/35 font-black'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -177,7 +180,7 @@ export const PoliciesView: React.FC = () => {
             onClick={() => setActiveSection('exchange')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'exchange'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
+                ? 'bg-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/35 font-black'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -186,10 +189,22 @@ export const PoliciesView: React.FC = () => {
           </button>
 
           <button
+            onClick={() => setActiveSection('tokkiipass')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
+              activeSection === 'tokkiipass'
+                ? 'bg-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/35 font-black'
+                : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
+            }`}
+          >
+            <Calendar className="w-4 h-4" />
+            <span>TokkiiPass Diario</span>
+          </button>
+
+          <button
             onClick={() => setActiveSection('terms')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
               activeSection === 'terms'
-                ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/25 ring-1 ring-[#F50B8C]/40'
+                ? 'bg-[#F50B8C] text-white border-[#F50B8C] shadow-lg shadow-[#F50B8C]/35 font-black'
                 : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
             }`}
           >
@@ -215,7 +230,7 @@ export const PoliciesView: React.FC = () => {
               </p>
             </div>
             <div className="px-3 py-1 rounded-xl bg-[#290A30] border border-[#610F4E] text-xs font-mono text-[#F50B8C] font-bold">
-              Total Colección: 140 Cartas (Set Génesis)
+              Total Colección: 140 Cartas (GoodTokkii)
             </div>
           </div>
 
@@ -326,7 +341,7 @@ export const PoliciesView: React.FC = () => {
             {/* Pack 1 */}
             <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-4 relative overflow-hidden">
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#610F4E] to-[#9146FF] flex items-center justify-center text-white shadow-md">
+                <div className="w-12 h-12 rounded-2xl bg-[#9146FF] flex items-center justify-center text-white shadow-md shadow-[#9146FF]/30">
                   <Package className="w-6 h-6" />
                 </div>
                 <div>
@@ -354,7 +369,7 @@ export const PoliciesView: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#610F4E] to-[#F50B8C] flex items-center justify-center text-white shadow-md">
+                <div className="w-12 h-12 rounded-2xl bg-[#F50B8C] flex items-center justify-center text-white shadow-md shadow-[#F50B8C]/35">
                   <Flame className="w-6 h-6" />
                 </div>
                 <div>
@@ -378,7 +393,7 @@ export const PoliciesView: React.FC = () => {
             {/* Pack 5 */}
             <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-4 relative overflow-hidden">
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#610F4E] via-[#F50B8C] to-amber-400 flex items-center justify-center text-white shadow-md">
+                <div className="w-12 h-12 rounded-2xl bg-[#F59E0B] flex items-center justify-center text-white shadow-md shadow-[#F59E0B]/30">
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
@@ -418,7 +433,7 @@ export const PoliciesView: React.FC = () => {
           </div>
 
           {/* Safeguard Alert Rule */}
-          <div className="p-5 rounded-2xl bg-gradient-to-r from-[#610F4E]/80 to-[#290A30] border-2 border-[#F50B8C]/60 flex items-start gap-4 shadow-xl">
+          <div className="p-5 rounded-2xl bg-[#290A30]/90 border-2 border-[#F50B8C]/60 flex items-start gap-4 shadow-xl">
             <div className="w-10 h-10 rounded-xl bg-[#F50B8C] text-white flex items-center justify-center shrink-0 shadow-md">
               <Lock className="w-5 h-5" />
             </div>
@@ -493,6 +508,193 @@ export const PoliciesView: React.FC = () => {
             <p className="text-xs text-[#B894B3] italic pt-2 text-center">
               * Nota: Las cartas Ultra Raras y Secretas no admiten canje automatizado debido a su estatus de pieza de colección única.
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          SECTION: TOKKIIPASS (DAILY LOGIN & RULES)
+         ======================================================== */}
+      {activeSection === 'tokkiipass' && (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-black text-[#F9F1F9] tracking-wide flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-[#F50B8C]" />
+              Normativa & Funcionamiento del TokkiiPass
+            </h2>
+            <p className="text-xs sm:text-sm text-[#B894B3] mt-0.5">
+              Reglamento oficial del sistema de login diario, distribución de recompensas semanales y condiciones de reclamo.
+            </p>
+          </div>
+
+          {/* CRITICAL RULE: DÍA NO RECLAMADO, DÍA PERDIDO */}
+          <div className="p-5 rounded-2xl bg-[#290A30]/90 border-2 border-red-500/80 flex items-start gap-4 shadow-xl">
+            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-md">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded-full bg-red-500/20 border border-red-500/60 text-red-400 text-[10px] font-mono font-black uppercase">
+                  Regla Fundamental Estricta
+                </span>
+                <h3 className="text-base font-black text-white">
+                  Día que no se reclama, día perdido (Sin opción a recuperar)
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-[#F9F1F9]/90 leading-relaxed">
+                El TokkiiPass está sujeto a la fecha del calendario en tiempo real (de <strong>00:00:00 a 23:59:59</strong> según tu zona horaria local).
+                Si durante un día no ingresas a la web y no reclamas tu recompensa correspondiente (sobre o ruleta), <strong className="text-red-400">dicha casilla expira definitivamente a la medianoche y se pierde</strong>.
+              </p>
+              <div className="flex items-center gap-2 pt-1 text-xs text-[#B894B3]">
+                <Clock className="w-3.5 h-3.5 text-[#F50B8C]" />
+                <span>No existen reclamos retroactivos ni opción de recuperar días pasados. Se premia la constancia diaria del coleccionista.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Weekly Structure Grid */}
+          <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl space-y-4">
+            <h3 className="text-lg font-black text-[#F9F1F9] flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#F50B8C]" />
+              Estructura Semanal de Recompensas
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {/* Lunes, Martes, Jueves, Domingo */}
+              <div className="p-4 rounded-2xl bg-[#31213D]/80 border border-[#610F4E] flex flex-col justify-between space-y-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-[#F50B8C] font-bold uppercase tracking-wider">
+                    Lunes • Martes • Jueves • Domingo
+                  </span>
+                  <h4 className="text-base font-black text-[#F9F1F9]">Sobre Individual</h4>
+                  <p className="text-xs text-[#B894B3]">
+                    Reclamo directo garantizado de <strong>1 carta coleccionable</strong> por día.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-[#610F4E]/60 flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#B894B3]">Recompensa:</span>
+                  <span className="font-bold text-[#F50B8C]">x1 Sobre (1c)</span>
+                </div>
+              </div>
+
+              {/* Miércoles y Sábado: Ruleta */}
+              <div className="p-4 rounded-2xl bg-[#31213D]/80 border-2 border-[#F50B8C]/60 flex flex-col justify-between space-y-3 shadow-md">
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-[#ff85c8] font-bold uppercase tracking-wider">
+                      Miércoles & Sábado
+                    </span>
+                    <span className="px-1.5 py-0.2 rounded-full bg-[#F50B8C] text-white text-[9px] font-black uppercase">
+                      Azar
+                    </span>
+                  </div>
+                  <h4 className="text-base font-black text-[#F9F1F9] flex items-center gap-1.5">
+                    <span>Ruleta del Azar</span>
+                    <Dices className="w-4 h-4 text-[#F50B8C]" />
+                  </h4>
+                  <p className="text-xs text-[#B894B3]">
+                    Gira la ruleta interactiva para probar tu suerte entre 0, 1, 3 o hasta 5 cartas.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-[#610F4E]/60 flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#B894B3]">Premios:</span>
+                  <span className="font-bold text-[#F50B8C]">0, 1, 3 o 5 Cartas</span>
+                </div>
+              </div>
+
+              {/* Viernes: Sobre de 3 Cartas */}
+              <div className="p-4 rounded-2xl bg-[#31213D]/80 border border-[#F50B8C]/40 flex flex-col justify-between space-y-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider">
+                    Viernes de Stream
+                  </span>
+                  <h4 className="text-base font-black text-[#F9F1F9] flex items-center gap-1.5">
+                    <span>Sobre Estándar</span>
+                    <Flame className="w-4 h-4 text-orange-400" />
+                  </h4>
+                  <p className="text-xs text-[#B894B3]">
+                    Premio especial de fin de semana con <strong>3 cartas coleccionables</strong> directas.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-[#610F4E]/60 flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#B894B3]">Recompensa:</span>
+                  <span className="font-bold text-purple-300">x1 Sobre (3c)</span>
+                </div>
+              </div>
+
+              {/* Fin de Mes: Sobre de 5 Cartas */}
+              <div className="p-4 rounded-2xl bg-[#31213D]/80 border-2 border-amber-500/60 flex flex-col justify-between space-y-3 shadow-md">
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">
+                      Último Día de Cada Mes
+                    </span>
+                    <span className="px-1.5 py-0.2 rounded-full bg-amber-500 text-black text-[9px] font-black uppercase">
+                      VIP Fin de Mes
+                    </span>
+                  </div>
+                  <h4 className="text-base font-black text-amber-300 flex items-center gap-1.5">
+                    <span>Sobre Premium</span>
+                    <Award className="w-4 h-4 text-amber-400" />
+                  </h4>
+                  <p className="text-xs text-[#B894B3]">
+                    El último día (28, 29, 30 o 31) se activa la recompensa estelar de <strong>5 cartas garantizadas</strong>.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-amber-800/60 flex items-center justify-between text-xs font-mono">
+                  <span className="text-[#B894B3]">Recompensa:</span>
+                  <span className="font-bold text-amber-300">x1 Sobre (5c)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Probabilidades de la Ruleta y Reglas adicionales */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Roulette Probabilities */}
+            <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl space-y-3">
+              <div className="flex items-center gap-2.5 text-[#F50B8C] font-black text-base">
+                <Dices className="w-5 h-5" />
+                <span>Probabilidades de la Ruleta (Miércoles & Sábados)</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#B894B3] leading-relaxed">
+                Al activar la casilla de ruleta, el resultado se genera de forma instantánea y justa con las siguientes probabilidades oficiales:
+              </p>
+              <div className="space-y-2 pt-1 font-mono text-xs">
+                <div className="flex items-center justify-between p-2 rounded-xl bg-[#31213D] border border-slate-600/50">
+                  <span className="text-slate-300">Sobre Vacío (0 Cartas 💨)</span>
+                  <span className="font-black text-slate-400">25%</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-xl bg-[#31213D] border border-[#610F4E]">
+                  <span className="text-[#F9F1F9]">Sobre Individual (1 Carta)</span>
+                  <span className="font-black text-[#F50B8C]">45%</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-xl bg-[#31213D] border border-purple-500/40">
+                  <span className="text-purple-200">Sobre Estándar (3 Cartas)</span>
+                  <span className="font-black text-purple-400">25%</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-xl bg-[#31213D] border border-amber-500/40">
+                  <span className="text-amber-200">Sobre Premium (5 Cartas)</span>
+                  <span className="font-black text-amber-400">5% (Premio Mayor)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Account requirement & Inventory */}
+            <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl space-y-3">
+              <div className="flex items-center gap-2.5 text-sky-400 font-black text-base">
+                <Package className="w-5 h-5" />
+                <span>Acreditación en Inventario & Cuenta Twitch</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#B894B3] leading-relaxed">
+                Para reclamar las recompensas del TokkiiPass es indispensable haber iniciado sesión con tu cuenta de Twitch.
+              </p>
+              <ul className="text-xs text-[#B894B3] space-y-2 leading-relaxed list-disc list-inside">
+                <li>Los sobres reclamados se suman de manera inmediata a tu <strong>contador de inventario</strong> de sobres.</li>
+                <li>No estás obligado a abrirlos en ese mismo instante: tus sobres quedan guardados en tu cuenta para que los abras cuando desees en la pestaña <strong>Abrir Sobre</strong>.</li>
+                <li>El pase es <strong>100% gratuito</strong> para toda la comunidad coleccionista. Próximamente se habilitará el TokkiiPass Premium como complemento VIP opcional.</li>
+              </ul>
+            </div>
           </div>
         </div>
       )}

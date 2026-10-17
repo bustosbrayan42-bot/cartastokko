@@ -21,3 +21,29 @@ export const resolveImageUrl = (src?: string): string => {
 
   return `${cleanBase}${cleanSrc}`;
 };
+
+/**
+ * Resolves a card image to its ultra-fast optimized WebP thumbnail (~35KB).
+ * Used in album spreads and card grids to eliminate GPU VRAM and bandwidth bottlenecks.
+ */
+export const resolveCardThumbnailUrl = (src?: string): string => {
+  if (!src) return '';
+  if (
+    src.startsWith('http://') ||
+    src.startsWith('https://') ||
+    src.startsWith('data:') ||
+    src.startsWith('blob:')
+  ) {
+    return src;
+  }
+
+  const clean = src.startsWith('/') ? src.slice(1) : src;
+  if (clean.startsWith('cards/') && !clean.startsWith('cards/thumbs/')) {
+    const fileName = clean.slice('cards/'.length);
+    const dotIdx = fileName.lastIndexOf('.');
+    const baseName = dotIdx !== -1 ? fileName.slice(0, dotIdx) : fileName;
+    return resolveImageUrl(`cards/thumbs/${baseName}.webp`);
+  }
+
+  return resolveImageUrl(src);
+};

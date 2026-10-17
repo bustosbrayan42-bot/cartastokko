@@ -9,14 +9,15 @@ import {
   LogOut,
   Sparkles,
   ScrollText,
-  Ticket
+  Ticket,
+  Calendar
 } from 'lucide-react';
 import { resolveImageUrl } from '../utils/imageHelper';
 import type { UserProfile, UserPacksCount } from '../types/user';
 
 interface NavbarProps {
-  activeTab: 'home' | 'binder' | 'showcase' | 'pack' | 'policies';
-  onTabChange: (tab: 'home' | 'binder' | 'showcase' | 'pack' | 'policies') => void;
+  activeTab: 'home' | 'binder' | 'showcase' | 'pack' | 'daily' | 'policies';
+  onTabChange: (tab: 'home' | 'binder' | 'showcase' | 'pack' | 'daily' | 'policies') => void;
   onOpenCreateModal?: () => void;
   onOpenRedeemModal?: () => void;
   soundEnabled: boolean;
@@ -67,28 +68,25 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* View Modes Tabs */}
-        <nav className="flex items-center gap-1 bg-[#31213D]/90 p-1 rounded-2xl border border-[#610F4E]">
+        <nav className="flex items-center gap-2 sm:gap-3 md:gap-4">
           <button
             onClick={() => onTabChange('home')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
-              activeTab === 'home'
-                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
-                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
-            }`}
+            className="flex items-center gap-1.5 py-1 text-xs font-bold cursor-pointer select-none outline-none focus:outline-none transition-all"
           >
-            <Home className={`w-4 h-4 ${activeTab === 'home' ? 'text-[#F50B8C]' : ''}`} />
-            <span className="hidden sm:inline">Home</span>
+            <Home className={`w-4 h-4 transition-all ${activeTab === 'home' ? 'glow-pink-icon' : 'text-[#B894B3]'}`} />
+            <span className={`hidden sm:inline transition-all ${activeTab === 'home' ? 'glow-pink-text' : 'text-[#B894B3] hover:text-[#F9F1F9]'}`}>
+              Home
+            </span>
           </button>
+
           <button
             onClick={() => onTabChange('binder')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
-              activeTab === 'binder'
-                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
-                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
-            }`}
+            className="flex items-center gap-1.5 py-1 text-xs font-bold cursor-pointer select-none outline-none focus:outline-none transition-all"
           >
-            <Layers className={`w-4 h-4 ${activeTab === 'binder' ? 'text-[#F50B8C]' : ''}`} />
-            <span className="hidden sm:inline">Álbum TCG</span>
+            <Layers className={`w-4 h-4 transition-all ${activeTab === 'binder' ? 'glow-pink-icon' : 'text-[#B894B3]'}`} />
+            <span className={`hidden sm:inline transition-all ${activeTab === 'binder' ? 'glow-pink-text' : 'text-[#B894B3] hover:text-[#F9F1F9]'}`}>
+              Álbum TCG
+            </span>
             <span className="text-[10px] px-1.5 rounded-full bg-[#31213D] text-[#B894B3] font-mono border border-[#610F4E]/60">
               {cardCount}
             </span>
@@ -96,26 +94,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={() => onTabChange('showcase')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
-              activeTab === 'showcase'
-                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
-                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
-            }`}
+            className="flex items-center gap-1.5 py-1 text-xs font-bold cursor-pointer select-none outline-none focus:outline-none transition-all"
           >
-            <Sliders className={`w-4 h-4 ${activeTab === 'showcase' ? 'text-[#F50B8C]' : ''}`} />
-            <span className="hidden sm:inline">Showcase Rarezas</span>
+            <Sliders className={`w-4 h-4 transition-all ${activeTab === 'showcase' ? 'glow-pink-icon' : 'text-[#B894B3]'}`} />
+            <span className={`hidden sm:inline transition-all ${activeTab === 'showcase' ? 'glow-pink-text' : 'text-[#B894B3] hover:text-[#F9F1F9]'}`}>
+              Showcase Rarezas
+            </span>
           </button>
 
           <button
             onClick={() => onTabChange('pack')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
-              activeTab === 'pack'
-                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
-                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
-            }`}
+            className="flex items-center gap-1.5 py-1 text-xs font-bold cursor-pointer select-none outline-none focus:outline-none transition-all"
           >
-            <Package className={`w-4 h-4 ${activeTab === 'pack' ? 'text-[#F50B8C]' : ''}`} />
-            <span className="hidden sm:inline">Abrir Sobre</span>
+            <Package className={`w-4 h-4 transition-all ${activeTab === 'pack' ? 'glow-pink-icon' : 'text-[#B894B3]'}`} />
+            <span className={`hidden sm:inline transition-all ${activeTab === 'pack' ? 'glow-pink-text' : 'text-[#B894B3] hover:text-[#F9F1F9]'}`}>
+              Abrir Sobre
+            </span>
             {userProfile && totalPacks > 0 && (
               <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-[#F50B8C] text-white font-bold font-mono animate-pulse">
                 {totalPacks}
@@ -124,15 +118,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
-            onClick={() => onTabChange('policies')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none outline-none focus:outline-none focus-visible:outline-none border ${
-              activeTab === 'policies'
-                ? 'bg-[#610F4E] text-[#F9F1F9] shadow-sm border-[#F50B8C]/60'
-                : 'text-[#B894B3] hover:text-[#F9F1F9] border-transparent hover:bg-[#610F4E]/40'
-            }`}
+            onClick={() => onTabChange('daily')}
+            className="flex items-center gap-1.5 py-1 text-xs font-bold cursor-pointer select-none outline-none focus:outline-none transition-all"
           >
-            <ScrollText className={`w-4 h-4 ${activeTab === 'policies' ? 'text-[#F50B8C]' : ''}`} />
-            <span className="hidden sm:inline">Políticas y Normas</span>
+            <Calendar className={`w-4 h-4 transition-all ${activeTab === 'daily' ? 'glow-pink-icon' : 'text-[#B894B3]'}`} />
+            <span className={`hidden sm:inline transition-all ${activeTab === 'daily' ? 'glow-pink-text' : 'text-[#B894B3] hover:text-[#F9F1F9]'}`}>
+              TokkiiPass
+            </span>
+          </button>
+
+          <button
+            onClick={() => onTabChange('policies')}
+            className="flex items-center gap-1.5 py-1 text-xs font-bold cursor-pointer select-none outline-none focus:outline-none transition-all"
+          >
+            <ScrollText className={`w-4 h-4 transition-all ${activeTab === 'policies' ? 'glow-pink-icon' : 'text-[#B894B3]'}`} />
+            <span className={`hidden sm:inline transition-all ${activeTab === 'policies' ? 'glow-pink-text' : 'text-[#B894B3] hover:text-[#F9F1F9]'}`}>
+              Políticas y Normas
+            </span>
           </button>
         </nav>
 
@@ -143,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={onOpenRedeemModal}
               title="Canjear código de regalo de sobres"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-[#F50B8C] to-[#C1076D] hover:from-[#F50B8C]/90 hover:to-[#A0055A] text-white text-xs font-black shadow-md shadow-[#F50B8C]/35 transition-all active:scale-95 cursor-pointer border border-[#F50B8C]/50"
+              className="h-9 flex items-center gap-1.5 px-3.5 rounded-xl bg-gradient-to-r from-[#F50B8C] to-[#C1076D] hover:from-[#F50B8C]/90 hover:to-[#A0055A] text-white text-xs font-black shadow-md shadow-[#F50B8C]/35 transition-all active:scale-95 cursor-pointer border border-[#F50B8C]/50"
             >
               <Ticket className="w-3.5 h-3.5 text-pink-100" />
               <span className="hidden md:inline">Canjear Código</span>
@@ -152,9 +154,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* User Profile / Twitch Login Button */}
           {userProfile ? (
-            <div className="flex items-center gap-2.5 bg-[#31213D] border border-[#610F4E] rounded-2xl p-1 pr-2 shadow-md">
-              {/* 1. Imagen / Avatar */}
-              <div className="w-8 h-8 rounded-xl overflow-hidden bg-purple-900 border border-[#F50B8C]/50 flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-2">
+              {/* 1. Imagen / Avatar (igualado al tamaño del botón Canjear Código: h-9 w-9) */}
+              <div
+                title={`Conectado como ${userProfile.display_name || userProfile.username}`}
+                className="w-9 h-9 rounded-xl overflow-hidden bg-purple-900 border border-[#F50B8C]/50 shadow-[0_0_10px_rgba(245,11,140,0.3)] flex items-center justify-center shrink-0 cursor-default"
+              >
                 {userProfile.avatar_url ? (
                   <img
                     src={userProfile.avatar_url}
@@ -168,31 +173,31 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </div>
 
-              {/* 2. Nombre */}
-              <span className="text-sm font-black text-[#F9F1F9] max-w-[170px] truncate leading-normal py-0.5 tracking-wide">
-                {userProfile.display_name || userProfile.username}
-              </span>
-
-              {/* 3. Cantidad de Sobres */}
-              <div className="flex items-center gap-1 bg-[#610F4E]/90 border border-[#F50B8C]/40 px-2 py-1 rounded-xl text-[11px] font-mono font-bold text-[#F9F1F9] shrink-0">
-                <Sparkles className="w-3 h-3 text-[#F50B8C]" />
-                <span>{totalPacks} {totalPacks === 1 ? 'Sobre' : 'Sobres'}</span>
+              {/* 2. Cantidad de Sobres en Inventario (tamaño igual al avatar: h-9, texto más visible y nítido) */}
+              <div
+                title={`Tienes ${totalPacks} ${totalPacks === 1 ? 'sobre disponible' : 'sobres disponibles'}`}
+                className="h-9 flex items-center gap-2 bg-[#290A30] border border-[#F50B8C]/60 px-3 rounded-xl shadow-[0_0_10px_rgba(245,11,140,0.2)]"
+              >
+                <Sparkles className="w-4 h-4 text-[#F50B8C] shrink-0 filter drop-shadow-[0_0_6px_rgba(245,11,140,0.7)]" />
+                <span className="text-sm font-black text-white tracking-wide">
+                  {totalPacks} <span className="text-xs font-bold text-[#F9F1F9]">{totalPacks === 1 ? 'Sobre' : 'Sobres'}</span>
+                </span>
               </div>
 
-              {/* 4. Botón Cerrar Sesión */}
+              {/* 3. Botón Cerrar Sesión */}
               <button
                 onClick={onLogout}
-                title="Cerrar sesión de Twitch"
-                className="p-1.5 rounded-lg text-[#B894B3] hover:text-red-400 hover:bg-[#610F4E]/50 transition-colors cursor-pointer"
+                title={`Cerrar sesión (${userProfile.display_name || userProfile.username})`}
+                className="h-9 w-8 sm:w-9 flex items-center justify-center rounded-xl text-[#B894B3] hover:text-red-400 hover:bg-[#610F4E]/40 transition-colors cursor-pointer"
               >
-                <LogOut className="w-3.5 h-3.5" />
+                <LogOut className="w-4 h-4" />
               </button>
             </div>
           ) : (
             <button
               onClick={onLoginTwitch}
               disabled={isLoggingIn}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#9146FF] hover:bg-[#772CE8] text-white text-xs font-black shadow-lg shadow-[#9146FF]/30 transition-all active:scale-95 cursor-pointer disabled:opacity-50"
+              className="h-9 flex items-center gap-2 px-3.5 rounded-xl bg-[#9146FF] hover:bg-[#772CE8] text-white text-xs font-black shadow-lg shadow-[#9146FF]/30 transition-all active:scale-95 cursor-pointer disabled:opacity-50"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" />

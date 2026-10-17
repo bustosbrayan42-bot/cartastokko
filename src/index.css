@@ -31,6 +31,17 @@
   }
 }
 
+/* Pink Blur Glow for Header Tabs */
+.glow-pink-text {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px #F50B8C, 0 0 16px rgba(245, 11, 140, 0.8), 0 0 24px rgba(245, 11, 140, 0.4);
+}
+
+.glow-pink-icon {
+  color: #F50B8C !important;
+  filter: drop-shadow(0 0 8px #F50B8C) drop-shadow(0 0 14px rgba(245, 11, 140, 0.6));
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

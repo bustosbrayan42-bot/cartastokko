@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { CardData } from './types/card';
 import { DEFAULT_CARDS } from './data/defaultCards';
 import { CardBook } from './components/CardBook';
@@ -9,11 +9,13 @@ import { CardEditorModal } from './components/CardEditorModal';
 import { RarityShowcaseSlider } from './components/RarityShowcaseSlider';
 import { Home } from './components/Home';
 import { PoliciesView } from './components/PoliciesView';
+import { SparkleStarsBackground } from './components/SparkleStarsBackground';
 import { setSoundEnabled } from './utils/soundEffects';
 import { fetchCardsFromSupabase, supabase, rowToCard } from './utils/supabaseClient';
 import { supabaseAuth } from './utils/authSupabaseClient';
 import { DuplicateExchangeModal } from './components/DuplicateExchangeModal';
 import { RedeemCodeModal } from './components/RedeemCodeModal';
+import { DailyLoginView } from './components/DailyLoginView';
 import {
   signInWithTwitch,
   signOutUser,
@@ -55,8 +57,11 @@ export function App() {
   const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
   const [isRedeemModalOpen, setIsRedeemModalOpen] = useState(false);
 
-  // Calculate duplicates summary
-  const duplicatesSummary = calculateDuplicatesSummary(userCardsMap, cards);
+  // Calculate duplicates summary (memoized to avoid expensive re-calculations on every render)
+  const duplicatesSummary = useMemo(
+    () => calculateDuplicatesSummary(userCardsMap, cards),
+    [userCardsMap, cards]
+  );
 
   // Load from IndexedDB on mount (offline fallback)
   useEffect(() => {
@@ -288,13 +293,14 @@ export function App() {
     }
   }, [cards]);
 
-type TabType = 'home' | 'binder' | 'showcase' | 'pack' | 'policies';
+type TabType = 'home' | 'binder' | 'showcase' | 'pack' | 'daily' | 'policies';
 
 const TAB_ROUTES: Record<TabType, string> = {
   home: '/Home',
   binder: '/AlbumTCG',
   showcase: '/Showcase',
   pack: '/AbrirSobre',
+  daily: '/TokkiiPass',
   policies: '/Politicas',
 };
 
@@ -312,6 +318,9 @@ const pathToTab = (pathname: string, hash: string): TabType => {
   if (['abrirsobre', 'abrir-sobre', 'pack', 'packs', 'sobres'].includes(cleanPath)) {
     return 'pack';
   }
+  if (['tokkiipass', 'tokkii-pass', 'pass', 'logindiario', 'login-diario', 'daily', 'diario', 'ruleta'].includes(cleanPath)) {
+    return 'daily';
+  }
   if (['politicas', 'normas', 'politicasynormas', 'policies', 'rules', 'reglas'].includes(cleanPath)) {
     return 'policies';
   }
@@ -328,6 +337,9 @@ const pathToTab = (pathname: string, hash: string): TabType => {
   }
   if (['pack', 'packs', 'abrirsobre'].includes(cleanHash)) {
     return 'pack';
+  }
+  if (['logindiario', 'daily', 'diario'].includes(cleanHash)) {
+    return 'daily';
   }
   if (['politicas', 'normas', 'policies', 'rules'].includes(cleanHash)) {
     return 'policies';
@@ -409,7 +421,10 @@ const getInitialTab = (): TabType => {
   };
 
   return (
-    <div className="min-h-screen bg-[#31213D] text-[#F9F1F9] flex flex-col selection:bg-[#F50B8C] selection:text-white">
+    <div className="min-h-screen bg-[#31213D] text-[#F9F1F9] flex flex-col selection:bg-[#F50B8C] selection:text-white relative overflow-x-hidden">
+      {/* Background Sparkles & Twinkling Stars across all views */}
+      <SparkleStarsBackground />
+
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -427,7 +442,7 @@ const getInitialTab = (): TabType => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-[1750px] w-full mx-auto px-2 sm:px-4 py-0.5 sm:py-1 flex flex-col justify-center">
+      <main className="flex-1 max-w-[1750px] w-full mx-auto px-2 sm:px-4 py-0.5 sm:py-1 flex flex-col justify-center relative z-10">
         {/* VIEW 0: HOME / HERO GREETING */}
         {activeTab === 'home' && (
           <div className="animate-in fade-in duration-300 w-full flex items-center justify-center flex-1">
@@ -474,7 +489,23 @@ const getInitialTab = (): TabType => {
           </div>
         )}
 
-        {/* VIEW 4: POLICIES & NORMATIVE RULES */}
+        {/* VIEW 4: DAILY LOGIN CALENDAR & ROULETTE */}
+        {activeTab === 'daily' && (
+          <div className="py-2 w-full flex-1 flex items-center justify-center animate-in fade-in duration-300">
+            <DailyLoginView
+              userProfile={userProfile}
+              onLoginTwitch={handleLoginTwitch}
+              onSuccessClaimPack={() => {
+                if (userProfile?.id) {
+                  loadUserData(userProfile.id);
+                }
+              }}
+              onNavigateToPacks={() => handleTabChange('pack')}
+            />
+          </div>
+        )}
+
+        {/* VIEW 5: POLICIES & NORMATIVE RULES */}
         {activeTab === 'policies' && (
           <div className="py-2 w-full flex-1 animate-in fade-in duration-300">
             <PoliciesView />
@@ -483,7 +514,7 @@ const getInitialTab = (): TabType => {
       </main>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-[#610F4E]/80 bg-[#290A30]/90 py-1.5 mt-0">
+      <footer className="w-full border-t border-[#610F4E]/80 bg-[#290A30]/90 py-1.5 mt-0 relative z-10">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-1 text-[11px] text-[#B894B3]">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#F50B8C] animate-ping" />

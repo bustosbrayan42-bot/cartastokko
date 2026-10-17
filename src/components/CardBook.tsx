@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import type { CardData } from '../types/card';
 import { TcgCard } from './TcgCard';
 import { playPageTurnSound } from '../utils/soundEffects';
+import { resolveCardThumbnailUrl } from '../utils/imageHelper';
 import {
   ChevronLeft,
   ChevronRight,
@@ -33,6 +34,7 @@ const AlbumCardSlot: React.FC<AlbumCardSlotProps> = React.memo(({
           ? 'hover:scale-[1.04] hover:z-30 cursor-pointer'
           : 'cursor-default select-none'
       } flex items-center justify-center w-full h-full`}
+      style={{ willChange: isCardLocked ? 'auto' : 'transform' }}
       onClick={() => {
         if (!isCardLocked && onInspectCard) {
           onInspectCard(card);
@@ -145,6 +147,30 @@ export const CardBook: React.FC<CardBookProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Intelligent thumbnail prefetching for adjacent spreads (next & previous)
+  useEffect(() => {
+    const prefetchSpread = (spreadIdx: number) => {
+      if (spreadIdx < 0 || spreadIdx >= totalPages) return;
+      const start = spreadIdx * CARDS_PER_SPREAD;
+      const end = Math.min(sortedCards.length, (spreadIdx + 1) * CARDS_PER_SPREAD);
+      for (let i = start; i < end; i++) {
+        const card = sortedCards[i];
+        if (card && card.image) {
+          const img = new Image();
+          img.src = resolveCardThumbnailUrl(card.image);
+        }
+      }
+    };
+
+    // Prefetch next and previous pages when idle after initial render
+    const timer = setTimeout(() => {
+      prefetchSpread(currentSpreadIndex + 1);
+      prefetchSpread(currentSpreadIndex - 1);
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [currentSpreadIndex, sortedCards, totalPages]);
+
   // Direct, instant page navigation (no heavy 3D rendering overhead)
   const handleNextPage = () => {
     if (currentSpreadIndex >= totalPages - 1) return;
@@ -170,6 +196,7 @@ export const CardBook: React.FC<CardBookProps> = ({
       <div
         className="w-[410px] sm:w-[490px] md:w-[535px] lg:w-[575px] xl:w-[635px] h-[500px] sm:h-[555px] md:h-[585px] lg:h-[615px] xl:h-[675px] rounded-[22px] sm:rounded-[26px] p-2 sm:p-2.5 md:p-3 border border-slate-800/80 shadow-[inset_0_0_25px_rgba(0,0,0,0.7)] flex flex-col justify-between relative overflow-hidden select-none"
         style={{
+          contain: 'paint layout',
           background:
             side === 'left'
               ? 'linear-gradient(135deg, rgba(49,33,61,0.98) 0%, rgba(41,10,48,0.99) 100%)'
@@ -298,7 +325,7 @@ export const CardBook: React.FC<CardBookProps> = ({
               }}
               className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
                 sortBy === 'number'
-                  ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white shadow-sm font-black'
+                  ? 'bg-[#F50B8C] text-white shadow-md shadow-[#F50B8C]/35 font-black'
                   : 'text-[#B894B3] hover:text-[#F9F1F9]'
               }`}
               title="Ordenar de menor a mayor por Número de Carta (#001 → #140)"
@@ -314,7 +341,7 @@ export const CardBook: React.FC<CardBookProps> = ({
               }}
               className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
                 sortBy === 'rarity'
-                  ? 'bg-gradient-to-r from-[#610F4E] to-[#F50B8C] text-white shadow-sm font-black'
+                  ? 'bg-[#F50B8C] text-white shadow-md shadow-[#F50B8C]/35 font-black'
                   : 'text-[#B894B3] hover:text-[#F9F1F9]'
               }`}
               title="Ordenar de menor a mayor por Rareza (Común → Poco Común → Rara → Súper Rara → Ultra Rara → Secreta)"
@@ -328,13 +355,13 @@ export const CardBook: React.FC<CardBookProps> = ({
           {isLoggedIn && onOpenDuplicateModal && (
             <button
               onClick={onOpenDuplicateModal}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-gradient-to-r from-[#610F4E] to-[#9146FF] hover:from-[#7a1362] hover:to-[#a35cfc] border border-[#F50B8C]/50 text-white text-xs font-bold shadow-md shadow-[#F50B8C]/20 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-[#F50B8C] hover:bg-[#D00976] border border-[#F50B8C]/80 text-white text-xs font-black shadow-md shadow-[#F50B8C]/35 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0"
               title="Canjear cartas repetidas por sobres de 3 cartas"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-[#F50B8C]" />
+              <RefreshCw className="w-3.5 h-3.5 text-white" />
               <span>Cartas repetidas x Sobre</span>
               {typeof duplicatesCount === 'number' && duplicatesCount > 0 && (
-                <span className="text-[10px] font-mono font-black px-1.5 py-0.2 rounded-full bg-[#F50B8C] text-white">
+                <span className="text-[10px] font-mono font-black px-1.5 py-0.2 rounded-full bg-white text-[#F50B8C] shadow-sm">
                   {duplicatesCount}
                 </span>
               )}
@@ -350,7 +377,7 @@ export const CardBook: React.FC<CardBookProps> = ({
                 </span>
                 <div className="w-24 sm:w-32 md:w-36 h-1.5 bg-[#31213D] rounded-full overflow-hidden border border-[#610F4E]/60 mt-0.5">
                   <div
-                    className="h-full bg-gradient-to-r from-[#F50B8C] to-pink-400 rounded-full transition-all duration-500"
+                    className="h-full bg-[#F50B8C] rounded-full transition-all duration-500"
                     style={{ width: `${Math.min(100, Math.round((userOwnedCardIds.size / TOTAL_ALBUM_SLOTS) * 100))}%` }}
                   />
                 </div>

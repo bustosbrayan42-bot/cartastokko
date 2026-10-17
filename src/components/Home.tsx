@@ -10,53 +10,6 @@ export const Home: React.FC<HomeProps> = ({ cardCount }) => {
   return (
     <div className="relative w-full max-w-7xl mx-auto px-4 py-4 sm:py-8 flex flex-col items-center justify-center min-h-[calc(100vh-120px)] overflow-hidden">
       {/* ========================================================
-          BACKGROUND SPARKLES & TWINKLING STARS
-         ======================================================== */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Ambient background glows */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#F50B8C]/15 rounded-full blur-3xl animate-pulse duration-1000" />
-        <div className="absolute bottom-1/3 right-1/4 w-[450px] h-[450px] bg-[#610F4E]/30 rounded-full blur-3xl animate-pulse duration-700" />
-        <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-[#290A30]/50 rounded-full blur-3xl animate-pulse duration-500" />
-
-        {/* Scattered Dynamic Sparkle Stars */}
-        {[
-          { top: '10%', left: '8%', size: 'w-4 h-4', delay: '0s', dur: '2.5s', color: 'text-[#F50B8C]' },
-          { top: '18%', left: '35%', size: 'w-6 h-6', delay: '0.8s', dur: '3.2s', color: 'text-[#F9F1F9]' },
-          { top: '8%', right: '15%', size: 'w-5 h-5', delay: '1.2s', dur: '2.8s', color: 'text-[#ff6ebb]' },
-          { top: '28%', right: '8%', size: 'w-4 h-4', delay: '0.4s', dur: '3.6s', color: 'text-[#B894B3]' },
-          { top: '45%', left: '4%', size: 'w-5 h-5', delay: '1.6s', dur: '3s', color: 'text-[#F9F1F9]' },
-          { top: '55%', left: '42%', size: 'w-7 h-7', delay: '0.2s', dur: '2.4s', color: 'text-[#F50B8C]' },
-          { top: '75%', left: '12%', size: 'w-4 h-4', delay: '1.9s', dur: '3.8s', color: 'text-[#ff85c8]' },
-          { top: '85%', left: '32%', size: 'w-5 h-5', delay: '0.5s', dur: '2.9s', color: 'text-[#B894B3]' },
-          { top: '65%', right: '18%', size: 'w-6 h-6', delay: '1.1s', dur: '3.4s', color: 'text-[#F50B8C]' },
-          { top: '82%', right: '6%', size: 'w-5 h-5', delay: '0.7s', dur: '2.7s', color: 'text-[#F9F1F9]' },
-          { top: '40%', right: '40%', size: 'w-4 h-4', delay: '1.5s', dur: '3.1s', color: 'text-[#e879f9]' },
-          { top: '22%', left: '20%', size: 'w-3 h-3', delay: '2.1s', dur: '2.2s', color: 'text-[#F50B8C]' },
-          { top: '70%', right: '35%', size: 'w-4 h-4', delay: '1.3s', dur: '3.5s', color: 'text-[#ff85c8]' },
-        ].map((star, i) => (
-          <div
-            key={i}
-            className={`absolute ${star.color} drop-shadow-[0_0_8px_currentColor] animate-pulse`}
-            style={{
-              top: star.top,
-              left: star.left,
-              right: star.right,
-              animationDuration: star.dur,
-              animationDelay: star.delay,
-            }}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className={`${star.size} transform transition-transform duration-1000 hover:rotate-45`}
-            >
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-            </svg>
-          </div>
-        ))}
-      </div>
-
-      {/* ========================================================
           MAIN HERO SECTION (GRID: PACK WITH STAR + WELCOME TEXT)
          ======================================================== */}
       <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -166,7 +119,7 @@ export const Home: React.FC<HomeProps> = ({ cardCount }) => {
               
               <div className="bg-[#31213D]/90 border border-[#610F4E] rounded-xl p-2.5 flex flex-col items-center text-center">
                 <Sparkles className="w-5 h-5 text-[#ff6ebb] mb-1" />
-                <span className="text-xs sm:text-sm font-black text-[#F9F1F9]">8 Rarezas</span>
+                <span className="text-xs sm:text-sm font-black text-[#F9F1F9]">6 Rarezas</span>
                 <span className="text-[10px] text-[#B894B3]">Foil y Efectos</span>
               </div>
 
