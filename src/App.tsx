@@ -306,47 +306,53 @@ const TAB_ROUTES: Record<TabType, string> = {
 
 const pathToTab = (pathname: string, hash: string): TabType => {
   const cleanPath = (pathname || '').replace(/^\/+|\/+$/g, '').toLowerCase();
+  const lastSegment = cleanPath.split('/').filter(Boolean).pop() || '';
   const cleanHash = (hash || '').replace(/^#+/, '').toLowerCase();
+  const searchParams = new URLSearchParams(window.location.search);
+  const tabParam = (searchParams.get('tab') || '').toLowerCase();
 
-  // 1. Check path matches
-  if (['albumtcg', 'album-tcg', 'album_tcg', 'album', 'binder'].includes(cleanPath)) {
-    return 'binder';
-  }
-  if (['showcase', 'showcaserarezas', 'showcase-rarezas', 'rarezas'].includes(cleanPath)) {
-    return 'showcase';
-  }
-  if (['abrirsobre', 'abrir-sobre', 'pack', 'packs', 'sobres'].includes(cleanPath)) {
-    return 'pack';
-  }
-  if (['tokkiipass', 'tokkii-pass', 'pass', 'logindiario', 'login-diario', 'daily', 'diario', 'ruleta'].includes(cleanPath)) {
-    return 'daily';
-  }
-  if (['politicas', 'normas', 'politicasynormas', 'policies', 'rules', 'reglas'].includes(cleanPath)) {
-    return 'policies';
-  }
-  if (['home', 'inicio'].includes(cleanPath)) {
-    return 'home';
-  }
+  const matchCandidate = (val: string): TabType | null => {
+    if (!val) return null;
+    if (['albumtcg', 'album-tcg', 'album_tcg', 'album', 'binder'].includes(val)) {
+      return 'binder';
+    }
+    if (['showcase', 'showcaserarezas', 'showcase-rarezas', 'rarezas'].includes(val)) {
+      return 'showcase';
+    }
+    if (['abrirsobre', 'abrir-sobre', 'pack', 'packs', 'sobres'].includes(val)) {
+      return 'pack';
+    }
+    if (['tokkiipass', 'tokkii-pass', 'pass', 'logindiario', 'login-diario', 'daily', 'diario', 'ruleta'].includes(val)) {
+      return 'daily';
+    }
+    if (['politicas', 'normas', 'politicasynormas', 'policies', 'rules', 'reglas'].includes(val)) {
+      return 'policies';
+    }
+    if (['home', 'inicio'].includes(val)) {
+      return 'home';
+    }
+    return null;
+  };
 
-  // 2. Check hash legacy fallback (e.g. #binder, #home, #politicas)
-  if (['binder', 'album', 'albumtcg'].includes(cleanHash)) {
-    return 'binder';
-  }
-  if (['showcase', 'rarezas'].includes(cleanHash)) {
-    return 'showcase';
-  }
-  if (['pack', 'packs', 'abrirsobre'].includes(cleanHash)) {
-    return 'pack';
-  }
-  if (['logindiario', 'daily', 'diario'].includes(cleanHash)) {
-    return 'daily';
-  }
-  if (['politicas', 'normas', 'policies', 'rules'].includes(cleanHash)) {
-    return 'policies';
-  }
-  if (['home'].includes(cleanHash)) {
-    return 'home';
-  }
+  // 1. Check last path segment or clean path
+  const fromSegment = matchCandidate(lastSegment) || matchCandidate(cleanPath);
+  if (fromSegment) return fromSegment;
+
+  // 2. Check query parameter ?tab=
+  const fromQuery = matchCandidate(tabParam);
+  if (fromQuery) return fromQuery;
+
+  // 3. Check hash legacy fallback (e.g. #binder, #tokkiipass, #politicas)
+  const fromHash = matchCandidate(cleanHash);
+  if (fromHash) return fromHash;
+
+  // 4. Check localStorage fallback (prevents reload from kicking user back to home)
+  try {
+    const saved = localStorage.getItem('tokkii_tcg_active_tab') as TabType;
+    if (saved && ['home', 'binder', 'showcase', 'pack', 'daily', 'policies'].includes(saved)) {
+      return saved;
+    }
+  } catch {}
 
   return 'home';
 };
@@ -364,9 +370,12 @@ const getInitialTab = (): TabType => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editingCard, setEditingCard] = useState<CardData | null>(null);
 
-  // Sync tab changes with clean URL pathname (without #)
+  // Sync tab changes with clean URL pathname (without #) and localStorage
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
+    try {
+      localStorage.setItem('tokkii_tcg_active_tab', tab);
+    } catch {}
     const targetPath = TAB_ROUTES[tab] || '/Home';
     if (window.location.pathname !== targetPath || window.location.hash) {
       window.history.pushState({ tab }, '', targetPath);
@@ -383,8 +392,11 @@ const getInitialTab = (): TabType => {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  // Ensure URL is clean on mount and synchronized with activeTab
+  // Ensure URL is clean on mount and synchronized with activeTab & localStorage
   useEffect(() => {
+    try {
+      localStorage.setItem('tokkii_tcg_active_tab', activeTab);
+    } catch {}
     const targetPath = TAB_ROUTES[activeTab] || '/Home';
     if (window.location.pathname !== targetPath || window.location.hash) {
       window.history.replaceState({ tab: activeTab }, '', targetPath);
