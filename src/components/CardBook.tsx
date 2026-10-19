@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import type { CardData } from '../types/card';
-import { TcgCard } from './TcgCard';
 import { playPageTurnSound } from '../utils/soundEffects';
-import { resolveCardThumbnailUrl } from '../utils/imageHelper';
+import { getRenderedCardUrl, resolveImageUrl } from '../utils/imageHelper';
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,23 +16,26 @@ import {
 interface AlbumCardSlotProps {
   card: CardData;
   isCardLocked: boolean;
-  cardScale: number;
+  cardScale?: number;
   onInspectCard?: (card: CardData) => void;
 }
 
 const AlbumCardSlot: React.FC<AlbumCardSlotProps> = React.memo(({
   card,
   isCardLocked,
-  cardScale,
   onInspectCard,
 }) => {
+  const [hasError, setHasError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const renderedUrl = getRenderedCardUrl(card.cardNumber);
+
   return (
     <div
-      className={`transform transition-transform duration-150 ${
+      className={`relative w-full h-full flex items-center justify-center rounded-lg sm:rounded-xl overflow-hidden select-none transition-transform duration-150 ${
         !isCardLocked
-          ? 'hover:scale-[1.04] hover:z-30 cursor-pointer'
-          : 'cursor-default select-none'
-      } flex items-center justify-center w-full h-full`}
+          ? 'hover:scale-[1.04] hover:z-30 cursor-pointer shadow-sm hover:shadow-xl hover:shadow-black/70'
+          : 'cursor-default'
+      }`}
       style={{ willChange: isCardLocked ? 'auto' : 'transform' }}
       onClick={() => {
         if (!isCardLocked && onInspectCard) {
@@ -43,17 +45,46 @@ const AlbumCardSlot: React.FC<AlbumCardSlotProps> = React.memo(({
       title={
         isCardLocked
           ? `Carta #${card.cardNumber} - Bloqueada (No Obtenida)`
-          : `${card.title} (#${card.cardNumber}) - Clic para inspeccionar`
+          : `${card.title} (#${card.cardNumber}) - Clic para ver en detalle`
       }
     >
-      <TcgCard
-        card={card}
-        scale={cardScale}
-        isLocked={isCardLocked}
-        interactive={false}
-        showBackFlipBtn={false}
-        simplified={true}
+      {/* Skeleton loader background while image loads */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-slate-900/60 animate-pulse rounded-lg sm:rounded-xl" />
+      )}
+
+      {/* Pre-rendered Card Image from Cloudflare R2 (Clean static image, no rarity foil/3D lag in album) */}
+      <img
+        src={hasError ? resolveImageUrl(card.image) : renderedUrl}
+        alt={card.title || `Carta #${card.cardNumber}`}
+        className={`w-full h-full object-contain rounded-lg sm:rounded-xl transition-all duration-200 ${
+          isCardLocked
+            ? 'grayscale brightness-[0.38] contrast-[0.85]'
+            : 'brightness-[0.98] hover:brightness-105'
+        } ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        onError={() => {
+          setHasError(true);
+          setIsLoaded(true);
+        }}
       />
+
+      {/* Lock Overlay for locked cards */}
+      {isCardLocked && (
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-1 sm:p-2 text-center pointer-events-none select-none bg-black/40">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-slate-900/90 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-md mb-1">
+            <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          </div>
+          <span className="text-[8px] sm:text-[9.5px] font-mono font-black uppercase tracking-wider text-[#F9F1F9] bg-[#610F4E]/90 px-1.5 py-0.5 rounded-full border border-[#F50B8C]/40 shadow-sm mb-0.5">
+            No Obtenida
+          </span>
+          <span className="text-[8px] sm:text-[9px] font-mono font-bold text-slate-300">
+            #{String(card.cardNumber).padStart(3, '0')}
+          </span>
+        </div>
+      )}
     </div>
   );
 });
@@ -147,7 +178,7 @@ export const CardBook: React.FC<CardBookProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Intelligent thumbnail prefetching for adjacent spreads (next & previous)
+  // Intelligent prefetching of rendered card images for adjacent spreads (next & previous)
   useEffect(() => {
     const prefetchSpread = (spreadIdx: number) => {
       if (spreadIdx < 0 || spreadIdx >= totalPages) return;
@@ -155,9 +186,9 @@ export const CardBook: React.FC<CardBookProps> = ({
       const end = Math.min(sortedCards.length, (spreadIdx + 1) * CARDS_PER_SPREAD);
       for (let i = start; i < end; i++) {
         const card = sortedCards[i];
-        if (card && card.image) {
+        if (card && card.cardNumber) {
           const img = new Image();
-          img.src = resolveCardThumbnailUrl(card.image);
+          img.src = getRenderedCardUrl(card.cardNumber);
         }
       }
     };

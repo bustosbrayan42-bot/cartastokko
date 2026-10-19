@@ -22,7 +22,7 @@ export const CardInspector: React.FC<CardInspectorProps> = ({
   onClose,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [scale, setScale] = useState(1.15);
+  const scale = 1.3;
 
   if (!card) return null;
 
@@ -85,19 +85,6 @@ export const CardInspector: React.FC<CardInspectorProps> = ({
               <Sparkles className="w-4 h-4 text-[#F50B8C]" />
               Destello
             </button>
-            <div className="h-4 w-px bg-[#610F4E]" />
-            <div className="flex items-center gap-2 text-xs text-[#B894B3]">
-              <span>Zoom:</span>
-              <input
-                type="range"
-                min="0.9"
-                max="1.3"
-                step="0.05"
-                value={scale}
-                onChange={(e) => setScale(parseFloat(e.target.value))}
-                className="w-16 accent-[#F50B8C] cursor-pointer"
-              />
-            </div>
           </div>
         </div>
 

@@ -47,3 +47,17 @@ export const resolveCardThumbnailUrl = (src?: string): string => {
 
   return resolveImageUrl(src);
 };
+
+/**
+ * Base URL for pre-rendered card images stored on Cloudflare R2
+ */
+export const R2_RENDERED_CARDS_BASE_URL = 'https://pub-0bf9a87cec964ff49bfd058873c948c3.r2.dev/cartas_renderizadas';
+
+/**
+ * Returns the direct URL of a pre-rendered full card image from Cloudflare R2.
+ * e.g. carta_001.png, carta_002.png, ...
+ */
+export const getRenderedCardUrl = (cardNumber: string | number): string => {
+  const numStr = String(cardNumber || '1').padStart(3, '0');
+  return `${R2_RENDERED_CARDS_BASE_URL}/carta_${numStr}.png`;
+};

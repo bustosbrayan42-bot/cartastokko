@@ -3,7 +3,7 @@ import type { CardData } from '../types/card';
 import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { ELEMENT_CONFIGS } from '../data/elementConfigs';
 import { playCardFlipSound, playCardHoverSound, playSparkleSound } from '../utils/soundEffects';
-import { resolveImageUrl, resolveCardThumbnailUrl } from '../utils/imageHelper';
+import { resolveImageUrl, resolveCardThumbnailUrl, getRenderedCardUrl } from '../utils/imageHelper';
 import { RotateCw, Lock } from 'lucide-react';
 
 interface TcgCardProps {
@@ -20,6 +20,7 @@ interface TcgCardProps {
   enableSound?: boolean;
   simplified?: boolean;
   isDuplicate?: boolean;
+  useRenderedImage?: boolean;
 }
 
 export const TcgCard: React.FC<TcgCardProps> = ({
@@ -36,6 +37,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   enableSound = true,
   simplified = false,
   isDuplicate = false,
+  useRenderedImage = true,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRootRef = useRef<HTMLDivElement>(null);
@@ -44,10 +46,15 @@ export const TcgCard: React.FC<TcgCardProps> = ({
 
   const [internalFlipped, setInternalFlipped] = useState(isFlipped);
   const [isHovered, setIsHovered] = useState(false);
+  const [renderedImgError, setRenderedImgError] = useState(false);
 
   useEffect(() => {
     setInternalFlipped(isFlipped);
   }, [isFlipped]);
+
+  useEffect(() => {
+    setRenderedImgError(false);
+  }, [card.cardNumber]);
 
   useEffect(() => {
     return () => {
@@ -60,6 +67,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   const actualFlipped = onFlipToggle ? isFlipped : internalFlipped;
 
   const isFullArtMode = card.rarity === 'secret_rare' || card.isFullArt;
+  const isUsingRenderedCard = Boolean(useRenderedImage && !renderedImgError && card.cardNumber);
 
   const effectiveHoloStyle = card.customHoloStyle || rarityConfig.holoStyle;
   const effectiveFoilOpacity =
@@ -228,7 +236,9 @@ export const TcgCard: React.FC<TcgCardProps> = ({
       >
         {/* CARD FRONT */}
         <div
-          className={`card-face absolute inset-0 rounded-[20px] overflow-hidden p-[10px] flex flex-col justify-between border-2 ${
+          className={`card-face absolute inset-0 rounded-[20px] overflow-hidden ${
+            isUsingRenderedCard ? 'p-0 border-0' : 'p-[10px] border-2'
+          } flex flex-col justify-between ${
             isLocked
               ? simplified
                 ? 'grayscale brightness-[0.55]'
@@ -237,7 +247,9 @@ export const TcgCard: React.FC<TcgCardProps> = ({
           }`}
           style={{
             borderColor: isLocked ? '#475569' : rarityConfig.borderColor,
-            background: isFullArtMode
+            background: isUsingRenderedCard
+              ? '#0f172a'
+              : isFullArtMode
               ? '#0f172a'
               : card.rarity === 'ultra_rare'
               ? 'linear-gradient(135deg, #2e1065 0%, #1e1b4b 50%, #030712 100%)'
@@ -264,26 +276,42 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               </span>
             </div>
           )}
-          {/* FULL ART BACKGROUND IMAGE (When Secret Rare or Full Art) */}
-          {isFullArtMode && (
-            <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-slate-950">
+
+          {/* BACKGROUND CARD IMAGE */}
+          {isUsingRenderedCard ? (
+            /* High-Res Pre-rendered Card Image from Cloudflare R2 */
+            <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-slate-950 rounded-[18px]">
               <img
-                src={cardImgSrc}
+                src={getRenderedCardUrl(card.cardNumber)}
                 alt={card.title}
-                className={`w-full h-full ${
-                  card.imageFit === 'contain' ? 'object-contain' : 'object-cover'
-                } object-center transition-transform duration-75`}
-                style={imageTransformStyle}
-                loading={simplified ? 'lazy' : 'eager'}
+                className="w-full h-full object-contain rounded-[18px]"
+                loading="eager"
                 decoding="async"
-                onError={(e) => {
-                  const fallback = resolveImageUrl(card.image);
-                  if (e.currentTarget.src !== fallback) {
-                    e.currentTarget.src = fallback;
-                  }
-                }}
+                onError={() => setRenderedImgError(true)}
               />
             </div>
+          ) : (
+            /* FULL ART BACKGROUND IMAGE (When Secret Rare or Full Art fallback) */
+            isFullArtMode && (
+              <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-slate-950">
+                <img
+                  src={cardImgSrc}
+                  alt={card.title}
+                  className={`w-full h-full ${
+                    card.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+                  } object-center transition-transform duration-75`}
+                  style={imageTransformStyle}
+                  loading={simplified ? 'lazy' : 'eager'}
+                  decoding="async"
+                  onError={(e) => {
+                    const fallback = resolveImageUrl(card.image);
+                    if (e.currentTarget.src !== fallback) {
+                      e.currentTarget.src = fallback;
+                    }
+                  }}
+                />
+              </div>
+            )
           )}
 
           {/* Full Card Holographic Foil Overlay (Only rendered in full inspector/interactive mode) */}
@@ -291,7 +319,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             <div
               className={`absolute inset-0 rounded-[18px] ${getHoloClass()} z-20 pointer-events-none`}
               style={{
-                opacity: isFullArtMode ? effectiveFoilOpacity * 0.75 : effectiveFoilOpacity,
+                opacity: isFullArtMode || isUsingRenderedCard ? effectiveFoilOpacity * 0.75 : effectiveFoilOpacity,
                 mixBlendMode: 'overlay',
               }}
             />
@@ -317,10 +345,9 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             </>
           )}
 
-          {/* =========================================
-              FULL ART LAYOUT (Secret Rare / Full Art)
-             ========================================= */}
-          {isFullArtMode ? (
+          {/* DYNAMIC CONTENT LAYOUTS (Only rendered when NOT using pre-rendered R2 card) */}
+          {!isUsingRenderedCard && (
+            isFullArtMode ? (
             <div className="relative z-40 flex flex-col justify-between h-full w-full">
               {/* Floating Header */}
               <div className="bg-black/55 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-white/20 flex items-center justify-between shadow-lg">
@@ -636,7 +663,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
                 </div>
               </div>
             </>
-          )}
+          )
+        )}
         </div>
 
         {/* CARD BACK (Only rendered when not in simplified mode) */}

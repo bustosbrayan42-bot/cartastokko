@@ -81,7 +81,7 @@ export function App() {
   // Function to load cards directly from Supabase (Source of Truth)
   const loadCardsFromSupabase = async () => {
     try {
-      const dbCards = await fetchCardsFromSupabase();
+      const dbCards = await fetchCardsFromSupabase(true);
       if (dbCards && dbCards.length > 0) {
         setCards((currentCards) => {
           const defMap = new Map(DEFAULT_CARDS.map((c) => [c.id, c]));
