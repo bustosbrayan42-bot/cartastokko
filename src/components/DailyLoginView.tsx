@@ -179,7 +179,7 @@ export const DailyLoginView: React.FC<DailyLoginViewProps> = ({
         </div>
 
         {/* 5-Day Horizontal Track */}
-        <div className="relative flex items-center justify-between max-w-4xl mx-auto px-2 sm:px-6 md:px-10">
+        <div className="relative flex items-center justify-between max-w-4xl mx-auto px-1 xs:px-2 sm:px-6 md:px-10">
           {/* Connecting track line in background */}
           <div className="absolute top-1/2 left-4 right-4 sm:left-10 sm:right-10 md:left-14 md:right-14 -translate-y-1/2 h-1 bg-[#610F4E]/60 z-0 pointer-events-none rounded-full" />
 
@@ -190,17 +190,17 @@ export const DailyLoginView: React.FC<DailyLoginViewProps> = ({
             return (
               <div
                 key={day.offset}
-                className={`relative z-10 flex flex-col items-center justify-between transition-all duration-300 select-none rounded-2xl sm:rounded-3xl ${
+                className={`relative z-10 flex flex-col items-center justify-between transition-all duration-300 select-none rounded-xl xs:rounded-2xl sm:rounded-3xl ${
                   isCenterToday
-                    ? `w-24 sm:w-32 md:w-36 h-36 sm:h-44 md:h-48 bg-gradient-to-b from-[#610F4E] via-[#31213D] to-[#290A30] border-2 border-[#F50B8C] shadow-[0_0_35px_rgba(245,11,140,0.45)] scale-105 sm:scale-110`
+                    ? `w-[76px] xs:w-24 sm:w-32 md:w-36 h-32 xs:h-36 sm:h-44 md:h-48 bg-gradient-to-b from-[#610F4E] via-[#31213D] to-[#290A30] border-2 border-[#F50B8C] shadow-[0_0_35px_rgba(245,11,140,0.45)] scale-105 sm:scale-110`
                     : day.isPast
-                    ? 'w-14 sm:w-20 md:w-24 h-28 sm:h-32 md:h-36 bg-[#1F0724]/90 border border-[#610F4E]/40 opacity-70'
-                    : 'w-14 sm:w-20 md:w-24 h-28 sm:h-32 md:h-36 bg-[#1F0724]/90 border border-[#610F4E]/50 opacity-85'
-                } p-2 sm:p-2.5`}
+                    ? 'w-11 xs:w-14 sm:w-20 md:w-24 h-24 xs:h-28 sm:h-32 md:h-36 bg-[#1F0724]/90 border border-[#610F4E]/40 opacity-70'
+                    : 'w-11 xs:w-14 sm:w-20 md:w-24 h-24 xs:h-28 sm:h-32 md:h-36 bg-[#1F0724]/90 border border-[#610F4E]/50 opacity-85'
+                } p-1 xs:p-2 sm:p-2.5`}
               >
                 {/* Top: Day of week name */}
                 <span
-                  className={`text-[10px] sm:text-xs font-black uppercase tracking-wider ${
+                  className={`text-[9px] xs:text-[10px] sm:text-xs font-black uppercase tracking-wider ${
                     isCenterToday ? 'text-[#F50B8C]' : day.isPast ? 'text-slate-500' : 'text-[#B894B3]'
                   }`}
                 >
@@ -212,10 +212,10 @@ export const DailyLoginView: React.FC<DailyLoginViewProps> = ({
                   <span
                     className={`font-black font-mono leading-none ${
                       isCenterToday
-                        ? 'text-3xl sm:text-4xl md:text-5xl text-white drop-shadow-[0_0_12px_rgba(245,11,140,0.6)]'
+                        ? 'text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white drop-shadow-[0_0_12px_rgba(245,11,140,0.6)]'
                         : day.isPast
-                        ? 'text-xl sm:text-2xl md:text-3xl text-slate-400'
-                        : 'text-xl sm:text-2xl md:text-3xl text-slate-200'
+                        ? 'text-base xs:text-xl sm:text-2xl md:text-3xl text-slate-400'
+                        : 'text-base xs:text-xl sm:text-2xl md:text-3xl text-slate-200'
                     }`}
                   >
                     {day.dayNum}
@@ -223,7 +223,7 @@ export const DailyLoginView: React.FC<DailyLoginViewProps> = ({
 
                   {/* Reward Preview Badge for each day */}
                   <span
-                    className={`text-[9px] sm:text-[10px] font-black mt-1.5 uppercase tracking-tight px-2 py-0.5 rounded-full border ${
+                    className={`text-[7px] xs:text-[9px] sm:text-[10px] font-black mt-1 uppercase tracking-tight px-1 xs:px-2 py-0.5 rounded-full border ${
                       reward.isGuaranteedMonthEnd
                         ? 'bg-amber-500/20 text-amber-300 border-amber-400/50'
                         : reward.isRoulette
@@ -239,15 +239,15 @@ export const DailyLoginView: React.FC<DailyLoginViewProps> = ({
 
                 {/* Bottom: Status Pill */}
                 {isCenterToday ? (
-                  <span className="text-[9px] sm:text-[10px] bg-[#F50B8C] text-white font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm animate-pulse">
+                  <span className="text-[8px] xs:text-[9px] sm:text-[10px] bg-[#F50B8C] text-white font-black px-1.5 xs:px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm animate-pulse">
                     HOY
                   </span>
                 ) : day.isPast ? (
-                  <span className="text-[8px] sm:text-[9px] text-slate-500 font-bold uppercase">
+                  <span className="text-[7px] xs:text-[8px] sm:text-[9px] text-slate-500 font-bold uppercase">
                     Pasado
                   </span>
                 ) : (
-                  <span className="text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase">
+                  <span className="text-[7px] xs:text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase">
                     Próx.
                   </span>
                 )}

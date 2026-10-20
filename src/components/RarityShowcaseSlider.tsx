@@ -176,6 +176,27 @@ export const RarityShowcaseSlider: React.FC = () => {
   const currentIndex = rarities.indexOf(selectedRarity);
   const currentConfig = RARITY_CONFIGS[selectedRarity];
 
+  const [scale, setScale] = useState<number>(() => {
+    if (typeof window === 'undefined') return 1.1;
+    const w = window.innerWidth;
+    if (w < 400) return 0.76;
+    if (w < 640) return 0.88;
+    if (w < 1024) return 1.05;
+    return 1.22;
+  });
+
+  React.useEffect(() => {
+    const updateScale = () => {
+      const w = window.innerWidth;
+      if (w < 400) setScale(0.76);
+      else if (w < 640) setScale(0.88);
+      else if (w < 1024) setScale(1.05);
+      else setScale(1.22);
+    };
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
+
   const handlePrev = () => {
     const nextIdx = (currentIndex - 1 + rarities.length) % rarities.length;
     setSelectedRarity(rarities[nextIdx]);
@@ -187,7 +208,7 @@ export const RarityShowcaseSlider: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-6 py-2 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 relative">
+    <div className="w-full max-w-[1650px] mx-auto px-2 sm:px-6 py-2 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-16 relative">
       {/* Ambient background glow matching rarity color */}
       <div
         className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 filter blur-[120px] pointer-events-none transition-colors duration-700"
@@ -195,13 +216,13 @@ export const RarityShowcaseSlider: React.FC = () => {
       />
 
       {/* LEFT COLUMN: Card Stage with Navigation Arrows */}
-      <div className="flex-shrink-0 flex items-center justify-center gap-4 sm:gap-8 relative z-10">
+      <div className="flex-shrink-0 flex items-center justify-center gap-2 sm:gap-6 lg:gap-8 relative z-10">
         <button
           onClick={handlePrev}
-          className="w-12 h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
+          className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
           title="Anterior rareza"
         >
-          <ChevronLeft className="w-7 h-7" />
+          <ChevronLeft className="w-5 h-5 sm:w-7 sm:h-7" />
         </button>
 
         <div className="flex flex-col items-center justify-center">
@@ -209,7 +230,7 @@ export const RarityShowcaseSlider: React.FC = () => {
             <div className="py-2">
               <TcgCard
                 card={currentCard}
-                scale={1.22}
+                scale={scale}
                 interactive={true}
                 showBackFlipBtn={true}
               />
@@ -219,10 +240,10 @@ export const RarityShowcaseSlider: React.FC = () => {
 
         <button
           onClick={handleNext}
-          className="w-12 h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
+          className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
           title="Siguiente rareza"
         >
-          <ChevronRight className="w-7 h-7" />
+          <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" />
         </button>
       </div>
 

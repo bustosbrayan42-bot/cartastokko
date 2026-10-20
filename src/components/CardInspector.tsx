@@ -22,7 +22,26 @@ export const CardInspector: React.FC<CardInspectorProps> = ({
   onClose,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const scale = 1.3;
+  const [scale, setScale] = useState<number>(() => {
+    if (typeof window === 'undefined') return 1.1;
+    const w = window.innerWidth;
+    if (w < 400) return 0.8;
+    if (w < 640) return 0.92;
+    if (w < 1024) return 1.12;
+    return 1.3;
+  });
+
+  React.useEffect(() => {
+    const updateScale = () => {
+      const w = window.innerWidth;
+      if (w < 400) setScale(0.8);
+      else if (w < 640) setScale(0.92);
+      else if (w < 1024) setScale(1.12);
+      else setScale(1.3);
+    };
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
 
   if (!card) return null;
 
@@ -39,18 +58,18 @@ export const CardInspector: React.FC<CardInspectorProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#290A30]/85 backdrop-blur-xl animate-in fade-in duration-200">
-      <div className="relative w-full max-w-5xl bg-[#290A30] border border-[#610F4E] rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-[#290A30]/85 backdrop-blur-xl animate-in fade-in duration-200">
+      <div className="relative w-full max-w-5xl bg-[#290A30] border border-[#610F4E] rounded-2xl sm:rounded-3xl shadow-2xl overflow-y-auto md:overflow-hidden flex flex-col md:flex-row max-h-[94vh] sm:max-h-[92vh]">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-[#31213D]/90 hover:bg-[#F50B8C] text-[#F9F1F9] flex items-center justify-center transition-colors border border-[#610F4E] backdrop-blur-md cursor-pointer"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#31213D]/90 hover:bg-[#F50B8C] text-[#F9F1F9] flex items-center justify-center transition-colors border border-[#610F4E] backdrop-blur-md cursor-pointer"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* LEFT COLUMN: 3D CARD DISPLAY & CONTROLS */}
-        <div className="flex-1 bg-gradient-to-b from-[#290A30] to-[#31213D] p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#610F4E] relative overflow-hidden">
+        <div className="flex-1 bg-gradient-to-b from-[#290A30] to-[#31213D] p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#610F4E] relative overflow-hidden">
           {/* Subtle Ambient Glow */}
           <div
             className="absolute inset-0 opacity-20 pointer-events-none filter blur-3xl transition-colors duration-500"

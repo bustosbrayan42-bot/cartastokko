@@ -115,7 +115,13 @@ export const CardBook: React.FC<CardBookProps> = ({
   const CARDS_PER_SPREAD = 24;
 
   const totalPages = Math.ceil(TOTAL_ALBUM_SLOTS / CARDS_PER_SPREAD); // 6 Spreads (12 Páginas)
+  const TOTAL_SINGLE_PAGES = Math.ceil(TOTAL_ALBUM_SLOTS / CARDS_PER_PAGE); // 12 Páginas
   const [currentSpreadIndex, setCurrentSpreadIndex] = useState<number>(0);
+  const [mobilePage, setMobilePage] = useState<number>(1);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
   const [sortBy, setSortBy] = useState<'number' | 'rarity'>('number');
 
   // Sorted cards based on sort mode (both ascending: menor a mayor)
@@ -167,6 +173,7 @@ export const CardBook: React.FC<CardBookProps> = ({
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
+      setIsMobile(w < 768);
       if (w >= 1280) setCardScale(0.45);
       else if (w >= 1024) setCardScale(0.41);
       else if (w >= 768) setCardScale(0.38);
@@ -204,15 +211,108 @@ export const CardBook: React.FC<CardBookProps> = ({
 
   // Direct, instant page navigation (no heavy 3D rendering overhead)
   const handleNextPage = () => {
-    if (currentSpreadIndex >= totalPages - 1) return;
-    playPageTurnSound();
-    setCurrentSpreadIndex((prev) => prev + 1);
+    if (isMobile) {
+      if (mobilePage >= TOTAL_SINGLE_PAGES) return;
+      playPageTurnSound();
+      const next = mobilePage + 1;
+      setMobilePage(next);
+      setCurrentSpreadIndex(Math.floor((next - 1) / 2));
+    } else {
+      if (currentSpreadIndex >= totalPages - 1) return;
+      playPageTurnSound();
+      const nextSpread = currentSpreadIndex + 1;
+      setCurrentSpreadIndex(nextSpread);
+      setMobilePage(nextSpread * 2 + 1);
+    }
   };
 
   const handlePrevPage = () => {
-    if (currentSpreadIndex <= 0) return;
-    playPageTurnSound();
-    setCurrentSpreadIndex((prev) => prev - 1);
+    if (isMobile) {
+      if (mobilePage <= 1) return;
+      playPageTurnSound();
+      const prev = mobilePage - 1;
+      setMobilePage(prev);
+      setCurrentSpreadIndex(Math.floor((prev - 1) / 2));
+    } else {
+      if (currentSpreadIndex <= 0) return;
+      playPageTurnSound();
+      const prevSpread = currentSpreadIndex - 1;
+      setCurrentSpreadIndex(prevSpread);
+      setMobilePage(prevSpread * 2 + 1);
+    }
+  };
+
+  // Render a Mobile 3x4 single-page face (3 cols x 4 rows = 12 cards per page, 100% responsive)
+  const renderMobilePageFace = (pageNumber: number) => {
+    const pageStartSlot = (pageNumber - 1) * CARDS_PER_PAGE + 1;
+    const pageEndSlot = Math.min(TOTAL_ALBUM_SLOTS, pageNumber * CARDS_PER_PAGE);
+
+    return (
+      <div
+        className="w-full max-w-[420px] mx-auto rounded-[20px] p-2 sm:p-2.5 border-2 border-[#610F4E] shadow-[inset_0_0_20px_rgba(0,0,0,0.8),0_10px_30px_rgba(0,0,0,0.9)] flex flex-col justify-between relative select-none"
+        style={{
+          contain: 'paint layout',
+          background: 'linear-gradient(135deg, rgba(49,33,61,0.98) 0%, rgba(41,10,48,0.99) 100%)',
+        }}
+      >
+        {/* Mobile Header of Page */}
+        <div className="flex items-center justify-between pb-1.5 mb-1 border-b border-[#610F4E]/70 text-[10px] font-mono text-[#B894B3]">
+          <span className="flex items-center gap-1 text-[#F50B8C] font-bold">
+            <Sparkles className="w-3 h-3" />
+            PÁGINA {pageNumber}
+          </span>
+          <span className="tracking-wider uppercase text-[#B894B3]/70 text-[8px]">TOKKII BINDER</span>
+        </div>
+
+        {/* 3x4 CARDS GRID (3 Horizontal x 4 Vertical = 12 Slots per Page) */}
+        <div className="grid grid-cols-3 gap-1.5 xs:gap-2 justify-center items-center py-1">
+          {[...Array(12)].map((_, slotIdx) => {
+            const absoluteSlotNum = (pageNumber - 1) * CARDS_PER_PAGE + slotIdx + 1;
+            const isWithin150 = absoluteSlotNum <= TOTAL_ALBUM_SLOTS;
+            const card = isWithin150 ? sortedCards[absoluteSlotNum - 1] : undefined;
+            const slotFormatted = String(absoluteSlotNum).padStart(3, '0');
+
+            return (
+              <div
+                key={`mobile-${pageNumber}-slot-${absoluteSlotNum}`}
+                className="w-full aspect-[63/88] flex items-center justify-center rounded-lg bg-slate-950/60 border border-slate-800/60 relative group transition-all overflow-hidden"
+              >
+                {card ? (
+                  <AlbumCardSlot
+                    card={card}
+                    isCardLocked={!isLoggedIn || !userOwnedCardIds || !userOwnedCardIds.has(card.id)}
+                    cardScale={cardScale}
+                    onInspectCard={onInspectCard}
+                  />
+                ) : isWithin150 ? (
+                  <div className="w-full h-full rounded-lg border border-dashed border-slate-800/60 flex flex-col items-center justify-center text-slate-700/60 space-y-0.5 select-none hover:border-slate-700 hover:text-slate-600 transition-colors">
+                    <Layers className="w-3.5 h-3.5 stroke-[1.2]" />
+                    <span className="text-[10px] font-mono font-bold text-slate-500">
+                      #{slotFormatted}
+                    </span>
+                    <span className="text-[7px] font-mono uppercase tracking-wider text-slate-600">
+                      Vacío
+                    </span>
+                  </div>
+                ) : (
+                  <div className="w-full h-full rounded-lg border border-slate-900/30 bg-slate-950/20" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile Footer of Page */}
+        <div className="pt-1.5 mt-1 border-t border-slate-800/70 flex items-center justify-between text-[9px] font-mono text-slate-400">
+          <span>
+            {pageStartSlot <= TOTAL_ALBUM_SLOTS
+              ? `Ranuras #${String(pageStartSlot).padStart(3, '0')} - #${String(pageEndSlot).padStart(3, '0')}`
+              : 'Final del Álbum'}
+          </span>
+          <span className="font-bold text-[#F50B8C]">Pág. {pageNumber} / {TOTAL_SINGLE_PAGES}</span>
+        </div>
+      </div>
+    );
   };
 
   // Render a 4x3 page face (calibrated precisely to maximize viewport usage with ZERO scroll)
@@ -337,8 +437,8 @@ export const CardBook: React.FC<CardBookProps> = ({
               <h2 className="text-xs sm:text-sm md:text-base font-black text-[#F9F1F9] tracking-wide">
                 Álbum TCG Coleccionista (144 Cartas)
               </h2>
-              <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#610F4E]/90 border border-[#F50B8C]/40 text-[#F9F1F9] hidden sm:inline-block shadow-sm">
-                Hoja {currentSpreadIndex + 1} de {totalPages}
+              <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#610F4E]/90 border border-[#F50B8C]/40 text-[#F9F1F9] shadow-sm">
+                {isMobile ? `Pág. ${mobilePage} de ${TOTAL_SINGLE_PAGES}` : `Hoja ${currentSpreadIndex + 1} de ${totalPages}`}
               </span>
             </div>
           </div>
@@ -353,6 +453,7 @@ export const CardBook: React.FC<CardBookProps> = ({
               onClick={() => {
                 setSortBy('number');
                 setCurrentSpreadIndex(0);
+                setMobilePage(1);
               }}
               className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
                 sortBy === 'number'
@@ -369,6 +470,7 @@ export const CardBook: React.FC<CardBookProps> = ({
               onClick={() => {
                 setSortBy('rarity');
                 setCurrentSpreadIndex(0);
+                setMobilePage(1);
               }}
               className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
                 sortBy === 'rarity'
@@ -429,62 +531,68 @@ export const CardBook: React.FC<CardBookProps> = ({
       </div>
 
       {/* Main Binder Book Stage */}
-      <div className="w-full flex items-center justify-center relative px-2 sm:px-4">
+      <div className="w-full flex items-center justify-center relative px-1 sm:px-4">
         {/* Navigation Arrow Left */}
         <button
           onClick={handlePrevPage}
-          disabled={currentSpreadIndex === 0}
-          className={`z-40 w-9 h-9 sm:w-11 sm:h-11 mr-1 sm:mr-3 rounded-full bg-[#290A30]/90 border border-[#610F4E] hover:border-[#F50B8C] text-[#F9F1F9] flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer disabled:opacity-20 disabled:pointer-events-none ${
-            currentSpreadIndex > 0 ? 'hover:scale-110 hover:shadow-[0_0_15px_rgba(245,11,140,0.3)]' : ''
+          disabled={isMobile ? mobilePage <= 1 : currentSpreadIndex === 0}
+          className={`z-40 w-8 h-8 sm:w-11 sm:h-11 mr-1 sm:mr-3 rounded-full bg-[#290A30]/90 border border-[#610F4E] hover:border-[#F50B8C] text-[#F9F1F9] flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer disabled:opacity-20 disabled:pointer-events-none ${
+            (isMobile ? mobilePage > 1 : currentSpreadIndex > 0) ? 'hover:scale-110 hover:shadow-[0_0_15px_rgba(245,11,140,0.3)]' : ''
           }`}
           title="Página anterior"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* Double-Page Binder Container */}
-        <div
-          className="w-fit bg-gradient-to-b from-[#290A30] via-[#31213D] to-[#290A30] border-2 sm:border-[3px] border-[#610F4E] rounded-[24px] sm:rounded-[30px] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95),0_0_35px_rgba(0,0,0,0.75)] p-2 sm:p-3 relative select-none"
-          style={{
-            boxShadow: 'inset 0 0 45px rgba(0,0,0,0.88), 0 20px 50px rgba(0,0,0,0.95), 0 0 1px 1px rgba(255,255,255,0.08)',
-          }}
-        >
-          {/* Leather Center Spine with Metal Rings */}
-          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-6 sm:w-8 z-30 pointer-events-none flex flex-col justify-around items-center py-3.5">
-            {/* Spine Shadow Crease */}
-            <div className="absolute inset-y-0 w-3 sm:w-4 bg-gradient-to-r from-black/95 via-black/20 to-black/95 shadow-2xl" />
+        {/* Binder Stage: Single Page for Mobile vs Dual Spread for Desktop */}
+        {isMobile ? (
+          <div className="flex-1 max-w-[420px] mx-auto">
+            {renderMobilePageFace(mobilePage)}
+          </div>
+        ) : (
+          <div
+            className="w-fit bg-gradient-to-b from-[#290A30] via-[#31213D] to-[#290A30] border-2 sm:border-[3px] border-[#610F4E] rounded-[24px] sm:rounded-[30px] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95),0_0_35px_rgba(0,0,0,0.75)] p-2 sm:p-3 relative select-none"
+            style={{
+              boxShadow: 'inset 0 0 45px rgba(0,0,0,0.88), 0 20px 50px rgba(0,0,0,0.95), 0 0 1px 1px rgba(255,255,255,0.08)',
+            }}
+          >
+            {/* Leather Center Spine with Metal Rings */}
+            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-6 sm:w-8 z-30 pointer-events-none flex flex-col justify-around items-center py-3.5">
+              {/* Spine Shadow Crease */}
+              <div className="absolute inset-y-0 w-3 sm:w-4 bg-gradient-to-r from-black/95 via-black/20 to-black/95 shadow-2xl" />
 
-            {/* 6 Real Metallic Binder Rings */}
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="w-6 sm:w-8 h-2.5 sm:h-3 rounded-full bg-gradient-to-r from-slate-400 via-slate-100 to-slate-500 shadow-[0_3px_6px_rgba(0,0,0,0.9),inset_0_1px_2px_rgba(255,255,255,0.9)] border border-slate-600/80 z-30 relative"
-              >
-                <div className="absolute top-0.5 left-1 right-1 h-0.5 rounded-full bg-white/75 filter blur-[0.4px]" />
+              {/* 6 Real Metallic Binder Rings */}
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="w-6 sm:w-8 h-2.5 sm:h-3 rounded-full bg-gradient-to-r from-slate-400 via-slate-100 to-slate-500 shadow-[0_3px_6px_rgba(0,0,0,0.9),inset_0_1px_2px_rgba(255,255,255,0.9)] border border-slate-600/80 z-30 relative"
+                >
+                  <div className="absolute top-0.5 left-1 right-1 h-0.5 rounded-full bg-white/75 filter blur-[0.4px]" />
+                </div>
+              ))}
+            </div>
+
+            {/* Book Inner Spread Stage */}
+            <div className="flex flex-row items-center gap-2.5 sm:gap-3.5 relative">
+              {/* 1. LEFT PAGE */}
+              <div className="relative z-10">
+                {renderPageFace(leftPageNum, 'left')}
               </div>
-            ))}
-          </div>
 
-          {/* Book Inner Spread Stage */}
-          <div className="flex flex-row items-center gap-2.5 sm:gap-3.5 relative">
-            {/* 1. LEFT PAGE */}
-            <div className="relative z-10">
-              {renderPageFace(leftPageNum, 'left')}
-            </div>
-
-            {/* 2. RIGHT PAGE */}
-            <div className="relative z-10">
-              {renderPageFace(rightPageNum, 'right')}
+              {/* 2. RIGHT PAGE */}
+              <div className="relative z-10">
+                {renderPageFace(rightPageNum, 'right')}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Navigation Arrow Right */}
         <button
           onClick={handleNextPage}
-          disabled={currentSpreadIndex >= totalPages - 1}
-          className={`z-40 w-9 h-9 sm:w-11 sm:h-11 ml-1 sm:ml-3 rounded-full bg-[#290A30]/90 border border-[#610F4E] hover:border-[#F50B8C] text-[#F9F1F9] flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer disabled:opacity-20 disabled:pointer-events-none ${
-            currentSpreadIndex < totalPages - 1 ? 'hover:scale-110 hover:shadow-[0_0_15px_rgba(245,11,140,0.3)]' : ''
+          disabled={isMobile ? mobilePage >= TOTAL_SINGLE_PAGES : currentSpreadIndex >= totalPages - 1}
+          className={`z-40 w-8 h-8 sm:w-11 sm:h-11 ml-1 sm:ml-3 rounded-full bg-[#290A30]/90 border border-[#610F4E] hover:border-[#F50B8C] text-[#F9F1F9] flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer disabled:opacity-20 disabled:pointer-events-none ${
+            (isMobile ? mobilePage < TOTAL_SINGLE_PAGES : currentSpreadIndex < totalPages - 1) ? 'hover:scale-110 hover:shadow-[0_0_15px_rgba(245,11,140,0.3)]' : ''
           }`}
           title="Página siguiente"
         >

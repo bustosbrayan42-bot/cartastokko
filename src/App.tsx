@@ -429,7 +429,7 @@ const getInitialTab = (): TabType => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-[1750px] w-full mx-auto px-2 sm:px-4 py-0.5 sm:py-1 flex flex-col justify-center relative z-10">
+      <main className="flex-1 max-w-[1750px] w-full mx-auto px-2 sm:px-4 py-0.5 sm:py-1 pb-18 md:pb-2 flex flex-col justify-center relative z-10">
         {/* VIEW 0: HOME / HERO GREETING */}
         {activeTab === 'home' && (
           <div className="animate-in fade-in duration-300 w-full flex items-center justify-center flex-1">

@@ -168,8 +168,39 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
     ? pulledCards[selectedCardIndex]
     : pulledCards[0];
 
-  // Dynamic card scale to guarantee 100% viewport fit without scrolling
-  const cardScale = packCardCount === 1 ? 1.15 : packCardCount === 3 ? 0.88 : 0.72;
+  const [windowWidth, setWindowWidth] = useState<number>(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Dynamic card scale to guarantee 100% viewport fit without horizontal scrolling
+  const cardScale = React.useMemo(() => {
+    const isSmallMobile = windowWidth < 400;
+    const isMobile = windowWidth < 640;
+    const isTablet = windowWidth < 1024;
+
+    if (packCardCount === 1) {
+      if (isSmallMobile) return 0.82;
+      if (isMobile) return 0.95;
+      return 1.15;
+    }
+    if (packCardCount === 3) {
+      if (isSmallMobile) return 0.52;
+      if (isMobile) return 0.65;
+      if (isTablet) return 0.78;
+      return 0.88;
+    }
+    // 5 cards
+    if (isSmallMobile) return 0.44;
+    if (isMobile) return 0.52;
+    if (isTablet) return 0.62;
+    return 0.72;
+  }, [windowWidth, packCardCount]);
 
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col items-center justify-center py-2 relative my-auto animate-in fade-in duration-300">
@@ -292,10 +323,10 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
               )}
             </div>
 
-            {/* REALISTIC PHYSICAL SPLIT PACK CONTAINER (Exact 2:3 ratio of PNG: 300px x 450px) */}
+            {/* REALISTIC PHYSICAL SPLIT PACK CONTAINER (Exact 2:3 ratio: responsive from 260x390 to 300x450) */}
             <div
               onClick={handleOpenPack}
-              className={`relative w-[300px] h-[450px] select-none transition-transform duration-300 ${
+              className={`relative w-[260px] h-[390px] xs:w-[280px] xs:h-[420px] sm:w-[300px] sm:h-[450px] select-none transition-transform duration-300 ${
                 animState === 'unopened'
                   ? !userProfile
                     ? 'opacity-85 cursor-default'
