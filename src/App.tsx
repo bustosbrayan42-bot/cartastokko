@@ -27,24 +27,15 @@ import {
   calculateDuplicatesSummary,
 } from './services/authUserService';
 import type { UserProfile, UserPacksCount } from './types/user';
-import { saveCardsToIndexedDb, loadCardsFromIndexedDb } from './utils/cardStorage';
+import { saveCardsToIndexedDb } from './utils/cardStorage';
 
 export function App() {
   const [cards, setCards] = useState<CardData[]>(() => {
-    const saved = localStorage.getItem('tokkii_tcg_cards');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length >= DEFAULT_CARDS.length) {
-          return parsed;
-        } else if (Array.isArray(parsed) && parsed.length > 0) {
-          const localMap = new Map(parsed.map((c: CardData) => [c.id, c]));
-          return DEFAULT_CARDS.map((defCard) => localMap.get(defCard.id) || defCard);
-        }
-      } catch {
-        return DEFAULT_CARDS;
-      }
-    }
+    try {
+      localStorage.removeItem('tokkii_tcg_cards');
+      localStorage.removeItem('tokkii_cached_cards_v1');
+      localStorage.removeItem('tokkii_cached_cards_v1_time');
+    } catch {}
     return DEFAULT_CARDS;
   });
 
@@ -63,22 +54,7 @@ export function App() {
     [userCardsMap, cards]
   );
 
-  // Load from IndexedDB on mount (offline fallback)
-  useEffect(() => {
-    const loadFromIdb = async () => {
-      try {
-        const idbCards = await loadCardsFromIndexedDb();
-        if (idbCards && idbCards.length > 0) {
-          setCards(idbCards);
-        }
-      } catch (err) {
-        console.warn('Could not load from IndexedDB in Visor:', err);
-      }
-    };
-    loadFromIdb();
-  }, []);
-
-  // Function to load cards directly from Supabase (Source of Truth)
+  // Function to load cards directly from Supabase (Source of Truth - Cero caché)
   const loadCardsFromSupabase = async () => {
     try {
       const dbCards = await fetchCardsFromSupabase(true);
@@ -285,13 +261,12 @@ export function App() {
   };
 
   useEffect(() => {
-    saveCardsToIndexedDb(cards);
     try {
-      localStorage.setItem('tokkii_tcg_cards', JSON.stringify(cards));
-    } catch {
-      // quota fallback
-    }
-  }, [cards]);
+      localStorage.removeItem('tokkii_tcg_cards');
+      localStorage.removeItem('tokkii_cached_cards_v1');
+      localStorage.removeItem('tokkii_cached_cards_v1_time');
+    } catch {}
+  }, []);
 
 type TabType = 'home' | 'binder' | 'showcase' | 'pack' | 'daily' | 'policies';
 
