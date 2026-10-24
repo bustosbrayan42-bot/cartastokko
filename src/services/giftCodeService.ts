@@ -1,12 +1,19 @@
 import { supabaseAuth } from '../utils/authSupabaseClient';
 
-export type PackType = 'pack_1' | 'pack_3' | 'pack_5';
+export type PackType = 'pack_1' | 'pack_3' | 'pack_5' | 'multi';
+
+export interface PackPool {
+  pack_1: number;
+  pack_3: number;
+  pack_5: number;
+}
 
 export interface GiftCode {
   id: string;
   code: string;
   pack_type: PackType;
   pack_quantity: number;
+  pack_pool?: PackPool;
   max_total_uses: number | null;
   max_uses_per_user: number;
   is_active: boolean;
@@ -20,9 +27,10 @@ export interface RedeemResult {
   error?: string;
   reward?: {
     code: string;
-    pack_type: PackType;
+    pack_type: 'pack_1' | 'pack_3' | 'pack_5';
     pack_quantity: number;
     pack_label: string;
+    is_random_multi?: boolean;
   };
 }
 
@@ -76,11 +84,12 @@ export const fetchActiveGiftCodes = async (): Promise<GiftCode[]> => {
 /**
  * Helper to get human friendly pack name
  */
-export const getPackLabel = (type: PackType, qty: number): string => {
-  const map: Record<PackType, string> = {
+export const getPackLabel = (type: string, qty: number): string => {
+  const map: Record<string, string> = {
     pack_1: qty === 1 ? 'Sobre de 1 Carta' : 'Sobres de 1 Carta',
     pack_3: qty === 1 ? 'Sobre de 3 Cartas' : 'Sobres de 3 Cartas',
     pack_5: qty === 1 ? 'Sobre de 5 Cartas' : 'Sobres de 5 Cartas',
+    multi: 'Multisobres Aleatorios',
   };
   return `${qty}x ${map[type] || 'Sobre'}`;
 };
@@ -131,10 +140,10 @@ export const redeemGiftCode = async (
     // 2. Check user usage limit
     const { data: userLogs, error: userLogsErr } = await supabaseAuth
       .from('user_cards')
-      .select('id, count')
+      .select('id, card_id, count')
       .eq('user_id', userId)
       .eq('source', 'code_redemption')
-      .eq('card_id', codeIdTag);
+      .or(`card_id.eq.${codeIdTag},card_id.like.${codeIdTag}:%`);
 
     if (userLogsErr) {
       console.warn('Error querying user redemptions:', userLogsErr);
@@ -150,29 +159,89 @@ export const redeemGiftCode = async (
       };
     }
 
-    // 3. Check total global usage limit (if set)
-    if (matchedCode.max_total_uses !== null) {
+    let awardedPack: 'pack_1' | 'pack_3' | 'pack_5' = 'pack_3';
+    let awardedQty = 1;
+
+    // 3. Handle multisobres vs standard codes
+    if (matchedCode.pack_type === 'multi') {
+      // Query all logs for this code to calculate remaining envelopes in pool
       const { data: allLogs, error: allLogsErr } = await supabaseAuth
         .from('user_cards')
-        .select('count')
+        .select('card_id, count')
         .eq('source', 'code_redemption')
-        .eq('card_id', codeIdTag);
+        .or(`card_id.eq.${codeIdTag},card_id.like.${codeIdTag}:%`);
 
       if (allLogsErr) {
-        console.warn('Error querying all redemptions:', allLogsErr);
+        console.warn('Error querying all redemptions for multisobres:', allLogsErr);
       }
 
-      const totalUsed = (allLogs || []).reduce((acc: number, r: { count?: number }) => acc + (r.count || 1), 0);
-      if (totalUsed >= matchedCode.max_total_uses) {
+      let claimed1 = 0;
+      let claimed3 = 0;
+      let claimed5 = 0;
+
+      (allLogs || []).forEach((r: { card_id?: string; count?: number }) => {
+        const cnt = r.count || 1;
+        const cId = r.card_id || '';
+        if (cId.endsWith(':pack_1')) claimed1 += cnt;
+        else if (cId.endsWith(':pack_3')) claimed3 += cnt;
+        else if (cId.endsWith(':pack_5')) claimed5 += cnt;
+      });
+
+      const pool = matchedCode.pack_pool || { pack_1: 0, pack_3: 0, pack_5: 0 };
+      const rem1 = Math.max(0, (pool.pack_1 || 0) - claimed1);
+      const rem3 = Math.max(0, (pool.pack_3 || 0) - claimed3);
+      const rem5 = Math.max(0, (pool.pack_5 || 0) - claimed5);
+      const totalRemaining = rem1 + rem3 + rem5;
+
+      if (totalRemaining <= 0) {
         return {
           success: false,
-          error: `¡Llegaste tarde! El código "${cleanCode}" ya ha alcanzado su límite máximo de canjes disponibles (${matchedCode.max_total_uses}).`,
+          error: `¡Llegaste tarde! Todos los sobres de este código ya han sido canjeados (${(pool.pack_1 || 0) + (pool.pack_3 || 0) + (pool.pack_5 || 0)} sobres en total).`,
         };
       }
+
+      // Weighted random selection based on remaining packs
+      const rand = Math.floor(Math.random() * totalRemaining);
+      if (rand < rem1) {
+        awardedPack = 'pack_1';
+      } else if (rand < rem1 + rem3) {
+        awardedPack = 'pack_3';
+      } else {
+        awardedPack = 'pack_5';
+      }
+      awardedQty = 1;
+    } else {
+      // Standard fixed pack code
+      if (matchedCode.max_total_uses !== null) {
+        const { data: allLogs, error: allLogsErr } = await supabaseAuth
+          .from('user_cards')
+          .select('count')
+          .eq('source', 'code_redemption')
+          .or(`card_id.eq.${codeIdTag},card_id.like.${codeIdTag}:%`);
+
+        if (allLogsErr) {
+          console.warn('Error querying all redemptions:', allLogsErr);
+        }
+
+        const totalUsed = (allLogs || []).reduce((acc: number, r: { count?: number }) => acc + (r.count || 1), 0);
+        if (totalUsed >= matchedCode.max_total_uses) {
+          return {
+            success: false,
+            error: `¡Llegaste tarde! El código "${cleanCode}" ya ha alcanzado su límite máximo de canjes disponibles (${matchedCode.max_total_uses}).`,
+          };
+        }
+      }
+
+      awardedPack = (matchedCode.pack_type || 'pack_3') as 'pack_1' | 'pack_3' | 'pack_5';
+      awardedQty = matchedCode.pack_quantity || 1;
     }
 
-    // 4. Record the redemption in Supabase (upsert / update count if user has already redeemed once)
-    const existingLog = userLogs && userLogs.length > 0 ? userLogs[0] : null;
+    // 4. Record the redemption in Supabase
+    const finalCardId = matchedCode.pack_type === 'multi'
+      ? `${codeIdTag}:${awardedPack}`
+      : codeIdTag;
+
+    const existingLog = (userLogs || []).find((l: { card_id?: string }) => l.card_id === finalCardId);
 
     if (existingLog) {
       const { error: updateRedeemErr } = await supabaseAuth
@@ -193,7 +262,7 @@ export const redeemGiftCode = async (
     } else {
       const { error: insertRedeemErr } = await supabaseAuth.from('user_cards').insert({
         user_id: userId,
-        card_id: codeIdTag,
+        card_id: finalCardId,
         count: 1,
         source: 'code_redemption',
         obtained_at: new Date().toISOString(),
@@ -209,14 +278,11 @@ export const redeemGiftCode = async (
     }
 
     // 5. Award the packs to user_packs in Supabase
-    const packType = matchedCode.pack_type;
-    const packQty = matchedCode.pack_quantity || 1;
-
     const { data: existingPack, error: fetchPackErr } = await supabaseAuth
       .from('user_packs')
       .select('id, quantity')
       .eq('user_id', userId)
-      .eq('pack_type', packType)
+      .eq('pack_type', awardedPack)
       .maybeSingle();
 
     if (fetchPackErr) {
@@ -224,7 +290,7 @@ export const redeemGiftCode = async (
     }
 
     if (existingPack) {
-      const newQty = (Number(existingPack.quantity) || 0) + packQty;
+      const newQty = (Number(existingPack.quantity) || 0) + awardedQty;
       const { error: updatePackErr } = await supabaseAuth
         .from('user_packs')
         .update({
@@ -243,8 +309,8 @@ export const redeemGiftCode = async (
     } else {
       const { error: insertPackErr } = await supabaseAuth.from('user_packs').insert({
         user_id: userId,
-        pack_type: packType,
-        quantity: packQty,
+        pack_type: awardedPack,
+        quantity: awardedQty,
         updated_at: new Date().toISOString(),
       });
 
@@ -261,9 +327,10 @@ export const redeemGiftCode = async (
       success: true,
       reward: {
         code: matchedCode.code,
-        pack_type: packType,
-        pack_quantity: packQty,
-        pack_label: getPackLabel(packType, packQty),
+        pack_type: awardedPack,
+        pack_quantity: awardedQty,
+        pack_label: getPackLabel(awardedPack, awardedQty),
+        is_random_multi: matchedCode.pack_type === 'multi',
       },
     };
   } catch (err: any) {

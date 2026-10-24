@@ -10,7 +10,7 @@ import {
   ArrowRight,
   LogIn
 } from 'lucide-react';
-import { redeemGiftCode, type PackType, type RedeemResult } from '../services/giftCodeService';
+import { redeemGiftCode, type RedeemResult } from '../services/giftCodeService';
 import type { UserProfile } from '../types/user';
 
 interface RedeemCodeModalProps {
@@ -18,7 +18,7 @@ interface RedeemCodeModalProps {
   onClose: () => void;
   userProfile: UserProfile | null;
   onLoginTwitch?: () => void;
-  onSuccessRedeem: (packType: PackType, quantity: number) => void;
+  onSuccessRedeem: (packType: 'pack_1' | 'pack_3' | 'pack_5', quantity: number) => void;
   onNavigateToPacks: () => void;
 }
 
@@ -187,6 +187,12 @@ export const RedeemCodeModal: React.FC<RedeemCodeModalProps> = ({
                   </span>
                 </div>
               </div>
+
+              {redeemResult.is_random_multi && (
+                <div className="text-[11px] font-bold text-fuchsia-300 bg-fuchsia-950/60 border border-fuchsia-500/40 rounded-xl px-3 py-1.5 flex items-center justify-center gap-1.5">
+                  <span>🎲 ¡Te ha tocado este sobre al azar de la bolsa multisobres!</span>
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div className="space-y-2 pt-2">
