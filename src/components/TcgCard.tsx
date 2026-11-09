@@ -66,7 +66,7 @@ export const TcgCard: React.FC<TcgCardProps> = ({
   const elementConfig = ELEMENT_CONFIGS[card.element] || ELEMENT_CONFIGS.impulso;
   const actualFlipped = onFlipToggle ? isFlipped : internalFlipped;
 
-  const isFullArtMode = card.rarity === 'secret_rare' || card.isFullArt;
+  const isFullArtMode = card.rarity === 'secret_rare' || card.rarity === 'golden_epic' || card.isFullArt;
   const isUsingRenderedCard = Boolean(useRenderedImage && !renderedImgError && card.cardNumber);
 
   const effectiveHoloStyle = card.customHoloStyle || rarityConfig.holoStyle;
@@ -167,6 +167,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
         return 'holo-glitter';
       case 'wave':
         return 'holo-wave';
+      case 'golden_holo':
+        return 'holo-golden-holo';
       default:
         return '';
     }
@@ -330,8 +332,8 @@ export const TcgCard: React.FC<TcgCardProps> = ({
             <div className="card-glare z-30 pointer-events-none" />
           )}
 
-          {/* Sparkles for Super/Ultra/Secret Rare (Only active in full inspector mode) */}
-          {!simplified && (card.rarity === 'secret_rare' || card.rarity === 'ultra_rare') && (
+          {/* Sparkles for Super/Ultra/Secret/Golden Epic Rare (Only active in full inspector mode) */}
+          {!simplified && (card.rarity === 'secret_rare' || card.rarity === 'ultra_rare' || card.rarity === 'golden_epic') && (
             <>
               <div className="absolute top-8 left-8 text-amber-300 text-sm animate-sparkle-1 pointer-events-none z-30 opacity-80">
                 ✦
@@ -342,6 +344,16 @@ export const TcgCard: React.FC<TcgCardProps> = ({
               <div className="absolute top-1/2 right-6 text-fuchsia-300 text-xs animate-sparkle-3 pointer-events-none z-30 opacity-80">
                 ✦
               </div>
+              {card.rarity === 'golden_epic' && (
+                <>
+                  <div className="absolute top-12 right-12 text-yellow-300 text-base animate-sparkle-2 pointer-events-none z-30 opacity-90 drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]">
+                    ✨
+                  </div>
+                  <div className="absolute bottom-28 left-8 text-amber-200 text-base animate-sparkle-1 pointer-events-none z-30 opacity-90 drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]">
+                    👑
+                  </div>
+                </>
+              )}
             </>
           )}
 

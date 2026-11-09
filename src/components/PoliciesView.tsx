@@ -16,6 +16,9 @@ import {
   Calendar,
   Clock,
   Dices,
+  Crown,
+  MessageSquare,
+  Tv
 } from 'lucide-react';
 import type { Rarity } from '../types/card';
 
@@ -114,8 +117,16 @@ const DROP_RATES: DropRateItem[] = [
   },
 ];
 
+export type PolicySection =
+  | 'probabilities'
+  | 'packs'
+  | 'exchange'
+  | 'tokkiipass'
+  | 'golden_card'
+  | 'terms';
+
 export const PoliciesView: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<'probabilities' | 'packs' | 'exchange' | 'tokkiipass' | 'terms'>('probabilities');
+  const [activeSection, setActiveSection] = useState<PolicySection>('probabilities');
 
   return (
     <div className="w-full max-w-[1550px] mx-auto px-2 sm:px-6 py-4 space-y-6 animate-in fade-in duration-300">
@@ -198,6 +209,18 @@ export const PoliciesView: React.FC = () => {
           >
             <Calendar className="w-4 h-4" />
             <span>TokkiiPass Diario</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSection('golden_card')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
+              activeSection === 'golden_card'
+                ? 'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-slate-950 border-yellow-200 shadow-lg shadow-amber-500/35 font-black'
+                : 'bg-[#31213D]/80 text-[#B894B3] hover:text-[#F9F1F9] border-[#610F4E]/80 hover:bg-[#610F4E]/40'
+            }`}
+          >
+            <Crown className={`w-4 h-4 ${activeSection === 'golden_card' ? 'text-slate-950' : 'text-amber-400'}`} />
+            <span>Carta Dorada</span>
           </button>
 
           <button
@@ -391,25 +414,29 @@ export const PoliciesView: React.FC = () => {
             </div>
 
             {/* Pack 5 */}
-            <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-4 relative overflow-hidden">
+            <div className="bg-[#290A30]/90 border-2 border-amber-500/60 rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-4 relative overflow-hidden ring-1 ring-amber-500/30">
+              <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
+                Jackpot Dorado
+              </div>
+
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#F59E0B] flex items-center justify-center text-white shadow-md shadow-[#F59E0B]/30">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center text-slate-950 shadow-md shadow-amber-500/30">
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-amber-300 block">Nivel Coleccionista</span>
-                  <h3 className="text-xl font-black text-[#F9F1F9]">Sobre Premium</h3>
-                  <span className="text-xs font-mono font-bold text-amber-300">5 Cartas por sobre</span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-amber-300 block">Nivel Coleccionista VIP</span>
+                  <h3 className="text-xl font-black text-[#F9F1F9]">Sobre Premium (5 Cartas)</h3>
+                  <span className="text-xs font-mono font-bold text-amber-300">5 Cartas • Oportunidad de Carta Dorada</span>
                 </div>
                 <p className="text-xs text-[#B894B3] leading-relaxed">
-                  Paquete exclusivo reservado para hitos especiales, torneos de comunidad, metas de subs y grandes sorteos.
+                  Paquete legendario. <strong>Es el único sobre del juego donde puede salir la Carta Dorada Épica (#141)</strong>, cuyo drop desata el Jackpot y desbloquea el 100% del álbum al instante.
                 </p>
               </div>
 
               <div className="pt-3 border-t border-[#610F4E] text-[11px] text-[#F9F1F9] space-y-1">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Obtención: Metas globales y torneos especiales.</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Obtención: Domingos VIP (TokkiiPass Premium), Ruleta y Fin de Mes.</span>
                 </div>
               </div>
             </div>
@@ -692,8 +719,195 @@ export const PoliciesView: React.FC = () => {
               <ul className="text-xs text-[#B894B3] space-y-2 leading-relaxed list-disc list-inside">
                 <li>Los sobres reclamados se suman de manera inmediata a tu <strong>contador de inventario</strong> de sobres.</li>
                 <li>No estás obligado a abrirlos en ese mismo instante: tus sobres quedan guardados en tu cuenta para que los abras cuando desees en la pestaña <strong>Abrir Sobre</strong>.</li>
-                <li>El pase es <strong>100% gratuito</strong> para toda la comunidad coleccionista. Próximamente se habilitará el TokkiiPass Premium como complemento VIP opcional.</li>
+                <li>El pase diario es <strong>100% gratuito</strong> para toda la comunidad coleccionista que ingrese día a día.</li>
               </ul>
+            </div>
+          </div>
+
+          {/* MEMBRESÍA TOKKIIPASS PREMIUM (NIVEL VIP) */}
+          <div className="relative rounded-3xl bg-gradient-to-b from-[#241704]/95 via-[#290A30]/95 to-[#1c0722]/95 border-2 border-amber-500/60 p-6 sm:p-8 shadow-[0_0_50px_rgba(245,158,11,0.25)] space-y-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-amber-500/30 pb-5">
+              <div className="space-y-1.5">
+                <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/50">
+                  <Crown className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs font-mono font-black uppercase tracking-widest text-amber-300">
+                    Suscripción VIP Oficial
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-white tracking-wide">
+                  Membresía <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400">TokkiiPass Premium</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-amber-200/90 leading-relaxed max-w-2xl">
+                  Suscripción voluntaria que potencia tu recolección diaria con recompensas duplicadas continuas y financia directamente el crecimiento del proyecto EvilTokkii.
+                </p>
+              </div>
+
+              <div className="shrink-0 flex items-center gap-2 bg-[#170e02]/90 border border-amber-400/40 px-4 py-2.5 rounded-2xl">
+                <Crown className="w-5 h-5 text-amber-400" />
+                <div>
+                  <span className="text-[10px] font-mono text-amber-300/80 block uppercase">Aporte VIP</span>
+                  <span className="text-lg font-black text-amber-300 font-mono">$5 USD <span className="text-[11px] font-normal text-amber-200/70">/ 30 Días</span></span>
+                </div>
+              </div>
+            </div>
+
+            {/* 4 Beneficios Pilares */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              <div className="bg-[#180e02]/70 border border-amber-500/30 rounded-2xl p-4 space-y-2">
+                <Sparkles className="w-6 h-6 text-amber-400" />
+                <h4 className="text-sm font-black text-amber-200">Recompensas Duplicadas</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  De lunes a sábado recibes el doble de sobres o cartas en cada entrega regular y en cada tirada de la ruleta de azar.
+                </p>
+              </div>
+
+              <div className="bg-[#180e02]/70 border border-amber-500/30 rounded-2xl p-4 space-y-2">
+                <Award className="w-6 h-6 text-amber-400" />
+                <h4 className="text-sm font-black text-amber-200">Domingos de 5x5 Sobres</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Cada domingo recibes un cargamento épico de 5 sobres de 5 cartas garantizados (25 cartas adicionales directas cada semana).
+                </p>
+              </div>
+
+              <div className="bg-[#180e02]/70 border border-amber-500/30 rounded-2xl p-4 space-y-2">
+                <Clock className="w-6 h-6 text-amber-400" />
+                <h4 className="text-sm font-black text-amber-200">30 Días Acumulables</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Duración de 30 días continuos con la posibilidad de sumar 30 días adicionales acumulables en cualquier momento antes de que termine el mes.
+                </p>
+              </div>
+
+              <div className="bg-[#180e02]/70 border border-amber-500/30 rounded-2xl p-4 space-y-2">
+                <Crown className="w-6 h-6 text-amber-400" />
+                <h4 className="text-sm font-black text-amber-200">Tema Dorado & Contador</h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Casillas doradas brillantes en el calendario y una casilla identificativa con el contador exacto de días restantes en la cabecera.
+                </p>
+              </div>
+            </div>
+
+            {/* Modalidad de Adquisición & Destino de Fondos */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+              <div className="bg-black/35 border border-amber-500/30 rounded-2xl p-4.5 space-y-2">
+                <div className="flex items-center gap-2.5 text-amber-300 font-bold text-sm">
+                  <MessageSquare className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>Modo de Obtención: Solicitud vía Discord ($5 USD)</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Para solicitar tu TokkiiPass Premium, realiza la solicitud mediante el servidor oficial de Discord. Serás contactado de forma estrictamente privada por el staff oficial de la web para acordar el medio de pago, garantizando la mayor privacidad de tus datos personales y trato directo y transparente con el equipo.
+                </p>
+              </div>
+
+              <div className="bg-black/35 border border-amber-500/30 rounded-2xl p-4.5 space-y-2">
+                <div className="flex items-center gap-2.5 text-amber-300 font-bold text-sm">
+                  <Tv className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>Transparencia: 100% Destinado a Herramientas de Desarrollo</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Todo lo recaudado mediante el TokkiiPass Premium es en beneficio directo para financiar y mejorar las herramientas de desarrollo de EvilTokkii, tanto para las transmisiones en vivo del canal de Twitch como para todos los medios de difusión y plataformas manejadas bajo el proyecto comunitario EvilTokkii.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          SECTION 5: CARTA DORADA (GOLDEN EPIC CARD & JACKPOT)
+         ======================================================== */}
+      {activeSection === 'golden_card' && (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-black text-[#F9F1F9] tracking-wide flex items-center gap-2">
+              <Crown className="w-5 h-5 text-amber-400" />
+              Carta Dorada Épica (GoodTokkii #141) & Jackpot Supremo
+            </h2>
+            <p className="text-xs sm:text-sm text-[#B894B3] mt-0.5">
+              Aparición exclusiva en sobres de 5 cartas y desbloqueo automático del álbum completo al 100%.
+            </p>
+          </div>
+
+          {/* CRITICAL CONDITION: APARICIÓN EN SOBRES DE 5 CARTAS Y DESBLOQUEO TOTAL */}
+          <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-950/80 via-[#290A30] to-amber-950/80 border-2 border-amber-500/80 flex items-start gap-4 shadow-xl">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/30">
+              <Crown className="w-6 h-6 text-slate-950" />
+            </div>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[10px] font-mono font-black uppercase tracking-wider">
+                  Mecánica Exclusiva de Jackpot
+                </span>
+                <h3 className="text-base font-black text-white">
+                  Exclusiva de Sobres de 5 Cartas: ¡Desbloquea Todo el Álbum al 100%!
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-[#F9F1F9]/90 leading-relaxed">
+                La <strong>Carta Dorada Épica (#141)</strong> es el gran <em>Jackpot</em> del juego. <strong>Solo puede aparecer dentro de los sobres de 5 cartas</strong> con una baja probabilidad de drop. NUNCA aparece en sobres de 1 ni de 3 cartas.
+              </p>
+              <div className="flex items-center gap-2 pt-1 text-xs text-amber-300">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>
+                  <strong>¡Efecto Épico Inmediato!</strong> Si la Carta Dorada te sale al abrir un sobre de 5 cartas, el sistema activa el evento cinematográfico de Jackpot y <strong>desbloquea automáticamente todas las 140 cartas de la colección</strong> en tu álbum de golpe.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* DETALLES DE LA CARTA Y PREMIOS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Cúspide Coleccionista */}
+            <div className="bg-[#290A30]/90 border border-amber-500/40 rounded-3xl p-6 shadow-xl space-y-3">
+              <div className="flex items-center gap-2.5 text-amber-400 font-black text-base">
+                <Award className="w-5 h-5" />
+                <span>Estatus de Leyenda & Acabado Golden Holo</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#B894B3] leading-relaxed">
+                La Carta Dorada Épica representa el logro máximo dentro del ecosistema de EvilTokkii TCG. Diseñada en oro puro con lámina holográfica dorada resplandeciente (<em>Golden Holo Masterpiece</em>), corona la colección como una reliquia conmemorativa irrepetible.
+              </p>
+              <div className="p-3 bg-[#31213D] rounded-xl border border-amber-500/20 text-xs text-amber-200/90 leading-relaxed">
+                <strong>Ficha Oficial:</strong> GoodTokkii Dorada Épica • Número 141/140 • Elemento Leyenda • HP: 350.
+              </div>
+            </div>
+
+            {/* Sinergia con TokkiiPass Premium */}
+            <div className="bg-[#290A30]/90 border border-amber-500/40 rounded-3xl p-6 shadow-xl space-y-3">
+              <div className="flex items-center gap-2.5 text-amber-300 font-black text-base">
+                <Package className="w-5 h-5 text-amber-400" />
+                <span>Sinergia Clave con TokkiiPass Premium</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#B894B3] leading-relaxed">
+                Dado que la Carta Dorada <strong>solo puede aparecer en sobres de 5 cartas</strong>, los miembros del <strong>TokkiiPass Premium</strong> multiplican sus oportunidades gracias al beneficio de los <strong>Domingos 5x5</strong> (5 sobres de 5 cartas garantizados cada semana = 25 cartas). Los usuarios gratuitos cuentan con oportunidades a fin de mes o en la ruleta del azar.
+              </p>
+              <div className="p-3 bg-[#31213D] rounded-xl border border-amber-500/20 text-xs text-amber-200/90 leading-relaxed">
+                <strong>Oportunidades de 5 cartas:</strong> Domingos VIP (TokkiiPass Premium), Ruleta de la Suerte (Mié/Sáb premio mayor) y Sobre de Fin de Mes (gratuito).
+              </div>
+            </div>
+
+            {/* Desbloqueo Inmediato del Álbum */}
+            <div className="bg-[#290A30]/90 border border-amber-500/40 rounded-3xl p-6 shadow-xl space-y-3">
+              <div className="flex items-center gap-2.5 text-amber-300 font-black text-base">
+                <CheckCircle2 className="w-5 h-5 text-amber-400" />
+                <span>Premio Definitivo: Álbum 100% Completo</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#B894B3] leading-relaxed">
+                Al obtener la Carta Dorada en un sobre, el usuario recibe el premio máximo dentro de la plataforma:
+              </p>
+              <ul className="text-xs text-[#B894B3] space-y-2 leading-relaxed list-disc list-inside">
+                <li><strong className="text-white">Desbloqueo Total Inmediato:</strong> Todas las 140 cartas base de GoodTokkii pasan a estar desbloqueadas en su inventario.</li>
+                <li><strong className="text-white">Álbum 3D Completo:</strong> Visualización total de todas las ilustraciones, rarezas secretas y efectos holográficos.</li>
+                <li><strong className="text-white">Carta Dorada #141 Registrada:</strong> Pasa a formar parte permanente de su colección personal.</li>
+              </ul>
+            </div>
+
+            {/* Auditoría Anti-Fraude & Propiedad */}
+            <div className="bg-[#290A30]/90 border border-[#610F4E] rounded-3xl p-6 shadow-xl space-y-3">
+              <div className="flex items-center gap-2.5 text-rose-400 font-black text-base">
+                <ShieldCheck className="w-5 h-5 text-rose-400" />
+                <span>Auditoría en Base de Datos & Fair Play</span>
+              </div>
+              <p className="text-xs sm:text-sm text-[#B894B3] leading-relaxed">
+                Todo drop de Carta Dorada y desbloqueo total del álbum pasa por una verificación técnica automatizada en Supabase para validar la apertura legítima del sobre de 5 cartas. La carta y el álbum son estrictamente personales e intransferibles, ligados a la cuenta de Twitch del usuario.
+              </p>
             </div>
           </div>
         </div>

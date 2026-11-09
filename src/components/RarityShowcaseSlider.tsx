@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { CardData, Rarity } from '../types/card';
 import { TcgCard } from './TcgCard';
 import { RARITY_CONFIGS } from '../data/rarityConfigs';
+import { DEFAULT_CARDS } from '../data/defaultCards';
 import {
   Sparkles,
   ChevronLeft,
@@ -159,9 +160,68 @@ const SHOWCASE_CARDS_BY_RARITY: Record<Rarity, CardData> = {
     customFoilOpacity: 0.9,
     customMaskOpacity: 0.2,
   },
+  golden_epic: {
+    id: 'showcase-golden-epic',
+    title: 'Tokkii Dorada Épica',
+    subtitle: 'Carta Única de Canje • Golden Holo Masterpiece',
+    image: '/cards/Muestra_Showcase.jpeg',
+    imageZoom: 1,
+    rarity: 'golden_epic',
+    element: 'leyenda',
+    hp: 350,
+    cardNumber: '141',
+    totalInSet: '140',
+    artist: 'Tokkii Studio',
+    flavorText: 'Carta única de canje oficial. Forjada en oro puro con lámina holográfica dorada resplandeciente.',
+    abilityName: 'Canje Legendario',
+    abilityDamage: '300',
+    abilityDesc: 'Efecto supremo de canje único de la colección Tokkii TCG.',
+    weakness: 'desafio',
+    resistance: 'rutina',
+    retreatCost: 3,
+    isFullArt: true,
+    tags: ['Tokkii', 'GoldenEpic', 'CanjeUnico', 'FullArt'],
+    customHoloStyle: 'golden_holo',
+    customFoilOpacity: 1.0,
+    customMaskOpacity: 0.35,
+  },
 };
 
-export const RarityShowcaseSlider: React.FC = () => {
+interface RarityShowcaseSliderProps {
+  cards?: CardData[];
+}
+
+const getShowcaseCardForRarity = (rarity: Rarity, allCards: CardData[]): CardData => {
+  const targetMap: Record<Rarity, string> = {
+    common: '002',
+    uncommon: '001',
+    rare: '004',
+    super_rare: '020',
+    ultra_rare: '003',
+    secret_rare: '005',
+    golden_epic: '141',
+  };
+
+  const targetNumber = targetMap[rarity];
+  const found =
+    allCards.find((c) => c.cardNumber === targetNumber) ||
+    allCards.find((c) => c.rarity === rarity) ||
+    DEFAULT_CARDS.find((c) => c.cardNumber === targetNumber) ||
+    DEFAULT_CARDS.find((c) => c.rarity === rarity) ||
+    SHOWCASE_CARDS_BY_RARITY[rarity];
+
+  const cfg = RARITY_CONFIGS[rarity];
+
+  return {
+    ...found,
+    rarity: rarity,
+    customHoloStyle: found.customHoloStyle || cfg.holoStyle,
+    customFoilOpacity: found.customFoilOpacity ?? (cfg.holoStyle === 'none' ? 0 : 0.85),
+    customMaskOpacity: found.customMaskOpacity ?? 0.25,
+  };
+};
+
+export const RarityShowcaseSlider: React.FC<RarityShowcaseSliderProps> = ({ cards = [] }) => {
   const rarities: Rarity[] = [
     'common',
     'uncommon',
@@ -169,12 +229,21 @@ export const RarityShowcaseSlider: React.FC = () => {
     'super_rare',
     'ultra_rare',
     'secret_rare',
+    'golden_epic',
   ];
   const [selectedRarity, setSelectedRarity] = useState<Rarity>('common');
 
-  const currentCard = SHOWCASE_CARDS_BY_RARITY[selectedRarity];
+  const currentCard = React.useMemo(() => {
+    const list = cards && cards.length > 0 ? cards : DEFAULT_CARDS;
+    return getShowcaseCardForRarity(selectedRarity, list);
+  }, [selectedRarity, cards]);
   const currentIndex = rarities.indexOf(selectedRarity);
   const currentConfig = RARITY_CONFIGS[selectedRarity];
+
+  const prevIndex = (currentIndex - 1 + rarities.length) % rarities.length;
+  const nextIndex = (currentIndex + 1) % rarities.length;
+  const prevConfig = RARITY_CONFIGS[rarities[prevIndex]];
+  const nextConfig = RARITY_CONFIGS[rarities[nextIndex]];
 
   const [scale, setScale] = useState<number>(() => {
     if (typeof window === 'undefined') return 1.1;
@@ -215,16 +284,8 @@ export const RarityShowcaseSlider: React.FC = () => {
         style={{ backgroundColor: currentConfig.color }}
       />
 
-      {/* LEFT COLUMN: Card Stage with Navigation Arrows */}
-      <div className="flex-shrink-0 flex items-center justify-center gap-2 sm:gap-6 lg:gap-8 relative z-10">
-        <button
-          onClick={handlePrev}
-          className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
-          title="Anterior rareza"
-        >
-          <ChevronLeft className="w-5 h-5 sm:w-7 sm:h-7" />
-        </button>
-
+      {/* LEFT COLUMN: Card Stage (Clean, without side arrows) */}
+      <div className="flex-shrink-0 flex items-center justify-center relative z-10">
         <div className="flex flex-col items-center justify-center">
           {currentCard && (
             <div className="py-2">
@@ -237,17 +298,9 @@ export const RarityShowcaseSlider: React.FC = () => {
             </div>
           )}
         </div>
-
-        <button
-          onClick={handleNext}
-          className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#290A30]/90 hover:bg-[#31213D] text-[#F9F1F9] hover:border-[#F50B8C] flex items-center justify-center border border-[#610F4E] transition-all active:scale-90 shadow-2xl shrink-0 cursor-pointer backdrop-blur-md"
-          title="Siguiente rareza"
-        >
-          <ChevronRight className="w-5 h-5 sm:w-7 sm:h-7" />
-        </button>
       </div>
 
-      {/* RIGHT COLUMN: Texts, Rarity Selectors & Tech Specs */}
+      {/* RIGHT COLUMN: Texts, Rarity Slider & Tech Specs */}
       <div className="flex-1 flex flex-col justify-center space-y-5 max-w-2xl text-left relative z-10 w-full">
         {/* Header Title */}
         <div className="space-y-2">
@@ -263,31 +316,130 @@ export const RarityShowcaseSlider: React.FC = () => {
           </p>
         </div>
 
-        {/* Rarity Tabs Selector */}
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1.5 bg-[#290A30]/85 backdrop-blur-md rounded-2xl border border-[#610F4E] w-full shadow-lg">
-          {rarities.map((r) => {
-            const cfg = RARITY_CONFIGS[r];
-            const isActive = selectedRarity === r;
-            return (
+        {/* DESLIZADOR HORIZONTAL DE RAREZA (Horizontal Rarity Slider in a Single Row) */}
+        <div className="w-full space-y-2.5">
+          <div className="flex items-center justify-between gap-2 sm:gap-3 p-2 sm:p-2.5 bg-[#290A30]/90 backdrop-blur-md rounded-2xl border border-[#610F4E] shadow-xl relative overflow-hidden">
+            {/* Ambient subtle glow inside slider */}
+            <div
+              className="absolute inset-0 opacity-15 pointer-events-none blur-xl transition-all duration-500"
+              style={{ backgroundColor: currentConfig.color }}
+            />
+
+            {/* Left Navigation Arrow */}
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#31213D] hover:bg-[#610F4E] text-[#F9F1F9] hover:text-white border border-[#610F4E] hover:border-[#F50B8C] flex items-center justify-center transition-all active:scale-90 shadow-md shrink-0 cursor-pointer z-10"
+              title="Rareza anterior"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* Horizontal Track with 3 Rarities: Left (Previous, smaller), Center (Active, Bigger), Right (Next, smaller) */}
+            <div className="flex-1 flex items-center justify-center gap-1.5 sm:gap-3 z-10 overflow-hidden">
+              {/* Previous Rarity (Left, slightly smaller scale) */}
               <button
-                key={r}
-                onClick={() => setSelectedRarity(r)}
-                className={`px-2 py-2.5 rounded-xl text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 cursor-pointer text-center ${
-                  isActive
-                    ? 'bg-[#610F4E] text-[#F9F1F9] border border-[#F50B8C]/70 shadow-[0_0_15px_rgba(245,11,140,0.35)] scale-[1.04]'
-                    : 'text-[#B894B3] hover:text-[#F9F1F9] hover:bg-[#610F4E]/30'
-                }`}
+                type="button"
+                onClick={handlePrev}
+                className="flex-1 min-w-0 max-w-[150px] sm:max-w-[170px] py-2 px-2 sm:px-2.5 rounded-xl bg-[#31213D]/70 hover:bg-[#31213D] border border-[#610F4E]/80 hover:border-[#610F4E] text-center transition-all duration-300 opacity-60 hover:opacity-90 scale-90 cursor-pointer select-none"
+                title={`Ir a ${prevConfig.name}`}
               >
-                <div className="flex items-center gap-1">
-                  <span className="font-mono text-xs font-extrabold" style={{ color: cfg.color }}>{cfg.shortName}</span>
-                  <span className="truncate text-xs">{cfg.name}</span>
+                <div className="flex items-center justify-center gap-1">
+                  <span className="font-mono text-[11px] font-bold shrink-0" style={{ color: prevConfig.color }}>
+                    {prevConfig.shortName}
+                  </span>
+                  <span className="text-xs font-semibold text-[#B894B3] truncate">
+                    {prevConfig.name}
+                  </span>
                 </div>
-                <span className="text-[10px] tracking-tighter" style={{ color: cfg.color }}>
-                  {'★'.repeat(cfg.stars)}
-                </span>
+                <div className="text-[10px] tracking-tighter mt-0.5" style={{ color: prevConfig.color }}>
+                  {'★'.repeat(prevConfig.stars)}
+                </div>
               </button>
-            );
-          })}
+
+              {/* Current Active Rarity (Center, Bigger Font & Bigger Stars) */}
+              <div
+                className="flex-1 min-w-0 max-w-[210px] sm:max-w-[240px] py-2.5 px-3 rounded-2xl bg-[#610F4E] text-center transition-all duration-300 scale-105 shadow-[0_0_20px_rgba(245,11,140,0.35)] cursor-default select-none border-2"
+                style={{
+                  borderColor: currentConfig.color,
+                  boxShadow: `0 0 20px ${currentConfig.color}40`,
+                }}
+              >
+                <div className="flex items-center justify-center gap-1.5">
+                  <span
+                    className="font-mono text-sm sm:text-base font-black shrink-0"
+                    style={{ color: currentConfig.color }}
+                  >
+                    {currentConfig.shortName}
+                  </span>
+                  <span className="text-sm sm:text-base font-black text-white truncate tracking-wide">
+                    {currentConfig.name}
+                  </span>
+                </div>
+                <div
+                  className="text-xs sm:text-sm font-bold tracking-wider mt-0.5 filter drop-shadow-[0_0_6px_currentColor]"
+                  style={{ color: currentConfig.color }}
+                >
+                  {'★'.repeat(currentConfig.stars)}
+                </div>
+              </div>
+
+              {/* Next Rarity (Right, slightly smaller scale) */}
+              <button
+                type="button"
+                onClick={handleNext}
+                className="flex-1 min-w-0 max-w-[150px] sm:max-w-[170px] py-2 px-2 sm:px-2.5 rounded-xl bg-[#31213D]/70 hover:bg-[#31213D] border border-[#610F4E]/80 hover:border-[#610F4E] text-center transition-all duration-300 opacity-60 hover:opacity-90 scale-90 cursor-pointer select-none"
+                title={`Ir a ${nextConfig.name}`}
+              >
+                <div className="flex items-center justify-center gap-1">
+                  <span className="font-mono text-[11px] font-bold shrink-0" style={{ color: nextConfig.color }}>
+                    {nextConfig.shortName}
+                  </span>
+                  <span className="text-xs font-semibold text-[#B894B3] truncate">
+                    {nextConfig.name}
+                  </span>
+                </div>
+                <div className="text-[10px] tracking-tighter mt-0.5" style={{ color: nextConfig.color }}>
+                  {'★'.repeat(nextConfig.stars)}
+                </div>
+              </button>
+            </div>
+
+            {/* Right Navigation Arrow */}
+            <button
+              type="button"
+              onClick={handleNext}
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#31213D] hover:bg-[#610F4E] text-[#F9F1F9] hover:text-white border border-[#610F4E] hover:border-[#F50B8C] flex items-center justify-center transition-all active:scale-90 shadow-md shrink-0 cursor-pointer z-10"
+              title="Rareza siguiente"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+          </div>
+
+          {/* Mini 7-dot Position Indicator */}
+          <div className="flex items-center justify-center gap-2 pt-1">
+            {rarities.map((r) => {
+              const cfg = RARITY_CONFIGS[r];
+              const isActive = r === selectedRarity;
+              return (
+                <button
+                  key={r}
+                  type="button"
+                  onClick={() => setSelectedRarity(r)}
+                  title={`${cfg.name} (${cfg.shortName})`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'w-6 shadow-md'
+                      : 'w-2 bg-[#610F4E]/80 hover:bg-[#B894B3]'
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? cfg.color : undefined,
+                    boxShadow: isActive ? `0 0 8px ${cfg.color}` : undefined,
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
 
         {/* Rarity Spec Box */}

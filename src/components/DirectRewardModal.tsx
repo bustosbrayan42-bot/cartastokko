@@ -20,6 +20,8 @@ interface DirectRewardModalProps {
   dayNumber: number;
   monthName: string;
   onNavigateToPacks: () => void;
+  isPremium?: boolean;
+  premiumBonusText?: string;
 }
 
 export const DirectRewardModal: React.FC<DirectRewardModalProps> = ({
@@ -30,6 +32,8 @@ export const DirectRewardModal: React.FC<DirectRewardModalProps> = ({
   dayNumber,
   monthName,
   onNavigateToPacks,
+  isPremium,
+  premiumBonusText,
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -118,18 +122,38 @@ export const DirectRewardModal: React.FC<DirectRewardModalProps> = ({
 
           <div className="mt-2 space-y-1">
             <div className="font-black text-lg text-white">
-              1x {rewardConfig.title}
+              {isPremium ? (
+                dayName === 'Domingo'
+                  ? '1x Sobre Básico + 5x Sobres Legendarios'
+                  : `2x ${rewardConfig.title}`
+              ) : (
+                `1x ${rewardConfig.title}`
+              )}
             </div>
             <div className={`text-xs font-bold ${rewardConfig.textColor}`}>
-              Contiene {rewardConfig.cardCount} {rewardConfig.cardCount === 1 ? 'carta' : 'cartas'}
+              {isPremium ? (
+                dayName === 'Domingo'
+                  ? 'TokkiiPass Normal (1 Carta) + TokkiiPass Premium (5 Sobres de 5 Cartas)'
+                  : `Recompensa Estándar + Duplicado Premium (+${rewardConfig.cardCount} cartas)`
+              ) : (
+                `Contiene ${rewardConfig.cardCount} ${rewardConfig.cardCount === 1 ? 'carta' : 'cartas'}`
+              )}
             </div>
           </div>
         </div>
 
+        {/* Premium celebratory alert */}
+        {isPremium && (
+          <div className="mb-4 p-3 rounded-2xl bg-gradient-to-r from-amber-500/20 via-yellow-500/20 to-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-bold flex items-center justify-center gap-2">
+            <span className="text-base">👑</span>
+            <span>{premiumBonusText || '¡Beneficio TokkiiPass Premium aplicado exitosamente!'}</span>
+          </div>
+        )}
+
         {/* Success message note */}
         <div className="flex items-center justify-center gap-2 text-emerald-400 text-xs font-bold mb-6">
           <CheckCircle2 className="w-4 h-4" />
-          <span>¡Sobre añadido instantáneamente a tu inventario!</span>
+          <span>{isPremium ? '¡Todos los sobres añadidos a tu inventario!' : '¡Sobre añadido instantáneamente a tu inventario!'}</span>
         </div>
 
         {/* Action Buttons */}

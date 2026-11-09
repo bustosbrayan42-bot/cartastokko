@@ -6753,5 +6753,57 @@ export const DEFAULT_CARDS: CardData[] = [
     ],
     "weakness": "desafio",
     "resistance": "estilo"
+  },
+  {
+    "id": "goodtokkii-golden-epic-141",
+    "title": "GoodTokkii Dorada Épica",
+    "subtitle": "Carta de Canje Única • Edición Génesis",
+    "image": "/cards/Carta_Dorada.jpeg",
+    "imageZoom": 1,
+    "imageOffsetX": 0,
+    "imageOffsetY": 0,
+    "imageRotation": 0,
+    "imageFit": "cover",
+    "rarity": "golden_epic",
+    "element": "leyenda",
+    "hp": 350,
+    "cardNumber": "141",
+    "totalInSet": "140",
+    "artist": "Tokkii Studio",
+    "flavorText": "Carta única de canje oficial de Tokkii. Poseer esta reliquia dorada otorga el derecho a reclamar la recompensa suprema del canal.",
+    "abilityName": "✨👑 Canje Dorado Supremo",
+    "abilityCost": [
+      "leyenda"
+    ],
+    "abilityDamage": "300",
+    "abilityDesc": "Canje único y exclusivo de la edición Tokkii. Válido para reclamar la recompensa dorada del canal.",
+    "attacks": [
+      {
+        "id": "atk-gold-141",
+        "name": "✨👑 Resplandor Dorado Legendario",
+        "cost": [
+          "leyenda",
+          "leyenda"
+        ],
+        "damage": "300",
+        "description": "Un destello cegador forjado en oro puro que corona la colección."
+      }
+    ],
+    "retreatCost": 2,
+    "isFullArt": true,
+    "borderColor": "#ffd700",
+    "customHoloStyle": "golden_holo",
+    "customFoilOpacity": 1.0,
+    "customMaskOpacity": 0.35,
+    "dateAdded": "2026-11-06",
+    "tags": [
+      "Tokkii",
+      "Dorada Epica",
+      "Canje Unico",
+      "Génesis",
+      "FullArt"
+    ],
+    "weakness": "desafio",
+    "resistance": "rutina"
   }
 ];

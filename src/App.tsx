@@ -16,6 +16,7 @@ import { supabaseAuth } from './utils/authSupabaseClient';
 import { DuplicateExchangeModal } from './components/DuplicateExchangeModal';
 import { RedeemCodeModal } from './components/RedeemCodeModal';
 import { DailyLoginView } from './components/DailyLoginView';
+import { GoldenAlbumUnlockModal } from './components/GoldenAlbumUnlockModal';
 import {
   signInWithTwitch,
   signOutUser,
@@ -24,6 +25,7 @@ import {
   fetchUserPacks,
   deductUserPack,
   addCardsToUserCollection,
+  unlockFullAlbumForUser,
   calculateDuplicatesSummary,
 } from './services/authUserService';
 import type { UserProfile, UserPacksCount } from './types/user';
@@ -47,6 +49,7 @@ export function App() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
   const [isRedeemModalOpen, setIsRedeemModalOpen] = useState(false);
+  const [goldenUnlockedCard, setGoldenUnlockedCard] = useState<CardData | null>(null);
 
   // Calculate duplicates summary (memoized to avoid expensive re-calculations on every render)
   const duplicatesSummary = useMemo(
@@ -161,6 +164,20 @@ export function App() {
           });
         }
       )
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'profiles',
+          filter: `id=eq.${userProfile.id}`,
+        },
+        () => {
+          getUserProfile(userProfile.id).then((prof) => {
+            if (prof) setUserProfile(prof);
+          });
+        }
+      )
       .subscribe();
 
     return () => {
@@ -240,24 +257,84 @@ export function App() {
       [packType]: Math.max(0, prev[packType] - 1),
     }));
 
-    const cardIds = pulledCards.map((c) => c.id);
+    const hasGoldenEpic = pulledCards.some((c) => c.rarity === 'golden_epic');
+
+    // Si sacó la Dorada Épica, recolectar automáticamente todas las cartas del álbum (001 a 140) + la dorada
+    let cardIdsToUnlock = pulledCards.map((c) => c.id);
+    if (hasGoldenEpic) {
+      const albumCards = cards.filter((c) => {
+        const num = parseInt(c.cardNumber, 10);
+        return (!isNaN(num) && num >= 1 && num <= 140) || c.rarity === 'golden_epic';
+      });
+      cardIdsToUnlock = Array.from(new Set([...cardIdsToUnlock, ...albumCards.map((c) => c.id)]));
+    }
+
     setUserOwnedCardIds((prev) => {
       const next = new Set(prev);
-      cardIds.forEach((id) => next.add(id));
+      cardIdsToUnlock.forEach((id) => next.add(id));
+      return next;
+    });
+
+    setUserCardsMap((prev) => {
+      const next = new Map(prev);
+      cardIdsToUnlock.forEach((id) => {
+        next.set(id, (next.get(id) || 0) + 1);
+      });
       return next;
     });
 
     // 2. Concurrently persist deduction and new cards in Supabase
     try {
-      await Promise.all([
-        deductUserPack(userProfile.id, packType),
-        addCardsToUserCollection(userProfile.id, cardIds, packType),
-      ]);
+      if (hasGoldenEpic) {
+        await Promise.all([
+          deductUserPack(userProfile.id, packType),
+          unlockFullAlbumForUser(userProfile.id, cardIdsToUnlock),
+        ]);
+      } else {
+        await Promise.all([
+          deductUserPack(userProfile.id, packType),
+          addCardsToUserCollection(userProfile.id, cardIdsToUnlock, packType),
+        ]);
+      }
       return true;
     } catch (err) {
       console.error('Error persisting pack opening:', err);
       return false;
     }
+  };
+
+  // Callback cuando se revela una Carta Dorada Épica en el sobre
+  const handleGoldenEpicRevealed = (card: CardData) => {
+    // Desbloquear inmediatamente todas las cartas del álbum 001 a 140 en el estado local
+    const albumCards = cards.filter((c) => {
+      const num = parseInt(c.cardNumber, 10);
+      return (!isNaN(num) && num >= 1 && num <= 140) || c.rarity === 'golden_epic';
+    });
+    const albumCardIds = albumCards.map((c) => c.id);
+
+    setUserOwnedCardIds((prev) => {
+      const next = new Set(prev);
+      albumCardIds.forEach((id) => next.add(id));
+      return next;
+    });
+
+    setUserCardsMap((prev) => {
+      const next = new Map(prev);
+      albumCardIds.forEach((id) => {
+        if (!next.has(id)) next.set(id, 1);
+      });
+      return next;
+    });
+
+    // Si el usuario está conectado a Supabase, asegurar persistencia inmediata
+    if (userProfile?.id) {
+      unlockFullAlbumForUser(userProfile.id, albumCardIds).catch((err) => {
+        console.warn('Error en segundo plano desbloqueando álbum en Supabase:', err);
+      });
+    }
+
+    // Mostrar el modal temático dorado de felicitaciones
+    setGoldenUnlockedCard(card);
   };
 
   useEffect(() => {
@@ -408,7 +485,9 @@ const getInitialTab = (): TabType => {
   };
 
   return (
-    <div className="min-h-screen bg-[#31213D] text-[#F9F1F9] flex flex-col selection:bg-[#F50B8C] selection:text-white relative overflow-x-hidden">
+    <div className={`min-h-screen bg-[#31213D] text-[#F9F1F9] flex flex-col selection:bg-[#F50B8C] selection:text-white relative overflow-x-hidden ${
+      activeTab === 'home' ? 'h-screen max-h-screen overflow-y-hidden' : ''
+    }`}>
       {/* Background Sparkles & Twinkling Stars across all views */}
       <SparkleStarsBackground />
 
@@ -429,12 +508,19 @@ const getInitialTab = (): TabType => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-[1750px] w-full mx-auto px-2 sm:px-4 py-0.5 sm:py-1 pb-18 md:pb-2 flex flex-col justify-center relative z-10">
+      <main className={`flex-1 max-w-[1750px] w-full mx-auto px-2 sm:px-4 flex flex-col justify-center relative z-10 ${
+        activeTab === 'home'
+          ? 'py-0 overflow-hidden'
+          : 'py-0.5 sm:py-1 pb-18 md:pb-2'
+      }`}>
         {/* VIEW 0: HOME / HERO GREETING */}
         {activeTab === 'home' && (
           <div className="animate-in fade-in duration-300 w-full flex items-center justify-center flex-1">
             <Home
               cardCount={cards.length}
+              goldenCard={cards.find((c) => c.rarity === 'golden_epic')}
+              onNavigateToPacks={() => handleTabChange('pack')}
+              onNavigateToBinder={() => handleTabChange('binder')}
             />
           </div>
         )}
@@ -456,7 +542,7 @@ const getInitialTab = (): TabType => {
         {/* VIEW 2: RARITY SHOWCASE SLIDER */}
         {activeTab === 'showcase' && (
           <div className="animate-in fade-in duration-300 py-1 w-full flex items-center justify-center flex-1">
-            <RarityShowcaseSlider />
+            <RarityShowcaseSlider cards={cards} />
           </div>
         )}
 
@@ -472,6 +558,7 @@ const getInitialTab = (): TabType => {
               onOpenUserPack={handleOpenUserPack}
               onLoginTwitch={handleLoginTwitch}
               onOpenRedeemModal={() => setIsRedeemModalOpen(true)}
+              onGoldenEpicRevealed={handleGoldenEpicRevealed}
             />
           </div>
         )}
@@ -562,6 +649,22 @@ const getInitialTab = (): TabType => {
         }}
         onSave={handleSaveCard}
       />
+
+      {/* Modal Dorado de Desbloqueo Supremo del Álbum Completo */}
+      {goldenUnlockedCard && (
+        <GoldenAlbumUnlockModal
+          isOpen={!!goldenUnlockedCard}
+          onClose={() => setGoldenUnlockedCard(null)}
+          card={goldenUnlockedCard}
+          userName={userProfile?.display_name || userProfile?.username || 'Coleccionista'}
+          editionName={goldenUnlockedCard.tags?.includes('Sombra') || goldenUnlockedCard.tags?.includes('EvilTokkii') ? 'Edición Sombra' : 'Edición Génesis'}
+          totalUnlockedCount={140}
+          onGoToBinder={() => {
+            setGoldenUnlockedCard(null);
+            handleTabChange('binder');
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -309,14 +309,121 @@ export const pickDailyRewardIndex = (isLastDayOfMonth: boolean): number => {
   return 0;
 };
 
+export interface TokkiiPassPremiumStatus {
+  isPremium: boolean;
+  daysRemaining: number;
+  expiresAt: string | null;
+}
+
 /**
- * Claim the selected daily reward for the user
+ * Check if the user currently has an active TokkiiPass Premium (30 days)
+ */
+export const checkUserTokkiiPassPremium = async (
+  userId?: string | null
+): Promise<TokkiiPassPremiumStatus> => {
+  if (!userId) {
+    return { isPremium: false, daysRemaining: 0, expiresAt: null };
+  }
+
+  try {
+    let expiresAt: string | null = null;
+
+    // 1. Check profiles table column
+    const { data: prof, error: profErr } = await supabaseAuth
+      .from('profiles')
+      .select('tokkiipass_premium_expires_at')
+      .eq('id', userId)
+      .maybeSingle();
+
+    if (!profErr && prof && prof.tokkiipass_premium_expires_at) {
+      expiresAt = prof.tokkiipass_premium_expires_at;
+    }
+
+    // 2. Fallback check user_cards table
+    if (!expiresAt) {
+      const { data: fallbackRow } = await supabaseAuth
+        .from('user_cards')
+        .select('obtained_at')
+        .eq('user_id', userId)
+        .eq('card_id', 'TOKKIIPASS_PREMIUM')
+        .maybeSingle();
+
+      if (fallbackRow && fallbackRow.obtained_at) {
+        expiresAt = fallbackRow.obtained_at;
+      }
+    }
+
+    if (expiresAt) {
+      const expireTime = new Date(expiresAt).getTime();
+      const diffMs = expireTime - Date.now();
+      if (diffMs > 0) {
+        const daysRemaining = Math.max(1, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+        return { isPremium: true, daysRemaining, expiresAt };
+      }
+    }
+  } catch (err) {
+    console.warn('Error checking TokkiiPass Premium status:', err);
+  }
+
+  return { isPremium: false, daysRemaining: 0, expiresAt: null };
+};
+
+/**
+ * Helper to add or increment pack quantity in user_packs
+ */
+export const grantPackToUser = async (
+  userId: string,
+  packType: 'pack_1' | 'pack_3' | 'pack_5',
+  quantity: number = 1
+): Promise<void> => {
+  if (!userId || quantity <= 0) return;
+
+  const { data: existingPack } = await supabaseAuth
+    .from('user_packs')
+    .select('id, quantity')
+    .eq('user_id', userId)
+    .eq('pack_type', packType)
+    .maybeSingle();
+
+  if (existingPack) {
+    const newQty = (Number(existingPack.quantity) || 0) + quantity;
+    const { error: updateErr } = await supabaseAuth
+      .from('user_packs')
+      .update({
+        quantity: newQty,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', existingPack.id);
+
+    if (updateErr) throw updateErr;
+  } else {
+    const { error: insertPackErr } = await supabaseAuth.from('user_packs').insert({
+      user_id: userId,
+      pack_type: packType,
+      quantity: quantity,
+      updated_at: new Date().toISOString(),
+    });
+
+    if (insertPackErr) throw insertPackErr;
+  }
+};
+
+/**
+ * Claim the selected daily reward for the user.
+ * If user has TokkiiPass Premium:
+ * - Sunday: +5 packs of 5 cards!
+ * - Monday through Saturday: duplicates the claimed pack reward (+1 pack)!
  */
 export const claimDailyReward = async (
   userId: string,
   rewardItem: DailyRewardItem | DayRewardConfig,
   dateKey?: string
-): Promise<{ success: boolean; error?: string }> => {
+): Promise<{
+  success: boolean;
+  isPremium?: boolean;
+  premiumBonusText?: string;
+  error?: string;
+}> => {
   if (!userId) {
     return { success: false, error: 'Debes iniciar sesión con Twitch para guardar tu recompensa.' };
   }
@@ -325,12 +432,16 @@ export const claimDailyReward = async (
   const cardTag = `DAILY_LOGIN:${key}`;
 
   try {
-    // 1. Record daily login in Supabase user_cards
+    // 1. Check if user is Premium
+    const premiumStatus = await checkUserTokkiiPassPremium(userId);
+    const isPremium = premiumStatus.isPremium;
+
+    // 2. Record daily login in Supabase user_cards
     const { error: insertErr } = await supabaseAuth.from('user_cards').insert({
       user_id: userId,
       card_id: cardTag,
       count: 1,
-      source: 'daily_login',
+      source: isPremium ? 'daily_login_premium' : 'daily_login',
       obtained_at: new Date().toISOString(),
     });
 
@@ -338,48 +449,47 @@ export const claimDailyReward = async (
       console.warn('Could not record daily login log in Supabase:', insertErr);
     }
 
-    // 2. If reward is a pack, add it to user_packs in Supabase
+    let premiumBonusText = '';
+
+    // 3. Process base pack delivery
     if (rewardItem.packType && rewardItem.cardCount > 0) {
-      const packType = rewardItem.packType;
+      const normalizedPackType: 'pack_1' | 'pack_3' | 'pack_5' =
+        rewardItem.packType === 'pack_5' ? 'pack_5' : rewardItem.packType === 'pack_3' ? 'pack_3' : 'pack_1';
 
-      const { data: existingPack, error: fetchErr } = await supabaseAuth
-        .from('user_packs')
-        .select('id, quantity')
-        .eq('user_id', userId)
-        .eq('pack_type', packType)
-        .maybeSingle();
+      // Normal claim grants 1 pack
+      await grantPackToUser(userId, normalizedPackType, 1);
 
-      if (fetchErr) {
-        console.warn('Error fetching user pack row:', fetchErr);
+      // 4. If Premium, apply TokkiiPass Premium bonus!
+      if (isPremium) {
+        const isSunday = new Date().getDay() === 0;
+
+        if (isSunday) {
+          // Domingo Premium: ¡5 SOBRES DE 5 CARTAS!
+          await grantPackToUser(userId, 'pack_5', 5);
+          premiumBonusText = '¡TokkiiPass Premium: +5 Sobres de 5 Cartas (25 cartas) del Domingo!';
+        } else {
+          // Lunes a Sábado: Duplica la recompensa (+1 sobre adicional del mismo tipo)
+          await grantPackToUser(userId, normalizedPackType, 1);
+          premiumBonusText = `¡TokkiiPass Premium: +1 ${rewardItem.title} Duplicado!`;
+        }
       }
-
-      if (existingPack) {
-        const newQty = (Number(existingPack.quantity) || 0) + 1;
-        const { error: updateErr } = await supabaseAuth
-          .from('user_packs')
-          .update({
-            quantity: newQty,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('id', existingPack.id);
-
-        if (updateErr) throw updateErr;
-      } else {
-        const { error: insertPackErr } = await supabaseAuth.from('user_packs').insert({
-          user_id: userId,
-          pack_type: packType,
-          quantity: 1,
-          updated_at: new Date().toISOString(),
-        });
-
-        if (insertPackErr) throw insertPackErr;
+    } else if (isPremium) {
+      // If base was 0 or roulette without pack, check Sunday rule
+      const isSunday = new Date().getDay() === 0;
+      if (isSunday) {
+        await grantPackToUser(userId, 'pack_5', 5);
+        premiumBonusText = '¡TokkiiPass Premium: +5 Sobres de 5 Cartas del Domingo!';
       }
     }
 
-    // 3. Save in localStorage
+    // 5. Save in localStorage
     localStorage.setItem(`tokkii_daily_login_${userId}_${key}`, 'true');
 
-    return { success: true };
+    return {
+      success: true,
+      isPremium,
+      premiumBonusText: premiumBonusText || undefined,
+    };
   } catch (err: any) {
     console.error('Error claiming daily reward:', err);
     return { success: false, error: err?.message || 'Error al guardar la recompensa' };

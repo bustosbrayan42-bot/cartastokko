@@ -78,5 +78,18 @@ export const RARITY_CONFIGS: Record<Rarity, RarityConfig> = {
     holoStyle: 'prismatic',
     stars: 6,
     description: 'Acabado Masterpiece Full-Art con lámina prismática arcoíris y aura mítica.'
+  },
+  golden_epic: {
+    id: 'golden_epic',
+    name: 'Dorada Épica',
+    shortName: 'DÉ',
+    color: '#ffd700',
+    gradient: 'from-amber-300 via-yellow-400 to-amber-600',
+    glowColor: 'rgba(255, 215, 0, 0.95)',
+    borderColor: '#ffd700',
+    badgeBg: 'bg-amber-950/90 text-amber-200 border-amber-400 shadow-[0_0_12px_rgba(255,215,0,0.6)]',
+    holoStyle: 'golden_holo',
+    stars: 7,
+    description: 'Carta de Canje Única: Acabado dorado legendario con lámina holográfica dorada resplandeciente y brillo estelar.'
   }
 };

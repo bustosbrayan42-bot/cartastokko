@@ -4,6 +4,7 @@ export interface UserProfile {
   username: string;
   display_name: string;
   avatar_url: string;
+  tokkiipass_premium_expires_at?: string | null;
   created_at?: string;
   updated_at?: string;
 }

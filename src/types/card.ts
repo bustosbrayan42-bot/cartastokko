@@ -1,4 +1,4 @@
-export type Rarity = 'common' | 'uncommon' | 'rare' | 'super_rare' | 'ultra_rare' | 'secret_rare';
+export type Rarity = 'common' | 'uncommon' | 'rare' | 'super_rare' | 'ultra_rare' | 'secret_rare' | 'golden_epic';
 
 export type CardElement =
   | 'arte'
@@ -48,7 +48,7 @@ export interface CardData {
   resistance?: CardElement;
   isFullArt?: boolean;
   borderColor?: string;
-  customHoloStyle?: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold' | 'glitter' | 'wave';
+  customHoloStyle?: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold' | 'glitter' | 'wave' | 'golden_holo';
   customFoilOpacity?: number;
   customMaskOpacity?: number;
   customGlareOpacity?: number;
@@ -65,7 +65,7 @@ export interface RarityConfig {
   glowColor: string;
   borderColor: string;
   badgeBg: string;
-  holoStyle: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold' | 'glitter' | 'wave';
+  holoStyle: 'none' | 'silver' | 'prismatic' | 'gold_stars' | 'cosmic' | 'secret_gold' | 'glitter' | 'wave' | 'golden_holo';
   stars: number;
   description: string;
 }

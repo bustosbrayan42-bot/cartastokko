@@ -48,6 +48,7 @@ export const DailyRouletteModal: React.FC<DailyRouletteModalProps> = ({
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [selectedWinnerIndex, setSelectedWinnerIndex] = useState<number | null>(null);
   const [claimError, setClaimError] = useState<string | null>(null);
+  const [premiumBonusNotice, setPremiumBonusNotice] = useState<string | null>(null);
 
   const animationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -57,6 +58,7 @@ export const DailyRouletteModal: React.FC<DailyRouletteModalProps> = ({
       setSelectedWinnerIndex(null);
       setIsSpinning(false);
       setClaimError(null);
+      setPremiumBonusNotice(null);
       setActiveHighlightIndex(0);
     }
     return () => {
@@ -143,6 +145,9 @@ export const DailyRouletteModal: React.FC<DailyRouletteModalProps> = ({
         if (userProfile) {
           claimDailyReward(userProfile.id, wonItem, dateKey).then((res) => {
             if (res.success) {
+              if (res.isPremium && res.premiumBonusText) {
+                setPremiumBonusNotice(res.premiumBonusText);
+              }
               onRewardClaimed(wonItem);
             } else {
               setClaimError(res.error || 'No se pudo registrar la recompensa.');
@@ -356,6 +361,12 @@ export const DailyRouletteModal: React.FC<DailyRouletteModalProps> = ({
                     </span>
                     {wonItem.cardCount > 0 && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
                   </div>
+                  {premiumBonusNotice && (
+                    <div className="text-[11px] font-bold text-amber-300 bg-amber-500/20 border border-amber-400/40 px-2.5 py-0.5 rounded-lg my-1 inline-flex items-center gap-1">
+                      <span>👑</span>
+                      <span>{premiumBonusNotice}</span>
+                    </div>
+                  )}
                   <p className="text-xs text-[#B894B3]">
                     {wonItem.cardCount > 0
                       ? 'El sobre se ha agregado instantáneamente a tu inventario.'

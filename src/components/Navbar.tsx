@@ -10,7 +10,8 @@ import {
   Sparkles,
   ScrollText,
   Ticket,
-  Calendar
+  Calendar,
+  Crown
 } from 'lucide-react';
 import { resolveImageUrl } from '../utils/imageHelper';
 import type { UserProfile, UserPacksCount } from '../types/user';
@@ -44,6 +45,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenRedeemModal,
 }) => {
   const totalPacks = (userPacks?.pack_1 || 0) + (userPacks?.pack_3 || 0) + (userPacks?.pack_5 || 0);
+
+  const getPremiumDaysRemaining = (expiresAt?: string | null): number => {
+    if (!expiresAt) return 0;
+    const diffMs = new Date(expiresAt).getTime() - Date.now();
+    if (diffMs <= 0) return 0;
+    return Math.max(1, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+  };
+
+  const premiumDays = getPremiumDaysRemaining(userProfile?.tokkiipass_premium_expires_at);
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#290A30]/90 backdrop-blur-xl border-b border-[#610F4E]/80 shadow-lg">
@@ -155,10 +165,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* User Profile / Twitch Login Button */}
           {userProfile ? (
             <div className="flex items-center gap-2">
-              {/* 1. Imagen / Avatar (igualado al tamaño del botón Canjear Código: h-9 w-9) */}
+              {/* 1. Imagen / Avatar */}
               <div
                 title={`Conectado como ${userProfile.display_name || userProfile.username}`}
-                className="w-9 h-9 rounded-xl overflow-hidden bg-purple-900 border border-[#F50B8C]/50 shadow-[0_0_10px_rgba(245,11,140,0.3)] flex items-center justify-center shrink-0 cursor-default"
+                className={`w-9 h-9 rounded-xl overflow-hidden bg-purple-900 border ${
+                  premiumDays > 0
+                    ? 'border-amber-400/80 shadow-[0_0_12px_rgba(245,158,11,0.4)]'
+                    : 'border-[#F50B8C]/50 shadow-[0_0_10px_rgba(245,11,140,0.3)]'
+                } flex items-center justify-center shrink-0 cursor-default`}
               >
                 {userProfile.avatar_url ? (
                   <img
@@ -172,6 +186,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </span>
                 )}
               </div>
+
+              {/* Casilla Dorada de TokkiiPass Premium (solo si tiene pase activo) */}
+              {premiumDays > 0 && (
+                <div
+                  title={`TokkiiPass Premium Activo: Te quedan ${premiumDays} ${premiumDays === 1 ? 'día' : 'días'} de beneficios VIP y sobres dobles.`}
+                  className="h-9 flex items-center gap-1.5 bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-amber-500/20 border border-amber-400/80 px-2 sm:px-2.5 rounded-xl shadow-[0_0_12px_rgba(245,158,11,0.3)]"
+                >
+                  <Crown className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span className="text-xs sm:text-sm font-black text-amber-300 font-mono tracking-wide whitespace-nowrap">
+                    {premiumDays} {premiumDays === 1 ? 'día' : 'días'}
+                  </span>
+                </div>
+              )}
 
               {/* 2. Cantidad de Sobres en Inventario */}
               <div

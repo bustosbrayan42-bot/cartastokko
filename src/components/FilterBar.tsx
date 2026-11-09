@@ -36,6 +36,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     'super_rare',
     'ultra_rare',
     'secret_rare',
+    'golden_epic',
   ];
 
   const elements: CardElement[] = [

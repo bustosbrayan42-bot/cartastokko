@@ -5,7 +5,7 @@ import { RARITY_CONFIGS } from '../data/rarityConfigs';
 import { playPackTearSound, playLegendaryRevealSound, playSparkleSound, playCardFlipSound } from '../utils/soundEffects';
 import { resolveImageUrl } from '../utils/imageHelper';
 import confetti from 'canvas-confetti';
-import { Sparkles, RotateCcw, X, Scissors, AlertCircle, Ticket } from 'lucide-react';
+import { Sparkles, RotateCcw, X, Scissors, AlertCircle, Ticket, Crown } from 'lucide-react';
 import type { UserProfile, UserPacksCount } from '../types/user';
 
 interface PackOpenerProps {
@@ -18,6 +18,7 @@ interface PackOpenerProps {
   onOpenUserPack?: (packType: 'pack_1' | 'pack_3' | 'pack_5', cards: CardData[]) => Promise<boolean>;
   onLoginTwitch?: () => void;
   onOpenRedeemModal?: () => void;
+  onGoldenEpicRevealed?: (card: CardData) => void;
 }
 
 export const PackOpener: React.FC<PackOpenerProps> = ({
@@ -30,6 +31,7 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   onOpenUserPack,
   onLoginTwitch,
   onOpenRedeemModal,
+  onGoldenEpicRevealed,
 }) => {
   const [packCardCount, setPackCardCount] = useState<number>(3);
   const [animState, setAnimState] = useState<'unopened' | 'tearing' | 'sliding' | 'revealing'>('unopened');
@@ -55,7 +57,22 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
   const availablePackCount = userPacks ? userPacks[currentPackType] : 0;
 
   const getRandomCard = () => {
-    return cards[Math.floor(Math.random() * cards.length)];
+    // Si el sobre es de 1 o 3 cartas, nunca salen cartas de rareza golden_epic
+    if (packCardCount < 5) {
+      const nonGolden = cards.filter((c) => c.rarity !== 'golden_epic');
+      const pool = nonGolden.length > 0 ? nonGolden : cards;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    // Para sobres de 5 cartas: probabilidad de 1 en 1.000 (0.1%)
+    const goldenPool = cards.filter((c) => c.rarity === 'golden_epic');
+    if (goldenPool.length > 0 && Math.random() < 0.001) {
+      return goldenPool[Math.floor(Math.random() * goldenPool.length)];
+    }
+
+    const standardPool = cards.filter((c) => c.rarity !== 'golden_epic');
+    const pool = standardPool.length > 0 ? standardPool : cards;
+    return pool[Math.floor(Math.random() * pool.length)];
   };
 
   const handleOpenPack = () => {
@@ -133,7 +150,20 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
       updated[idx] = true;
       setRevealedCards(updated);
 
-      if (
+      if (card.rarity === 'golden_epic') {
+        playLegendaryRevealSound();
+        confetti({
+          particleCount: 160,
+          spread: 110,
+          origin: { y: 0.5 },
+          colors: ['#ffd700', '#f59e0b', '#fbbf24', '#ffffff', '#b45309'],
+        });
+        if (onGoldenEpicRevealed) {
+          setTimeout(() => {
+            onGoldenEpicRevealed(card);
+          }, 450);
+        }
+      } else if (
         card.rarity === 'super_rare' ||
         card.rarity === 'ultra_rare' ||
         card.rarity === 'secret_rare'
@@ -449,6 +479,14 @@ export const PackOpener: React.FC<PackOpenerProps> = ({
                     </span>
                   )}
                 </h2>
+
+                {pulledCards.some((c) => c.rarity === 'golden_epic') && (
+                  <div className="flex items-center justify-center gap-2 px-4 py-1 bg-gradient-to-r from-amber-500/20 via-yellow-400/30 to-amber-500/20 border border-[#ffd700] rounded-full text-[#fef08a] text-xs font-black shadow-[0_0_15px_rgba(255,215,0,0.3)] animate-pulse w-fit mx-auto">
+                    <Crown className="w-3.5 h-3.5 text-[#ffd700]" />
+                    <span>¡Presencia Áurea detectada en este sobre! Toca las cartas para revelarla</span>
+                    <Sparkles className="w-3.5 h-3.5 text-[#ffd700]" />
+                  </div>
+                )}
               </div>
 
               {/* HORIZONTAL CARDS DISPLAY */}

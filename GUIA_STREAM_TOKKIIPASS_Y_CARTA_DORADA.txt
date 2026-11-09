@@ -1,0 +1,273 @@
+========================================================================================
+GUÍA OFICIAL PARA TRANSMISIÓN EN VIVO: TOKKIIPASS PREMIUM Y CARTA DORADA ÉPICA
+Proyecto EvilTokkii TCG - Web Oficial de Coleccionables
+========================================================================================
+
+Este documento contiene la información oficial, reglas, funcionamiento real y puntos
+clave diseñados para que EvilTokkii pueda explicarlo y presentarlo con total soltura,
+precisión y naturalidad durante sus transmisiones en vivo en Twitch.
+
+----------------------------------------------------------------------------------------
+ÍNDICE DE CONTENIDOS:
+1. Resumen Rápido (Pitch Inicial de Impacto para el Stream)
+2. El TokkiiPass Diario Gratuito (Funcionamiento día a día)
+3. La Membresía TokkiiPass Premium (Nivel VIP)
+   - Oferta de Lanzamiento: $2 USD (Valor regular $5 USD)
+   - Beneficios Exclusivos (Recompensas x2 y Domingos 5x5)
+   - Casilla Dorada y Contador de Días en Vivo
+   - Acumulación de Meses (+30 Días Adicionales)
+   - Botón Directo en la Web y Webhook Oficial a Discord
+   - Conversión a Moneda Local de Cualquier País
+   - Destino del Dinero (Transparencia Total de Fondos)
+4. La Carta Dorada Épica (#141 GoodTokkii Dorada) - El Gran Jackpot
+   - Regla Exclusiva: Solo aparece en sobres de 5 cartas (Pack X5)
+   - Efecto Épico: Desbloqueo automático de TODO el álbum (140 cartas)
+   - Sinergia con TokkiiPass Premium (5 sobres de 5 cartas cada domingo)
+   - Auditoría Técnica y No Transferibilidad
+5. Preguntas Frecuentes (FAQ directas para responder al chat en vivo)
+6. Guion Recomendado para la Streamer (Para leer o parafrasear en directo)
+----------------------------------------------------------------------------------------
+
+
+========================================================================================
+1. RESUMEN RÁPIDO (PITCH INICIAL DE IMPACTO PARA EL STREAM)
+========================================================================================
+"¡Chicos! Ya tenemos disponible en la web el sistema del TokkiiPass Diario gratuito y la nueva
+membresía oficial TokkiiPass Premium VIP, que por estreno tiene una OFERTA ESPECIAL DE LANZAMIENTO
+A SOLO $2 DÓLARES por 30 días (su valor normal es de $5 USD).
+
+Con el pase diario gratuito pueden entrar todos los días con su cuenta de Twitch y reclamar
+sobres para ir llenando su álbum, ¡pero ojo con la regla de oro: día que no entran a reclamar,
+es día que se pierde para siempre!
+
+Y para quienes quieran avanzar a toda velocidad, con el TokkiiPass Premium duplican todas sus
+recompensas diarias de lunes a sábado, reciben un cargamento legendario de 5 sobres de 5 cartas
+garantizados todos los domingos (¡25 cartas semanales directas!) y se les activa su casilla
+dorada con el contador de días en vivo en la cabecera. Pedirlo es facilísimo: en la misma web
+hay un botón dorado que dice 'Solicitar TokkiiPass Premium', escriben su usuario de Discord y la
+solicitud nos llega al instante a nuestro canal de Discord para que el staff los contacte por privado.
+Y si necesitan pagar en la moneda local de su país, ¡se coordina directamente en la solicitud
+con total transparencia y el cambio correspondiente!
+
+¡Y mucha atención al JACKPOT definitivo del juego: la CARTA DORADA ÉPICA #141! Solo puede salir
+en los sobres de 5 cartas con una probabilidad baja, y si a alguien le llega a salir en su sobre,
+¡el sistema le DESBLOQUEA AUTOMÁTICAMENTE TODAS LAS 140 CARTAS DE LA COLECCIÓN DE GOLPE,
+completándole el álbum entero al 100% al instante!"
+
+
+========================================================================================
+2. EL TOKKIIPASS DIARIO GRATUITO
+========================================================================================
+¿Qué es?
+Es el calendario interactivo de recompensas diarias por inicio de sesión en la web.
+Cualquier espectador con cuenta de Twitch puede participar sin pagar absolutamente nada.
+
+Regla Fundamental Estricta:
+"DÍA QUE NO SE RECLAMA, DÍA PERDIDO".
+- Las recompensas diarias se habilitan desde las 00:00:00 hasta las 23:59:59 de la hora
+  local del usuario.
+- Si un usuario no entra ese día a la web y no pulsa el botón de reclamo, la casilla expira
+  a la medianoche y se pierde definitivamente.
+- NO existen reclamos retroactivos ni opción de recuperar días pasados. Se premia la constancia.
+
+Estructura Semanal de Recompensas Gratuitas:
+- LUNES, MARTES Y JUEVES: 1 Sobre Individual garantizado (1 carta coleccionable).
+- MIÉRCOLES Y SÁBADOS: Ruleta del Azar interactiva.
+  * 25% de probabilidad: Sobre vacío (0 cartas - ¡a probar suerte en la siguiente!).
+  * 45% de probabilidad: Sobre individual (1 carta).
+  * 25% de probabilidad: Sobre estándar (3 cartas).
+  * 5% de probabilidad: Sobre premium mayor (5 cartas - ¡con chance de Carta Dorada!).
+- VIERNES (Día de Stream): 1 Sobre Estándar garantizado (3 cartas coleccionables).
+- DOMINGO: 1 Sobre Individual garantizado (1 carta coleccionable).
+- ÚLTIMO DÍA DEL MES (28, 29, 30 o 31 según el mes): Sobre Legendario de 5 Cartas garantizadas
+  (¡oportunidad mensual gratuita para toda la comunidad de conseguir la Carta Dorada!).
+
+Inventario Permanente:
+Todos los sobres reclamados se guardan de inmediato en el inventario del usuario. No caducan
+y se pueden abrir cuando el usuario lo desee en la pestaña "Abrir Sobre".
+
+
+========================================================================================
+3. LA MEMBRESÍA TOKKIIPASS PREMIUM (NIVEL VIP)
+========================================================================================
+¿Qué es?
+Es una membresía voluntaria de suscripción de 30 días continuos diseñada para acelerar
+la colección de cartas, tener múltiples oportunidades semanales de sacar la Carta Dorada
+y financiar las herramientas de streaming y desarrollo del proyecto comunitario EvilTokkii.
+
+VALOR Y OFERTA DE LANZAMIENTO:
+- Valor Regular: $5 USD.
+- OFERTA ESPECIAL DE LANZAMIENTO: ¡SOLO $2 USD por los 30 días completos!
+  (En la web aparece el $5 tachado en gris con diagonal roja y el $2 resaltado en amarillo
+  dorado con el sello "Desct. lanzamiento").
+
+BENEFICIOS EXCLUSIVOS DEL TOKKIIPASS PREMIUM:
+
+1. RECOMPENSAS DIARIAS DUPLICADAS (LUNES A SÁBADO):
+   - Cada entrega regular diaria de sobres se multiplica automáticamente x2:
+     * Lunes, Martes y Jueves: 2 cartas en lugar de 1.
+     * Viernes: 2 sobres de 3 cartas = ¡6 cartas directas!
+     * Miércoles y Sábados (Ruleta): El premio que saque la ruleta se entrega DUPLICADO.
+       Si la ruleta saca 3 cartas, recibe 6; si saca el sobre de 5 cartas, ¡se lleva 10 cartas
+       en una sola tirada!
+
+2. DOMINGOS LEGENDARIOS DE 5 SOBRES x 5 CARTAS (¡25 CARTAS CADA SEMANA!):
+   - Todos los domingos del mes, los usuarios Premium reciben:
+     ¡5 SOBRES DE 5 CARTAS GARANTIZADOS CADA DOMINGO! (25 cartas semanales directas).
+   - Este es el mayor atractivo: al recibir 5 sobres de 5 cartas cada domingo, los usuarios
+     Premium cuentan con múltiples intentos semanales para tentar a la suerte con la
+     Carta Dorada Épica, la cual SOLO aparece en sobres de 5 cartas.
+
+3. CASILLA DORADA Y CONTADOR EN VIVO EN LA CABECERA:
+   - Las casillas del calendario semanal adoptan un tono dorado brillante exclusivo.
+   - En la barra superior de la web, al lado del avatar de Twitch y del contador de sobres,
+     se enciende una insignia dorada con corona que muestra los días exactos restantes
+     de membresía (ejemplo: "28 días"). El avatar del usuario adquiere un borde dorado VIP.
+
+4. VIGENCIA DE 30 DÍAS Y EXTENSIÓN ACUMULABLE (+30 DÍAS ADICIONALES):
+   - Cada pase dura 30 días continuos desde el momento de su activación.
+   - Si el usuario desea renovar antes de que expire su pase actual, los días se suman de
+     forma acumulativa sin perder los días restantes (ejemplo: si le quedaban 10 días y
+     adquiere otro mes, pasa a tener 40 días activos).
+
+5. MODO DE SOLICITUD DIRECTA DESDE LA WEB Y PRIVACIDAD TOTAL (DISCORD):
+   - En la misma pestaña de TokkiiPass en la web hay un botón dorado destacado:
+     "SOLICITAR TOKKIIPASS PREMIUM".
+   - Al presionarlo, se abre una ventana donde el usuario solo ingresa su Usuario de Discord.
+   - Al pulsar "Enviar Solicitud", los datos se envían automáticamente mediante un Webhook oficial
+     al canal privado del Staff de EvilTokkii en Discord.
+   - El staff oficial contacta al usuario de forma estrictamente privada y confidencial por
+     mensaje directo en Discord para acordar el pago con total protección de sus datos.
+   - Al enviar la solicitud, la web muestra un aviso recordando al usuario estar pendiente de sus
+     solicitudes de amistad y mensajes directos en Discord.
+
+6. CONVERSIÓN A MONEDA LOCAL DE CUALQUIER PAÍS (TRANSPARENCIA TOTAL):
+   - Si el espectador no cuenta con dólares o prefiere pagar en la moneda local de su país
+     (pesos chilenos, pesos argentinos, pesos mexicanos, soles, etc.):
+     La conversión equivalente exacta se calcula y acuerda directamente durante la solicitud
+     en Discord, garantizando total claridad, honestidad y el cambio correspondiente sin
+     comisiones ocultas.
+
+7. TRANSPARENCIA TOTAL: DESTINO DE LOS FONDOS:
+   - El 100% de lo recaudado mediante el TokkiiPass Premium se destina a financiar y mejorar
+     las herramientas de desarrollo de EvilTokkii:
+     * Servidores, base de datos y alojamiento de la plataforma web TCG.
+     * Bots interactivos, plugins y ruletas para las transmisiones en vivo de Twitch.
+     * Recursos, difusión y actividades comunitarias del canal.
+
+
+========================================================================================
+4. LA CARTA DORADA ÉPICA (GOODTOKKII DORADA #141/140) - EL GRAN JACKPOT
+========================================================================================
+¿Qué es y cómo funciona?
+La Carta Dorada Épica (#141 GoodTokkii Dorada) es el JACKPOT SUPREMO y definitivo del juego:
+
+1. REGLA EXCLUSIVA DE OBTENCIÓN:
+   - SOLO aparece dentro de los SOBRES DE 5 CARTAS (Pack X5) con una baja probabilidad (drop rate ultra raro).
+   - NUNCA aparece en sobres de 1 ni de 3 cartas.
+   - Formas de conseguir sobres de 5 cartas:
+     * Los Domingos del TokkiiPass Premium (5 sobres de 5 cartas cada domingo).
+     * El premio de 5 cartas en la ruleta del azar de miércoles y sábados.
+     * El sobre de 5 cartas de fin de mes del TokkiiPass gratuito.
+     * Canjes especiales configurados en el stream.
+
+2. EFECTO ÉPICO: ¡DESBLOQUEA TODO EL ÁLBUM AUTOMÁTICAMENTE!
+   - En el instante en que a un usuario le sale la Carta Dorada al abrir un sobre de 5 cartas:
+     ¡EL SISTEMA LE DESBLOQUEA AUTOMÁTICAMENTE TODAS LAS 140 CARTAS DE LA COLECCIÓN (#001 HASTA #140)!
+   - Completa el 100% de su álbum de golpe como premio definitivo supremo.
+   - En pantalla se dispara una cinemática dorada especial de Jackpot anunciando el desbloqueo
+     completo de toda la colección.
+
+3. LA GRAN VENTAJA DEL TOKKIIPASS PREMIUM:
+   - Al recibir 5 sobres de 5 cartas todos los domingos (¡20 a 25 sobres de 5 cartas al mes!),
+     los usuarios con TokkiiPass Premium tienen muchas más oportunidades semanales de conseguir
+     la Carta Dorada y completar el álbum de inmediato.
+
+4. AUDITORÍA TÉCNICA Y FAIR PLAY:
+   - Todo drop de Carta Dorada y desbloqueo total del álbum queda registrado, verificado y
+     auditado en la base de datos de Supabase para garantizar total legitimidad.
+   - La carta y el álbum son estrictamente personales e intransferibles, vinculados a la
+     cuenta autenticada de Twitch del usuario.
+
+
+========================================================================================
+5. PREGUNTAS FRECUENTES (FAQ DIRECTAS PARA EL CHAT)
+========================================================================================
+
+P: "¿Tengo que pagar obligatoriamente para jugar y coleccionar cartas?"
+R: "¡Para nada! La web y el TokkiiPass Diario son 100% gratuitos. Entras cada día con tu cuenta
+    de Twitch, reclamas tu sobre diario y vas armando tu álbum sin gastar nada."
+
+P: "¿Cuánto cuesta el TokkiiPass Premium?"
+R: "Su valor regular es de $5 USD, pero actualmente estamos en OFERTA DE LANZAMIENTO a solo
+    $2 DÓLARES por los 30 días completos."
+
+P: "¿Puedo pagar en la moneda de mi país si no tengo dólares?"
+R: "¡Sí! Al solicitarlo en la web, el staff te contacta por privado en Discord y hace la
+    conversión exacta a la moneda local de tu país con total transparencia."
+
+P: "¿Cómo pido el TokkiiPass Premium?"
+R: "Entras a la pestaña TokkiiPass en la web, bajas hasta el botón dorado que dice 'Solicitar
+    TokkiiPass Premium', escribes tu usuario de Discord y le das a enviar. ¡El staff te contactará
+    por privado en Discord para coordinar todo!"
+
+P: "¿Qué pasa si se me olvida entrar un día a reclamar el sobre gratuito?"
+R: "¡Día no reclamado, día que se pierde! No hay reclamos hacia atrás, por eso es clave entrar
+    diariamente."
+
+P: "¿Qué hace la Carta Dorada si me llega a salir?"
+R: "¡Es el Jackpot supremo! Si te sale en un sobre de 5 cartas, el sistema te desbloquea
+    automáticamente TODAS las 140 cartas de la colección completándote el álbum entero al instante."
+
+P: "¿En qué sobres puede salir la Carta Dorada?"
+R: "Únicamente en los sobres de 5 cartas (Pack X5). Nunca sale en sobres de 1 ni de 3 cartas."
+
+P: "¿Si renuevo mi pase antes de que terminen los 30 días, pierdo los días que me quedaban?"
+R: "¡No se pierde ningún día! Se acumulan. Si te quedaban 12 días y compras otro mes, pasas a
+    tener 42 días activos."
+
+
+========================================================================================
+6. GUION RECOMENDADO PARA LA STREAMER
+========================================================================================
+
+[Momento sugerido: Durante la charla inicial del directo, navegando en la web o abriendo sobres]
+
+"¡Hola chicos! Les recuerdo a todos los que están coleccionando las cartitas del canal que no
+se olviden de entrar hoy a la web. Recuerden la regla estricta: ¡día que no entran a reclamar
+su sobre diario en el TokkiiPass, día que se pierde para siempre!
+
+Y hoy les quiero contar una tremenda novedad: ya tenemos disponible la membresía oficial
+TokkiiPass Premium VIP, ¡y está en OFERTA ESPECIAL DE LANZAMIENTO A SOLO 2 DÓLARES por 30 días!
+(su valor normal es de 5 dólares).
+
+¿Qué beneficios les da el TokkiiPass Premium?
+Primero, de lunes a sábado les duplica absolutamente todos los sobres y cartas que reclamen,
+incluyendo los premios de la ruleta.
+Segundo, se les activa su casilla dorada con el contador de días restantes en vivo en la web.
+Y lo mejor de todo: ¡todos los domingos reciben un cargamento legendario de CINCO sobres de
+CINCO cartas garantizados! Son 25 cartas directas cada domingo.
+
+Para pedirlo es súper fácil: entran a la pestaña de TokkiiPass en la web, bajan hasta el botón
+dorado que dice 'Solicitar TokkiiPass Premium', ponen su usuario de Discord y le dan a enviar.
+La solicitud le llega directo al staff en Discord y los contactan por mensaje privado para
+coordinar el pago con total seguridad. Y si necesitan pagar en la moneda local de su país,
+se coordina la conversión exacta directamente ahí con total transparencia.
+Recuerden que el 100% de lo recaudado se utiliza para costear servidores, bots y herramientas
+para los directos del canal.
+
+¡Y escuchen esto sobre la CARTA DORADA ÉPICA #141!
+La Carta Dorada es el JACKPOT supremo del juego. Solo puede salir en los sobres de 5 cartas con
+una probabilidad baja. ¿Y qué pasa si tienen la suerte de que les salga?
+¡En el segundo exacto en que abren el sobre y les sale la Carta Dorada, el sistema les DESBLOQUEA
+AUTOMÁTICAMENTE TODAS LAS 140 CARTAS DEL ÁLBUM DE GOLPE!
+Sí, les completa la colección entera al 100% en un segundo.
+
+Por eso los sobres de 5 cartas son tan codiciados, y los que tienen el TokkiiPass Premium
+tienen 5 sobres de 5 cartas todos los domingos para probar suerte.
+
+¡Así que ya saben, entren a la web, inicien sesión con Twitch y no se pierdan su sobre de hoy!"
+
+========================================================================================
+Fin del documento oficial de apoyo para transmisiones.
+========================================================================================

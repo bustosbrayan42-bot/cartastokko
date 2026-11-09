@@ -43,6 +43,18 @@ export const getUserProfile = async (userId: string): Promise<UserProfile | null
       .maybeSingle();
 
     if (data) {
+      if (!data.tokkiipass_premium_expires_at) {
+        const { data: cardRow } = await supabaseAuth
+          .from('user_cards')
+          .select('obtained_at')
+          .eq('user_id', userId)
+          .eq('card_id', 'TOKKIIPASS_PREMIUM')
+          .maybeSingle();
+
+        if (cardRow?.obtained_at) {
+          data.tokkiipass_premium_expires_at = cardRow.obtained_at;
+        }
+      }
       return data as UserProfile;
     }
 
@@ -230,6 +242,60 @@ export const addCardsToUserCollection = async (
       }
     })
   );
+};
+
+/**
+ * Desbloqueo automático del álbum completo (001 a 140) al obtener la Carta Dorada Épica.
+ * Realiza la inserción por lotes en Supabase para máxima velocidad y evitar límites de peticiones.
+ */
+export const unlockFullAlbumForUser = async (
+  userId: string,
+  albumCardIds: string[]
+): Promise<boolean> => {
+  if (!userId || albumCardIds.length === 0) return false;
+
+  try {
+    // 1. Consultar qué cartas ya posee el usuario
+    const { data: existingRows, error: fetchErr } = await supabaseAuth
+      .from('user_cards')
+      .select('card_id')
+      .eq('user_id', userId);
+
+    if (fetchErr) {
+      console.warn('Error al verificar cartas existentes para el desbloqueo:', fetchErr);
+    }
+
+    const existingSet = new Set((existingRows || []).map((r: { card_id: string }) => r.card_id));
+    const missingCardIds = albumCardIds.filter((id) => !existingSet.has(id));
+
+    // Si ya tiene todas las cartas, no requiere inserción
+    if (missingCardIds.length === 0) {
+      return true;
+    }
+
+    // 2. Insertar las cartas faltantes en lotes de 50
+    const chunkSize = 50;
+    for (let i = 0; i < missingCardIds.length; i += chunkSize) {
+      const chunk = missingCardIds.slice(i, i + chunkSize);
+      const rows = chunk.map((cardId) => ({
+        user_id: userId,
+        card_id: cardId,
+        count: 1,
+        obtained_at: new Date().toISOString(),
+        source: 'golden_epic_full_unlock',
+      }));
+
+      const { error: insertErr } = await supabaseAuth.from('user_cards').insert(rows);
+      if (insertErr) {
+        console.warn('Error insertando lote de desbloqueo de álbum:', insertErr);
+      }
+    }
+
+    return true;
+  } catch (err) {
+    console.error('Error al desbloquear álbum completo en Supabase:', err);
+    return false;
+  }
 };
 
 export interface DuplicatesSummary {
